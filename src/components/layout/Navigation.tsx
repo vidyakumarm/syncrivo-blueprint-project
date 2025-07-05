@@ -87,6 +87,9 @@ export function Navigation() {
             {/* Auth Buttons */}
             <div className="flex items-center space-x-4">
               <Button variant="ghost" asChild>
+                <Link to="/dashboard">Dashboard</Link>
+              </Button>
+              <Button variant="ghost" asChild>
                 <Link to="/login">Sign In</Link>
               </Button>
               <Button asChild className="bg-gradient-primary hover:bg-primary-hover shadow-glow">
@@ -150,6 +153,13 @@ export function Navigation() {
               ))}
               
               <div className="pt-4 border-t border-border space-y-2">
+                <Link
+                  to="/dashboard"
+                  className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
                 <Link
                   to="/login"
                   className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
