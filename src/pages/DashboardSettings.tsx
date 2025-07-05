@@ -20,6 +20,14 @@ import {
 
 export default function DashboardSettings() {
   const [avatarSrc, setAvatarSrc] = useState<string>("/placeholder-avatar.jpg");
+  const [isSaving, setIsSaving] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "John",
+    lastName: "Doe", 
+    email: "john.doe@company.com",
+    company: "Acme Corp",
+    bio: ""
+  });
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -66,6 +74,35 @@ export default function DashboardSettings() {
     reader.readAsDataURL(file);
   };
 
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSaveChanges = async () => {
+    setIsSaving(true);
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    try {
+      // Here you would typically make an API call to save the data
+      console.log('Saving form data:', formData);
+      
+      toast({
+        title: "Changes saved",
+        description: "Your profile has been updated successfully.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error saving changes",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   return (
     <DashboardLayout>
       <div className="space-y-8">
@@ -108,30 +145,58 @@ export default function DashboardSettings() {
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
                   <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" defaultValue="John" />
+                  <Input 
+                    id="firstName" 
+                    value={formData.firstName}
+                    onChange={(e) => handleInputChange('firstName', e.target.value)}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" defaultValue="Doe" />
+                  <Input 
+                    id="lastName" 
+                    value={formData.lastName}
+                    onChange={(e) => handleInputChange('lastName', e.target.value)}
+                  />
                 </div>
               </div>
 
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" defaultValue="john.doe@company.com" />
+                <Input 
+                  id="email" 
+                  type="email" 
+                  value={formData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                />
               </div>
 
               <div>
                 <Label htmlFor="company">Company</Label>
-                <Input id="company" defaultValue="Acme Corp" />
+                <Input 
+                  id="company" 
+                  value={formData.company}
+                  onChange={(e) => handleInputChange('company', e.target.value)}
+                />
               </div>
 
               <div>
                 <Label htmlFor="bio">Bio</Label>
-                <Textarea id="bio" placeholder="Tell us about yourself..." />
+                <Textarea 
+                  id="bio" 
+                  placeholder="Tell us about yourself..." 
+                  value={formData.bio}
+                  onChange={(e) => handleInputChange('bio', e.target.value)}
+                />
               </div>
 
-              <Button className="bg-gradient-primary">Save Changes</Button>
+              <Button 
+                className="bg-gradient-primary" 
+                onClick={handleSaveChanges}
+                disabled={isSaving}
+              >
+                {isSaving ? 'Saving...' : 'Save Changes'}
+              </Button>
             </CardContent>
           </Card>
 
