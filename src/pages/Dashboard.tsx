@@ -60,30 +60,30 @@ export default function Dashboard() {
         {/* Metrics Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <MetricCard
-            title="Active Integrations"
-            value="12"
-            change="+2"
-            isPositive={true}
-            icon={<Zap className="h-5 w-5" />}
-          />
-          <MetricCard
-            title="Syncs Today"
-            value="1,247"
-            change="+18%"
+            title="Data Points Processed"
+            value="2.4T"
+            change="+125B"
             isPositive={true}
             icon={<Activity className="h-5 w-5" />}
           />
           <MetricCard
-            title="Success Rate"
-            value="98.2%"
-            change="+0.8%"
+            title="Market Value Unlocked"
+            value="$847B"
+            change="+$92B"
+            isPositive={true}
+            icon={<Zap className="h-5 w-5" />}
+          />
+          <MetricCard
+            title="Global Users Reached"
+            value="1.8B"
+            change="+234M"
             isPositive={true}
             icon={<CheckCircle2 className="h-5 w-5" />}
           />
           <MetricCard
-            title="Avg Sync Time"
-            value="1.2s"
-            change="-0.3s"
+            title="Enterprise Connections"
+            value="450K"
+            change="+18%"
             isPositive={true}
             icon={<Clock className="h-5 w-5" />}
           />
