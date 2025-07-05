@@ -30,6 +30,8 @@ interface Connection {
 export default function DashboardConnections() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
+  const [selectedConnection, setSelectedConnection] = useState<Connection | null>(null);
   const [newConnection, setNewConnection] = useState({
     name: '',
     type: '',
@@ -97,8 +99,21 @@ export default function DashboardConnections() {
   };
 
   const handleSettingsClick = (connectionId: string) => {
-    console.log('Opening settings for connection:', connectionId);
-    // Navigation to settings page would go here
+    const connection = connections.find(conn => conn.id === connectionId);
+    if (connection) {
+      setSelectedConnection(connection);
+      setSettingsDialogOpen(true);
+    }
+  };
+
+  const handleUpdateConnection = () => {
+    if (!selectedConnection) return;
+    
+    setConnections(prev => prev.map(conn => 
+      conn.id === selectedConnection.id ? selectedConnection : conn
+    ));
+    setSettingsDialogOpen(false);
+    setSelectedConnection(null);
   };
 
   const handleNewConnection = () => {
@@ -302,6 +317,77 @@ export default function DashboardConnections() {
             <p className="text-muted-foreground">No connections found matching your search.</p>
           </div>
         )}
+
+        {/* Settings Dialog */}
+        <Dialog open={settingsDialogOpen} onOpenChange={setSettingsDialogOpen}>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Connection Settings</DialogTitle>
+            </DialogHeader>
+            {selectedConnection && (
+              <div className="grid gap-4 py-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="settings-name">Connection Name</Label>
+                  <Input
+                    id="settings-name"
+                    value={selectedConnection.name}
+                    onChange={(e) => setSelectedConnection(prev => prev ? { ...prev, name: e.target.value } : null)}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="settings-type">Connection Type</Label>
+                  <Select value={selectedConnection.type} onValueChange={(value) => setSelectedConnection(prev => prev ? { ...prev, type: value } : null)}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {connectionTypes.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="settings-icon">Icon (Emoji)</Label>
+                  <Input
+                    id="settings-icon"
+                    value={selectedConnection.icon}
+                    onChange={(e) => setSelectedConnection(prev => prev ? { ...prev, icon: e.target.value } : null)}
+                    maxLength={2}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="settings-status">Status</Label>
+                  <Select 
+                    value={selectedConnection.status} 
+                    onValueChange={(value: 'active' | 'paused' | 'error') => 
+                      setSelectedConnection(prev => prev ? { ...prev, status: value } : null)
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="paused">Paused</SelectItem>
+                      <SelectItem value="error">Error</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            )}
+            <div className="flex justify-end space-x-2">
+              <Button variant="outline" onClick={() => setSettingsDialogOpen(false)}>
+                Cancel
+              </Button>
+              <Button onClick={handleUpdateConnection} className="bg-gradient-primary">
+                Update Connection
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </DashboardLayout>
   );
