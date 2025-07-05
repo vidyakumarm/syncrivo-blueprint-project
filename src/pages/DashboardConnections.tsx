@@ -26,7 +26,7 @@ interface Connection {
 
 export default function DashboardConnections() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [connections] = useState<Connection[]>([
+  const [connections, setConnections] = useState<Connection[]>([
     {
       id: '1',
       name: 'Slack Workspace',
@@ -79,6 +79,24 @@ export default function DashboardConnections() {
     connection.type.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const toggleConnectionStatus = (connectionId: string) => {
+    setConnections(prev => prev.map(conn => 
+      conn.id === connectionId 
+        ? { ...conn, status: conn.status === 'active' ? 'paused' : 'active' as 'active' | 'paused' | 'error' }
+        : conn
+    ));
+  };
+
+  const handleSettingsClick = (connectionId: string) => {
+    console.log('Opening settings for connection:', connectionId);
+    // Navigation to settings page would go here
+  };
+
+  const handleNewConnection = () => {
+    console.log('Opening new connection dialog');
+    // Navigation to new connection flow would go here
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-success text-success-foreground';
@@ -106,7 +124,7 @@ export default function DashboardConnections() {
             <h1 className="text-3xl font-bold text-foreground">Connections</h1>
             <p className="text-muted-foreground">Manage your integrations and sync settings</p>
           </div>
-          <Button className="bg-gradient-primary">
+          <Button className="bg-gradient-primary" onClick={handleNewConnection}>
             <Plus className="h-4 w-4 mr-2" />
             New Connection
           </Button>
@@ -159,6 +177,7 @@ export default function DashboardConnections() {
                       variant="outline"
                       size="sm"
                       className="flex-1"
+                      onClick={() => toggleConnectionStatus(connection.id)}
                     >
                       {connection.status === 'active' ? (
                         <>
@@ -175,6 +194,7 @@ export default function DashboardConnections() {
                     <Button
                       variant="outline"
                       size="sm"
+                      onClick={() => handleSettingsClick(connection.id)}
                     >
                       <Settings className="h-3 w-3" />
                     </Button>
