@@ -17,6 +17,8 @@ import Dashboard from "./pages/Dashboard";
 import DashboardConnections from "./pages/DashboardConnections";
 import DashboardActivity from "./pages/DashboardActivity";
 import DashboardSettings from "./pages/DashboardSettings";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +44,8 @@ const App = () => (
           <Route path="/dashboard/connections" element={<DashboardConnections />} />
           <Route path="/dashboard/activity" element={<DashboardActivity />} />
           <Route path="/dashboard/settings/*" element={<DashboardSettings />} />
+          <Route path="/legal/terms" element={<Terms />} />
+          <Route path="/legal/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
