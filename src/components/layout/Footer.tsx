@@ -35,9 +35,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
-              </div>
+              <span className="text-2xl">🌐</span>
               <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
                 SyncRivo
               </span>
