@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useToast } from '@/hooks/use-toast';
 import { 
   User,
   Mail,
@@ -17,6 +19,53 @@ import {
 } from 'lucide-react';
 
 export default function DashboardSettings() {
+  const [avatarSrc, setAvatarSrc] = useState<string>("/placeholder-avatar.jpg");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+
+  const handlePhotoChange = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (!validTypes.includes(file.type)) {
+      toast({
+        title: "Invalid file type",
+        description: "Please select a JPG or PNG image.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file size (5MB limit)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > maxSize) {
+      toast({
+        title: "File too large",
+        description: "Please select an image smaller than 5MB.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Create preview URL
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      setAvatarSrc(result);
+      toast({
+        title: "Photo updated",
+        description: "Your profile photo has been updated successfully.",
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <DashboardLayout>
       <div className="space-y-8">
@@ -38,12 +87,21 @@ export default function DashboardSettings() {
             <CardContent className="space-y-6">
               <div className="flex items-center space-x-4">
                 <Avatar className="h-20 w-20">
-                  <AvatarImage src="/placeholder-avatar.jpg" />
+                  <AvatarImage src={avatarSrc} />
                   <AvatarFallback className="bg-primary text-primary-foreground text-lg">JD</AvatarFallback>
                 </Avatar>
                 <div>
-                  <Button variant="outline" size="sm">Change Photo</Button>
+                  <Button variant="outline" size="sm" onClick={handlePhotoChange}>
+                    Change Photo
+                  </Button>
                   <p className="text-xs text-muted-foreground mt-1">JPG, PNG up to 5MB</p>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/jpeg,image/png,image/jpg"
+                    onChange={handleFileChange}
+                    className="hidden"
+                  />
                 </div>
               </div>
 
