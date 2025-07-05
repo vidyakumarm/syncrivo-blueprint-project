@@ -94,10 +94,15 @@ export default function DashboardActivity() {
   ]);
 
   const filteredActivities = activities.filter(activity => {
-    const matchesSearch = activity.integration.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    // If no search term, match all for search criteria
+    const matchesSearch = !searchTerm.trim() || 
+                         activity.integration.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          activity.action.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          activity.details.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    // Filter by status
     const matchesStatus = statusFilter === 'all' || activity.status === statusFilter;
+    
     return matchesSearch && matchesStatus;
   });
 
