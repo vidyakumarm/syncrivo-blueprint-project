@@ -72,6 +72,10 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				logo: {
+					icon: 'hsl(var(--logo-icon-color))',
+					ring: 'hsl(var(--logo-ring-color))'
 				}
 			},
 			borderRadius: {
@@ -84,6 +88,7 @@ export default {
 				'gradient-success': 'var(--gradient-success)',
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-card': 'var(--gradient-card)',
+				'logo-icon': 'var(--logo-icon-bg)',
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',

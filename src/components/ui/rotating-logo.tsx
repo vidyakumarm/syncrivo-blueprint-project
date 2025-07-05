@@ -61,16 +61,16 @@ export function RotatingLogo({ className = "" }: RotatingLogoProps) {
   return (
     <div className={`flex items-center space-x-3 group cursor-pointer ${className}`}>
       <div className="relative">
-        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-primary shadow-glow transition-all duration-500 group-hover:scale-110">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-logo-icon shadow-glow transition-all duration-500 group-hover:scale-110">
           <Icon 
-            className={`h-6 w-6 text-white transition-all duration-500 ${
+            className={`h-6 w-6 text-logo-icon transition-all duration-500 ${
               currentIndex % 2 === 1 ? 'animate-spin' : ''
             }`} 
           />
         </div>
         
         {/* Rotating ring effect */}
-        <div className="absolute inset-0 rounded-lg border-2 border-primary/30 animate-spin" 
+        <div className="absolute inset-0 rounded-lg border-2 border-logo-ring animate-spin" 
              style={{ animationDuration: '8s' }} />
       </div>
       
