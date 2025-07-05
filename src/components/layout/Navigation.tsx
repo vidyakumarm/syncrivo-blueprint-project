@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { RotatingLogo } from '@/components/ui/rotating-logo';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import {
   DropdownMenu,
@@ -82,8 +83,9 @@ export function Navigation() {
               )
             ))}
 
-            {/* Auth Buttons */}
+            {/* Theme Toggle & Auth Buttons */}
             <div className="flex items-center space-x-4">
+              <ThemeToggle />
               <Button variant="ghost" asChild>
                 <Link to="/dashboard">Dashboard</Link>
               </Button>
