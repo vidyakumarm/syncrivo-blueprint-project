@@ -31,6 +31,7 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
 
   // Use translated nav items
   const translatedNavItems = [
+    { label: t('dashboard.title'), href: '/dashboard' },
     { label: t('common.features'), href: '/features' },
     { label: t('common.integrations'), href: '/integrations' },
     { label: t('common.pricing'), href: '/pricing' },
@@ -60,13 +61,6 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
         <div className="pt-4 border-t border-border space-y-2">
           {user ? (
             <>
-              <Link
-                to="/dashboard"
-                className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
-                onClick={onLinkClick}
-              >
-                {t('dashboard.title')}
-              </Link>
               <div className="px-3 py-2">
                 <p className="text-sm font-medium text-foreground">{displayName}</p>
                 <p className="text-xs text-muted-foreground">{user.email}</p>

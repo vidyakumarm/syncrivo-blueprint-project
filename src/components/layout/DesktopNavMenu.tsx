@@ -27,6 +27,7 @@ export function DesktopNavMenu({ navItems }: DesktopNavMenuProps) {
 
   // Use translated nav items instead of props
   const translatedNavItems = [
+    { label: t('dashboard.title'), href: '/dashboard' },
     { label: t('common.features'), href: '/features' },
     { label: t('common.integrations'), href: '/integrations' },
     { label: t('common.pricing'), href: '/pricing' },
