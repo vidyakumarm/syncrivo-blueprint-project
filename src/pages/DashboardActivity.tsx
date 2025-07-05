@@ -118,6 +118,38 @@ export default function DashboardActivity() {
     }
   };
 
+  const handleExport = () => {
+    const csvHeaders = ['Timestamp', 'Integration', 'Action', 'Status', 'Duration', 'Records Processed', 'Details'];
+    const csvData = filteredActivities.map(activity => [
+      activity.timestamp,
+      activity.integration,
+      activity.action,
+      activity.status,
+      activity.duration,
+      activity.recordsProcessed.toString(),
+      activity.details.replace(/,/g, ';') // Replace commas to avoid CSV issues
+    ]);
+
+    const csvContent = [
+      csvHeaders.join(','),
+      ...csvData.map(row => row.join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `activity-log-${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   return (
     <DashboardLayout>
       <div className="space-y-8">
@@ -128,11 +160,11 @@ export default function DashboardActivity() {
             <p className="text-muted-foreground">Monitor all sync activities and integration events</p>
           </div>
           <div className="flex space-x-2">
-            <Button variant="outline">
+            <Button variant="outline" onClick={handleRefresh}>
               <RefreshCw className="h-4 w-4 mr-2" />
               Refresh
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" onClick={handleExport}>
               <Download className="h-4 w-4 mr-2" />
               Export
             </Button>
