@@ -5,6 +5,7 @@ import { FAQSection } from '@/components/support/FAQSection';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 import { 
   MessageCircle, 
   Mail, 
@@ -19,39 +20,41 @@ import {
 } from 'lucide-react';
 
 export default function Support() {
+  const { t } = useTranslation();
+  
   const supportChannels = [
     {
-      title: 'Live Chat',
-      description: 'Get instant help from our support team',
+      title: t('support.live_chat'),
+      description: t('support.live_chat_desc'),
       icon: <MessageCircle className="h-6 w-6" />,
       availability: '24/7',
       responseTime: '< 2 minutes',
       badge: 'Fastest',
-      action: 'Start Chat'
+      action: t('support.start_chat')
     },
     {
-      title: 'Email Support',
-      description: 'Send us a detailed message',
+      title: t('support.email_support'),
+      description: t('support.email_support_desc'),
       icon: <Mail className="h-6 w-6" />,
       availability: 'Mon-Fri 9AM-6PM EST',
       responseTime: '< 24 hours',
       badge: 'Most Popular',
-      action: 'Send Email'
+      action: t('support.send_email')
     },
     {
-      title: 'Phone Support',
-      description: 'Talk directly with our experts',
+      title: t('support.phone_support'),
+      description: t('support.phone_support_desc'),
       icon: <Phone className="h-6 w-6" />,
       availability: 'Business hours only',
       responseTime: 'Immediate',
       badge: 'Enterprise',
-      action: 'Schedule Call'
+      action: t('support.schedule_call')
     }
   ];
 
   const resources = [
     {
-      title: 'Documentation',
+      title: t('common.documentation'),
       description: 'Comprehensive guides and API reference',
       icon: <BookOpen className="h-5 w-5" />,
       link: '/docs'
@@ -90,9 +93,9 @@ export default function Support() {
         {/* Hero Section */}
         <section className="py-20 bg-gradient-hero text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl font-bold mb-6">How can we help you?</h1>
+            <h1 className="text-4xl font-bold mb-6">{t('support.title')}</h1>
             <p className="text-xl opacity-90 mb-8">
-              Get the support you need to make the most of SyncRivo. Our team is here to help you succeed.
+              {t('support.subtitle')}
             </p>
             
             {/* Stats */}
@@ -146,11 +149,11 @@ export default function Support() {
                     <Button 
                       className="w-full bg-gradient-primary"
                       onClick={() => {
-                        if (channel.title === 'Live Chat') {
+                        if (channel.title === t('support.live_chat')) {
                           window.open('https://tawk.to/chat/syncrivo', '_blank');
-                        } else if (channel.title === 'Email Support') {
+                        } else if (channel.title === t('support.email_support')) {
                           window.location.href = 'mailto:support@syncrivo.com?subject=Support Request';
-                        } else if (channel.title === 'Phone Support') {
+                        } else if (channel.title === t('support.phone_support')) {
                           window.open('https://calendly.com/syncrivo/support-call', '_blank');
                         }
                       }}
@@ -169,14 +172,14 @@ export default function Support() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">Send us a message</h2>
+                <h2 className="text-3xl font-bold text-foreground mb-6">{t('support.contact_form_title')}</h2>
                 <p className="text-muted-foreground mb-8">
-                  Can't find what you're looking for? Send us a detailed message and we'll get back to you quickly.
+                  {t('support.contact_form_subtitle')}
                 </p>
                 
                 {/* Self-Service Resources */}
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-foreground">Self-Service Resources</h3>
+                  <h3 className="font-semibold text-foreground">{t('support.self_service')}</h3>
                   <div className="grid gap-3">
                     {resources.map((resource, index) => (
                       <a

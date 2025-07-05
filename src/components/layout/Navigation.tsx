@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { LanguageSelector } from '@/components/ui/language-selector';
 import { useAuth } from '@/contexts/AuthContext';
 import { Menu, X } from 'lucide-react';
 import { NavigationHeader } from './NavigationHeader';
@@ -43,8 +44,9 @@ export function Navigation() {
           <div className="hidden md:flex items-center space-x-8">
             <DesktopNavMenu navItems={navItems} />
 
-            {/* Theme Toggle & Auth Buttons */}
+            {/* Language Selector, Theme Toggle & Auth Buttons */}
             <div className="flex items-center space-x-4">
+              <LanguageSelector />
               <ThemeToggle />
               
               {user ? (
