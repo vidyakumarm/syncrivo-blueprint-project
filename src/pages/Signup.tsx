@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Navigation } from '@/components/layout/Navigation';
@@ -27,7 +28,7 @@ export default function Signup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email || !password) {
+    if (!email || !password || !displayName) {
       toast.error('Please fill in all required fields');
       return;
     }
@@ -72,17 +73,18 @@ export default function Signup() {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="displayName">Display Name (Optional)</Label>
+                    <Label htmlFor="displayName">Display Name *</Label>
                     <Input 
                       id="displayName" 
                       type="text" 
                       placeholder="Your Name"
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
+                      required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">Email *</Label>
                     <Input 
                       id="email" 
                       type="email" 
@@ -93,7 +95,7 @@ export default function Signup() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">Password *</Label>
                     <Input 
                       id="password" 
                       type="password"

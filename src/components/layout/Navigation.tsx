@@ -39,6 +39,9 @@ export function Navigation() {
 
   const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + '/');
 
+  // Get display name from user metadata
+  const displayName = user?.user_metadata?.display_name || user?.email;
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,15 +106,15 @@ export function Navigation() {
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className="flex items-center space-x-2">
                         <User className="h-4 w-4" />
-                        <span className="hidden sm:inline">Account</span>
+                        <span className="hidden sm:inline">{displayName}</span>
                         <ChevronDown className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56">
                       <DropdownMenuItem asChild>
                         <div className="flex flex-col space-y-1 p-2">
-                          <p className="text-sm font-medium">{user.email}</p>
-                          <p className="text-xs text-muted-foreground">Signed in</p>
+                          <p className="text-sm font-medium">{displayName}</p>
+                          <p className="text-xs text-muted-foreground">{user.email}</p>
                         </div>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -200,8 +203,8 @@ export function Navigation() {
                       Dashboard
                     </Link>
                     <div className="px-3 py-2">
-                      <p className="text-sm font-medium text-foreground">{user.email}</p>
-                      <p className="text-xs text-muted-foreground">Signed in</p>
+                      <p className="text-sm font-medium text-foreground">{displayName}</p>
+                      <p className="text-xs text-muted-foreground">{user.email}</p>
                     </div>
                     <Button
                       variant="ghost"
