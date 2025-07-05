@@ -2,9 +2,12 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { Play, ArrowRight, Zap, Shield, Users } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import heroBg from '@/assets/hero-bg.jpg';
 
 export function HeroSection() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
@@ -28,16 +31,15 @@ export function HeroSection() {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Connect Everything.
+            {t('hero.title').split('.')[0]}.
             <span className="block bg-gradient-hero bg-clip-text text-transparent">
-              Sync Everywhere.
+              {t('hero.title').split('.')[1] || 'Sync Everywhere.'}
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            Streamline your business operations with our unified integration platform. 
-            Connect 500+ apps, automate workflows, and monitor everything from a single dashboard.
+            {t('hero.subtitle')}
           </p>
 
           {/* CTA Buttons */}
@@ -48,7 +50,7 @@ export function HeroSection() {
               className="bg-gradient-primary hover:bg-primary-hover text-white font-semibold px-8 py-3 text-lg shadow-glow animate-glow"
             >
               <Link to="/signup">
-                Start For Free
+                {t('hero.cta_primary')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -59,7 +61,7 @@ export function HeroSection() {
               className="border-2 border-primary/30 hover:bg-primary-light font-semibold px-8 py-3 text-lg"
             >
               <Play className="mr-2 h-5 w-5" />
-              Watch Demo
+              {t('hero.cta_secondary')}
             </Button>
           </div>
 

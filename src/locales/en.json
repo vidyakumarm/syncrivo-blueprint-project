@@ -74,6 +74,84 @@
     "visit_forums": "Visit Forums",
     "view_github": "View GitHub"
   },
+  "features": {
+    "title": "Features",
+    "subtitle": "Discover the powerful features that make SyncRivo the perfect integration platform for your business.",
+    "coming_soon": "Coming Soon",
+    "coming_soon_desc": "We're working on bringing you amazing features. Check back soon for updates."
+  },
+  "pricing": {
+    "title": "Pricing", 
+    "subtitle": "Choose the perfect plan for your business needs.",
+    "coming_soon": "Coming Soon",
+    "coming_soon_desc": "We're working on our pricing plans. Check back soon for details."
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Learn more about our mission to simplify business integrations.",
+    "coming_soon": "Coming Soon", 
+    "coming_soon_desc": "We're crafting our story. Check back soon to learn more about us."
+  },
+  "integrations": {
+    "title": "Integrations",
+    "subtitle": "Connect with hundreds of popular business tools and services.",
+    "coming_soon": "Coming Soon",
+    "coming_soon_desc": "We're building amazing integrations. Check back soon for our integration marketplace."
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Everything you need to get started with SyncRivo.",
+    "coming_soon": "Coming Soon",
+    "coming_soon_desc": "Our comprehensive documentation is being prepared. Check back soon for guides and tutorials."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Stay updated with the latest news, tutorials, and insights from our team.",
+    "coming_soon": "Coming Soon",
+    "coming_soon_desc": "We're working on bringing you amazing content. Check back soon for our latest blog posts."
+  },
+  "careers": {
+    "title": "Careers",
+    "subtitle": "Join our team and help us build the future of data integration.",
+    "growing": "We're Growing!",
+    "growing_desc": "We're always looking for talented individuals to join our team. Check back soon for open positions or reach out to us directly.",
+    "contact_email": "Contact us at careers@company.com"
+  },
+  "status": {
+    "title": "System Status",
+    "subtitle": "Real-time status and uptime monitoring for all our services.",
+    "coming_soon": "Coming Soon",
+    "coming_soon_desc": "Our status page is being prepared. Check back soon for real-time system monitoring."
+  },
+  "security": {
+    "title": "Security",
+    "subtitle": "Learn about our commitment to keeping your data safe and secure.",
+    "coming_soon": "Coming Soon",
+    "coming_soon_desc": "Our security documentation is being prepared. Check back soon for detailed security information."
+  },
+  "login": {
+    "title": "Sign In",
+    "subtitle": "Welcome back! Please sign in to your account.",
+    "email": "Email",
+    "password": "Password",
+    "sign_in": "Sign In",
+    "dont_have_account": "Don't have an account?",
+    "sign_up": "Sign up"
+  },
+  "signup": {
+    "title": "Create Account", 
+    "subtitle": "Join SyncRivo and start connecting your business tools today.",
+    "display_name": "Display Name",
+    "email": "Email",
+    "password": "Password",
+    "create_account": "Create Account",
+    "already_have_account": "Already have an account?",
+    "sign_in": "Sign in"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to your dashboard"
+  },
   "footer": {
     "tagline": "Seamlessly connect and manage all your business integrations in one unified platform.",
     "product": "Product",

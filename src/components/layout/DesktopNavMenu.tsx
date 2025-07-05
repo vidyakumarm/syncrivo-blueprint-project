@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,12 +21,29 @@ interface DesktopNavMenuProps {
 
 export function DesktopNavMenu({ navItems }: DesktopNavMenuProps) {
   const location = useLocation();
+  const { t } = useTranslation();
   
   const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + '/');
 
+  // Use translated nav items instead of props
+  const translatedNavItems = [
+    { label: t('common.features'), href: '/features' },
+    { label: t('common.integrations'), href: '/integrations' },
+    { label: t('common.pricing'), href: '/pricing' },
+    { 
+      label: t('nav.resources'), 
+      href: '/docs',
+      children: [
+        { label: t('common.documentation'), href: '/docs' },
+        { label: t('common.support'), href: '/support' },
+        { label: t('common.about'), href: '/about' },
+      ]
+    },
+  ];
+
   return (
     <div className="hidden md:flex items-center space-x-8">
-      {navItems.map((item) => (
+      {translatedNavItems.map((item) => (
         item.children ? (
           <DropdownMenu key={item.label}>
             <DropdownMenuTrigger asChild>
@@ -37,7 +55,7 @@ export function DesktopNavMenu({ navItems }: DesktopNavMenuProps) {
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48">
+            <DropdownMenuContent align="start" className="w-48 bg-background border border-border shadow-lg z-50">
               {item.children.map((child) => (
                 <DropdownMenuItem key={child.href} asChild>
                   <Link 

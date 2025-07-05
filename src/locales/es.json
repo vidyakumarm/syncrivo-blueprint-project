@@ -74,6 +74,84 @@
     "visit_forums": "Visitar Foros",
     "view_github": "Ver GitHub"
   },
+  "features": {
+    "title": "Características",
+    "subtitle": "Descubre las poderosas características que hacen de SyncRivo la plataforma de integración perfecta para tu negocio.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Estamos trabajando en traerte características increíbles. Vuelve pronto para actualizaciones."
+  },
+  "pricing": {
+    "title": "Precios",
+    "subtitle": "Elige el plan perfecto para las necesidades de tu negocio.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Estamos trabajando en nuestros planes de precios. Vuelve pronto para más detalles."
+  },
+  "about": {
+    "title": "Acerca de Nosotros",
+    "subtitle": "Aprende más sobre nuestra misión de simplificar las integraciones de negocio.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Estamos creando nuestra historia. Vuelve pronto para aprender más sobre nosotros."
+  },
+  "integrations": {
+    "title": "Integraciones",
+    "subtitle": "Conecta con cientos de herramientas y servicios de negocio populares.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Estamos construyendo integraciones increíbles. Vuelve pronto para nuestro mercado de integraciones."
+  },
+  "docs": {
+    "title": "Documentación",
+    "subtitle": "Todo lo que necesitas para comenzar con SyncRivo.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Nuestra documentación completa se está preparando. Vuelve pronto para guías y tutoriales."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Mantente actualizado con las últimas noticias, tutoriales e información de nuestro equipo.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Estamos trabajando en traerte contenido increíble. Vuelve pronto para nuestros últimos posts del blog."
+  },
+  "careers": {
+    "title": "Carreras",
+    "subtitle": "Únete a nuestro equipo y ayúdanos a construir el futuro de la integración de datos.",
+    "growing": "¡Estamos Creciendo!",
+    "growing_desc": "Siempre estamos buscando individuos talentosos para unirse a nuestro equipo. Vuelve pronto para posiciones abiertas o contáctanos directamente.",
+    "contact_email": "Contáctanos en careers@company.com"
+  },
+  "status": {
+    "title": "Estado del Sistema",
+    "subtitle": "Monitoreo de estado y tiempo de actividad en tiempo real para todos nuestros servicios.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Nuestra página de estado se está preparando. Vuelve pronto para monitoreo del sistema en tiempo real."
+  },
+  "security": {
+    "title": "Seguridad",
+    "subtitle": "Aprende sobre nuestro compromiso de mantener tus datos seguros y protegidos.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Nuestra documentación de seguridad se está preparando. Vuelve pronto para información detallada de seguridad."
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "subtitle": "¡Bienvenido de vuelta! Por favor inicia sesión en tu cuenta.",
+    "email": "Email",
+    "password": "Contraseña",
+    "sign_in": "Iniciar Sesión",
+    "dont_have_account": "¿No tienes una cuenta?",
+    "sign_up": "Registrarse"
+  },
+  "signup": {
+    "title": "Crear Cuenta",
+    "subtitle": "Únete a SyncRivo y comienza a conectar tus herramientas de negocio hoy.",
+    "display_name": "Nombre para Mostrar",
+    "email": "Email",
+    "password": "Contraseña",
+    "create_account": "Crear Cuenta",
+    "already_have_account": "¿Ya tienes una cuenta?",
+    "sign_in": "Iniciar sesión"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "welcome": "Bienvenido a tu panel"
+  },
   "footer": {
     "tagline": "Conecta y gestiona perfectamente todas tus integraciones de negocio en una plataforma unificada.",
     "product": "Producto",
