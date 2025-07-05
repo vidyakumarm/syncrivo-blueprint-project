@@ -29,7 +29,8 @@ interface ActivityLog {
 export default function DashboardActivity() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [activities] = useState<ActivityLog[]>([
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [activities, setActivities] = useState<ActivityLog[]>([
     {
       id: '1',
       timestamp: '2024-01-15 14:32:15',
@@ -146,8 +147,26 @@ export default function DashboardActivity() {
     document.body.removeChild(link);
   };
 
-  const handleRefresh = () => {
-    window.location.reload();
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    // Add a new mock activity to show refresh worked
+    const newActivity: ActivityLog = {
+      id: Date.now().toString(),
+      timestamp: new Date().toISOString().replace('T', ' ').slice(0, 19),
+      integration: 'System',
+      action: 'Data Refresh',
+      status: 'success',
+      duration: '0.8s',
+      recordsProcessed: filteredActivities.length,
+      details: 'Activity log refreshed successfully'
+    };
+    
+    setActivities(prev => [newActivity, ...prev]);
+    setIsRefreshing(false);
   };
 
   return (
@@ -160,9 +179,9 @@ export default function DashboardActivity() {
             <p className="text-muted-foreground">Monitor all sync activities and integration events</p>
           </div>
           <div className="flex space-x-2">
-            <Button variant="outline" onClick={handleRefresh}>
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Refresh
+            <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>
+              <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+              {isRefreshing ? 'Refreshing...' : 'Refresh'}
             </Button>
             <Button variant="outline" onClick={handleExport}>
               <Download className="h-4 w-4 mr-2" />
