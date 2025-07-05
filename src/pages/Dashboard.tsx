@@ -41,11 +41,11 @@ export default function Dashboard() {
   }
 
   const recentActivity = [
-    { id: 1, action: 'Slack sync completed', time: '2 min ago', status: 'success' },
-    { id: 2, action: 'Google Drive sync failed', time: '5 min ago', status: 'error' },
-    { id: 3, action: 'Notion sync completed', time: '8 min ago', status: 'success' },
-    { id: 4, action: 'Airtable sync completed', time: '12 min ago', status: 'success' },
-    { id: 5, action: 'Trello sync completed', time: '15 min ago', status: 'success' },
+    { id: 1, action: 'Enterprise Slack sync - 2.4M messages processed', time: '2 min ago', status: 'success' },
+    { id: 2, action: 'Global Drive sync - 847GB data transferred', time: '5 min ago', status: 'success' },
+    { id: 3, action: 'Multi-tenant Notion sync - 1.2M pages indexed', time: '8 min ago', status: 'success' },
+    { id: 4, action: 'Enterprise Airtable sync - 450K records synced', time: '12 min ago', status: 'success' },
+    { id: 5, action: 'Corporate Trello sync - 89K boards processed', time: '15 min ago', status: 'success' },
   ];
 
   return (
