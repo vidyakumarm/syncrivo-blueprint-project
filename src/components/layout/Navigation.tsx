@@ -3,17 +3,24 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { RotatingLogo } from '@/components/ui/rotating-logo';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   const navItems = [
     { label: 'Features', href: '/features' },
@@ -86,15 +93,45 @@ export function Navigation() {
             {/* Theme Toggle & Auth Buttons */}
             <div className="flex items-center space-x-4">
               <ThemeToggle />
-              <Button variant="ghost" asChild>
-                <Link to="/dashboard">Dashboard</Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link to="/login">Sign In</Link>
-              </Button>
-              <Button asChild className="bg-gradient-primary hover:bg-primary-hover shadow-glow">
-                <Link to="/signup">Get Started Free</Link>
-              </Button>
+              
+              {user ? (
+                <>
+                  <Button variant="ghost" asChild>
+                    <Link to="/dashboard">Dashboard</Link>
+                  </Button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="flex items-center space-x-2">
+                        <User className="h-4 w-4" />
+                        <span className="hidden sm:inline">Account</span>
+                        <ChevronDown className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56">
+                      <DropdownMenuItem asChild>
+                        <div className="flex flex-col space-y-1 p-2">
+                          <p className="text-sm font-medium">{user.email}</p>
+                          <p className="text-xs text-muted-foreground">Signed in</p>
+                        </div>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
+                        <LogOut className="h-4 w-4 mr-2" />
+                        Sign Out
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </>
+              ) : (
+                <>
+                  <Button variant="ghost" asChild>
+                    <Link to="/login">Sign In</Link>
+                  </Button>
+                  <Button asChild className="bg-gradient-primary hover:bg-primary-hover shadow-glow">
+                    <Link to="/signup">Get Started Free</Link>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
 
@@ -153,29 +190,51 @@ export function Navigation() {
               ))}
               
               <div className="pt-4 border-t border-border space-y-2">
-                <Link
-                  to="/dashboard"
-                  className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  to="/login"
-                  className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/signup"
-                  className="block mx-3"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Button className="w-full bg-gradient-primary hover:bg-primary-hover">
-                    Get Started Free
-                  </Button>
-                </Link>
+                {user ? (
+                  <>
+                    <Link
+                      to="/dashboard"
+                      className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Dashboard
+                    </Link>
+                    <div className="px-3 py-2">
+                      <p className="text-sm font-medium text-foreground">{user.email}</p>
+                      <p className="text-xs text-muted-foreground">Signed in</p>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      onClick={() => {
+                        handleSignOut();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="w-full justify-start text-destructive"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      to="/signup"
+                      className="block mx-3"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Button className="w-full bg-gradient-primary hover:bg-primary-hover">
+                        Get Started Free
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
