@@ -4,6 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { 
   Plus, 
   Search, 
@@ -26,6 +29,12 @@ interface Connection {
 
 export default function DashboardConnections() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [newConnection, setNewConnection] = useState({
+    name: '',
+    type: '',
+    icon: '🔗'
+  });
   const [connections, setConnections] = useState<Connection[]>([
     {
       id: '1',
@@ -93,9 +102,35 @@ export default function DashboardConnections() {
   };
 
   const handleNewConnection = () => {
-    console.log('Opening new connection dialog');
-    // Navigation to new connection flow would go here
+    if (!newConnection.name || !newConnection.type) {
+      return;
+    }
+    
+    const connection: Connection = {
+      id: Date.now().toString(),
+      name: newConnection.name,
+      type: newConnection.type,
+      status: 'active',
+      lastSync: 'Never',
+      syncCount: 0,
+      icon: newConnection.icon,
+    };
+    
+    setConnections(prev => [...prev, connection]);
+    setNewConnection({ name: '', type: '', icon: '🔗' });
+    setIsDialogOpen(false);
   };
+
+  const connectionTypes = [
+    'Communication',
+    'Storage', 
+    'Productivity',
+    'Database',
+    'Project Management',
+    'CRM',
+    'E-commerce',
+    'Analytics'
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -124,10 +159,67 @@ export default function DashboardConnections() {
             <h1 className="text-3xl font-bold text-foreground">Connections</h1>
             <p className="text-muted-foreground">Manage your integrations and sync settings</p>
           </div>
-          <Button className="bg-gradient-primary" onClick={handleNewConnection}>
-            <Plus className="h-4 w-4 mr-2" />
-            New Connection
-          </Button>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-gradient-primary">
+                <Plus className="h-4 w-4 mr-2" />
+                New Connection
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Create New Connection</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="name">Connection Name</Label>
+                  <Input
+                    id="name"
+                    placeholder="Enter connection name"
+                    value={newConnection.name}
+                    onChange={(e) => setNewConnection(prev => ({ ...prev, name: e.target.value }))}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="type">Connection Type</Label>
+                  <Select value={newConnection.type} onValueChange={(value) => setNewConnection(prev => ({ ...prev, type: value }))}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select connection type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {connectionTypes.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="icon">Icon (Emoji)</Label>
+                  <Input
+                    id="icon"
+                    placeholder="🔗"
+                    value={newConnection.icon}
+                    onChange={(e) => setNewConnection(prev => ({ ...prev, icon: e.target.value }))}
+                    maxLength={2}
+                  />
+                </div>
+              </div>
+              <div className="flex justify-end space-x-2">
+                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button 
+                  onClick={handleNewConnection}
+                  disabled={!newConnection.name || !newConnection.type}
+                  className="bg-gradient-primary"
+                >
+                  Create Connection
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         {/* Search and Filters */}
