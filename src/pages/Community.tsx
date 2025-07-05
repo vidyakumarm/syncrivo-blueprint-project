@@ -21,7 +21,12 @@ const Community = () => {
               <p className="text-muted-foreground mb-4">
                 Join our Discord server for real-time discussions and community support.
               </p>
-              <Button variant="outline">Join Discord</Button>
+              <Button 
+                variant="outline" 
+                onClick={() => window.open('https://discord.gg/syncrivo', '_blank')}
+              >
+                Join Discord
+              </Button>
             </div>
             
             <div className="bg-card rounded-lg p-6 shadow-sm text-center">
@@ -29,7 +34,12 @@ const Community = () => {
               <p className="text-muted-foreground mb-4">
                 Browse our community forums for questions, tips, and best practices.
               </p>
-              <Button variant="outline">Visit Forums</Button>
+              <Button 
+                variant="outline"
+                onClick={() => window.open('https://community.syncrivo.com', '_blank')}
+              >
+                Visit Forums
+              </Button>
             </div>
             
             <div className="bg-card rounded-lg p-6 shadow-sm text-center">
@@ -37,7 +47,12 @@ const Community = () => {
               <p className="text-muted-foreground mb-4">
                 Contribute to our open source projects and report issues.
               </p>
-              <Button variant="outline">View GitHub</Button>
+              <Button 
+                variant="outline"
+                onClick={() => window.open('https://github.com/syncrivo', '_blank')}
+              >
+                View GitHub
+              </Button>
             </div>
           </div>
         </div>

@@ -143,7 +143,18 @@ export default function Support() {
                         Response time: {channel.responseTime}
                       </div>
                     </div>
-                    <Button className="w-full bg-gradient-primary">
+                    <Button 
+                      className="w-full bg-gradient-primary"
+                      onClick={() => {
+                        if (channel.title === 'Live Chat') {
+                          window.open('https://tawk.to/chat/syncrivo', '_blank');
+                        } else if (channel.title === 'Email Support') {
+                          window.location.href = 'mailto:support@syncrivo.com?subject=Support Request';
+                        } else if (channel.title === 'Phone Support') {
+                          window.open('https://calendly.com/syncrivo/support-call', '_blank');
+                        }
+                      }}
+                    >
                       {channel.action}
                     </Button>
                   </CardContent>
