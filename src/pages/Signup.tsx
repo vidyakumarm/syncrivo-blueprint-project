@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -11,6 +12,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 
 export default function Signup() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -68,12 +70,12 @@ export default function Signup() {
           <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl text-center">Sign Up for SyncRivo</CardTitle>
+                <CardTitle className="text-2xl text-center">{t('signup.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="displayName">Display Name *</Label>
+                    <Label htmlFor="displayName">{t('signup.display_name')} *</Label>
                     <Input 
                       id="displayName" 
                       type="text" 
@@ -84,7 +86,7 @@ export default function Signup() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email *</Label>
+                    <Label htmlFor="email">{t('signup.email')} *</Label>
                     <Input 
                       id="email" 
                       type="email" 
@@ -95,7 +97,7 @@ export default function Signup() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="password">Password *</Label>
+                    <Label htmlFor="password">{t('signup.password')} *</Label>
                     <Input 
                       id="password" 
                       type="password"
@@ -110,12 +112,12 @@ export default function Signup() {
                     className="w-full bg-gradient-primary" 
                     disabled={loading}
                   >
-                    {loading ? 'Creating Account...' : 'Create Account'}
+                    {loading ? t('common.loading') : t('signup.create_account')}
                   </Button>
                   <p className="text-center text-sm text-muted-foreground">
-                    Already have an account?{' '}
+                    {t('signup.already_have_account')}{' '}
                     <Link to="/login" className="text-primary hover:underline">
-                      Sign in
+                      {t('signup.sign_in')}
                     </Link>
                   </p>
                 </form>

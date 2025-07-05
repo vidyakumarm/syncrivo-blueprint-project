@@ -4,8 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Pricing() {
+  const { t } = useTranslation();
+  
   const plans = [
     {
       name: 'Starter',
@@ -37,10 +40,10 @@ export default function Pricing() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h1 className="text-4xl font-bold text-foreground mb-4">
-                Simple, transparent pricing
+                {t('pricing.title')}
               </h1>
               <p className="text-lg text-muted-foreground">
-                Choose the plan that fits your needs
+                {t('pricing.subtitle')}
               </p>
             </div>
 
@@ -76,7 +79,7 @@ export default function Pricing() {
                       className={`w-full ${plan.popular ? 'bg-gradient-primary' : ''}`}
                       variant={plan.popular ? 'default' : 'outline'}
                     >
-                      <Link to="/signup">Get Started</Link>
+                      <Link to="/signup">{t('hero.cta_primary')}</Link>
                     </Button>
                   </CardContent>
                 </Card>
