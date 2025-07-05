@@ -20,12 +20,13 @@ export default function Dashboard() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!loading && !user) {
-      navigate('/login');
-    }
-  }, [user, loading, navigate]);
+  // Temporarily allow access without authentication for development
+  // TODO: Re-enable authentication in production
+  // useEffect(() => {
+  //   if (!loading && !user) {
+  //     navigate('/login');
+  //   }
+  // }, [user, loading, navigate]);
 
   // Show loading while checking auth
   if (loading) {
@@ -37,11 +38,6 @@ export default function Dashboard() {
         </div>
       </div>
     );
-  }
-
-  // Don't render if not authenticated (will redirect)
-  if (!user) {
-    return null;
   }
 
   const recentActivity = [
