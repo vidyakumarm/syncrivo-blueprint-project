@@ -21,12 +21,18 @@ import {
 export default function DashboardSettings() {
   const [avatarSrc, setAvatarSrc] = useState<string>("/placeholder-avatar.jpg");
   const [isSaving, setIsSaving] = useState(false);
+  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "John",
     lastName: "Doe", 
     email: "john.doe@company.com",
     company: "Acme Corp",
     bio: ""
+  });
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: ""
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -76,6 +82,70 @@ export default function DashboardSettings() {
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handlePasswordChange = (field: keyof typeof passwordData, value: string) => {
+    setPasswordData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleUpdatePassword = async () => {
+    // Validation
+    if (!passwordData.currentPassword || !passwordData.newPassword || !passwordData.confirmPassword) {
+      toast({
+        title: "Missing fields",
+        description: "Please fill in all password fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      toast({
+        title: "Passwords don't match",
+        description: "New password and confirm password must match.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (passwordData.newPassword.length < 8) {
+      toast({
+        title: "Password too short",
+        description: "Password must be at least 8 characters long.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsUpdatingPassword(true);
+
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    try {
+      // Here you would typically make an API call to update the password
+      console.log('Updating password...');
+      
+      // Clear password fields on success
+      setPasswordData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: ""
+      });
+
+      toast({
+        title: "Password updated",
+        description: "Your password has been updated successfully.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error updating password",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUpdatingPassword(false);
+    }
   };
 
   const handleSaveChanges = async () => {
@@ -261,17 +331,39 @@ export default function DashboardSettings() {
                 <div className="space-y-3">
                   <div>
                     <Label htmlFor="currentPassword">Current Password</Label>
-                    <Input id="currentPassword" type="password" />
+                    <Input 
+                      id="currentPassword" 
+                      type="password" 
+                      value={passwordData.currentPassword}
+                      onChange={(e) => handlePasswordChange('currentPassword', e.target.value)}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="newPassword">New Password</Label>
-                    <Input id="newPassword" type="password" />
+                    <Input 
+                      id="newPassword" 
+                      type="password" 
+                      value={passwordData.newPassword}
+                      onChange={(e) => handlePasswordChange('newPassword', e.target.value)}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="confirmPassword">Confirm Password</Label>
-                    <Input id="confirmPassword" type="password" />
+                    <Input 
+                      id="confirmPassword" 
+                      type="password" 
+                      value={passwordData.confirmPassword}
+                      onChange={(e) => handlePasswordChange('confirmPassword', e.target.value)}
+                    />
                   </div>
-                  <Button variant="outline" size="sm">Update Password</Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={handleUpdatePassword}
+                    disabled={isUpdatingPassword}
+                  >
+                    {isUpdatingPassword ? 'Updating...' : 'Update Password'}
+                  </Button>
                 </div>
               </div>
 
