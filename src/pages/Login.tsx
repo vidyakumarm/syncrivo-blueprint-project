@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -10,6 +11,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 
 export default function Login() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -61,12 +63,12 @@ export default function Login() {
           <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl text-center">Sign In to SyncRivo</CardTitle>
+                <CardTitle className="text-2xl text-center">{t('login.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">{t('login.email')}</Label>
                     <Input 
                       id="email" 
                       type="email" 
@@ -77,7 +79,7 @@ export default function Login() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">{t('login.password')}</Label>
                     <Input 
                       id="password" 
                       type="password"
@@ -92,12 +94,12 @@ export default function Login() {
                     className="w-full bg-gradient-primary" 
                     disabled={loading}
                   >
-                    {loading ? 'Signing In...' : 'Sign In'}
+                    {loading ? t('common.loading') : t('login.sign_in')}
                   </Button>
                   <p className="text-center text-sm text-muted-foreground">
-                    Don't have an account?{' '}
+                    {t('login.dont_have_account')}{' '}
                     <Link to="/signup" className="text-primary hover:underline">
-                      Sign up
+                      {t('login.sign_up')}
                     </Link>
                   </p>
                 </form>
