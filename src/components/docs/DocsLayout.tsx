@@ -85,9 +85,9 @@ export function DocsLayout({ children }: DocsLayoutProps) {
       <Navigation />
       <div className="pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-8 py-8">
+          <div className="flex flex-col lg:flex-row gap-8 py-8">
             {/* Sidebar */}
-            <aside className="w-64 flex-shrink-0">
+            <aside className="hidden lg:block w-64 flex-shrink-0">
               <div className="sticky top-24 space-y-6">
                 {/* Search */}
                 <div className="relative">
@@ -168,7 +168,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 min-w-0">
+            <main className="flex-1 min-w-0 w-full lg:w-auto">
               <div className="max-w-4xl">
                 {children}
               </div>

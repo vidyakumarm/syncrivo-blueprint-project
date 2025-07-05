@@ -79,19 +79,19 @@ console.log('Integration created:', integration.id);`;
             <Star className="h-3 w-3 mr-1" />
             Documentation v2.0
           </div>
-          <h1 className="text-4xl font-bold text-foreground">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
             SyncRivo Documentation
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Everything you need to build powerful integrations and connect your favorite tools. 
             Get started in minutes with our comprehensive guides and API reference.
           </p>
-          <div className="flex items-center justify-center space-x-4">
-            <Button className="bg-gradient-primary">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button className="bg-gradient-primary w-full sm:w-auto">
               <Book className="h-4 w-4 mr-2" />
               Quick Start Guide
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Code className="h-4 w-4 mr-2" />
               API Reference
             </Button>
@@ -99,7 +99,7 @@ console.log('Integration created:', integration.id);`;
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <Card key={index} className="text-center bg-gradient-card">
               <CardContent className="pt-6">
@@ -145,8 +145,8 @@ console.log('Integration created:', integration.id);`;
 
         {/* Popular Examples */}
         <div>
-          <h2 className="text-2xl font-bold text-foreground mb-6">Popular Examples</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-6">Popular Examples</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {examples.map((example, index) => (
               <Card key={index} className="bg-gradient-card hover:shadow-brand-md transition-shadow cursor-pointer">
                 <CardHeader>
