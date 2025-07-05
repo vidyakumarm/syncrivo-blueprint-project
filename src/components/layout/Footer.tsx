@@ -1,30 +1,33 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Separator } from '@/components/ui/separator';
 
 export function Footer() {
+  const { t } = useTranslation();
+
   const footerSections = {
-    Product: [
-      { label: 'Features', href: '/features' },
-      { label: 'Integrations', href: '/integrations' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'API', href: '/docs/api' },
+    [t('footer.product')]: [
+      { label: t('common.features'), href: '/features' },
+      { label: t('common.integrations'), href: '/integrations' },
+      { label: t('common.pricing'), href: '/pricing' },
+      { label: t('nav.api'), href: '/docs/api' },
     ],
-    Company: [
-      { label: 'About', href: '/about' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Contact', href: '/support' },
+    [t('footer.company')]: [
+      { label: t('common.about'), href: '/about' },
+      { label: t('nav.blog'), href: '/blog' },
+      { label: t('nav.careers'), href: '/careers' },
+      { label: t('nav.contact'), href: '/support' },
     ],
-    Support: [
-      { label: 'Documentation', href: '/docs' },
-      { label: 'Help Center', href: '/support' },
-      { label: 'Status', href: '/status' },
-      { label: 'Community', href: '/community' },
+    [t('common.support')]: [
+      { label: t('common.documentation'), href: '/docs' },
+      { label: t('footer.help_center'), href: '/support' },
+      { label: t('nav.status'), href: '/status' },
+      { label: t('nav.community'), href: '/community' },
     ],
-    Legal: [
-      { label: 'Privacy Policy', href: '/legal/privacy' },
-      { label: 'Terms of Service', href: '/legal/terms' },
-      { label: 'Security', href: '/security' },
+    [t('footer.legal')]: [
+      { label: t('footer.privacy_policy'), href: '/legal/privacy' },
+      { label: t('footer.terms_of_service'), href: '/legal/terms' },
+      { label: t('nav.security'), href: '/security' },
     ],
   };
 
@@ -41,7 +44,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Seamlessly connect and manage all your business integrations in one unified platform.
+              {t('footer.tagline')}
             </p>
           </div>
 
@@ -69,7 +72,7 @@ export function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © 2025 SyncRivo. All rights reserved.
+            © 2025 SyncRivo. {t('footer.all_rights_reserved')}
           </p>
           <div className="flex items-center space-x-6 mt-4 sm:mt-0">
             <a

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { MetricCard } from '@/components/dashboard/MetricCard';
 import { RealTimeChart } from '@/components/dashboard/RealTimeChart';
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 
 export default function Dashboard() {
+  const { t } = useTranslation();
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
@@ -31,7 +33,7 @@ export default function Dashboard() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-2 text-muted-foreground">Loading...</p>
+          <p className="mt-2 text-muted-foreground">{t('common.loading')}</p>
         </div>
       </div>
     );
@@ -55,7 +57,7 @@ export default function Dashboard() {
       <div className="space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Dashboard Overview</h1>
+          <h1 className="text-3xl font-bold text-foreground">{t('dashboard.title')} Overview</h1>
           <p className="text-muted-foreground">Monitor your integrations and sync activity in real-time</p>
         </div>
 

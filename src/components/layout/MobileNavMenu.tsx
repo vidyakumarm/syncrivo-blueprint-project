@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 import { User, LogOut } from 'lucide-react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 
@@ -17,6 +18,7 @@ interface MobileNavMenuProps {
 }
 
 export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: MobileNavMenuProps) {
+  const { t } = useTranslation();
   const location = useLocation();
   
   const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + '/');
@@ -27,45 +29,32 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
     onLinkClick();
   };
 
+  // Use translated nav items
+  const translatedNavItems = [
+    { label: t('common.features'), href: '/features' },
+    { label: t('common.integrations'), href: '/integrations' },
+    { label: t('common.pricing'), href: '/pricing' },
+    { label: t('common.documentation'), href: '/docs' },
+    { label: t('common.support'), href: '/support' },
+    { label: t('common.about'), href: '/about' },
+  ];
+
   return (
     <div className="md:hidden border-t border-border">
       <div className="py-4 space-y-2">
-        {navItems.map((item) => (
-          <div key={item.label}>
-            {item.children ? (
-              <div className="space-y-1">
-                <div className="px-3 py-2 text-sm font-medium text-muted-foreground">
-                  {item.label}
-                </div>
-                {item.children.map((child) => (
-                  <Link
-                    key={child.href}
-                    to={child.href}
-                    className={`block px-6 py-2 text-sm rounded-md ml-3 ${
-                      isActive(child.href)
-                        ? 'text-primary bg-primary-light'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-accent/10'
-                    }`}
-                    onClick={onLinkClick}
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <Link
-                to={item.href}
-                className={`block px-3 py-2 text-sm rounded-md ${
-                  isActive(item.href)
-                    ? 'text-primary bg-primary-light'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/10'
-                }`}
-                onClick={onLinkClick}
-              >
-                {item.label}
-              </Link>
-            )}
-          </div>
+        {translatedNavItems.map((item) => (
+          <Link
+            key={item.href}
+            to={item.href}
+            className={`block px-3 py-2 text-sm rounded-md ${
+              isActive(item.href)
+                ? 'text-primary bg-primary-light'
+                : 'text-muted-foreground hover:text-foreground hover:bg-accent/10'
+            }`}
+            onClick={onLinkClick}
+          >
+            {item.label}
+          </Link>
         ))}
         
         <div className="pt-4 border-t border-border space-y-2">
@@ -76,7 +65,7 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
                 className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
                 onClick={onLinkClick}
               >
-                Dashboard
+                {t('dashboard.title')}
               </Link>
               <div className="px-3 py-2">
                 <p className="text-sm font-medium text-foreground">{displayName}</p>
@@ -88,7 +77,7 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
                 className="w-full justify-start text-destructive"
               >
                 <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
+                {t('common.logout')}
               </Button>
             </>
           ) : (
@@ -98,7 +87,7 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
                 className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground rounded-md"
                 onClick={onLinkClick}
               >
-                Sign In
+                {t('common.login')}
               </Link>
               <Link
                 to="/signup"
@@ -106,7 +95,7 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
                 onClick={onLinkClick}
               >
                 <Button className="w-full bg-gradient-primary hover:bg-primary-hover">
-                  Get Started Free
+                  {t('hero.cta_primary')}
                 </Button>
               </Link>
             </>
