@@ -28,6 +28,11 @@ export function LanguageSelector() {
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   const handleLanguageChange = (languageCode: string) => {
+    console.log('🌐 [LanguageSelector] Language change requested', {
+      timestamp: new Date().toISOString(),
+      from: i18n.language,
+      to: languageCode
+    });
     i18n.changeLanguage(languageCode);
     setIsOpen(false);
   };

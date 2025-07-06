@@ -17,78 +17,99 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+// Platform icons
+import teamsIcon from '@/assets/teams-icon.svg';
+import slackIcon from '@/assets/slack-icon.svg'; 
+import zoomIcon from '@/assets/zoom-icon.png';
+import googleChatIcon from '@/assets/google-chat-icon.png';
+import webexIcon from '@/assets/webex-icon.png';
+import discordIcon from '@/assets/discord-icon.png';
 
 export default function Features() {
+  const { t } = useTranslation();
+  
   console.log('🎯 [Features] Component mounted', {
     timestamp: new Date().toISOString(),
     path: window.location.pathname,
-    userAgent: navigator.userAgent
+    userAgent: navigator.userAgent,
+    currentLanguage: localStorage.getItem('i18nextLng') || 'en'
   });
 
   const features = [
     {
       icon: MessageSquare,
-      title: 'Universal Message Sync',
-      description: 'Sync messages, files, and conversations across Teams, Webex, Google Chat, Zoom, Slack and more.',
-      benefits: ['Real-time bidirectional sync', 'File attachment support', 'Message threading preservation']
+      title: t('features.universal_sync'),
+      description: t('features.universal_sync_desc'),
+      benefits: [t('features.real_time_sync'), t('features.file_support'), t('features.bi_sync')]
     },
     {
       icon: Users,
-      title: 'Cross-Platform Teams',
-      description: 'Manage team members and permissions across all connected messaging platforms.',
-      benefits: ['Unified user directory', 'Role-based access control', 'Team presence sync']
+      title: t('features.cross_platform_teams'),
+      description: t('features.cross_platform_teams_desc'),
+      benefits: [t('features.unified_directory'), t('features.role_access'), t('features.team_presence')]
     },
     {
       icon: Shield,
-      title: 'Enterprise Security',
-      description: 'Bank-level security with SOC 2 compliance and end-to-end encryption for all message data.',
-      benefits: ['SOC 2 Type II certified', 'End-to-end encryption', 'Audit logs & compliance']
+      title: t('features.enterprise_security'),
+      description: t('features.enterprise_security_desc'),
+      benefits: [t('features.soc2_certified'), t('features.end_to_end'), t('features.audit_logs')]
     },
     {
       icon: Zap,
-      title: 'Real-Time Processing',
-      description: 'Messages appear instantly across all platforms with sub-second latency and reliable delivery.',
-      benefits: ['Sub-second latency', 'Guaranteed delivery', 'Offline message queuing']
+      title: t('features.real_time_processing'),
+      description: t('features.real_time_processing_desc'),
+      benefits: [t('features.sub_second'), t('features.guaranteed_delivery'), t('features.offline_queuing')]
     },
     {
       icon: Settings,
-      title: 'Smart Channel Mapping',
-      description: 'Intelligently map channels, rooms, and conversations between different messaging platforms.',
-      benefits: ['Auto channel detection', 'Custom mapping rules', 'Bi-directional sync']
+      title: t('features.smart_channel_mapping'),
+      description: t('features.smart_channel_mapping_desc'),
+      benefits: [t('features.auto_detection'), t('features.custom_mapping'), t('features.bi_directional')]
     },
     {
       icon: BarChart,
-      title: 'Communication Analytics',
-      description: 'Get insights into team communication patterns, platform usage, and message volumes.',
-      benefits: ['Platform usage metrics', 'Communication patterns', 'Custom reporting']
+      title: t('features.communication_analytics'),
+      description: t('features.communication_analytics_desc'),
+      benefits: [t('features.platform_metrics'), t('features.patterns'), t('features.custom_reporting')]
     }
   ];
 
   const useCases = [
     {
-      title: 'Enterprise Communication',
-      description: 'Unify messaging across departments using Teams, Webex, Google Chat, and other platforms.',
+      title: t('use_cases.enterprise_communication'),
+      description: t('use_cases.enterprise_communication_desc'),
       icon: '🏢',
       color: 'bg-blue-50 text-blue-600 border-blue-200'
     },
     {
-      title: 'Remote Team Sync',
-      description: 'Keep distributed teams connected regardless of their preferred messaging platform.',
+      title: t('use_cases.remote_team_sync'),
+      description: t('use_cases.remote_team_sync_desc'),
       icon: '🌍',
       color: 'bg-green-50 text-green-600 border-green-200'
     },
     {
-      title: 'Customer Support Hub',
-      description: 'Integrate customer support channels with internal messaging platforms for seamless communication.',
+      title: t('use_cases.customer_support_hub'),
+      description: t('use_cases.customer_support_hub_desc'),
       icon: '🎧',
       color: 'bg-purple-50 text-purple-600 border-purple-200'
     },
     {
-      title: 'Project Coordination',
-      description: 'Sync project updates and notifications across all team messaging channels automatically.',
+      title: t('use_cases.project_coordination'),
+      description: t('use_cases.project_coordination_desc'),
       icon: '📋',
       color: 'bg-orange-50 text-orange-600 border-orange-200'
     }
+  ];
+
+  const platforms = [
+    { name: 'Microsoft Teams', icon: teamsIcon, alt: 'Microsoft Teams logo' },
+    { name: 'Slack', icon: slackIcon, alt: 'Slack logo' },
+    { name: 'Zoom', icon: zoomIcon, alt: 'Zoom logo' },
+    { name: 'Google Chat', icon: googleChatIcon, alt: 'Google Chat logo' },
+    { name: 'Cisco Webex', icon: webexIcon, alt: 'Cisco Webex logo' },
+    { name: 'Discord', icon: discordIcon, alt: 'Discord logo' }
   ];
 
   return (

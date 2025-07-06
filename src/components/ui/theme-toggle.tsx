@@ -9,7 +9,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function ThemeToggle() {
-  const { setTheme, theme } = useTheme()
+  const { setTheme, theme, systemTheme } = useTheme()
+  
+  console.log('🎨 [ThemeToggle] Current theme state', {
+    timestamp: new Date().toISOString(),
+    theme,
+    systemTheme,
+    resolvedTheme: theme === 'system' ? systemTheme : theme
+  })
 
   return (
     <DropdownMenu>
