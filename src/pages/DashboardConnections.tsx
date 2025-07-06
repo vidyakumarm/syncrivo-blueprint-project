@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -20,6 +21,7 @@ import {
 } from 'lucide-react';
 
 export default function DashboardConnections() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
@@ -162,8 +164,8 @@ export default function DashboardConnections() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Messaging Platforms</h1>
-            <p className="text-muted-foreground">Connect Teams, Webex, Google Chat, Zoom and other messaging platforms</p>
+            <h1 className="text-3xl font-bold text-foreground">{t('dashboard.connections.title')}</h1>
+            <p className="text-muted-foreground">{t('dashboard.connections.subtitle')}</p>
           </div>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>

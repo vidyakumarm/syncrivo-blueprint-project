@@ -317,8 +317,37 @@
     "sign_in": "Anmelden"
   },
   "dashboard": {
-    "title": "Dashboard",
-    "welcome": "Willkommen zu Ihrem Dashboard"
+    "title": "SyncRio Dashboard",
+    "subtitle": "Verbinden und synchronisieren Sie Nachrichten zwischen Teams, Webex, Google Chat, Zoom und anderen Messaging-Plattformen",
+    "welcome": "Willkommen zu Ihrem Dashboard",
+    "metrics": {
+      "messages_synced": "Nachrichten Synchronisiert",
+      "active_platforms": "Aktive Plattformen",
+      "successful_syncs": "Erfolgreiche Synchronisationen",
+      "connected_platforms": "Verbundene Plattformen"
+    },
+    "recent_activity": "Aktuelle Plattform-Aktivität",
+    "no_activity": "Noch keine aktuelle Aktivität.",
+    "start_connecting": "Beginnen Sie mit der Verbindung von Messaging-Plattformen!",
+    "sidebar": {
+      "overview": "Übersicht",
+      "connections": "Verbindungen",
+      "activity": "Aktivität",
+      "profile": "Profil",
+      "team": "Team",
+      "security": "Sicherheit"
+    },
+    "connections": {
+      "title": "Messaging-Plattformen",
+      "subtitle": "Verbinden Sie Teams, Webex, Google Chat, Zoom und andere Messaging-Plattformen"
+    },
+    "activity": {
+      "title": "Plattform-Aktivität",
+      "subtitle": "Überwachen Sie die Nachrichten-Synchronisationsaktivität auf allen verbundenen Plattformen"
+    },
+    "settings": {
+      "subtitle": "Verwalten Sie Ihr Konto und Ihre Einstellungen"
+    }
   },
   "not_found": {
     "title": "Seite nicht gefunden",

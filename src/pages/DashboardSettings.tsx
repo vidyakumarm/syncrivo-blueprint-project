@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,6 +21,7 @@ import {
 } from 'lucide-react';
 
 export default function DashboardSettings() {
+  const { t } = useTranslation();
   const [avatarSrc, setAvatarSrc] = useState<string>("/placeholder-avatar.jpg");
   const [isSaving, setIsSaving] = useState(false);
   const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
@@ -209,8 +211,8 @@ export default function DashboardSettings() {
       <div className="space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Settings</h1>
-          <p className="text-muted-foreground">Manage your account and preferences</p>
+          <h1 className="text-3xl font-bold text-foreground">{t('common.settings')}</h1>
+          <p className="text-muted-foreground">{t('dashboard.settings.subtitle')}</p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">

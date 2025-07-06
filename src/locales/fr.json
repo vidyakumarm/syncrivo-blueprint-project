@@ -226,5 +226,38 @@
     "data_processing": "Traitement des Données",
     "data_processing_desc": "Tous les services de traitement des données fonctionnent parfaitement",
     "operational": "Opérationnel"
+  },
+  "dashboard": {
+    "title": "Tableau de Bord SyncRio",
+    "subtitle": "Connectez et synchronisez les messages entre Teams, Webex, Google Chat, Zoom et autres plateformes de messagerie",
+    "welcome": "Bienvenue sur votre Tableau de Bord",
+    "metrics": {
+      "messages_synced": "Messages Synchronisés",
+      "active_platforms": "Plateformes Actives",
+      "successful_syncs": "Synchronisations Réussies",
+      "connected_platforms": "Plateformes Connectées"
+    },
+    "recent_activity": "Activité Récente des Plateformes",
+    "no_activity": "Aucune activité récente pour le moment.",
+    "start_connecting": "Commencez par connecter des plateformes de messagerie !",
+    "sidebar": {
+      "overview": "Aperçu",
+      "connections": "Connexions",
+      "activity": "Activité",
+      "profile": "Profil", 
+      "team": "Équipe",
+      "security": "Sécurité"
+    },
+    "connections": {
+      "title": "Plateformes de Messagerie",
+      "subtitle": "Connectez Teams, Webex, Google Chat, Zoom et autres plateformes de messagerie"
+    },
+    "activity": {
+      "title": "Activité des Plateformes",
+      "subtitle": "Surveillez l'activité de synchronisation des messages sur toutes les plateformes connectées"
+    },
+    "settings": {
+      "subtitle": "Gérez votre compte et vos préférences"
+    }
   }
 }

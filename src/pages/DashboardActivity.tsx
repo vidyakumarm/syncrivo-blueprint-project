@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react';
 
 export default function DashboardActivity() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -94,8 +96,8 @@ export default function DashboardActivity() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Platform Activity</h1>
-            <p className="text-muted-foreground">Monitor message sync activity across all connected platforms</p>
+            <h1 className="text-3xl font-bold text-foreground">{t('dashboard.activity.title')}</h1>
+            <p className="text-muted-foreground">{t('dashboard.activity.subtitle')}</p>
           </div>
           <div className="flex space-x-2">
             <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>

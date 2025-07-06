@@ -169,8 +169,37 @@
     "sign_in": "登录"
   },
   "dashboard": {
-    "title": "仪表板",
-    "welcome": "欢迎来到您的仪表板"
+    "title": "SyncRio 仪表板",
+    "subtitle": "连接并同步 Teams、Webex、Google Chat、Zoom 和其他消息平台之间的消息",
+    "welcome": "欢迎来到您的仪表板",
+    "metrics": {
+      "messages_synced": "已同步消息",
+      "active_platforms": "活跃平台",
+      "successful_syncs": "成功同步",
+      "connected_platforms": "已连接平台"
+    },
+    "recent_activity": "最近的平台活动",
+    "no_activity": "暂无最近活动。",
+    "start_connecting": "开始连接消息平台！",
+    "sidebar": {
+      "overview": "概览",
+      "connections": "连接",
+      "activity": "活动",
+      "profile": "个人资料",
+      "team": "团队",
+      "security": "安全"
+    },
+    "connections": {
+      "title": "消息平台",
+      "subtitle": "连接 Teams、Webex、Google Chat、Zoom 和其他消息平台"
+    },
+    "activity": {
+      "title": "平台活动",
+      "subtitle": "监控所有已连接平台的消息同步活动"
+    },
+    "settings": {
+      "subtitle": "管理您的账户和偏好设置"
+    }
   },
   "not_found": {
     "title": "页面未找到",

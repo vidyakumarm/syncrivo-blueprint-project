@@ -378,5 +378,38 @@
     "title": "404",
     "subtitle": "Oops! Page not found",
     "return_home": "Return to Home"
+  },
+  "dashboard": {
+    "title": "SyncRio Dashboard",
+    "subtitle": "Connect and sync messages across Teams, Webex, Google Chat, Zoom and other messaging platforms",
+    "welcome": "Welcome to your Dashboard",
+    "metrics": {
+      "messages_synced": "Messages Synced",
+      "active_platforms": "Active Platforms", 
+      "successful_syncs": "Successful Syncs",
+      "connected_platforms": "Connected Platforms"
+    },
+    "recent_activity": "Recent Platform Activity",
+    "no_activity": "No recent activity yet.",
+    "start_connecting": "Start by connecting messaging platforms!",
+    "sidebar": {
+      "overview": "Overview",
+      "connections": "Connections", 
+      "activity": "Activity",
+      "profile": "Profile",
+      "team": "Team",
+      "security": "Security"
+    },
+    "connections": {
+      "title": "Messaging Platforms",
+      "subtitle": "Connect Teams, Webex, Google Chat, Zoom and other messaging platforms"
+    },
+    "activity": {
+      "title": "Platform Activity",
+      "subtitle": "Monitor message sync activity across all connected platforms"
+    },
+    "settings": {
+      "subtitle": "Manage your account and preferences"
+    }
   }
 }

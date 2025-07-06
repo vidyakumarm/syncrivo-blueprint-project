@@ -221,5 +221,38 @@
     "cta_subtitle": "انضم إلى آلاف الفرق التي تثق في SyncRio لربط أدوات التواصل التجاري الخاصة بها بسلاسة.",
     "start_free_trial": "بدء النسخة التجريبية المجانية",
     "view_demo": "عرض العرض التوضيحي المباشر"
+  },
+  "dashboard": {
+    "title": "لوحة تحكم SyncRio",
+    "subtitle": "اربط ومزامن الرسائل عبر Teams وWebex وGoogle Chat وZoom ومنصات المراسلة الأخرى",
+    "welcome": "مرحباً بك في لوحة التحكم",
+    "metrics": {
+      "messages_synced": "الرسائل المتزامنة",
+      "active_platforms": "المنصات النشطة",
+      "successful_syncs": "المزامنات الناجحة",
+      "connected_platforms": "المنصات المتصلة"
+    },
+    "recent_activity": "نشاط المنصة الحديث",
+    "no_activity": "لا يوجد نشاط حديث بعد.",
+    "start_connecting": "ابدأ بربط منصات المراسلة!",
+    "sidebar": {
+      "overview": "نظرة عامة",
+      "connections": "الاتصالات",
+      "activity": "النشاط",
+      "profile": "الملف الشخصي",
+      "team": "الفريق",
+      "security": "الأمان"
+    },
+    "connections": {
+      "title": "منصات المراسلة",
+      "subtitle": "اربط Teams وWebex وGoogle Chat وZoom ومنصات المراسلة الأخرى"
+    },
+    "activity": {
+      "title": "نشاط المنصة",
+      "subtitle": "راقب نشاط مزامنة الرسائل عبر جميع المنصات المتصلة"
+    },
+    "settings": {
+      "subtitle": "إدارة حسابك وتفضيلاتك"
+    }
   }
 }

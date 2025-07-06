@@ -221,5 +221,38 @@
     "cta_subtitle": "Junte-se a milhares de equipes que confiam no SyncRio para conectar perfeitamente suas ferramentas de comunicação empresarial.",
     "start_free_trial": "Iniciar Teste Gratuito",
     "view_demo": "Ver Demo ao Vivo"
+  },
+  "dashboard": {
+    "title": "Dashboard SyncRio",
+    "subtitle": "Conecte e sincronize mensagens entre Teams, Webex, Google Chat, Zoom e outras plataformas de mensagens",
+    "welcome": "Bem-vindo ao seu Dashboard",
+    "metrics": {
+      "messages_synced": "Mensagens Sincronizadas",
+      "active_platforms": "Plataformas Ativas",
+      "successful_syncs": "Sincronizações Bem-sucedidas",
+      "connected_platforms": "Plataformas Conectadas"
+    },
+    "recent_activity": "Atividade Recente da Plataforma",
+    "no_activity": "Ainda não há atividade recente.",
+    "start_connecting": "Comece conectando plataformas de mensagens!",
+    "sidebar": {
+      "overview": "Visão Geral",
+      "connections": "Conexões",
+      "activity": "Atividade",
+      "profile": "Perfil",
+      "team": "Equipe", 
+      "security": "Segurança"
+    },
+    "connections": {
+      "title": "Plataformas de Mensagens",
+      "subtitle": "Conecte Teams, Webex, Google Chat, Zoom e outras plataformas de mensagens"
+    },
+    "activity": {
+      "title": "Atividade da Plataforma",
+      "subtitle": "Monitore a atividade de sincronização de mensagens em todas as plataformas conectadas"
+    },
+    "settings": {
+      "subtitle": "Gerencie sua conta e preferências"
+    }
   }
 }

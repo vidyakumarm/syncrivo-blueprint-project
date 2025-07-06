@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   BarChart3, 
   Settings, 
@@ -19,14 +20,15 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const location = useLocation();
+  const { t } = useTranslation();
 
   const sidebarItems = [
-    { name: 'Overview', href: '/dashboard', icon: BarChart3 },
-    { name: 'Connections', href: '/dashboard/connections', icon: Zap },
-    { name: 'Activity', href: '/dashboard/activity', icon: Activity },
-    { name: 'Profile', href: '/dashboard/settings/profile', icon: User },
-    { name: 'Team', href: '/dashboard/settings/team', icon: Users },
-    { name: 'Security', href: '/dashboard/settings/security', icon: Shield },
+    { name: t('dashboard.sidebar.overview'), href: '/dashboard', icon: BarChart3 },
+    { name: t('dashboard.sidebar.connections'), href: '/dashboard/connections', icon: Zap },
+    { name: t('dashboard.sidebar.activity'), href: '/dashboard/activity', icon: Activity },
+    { name: t('dashboard.sidebar.profile'), href: '/dashboard/settings/profile', icon: User },
+    { name: t('dashboard.sidebar.team'), href: '/dashboard/settings/team', icon: Users },
+    { name: t('dashboard.sidebar.security'), href: '/dashboard/settings/security', icon: Shield },
   ];
 
   return (
@@ -36,7 +38,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         {/* Sidebar */}
         <aside className="w-64 bg-card border-r border-border min-h-screen">
           <div className="p-6">
-            <h2 className="text-lg font-semibold text-foreground mb-4">Dashboard</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-4">{t('common.dashboard')}</h2>
             <nav className="space-y-2">
               {sidebarItems.map((item) => {
                 const Icon = item.icon;

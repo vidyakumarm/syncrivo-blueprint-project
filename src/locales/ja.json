@@ -169,8 +169,37 @@
     "sign_in": "サインイン"
   },
   "dashboard": {
-    "title": "ダッシュボード",
-    "welcome": "ダッシュボードへようこそ"
+    "title": "SyncRio ダッシュボード",
+    "subtitle": "Teams、Webex、Google Chat、Zoom、その他のメッセージングプラットフォーム間でメッセージを接続・同期",
+    "welcome": "ダッシュボードへようこそ",
+    "metrics": {
+      "messages_synced": "同期されたメッセージ",
+      "active_platforms": "アクティブなプラットフォーム",
+      "successful_syncs": "成功した同期",
+      "connected_platforms": "接続されたプラットフォーム"
+    },
+    "recent_activity": "最近のプラットフォーム活動",
+    "no_activity": "まだ最近の活動はありません。",
+    "start_connecting": "メッセージングプラットフォームの接続を開始しましょう！",
+    "sidebar": {
+      "overview": "概要",
+      "connections": "接続",
+      "activity": "活動",
+      "profile": "プロフィール",
+      "team": "チーム",
+      "security": "セキュリティ"
+    },
+    "connections": {
+      "title": "メッセージングプラットフォーム",
+      "subtitle": "Teams、Webex、Google Chat、Zoom、その他のメッセージングプラットフォームを接続"
+    },
+    "activity": {
+      "title": "プラットフォーム活動",
+      "subtitle": "すべての接続されたプラットフォームでのメッセージ同期活動を監視"
+    },
+    "settings": {
+      "subtitle": "アカウントと設定を管理"
+    }
   },
   "not_found": {
     "title": "ページが見つかりません",
