@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -10,25 +11,26 @@ import { Search, Filter, Star, ExternalLink, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Integrations() {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = [
-    { value: 'all', label: 'All Categories' },
-    { value: 'crm', label: 'CRM & Sales' },
-    { value: 'marketing', label: 'Marketing' },
-    { value: 'ecommerce', label: 'E-commerce' },
-    { value: 'support', label: 'Customer Support' },
-    { value: 'finance', label: 'Finance & Accounting' },
-    { value: 'productivity', label: 'Productivity' },
-    { value: 'communication', label: 'Communication' },
+    { value: 'all', label: t('integrations.categories.all') },
+    { value: 'crm', label: t('integrations.categories.crm') },
+    { value: 'marketing', label: t('integrations.categories.marketing') },
+    { value: 'ecommerce', label: t('integrations.categories.ecommerce') },
+    { value: 'support', label: t('integrations.categories.support') },
+    { value: 'finance', label: t('integrations.categories.finance') },
+    { value: 'productivity', label: t('integrations.categories.productivity') },
+    { value: 'communication', label: t('integrations.categories.communication') },
   ];
 
   const integrations = [
     {
       id: 'slack',
       name: 'Slack',
-      description: 'Team communication and collaboration platform',
+      description: t('integrations.descriptions.slack'),
       category: 'communication',
       rating: 4.9,
       users: '50k+',
@@ -39,7 +41,7 @@ export default function Integrations() {
     {
       id: 'salesforce',
       name: 'Salesforce',
-      description: 'World\'s #1 CRM platform',
+      description: t('integrations.descriptions.salesforce'),
       category: 'crm',
       rating: 4.8,
       users: '25k+',
@@ -50,7 +52,7 @@ export default function Integrations() {
     {
       id: 'shopify',
       name: 'Shopify',
-      description: 'Leading e-commerce platform',
+      description: t('integrations.descriptions.shopify'),
       category: 'ecommerce',
       rating: 4.7,
       users: '30k+',
@@ -61,7 +63,7 @@ export default function Integrations() {
     {
       id: 'hubspot',
       name: 'HubSpot',
-      description: 'Inbound marketing and sales platform',
+      description: t('integrations.descriptions.hubspot'),
       category: 'marketing',
       rating: 4.6,
       users: '20k+',
@@ -72,7 +74,7 @@ export default function Integrations() {
     {
       id: 'stripe',
       name: 'Stripe',
-      description: 'Online payment processing',
+      description: t('integrations.descriptions.stripe'),
       category: 'finance',
       rating: 4.9,
       users: '40k+',
@@ -83,7 +85,7 @@ export default function Integrations() {
     {
       id: 'mailchimp',
       name: 'Mailchimp',
-      description: 'Email marketing automation',
+      description: t('integrations.descriptions.mailchimp'),
       category: 'marketing',
       rating: 4.5,
       users: '15k+',
@@ -94,7 +96,7 @@ export default function Integrations() {
     {
       id: 'zendesk',
       name: 'Zendesk',
-      description: 'Customer service software',
+      description: t('integrations.descriptions.zendesk'),
       category: 'support',
       rating: 4.4,
       users: '12k+',
@@ -105,7 +107,7 @@ export default function Integrations() {
     {
       id: 'notion',
       name: 'Notion',
-      description: 'All-in-one workspace',
+      description: t('integrations.descriptions.notion'),
       category: 'productivity',
       rating: 4.7,
       users: '18k+',
@@ -116,7 +118,7 @@ export default function Integrations() {
     {
       id: 'google-workspace',
       name: 'Google Workspace',
-      description: 'Cloud-based productivity suite',
+      description: t('integrations.descriptions.google_workspace'),
       category: 'productivity',
       rating: 4.6,
       users: '35k+',
@@ -146,19 +148,18 @@ export default function Integrations() {
             <div className="text-center mb-12">
               <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium bg-primary-light text-primary border-primary/20">
                 <Zap className="w-4 h-4 mr-2" />
-                500+ Integrations
+                {t('integrations.hero_badge')}
               </Badge>
               
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                Connect your entire
+                {t('integrations.hero_title')}
                 <span className="block bg-gradient-hero bg-clip-text text-transparent">
-                  business ecosystem
+                  {t('integrations.hero_title_highlight')}
                 </span>
               </h1>
               
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-                Browse our extensive library of pre-built integrations or build custom connections 
-                to sync data between all your favorite business applications.
+                {t('integrations.hero_subtitle')}
               </p>
             </div>
 
@@ -167,7 +168,7 @@ export default function Integrations() {
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search integrations..."
+                  placeholder={t('integrations.search_placeholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 h-12 text-base"
@@ -176,7 +177,7 @@ export default function Integrations() {
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                 <SelectTrigger className="w-full sm:w-48 h-12">
                   <Filter className="h-4 w-4 mr-2" />
-                  <SelectValue placeholder="Category" />
+                  <SelectValue placeholder={t('integrations.category_placeholder')} />
                 </SelectTrigger>
                 <SelectContent>
                   {categories.map((category) => (
@@ -196,15 +197,15 @@ export default function Integrations() {
             <div className="flex items-center justify-between mb-12">
               <div>
                 <h2 className="text-3xl font-bold text-foreground mb-2">
-                  Popular Integrations
+                  {t('integrations.popular_title')}
                 </h2>
                 <p className="text-muted-foreground">
-                  Most loved by our community
+                  {t('integrations.popular_subtitle')}
                 </p>
               </div>
               <Badge variant="secondary" className="px-3 py-1">
                 <Star className="w-4 h-4 mr-1" />
-                Featured
+                {t('integrations.featured_badge')}
               </Badge>
             </div>
 
@@ -227,9 +228,9 @@ export default function Integrations() {
                                   {integration.rating}
                                 </span>
                               </div>
-                              <span className="text-xs text-muted-foreground">
-                                {integration.users} users
-                              </span>
+                               <span className="text-xs text-muted-foreground">
+                                 {integration.users} {t('integrations.users_suffix')}
+                               </span>
                             </div>
                           </div>
                         </div>
@@ -253,7 +254,7 @@ export default function Integrations() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-2xl font-bold text-foreground">
-                All Integrations ({filteredIntegrations.length})
+                {t('integrations.all_integrations')} ({filteredIntegrations.length})
               </h2>
             </div>
 
@@ -279,11 +280,11 @@ export default function Integrations() {
                               <span className="text-xs text-muted-foreground">
                                 {integration.users}
                               </span>
-                              {integration.popular && (
-                                <Badge variant="secondary" className="text-xs px-2 py-0.5">
-                                  Popular
-                                </Badge>
-                              )}
+                               {integration.popular && (
+                                 <Badge variant="secondary" className="text-xs px-2 py-0.5">
+                                   {t('integrations.popular_badge')}
+                                 </Badge>
+                               )}
                             </div>
                           </div>
                         </div>
@@ -302,7 +303,7 @@ export default function Integrations() {
 
             {filteredIntegrations.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground mb-4">No integrations found matching your criteria.</p>
+                <p className="text-muted-foreground mb-4">{t('integrations.no_results')}</p>
                 <Button 
                   variant="outline" 
                   onClick={() => {
@@ -310,7 +311,7 @@ export default function Integrations() {
                     setSelectedCategory('all');
                   }}
                 >
-                  Clear Filters
+                  {t('integrations.clear_filters')}
                 </Button>
               </div>
             )}
@@ -321,17 +322,17 @@ export default function Integrations() {
         <section className="py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-foreground mb-6">
-              Don't see the integration you need?
+              {t('integrations.cta_title')}
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Build custom integrations with our powerful API or request new integrations from our team.
+              {t('integrations.cta_subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary-hover">
-                <Link to="/docs">View API Docs</Link>
+                <Link to="/docs">{t('integrations.view_api_docs')}</Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to="/support">Request Integration</Link>
+                <Link to="/support">{t('integrations.request_integration')}</Link>
               </Button>
             </div>
           </div>
