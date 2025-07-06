@@ -1,0 +1,507 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { Upload, Loader2 } from 'lucide-react';
+
+interface GeneralApplicationForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  linkedinUrl?: string;
+  portfolioUrl?: string;
+  interestedDepartment: string;
+  yearsExperience?: number;
+  coverLetter: string;
+}
+
+interface GeneralApplicationDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onSubmit: () => void;
+}
+
+export function GeneralApplicationDialog({ 
+  open, 
+  onOpenChange, 
+  onSubmit 
+}: GeneralApplicationDialogProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadingResume, setUploadingResume] = useState(false);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [resumeUrl, setResumeUrl] = useState('');
+  const { toast } = useToast();
+
+  const form = useForm<GeneralApplicationForm>({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      linkedinUrl: '',
+      portfolioUrl: '',
+      interestedDepartment: '',
+      yearsExperience: undefined,
+      coverLetter: '',
+    },
+  });
+
+  const departments = [
+    'Engineering',
+    'Product',
+    'Design',
+    'Marketing',
+    'Sales',
+    'Customer Success',
+    'Operations',
+    'Finance',
+    'Human Resources',
+    'Legal',
+    'Security',
+    'Data & Analytics',
+    'Quality Assurance',
+    'DevOps/Infrastructure',
+    'Other'
+  ];
+
+  const handleResumeUpload = async (file: File) => {
+    setUploadingResume(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `general_${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+      
+      const { error: uploadError, data } = await supabase.storage
+        .from('resumes')
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('resumes')
+        .getPublicUrl(fileName);
+
+      setResumeUrl(publicUrl);
+      setResumeFile(file);
+      
+      toast({
+        title: 'Resume Uploaded!',
+        description: 'Your resume has been successfully uploaded.',
+      });
+    } catch (error) {
+      console.error('Error uploading resume:', error);
+      toast({
+        title: 'Upload Failed',
+        description: 'Failed to upload resume. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setUploadingResume(false);
+    }
+  };
+
+  const handleSubmit = async (data: GeneralApplicationForm) => {
+    // Basic validation
+    if (!data.firstName.trim()) {
+      toast({
+        title: 'Validation Error',
+        description: 'First name is required.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    if (!data.lastName.trim()) {
+      toast({
+        title: 'Validation Error',
+        description: 'Last name is required.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    if (!data.email.trim() || !data.email.includes('@')) {
+      toast({
+        title: 'Validation Error',
+        description: 'Please enter a valid email address.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!data.interestedDepartment) {
+      toast({
+        title: 'Validation Error',
+        description: 'Please select your area of interest.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    if (!data.coverLetter.trim() || data.coverLetter.length < 20) {
+      toast({
+        title: 'Validation Error',
+        description: 'Please tell us more about yourself (at least 20 characters).',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      // For general applications, we'll insert into job_applications with a null job_id
+      // or create a separate table. For now, let's use the existing table structure
+      const { error } = await supabase
+        .from('job_applications')
+        .insert({
+          job_id: null, // General application - not for a specific job
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone: data.phone || null,
+          resume_url: resumeUrl || null,
+          linkedin_url: data.linkedinUrl || null,
+          portfolio_url: data.portfolioUrl || null,
+          years_experience: data.yearsExperience || null,
+          current_salary: null,
+          expected_salary: null,
+          availability_date: null,
+          cover_letter: `Interested Department: ${data.interestedDepartment}\n\n${data.coverLetter}`,
+          notes: `General application - interested in ${data.interestedDepartment} roles`,
+        });
+
+      if (error) throw error;
+
+      toast({
+        title: 'Application Submitted!',
+        description: 'Thank you for your interest! We\'ll review your application and contact you if there\'s a good fit.',
+      });
+
+      form.reset();
+      setResumeFile(null);
+      setResumeUrl('');
+      onSubmit();
+    } catch (error) {
+      console.error('Error submitting general application:', error);
+      toast({
+        title: 'Application Failed',
+        description: 'There was an error submitting your application. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-semibold">
+            General Application - SyncRivo
+          </DialogTitle>
+          <DialogDescription className="text-muted-foreground">
+            Don't see the perfect role? Tell us about yourself and we'll reach out when something matches your skills.
+          </DialogDescription>
+        </DialogHeader>
+
+        <Separator />
+
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email Address *</FormLabel>
+                    <FormControl>
+                      <Input 
+                        type="email" 
+                        placeholder="john.doe@email.com" 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                      <Input 
+                        type="tel" 
+                        placeholder="+1 (555) 123-4567" 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="interestedDepartment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Area of Interest *</FormLabel>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select department" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {departments.map((dept) => (
+                          <SelectItem key={dept} value={dept}>
+                            {dept}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="yearsExperience"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Years of Experience</FormLabel>
+                    <FormControl>
+                      <Input 
+                        type="number" 
+                        min="0"
+                        placeholder="5" 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="linkedinUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>LinkedIn Profile</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="https://linkedin.com/in/johndoe" 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="portfolioUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Portfolio/Website</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="https://johndoe.dev" 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            {/* Resume Upload */}
+            <div className="bg-muted/50 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Upload className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-medium">Resume Upload</span>
+              </div>
+              
+              {!resumeFile ? (
+                <div>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Upload your resume in PDF, DOC, or DOCX format (max 5MB)
+                  </p>
+                  <input
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        if (file.size > 5 * 1024 * 1024) {
+                          toast({
+                            title: 'File Too Large',
+                            description: 'Please upload a file smaller than 5MB.',
+                            variant: 'destructive',
+                          });
+                          return;
+                        }
+                        handleResumeUpload(file);
+                      }
+                    }}
+                    className="block w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 file:cursor-pointer cursor-pointer"
+                    disabled={uploadingResume}
+                  />
+                  {uploadingResume && (
+                    <div className="flex items-center gap-2 mt-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span className="text-sm text-muted-foreground">Uploading...</span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center justify-between bg-success/10 border border-success/20 rounded-md p-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-success/20 rounded-md flex items-center justify-center">
+                      <Upload className="h-4 w-4 text-success" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-success">{resumeFile.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {(resumeFile.size / 1024 / 1024).toFixed(1)} MB
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setResumeFile(null);
+                      setResumeUrl('');
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              )}
+            </div>
+
+            <FormField
+              control={form.control}
+              name="coverLetter"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tell Us About Yourself *</FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      placeholder="Tell us about your background, what type of role you're looking for, and why you're interested in SyncRivo..."
+                      className="min-h-[120px] resize-none"
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="flex gap-3 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => onOpenChange(false)}
+                className="flex-1"
+                disabled={isSubmitting}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                className="flex-1 bg-gradient-primary hover:opacity-90"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  'Submit Application'
+                )}
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
+  );
+}

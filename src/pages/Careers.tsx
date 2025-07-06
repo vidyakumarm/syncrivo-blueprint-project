@@ -3,6 +3,7 @@ import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { JobCard, Job } from '@/components/careers/JobCard';
 import { JobFilters, JobFilters as FilterType } from '@/components/careers/JobFilters';
+import { GeneralApplicationDialog } from '@/components/careers/GeneralApplicationDialog';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -24,6 +25,7 @@ import {
 const Careers = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showGeneralApplication, setShowGeneralApplication] = useState(false);
   const [filters, setFilters] = useState<FilterType>({
     search: '',
     department: '',
@@ -95,6 +97,14 @@ const Careers = () => {
       title: 'Application Successfully Submitted!',
       description: 'We\'ve received your application and will review it shortly. You should hear back from us within 3-5 business days.',
     });
+  };
+
+  const handleGeneralApplication = () => {
+    toast({
+      title: 'Application Received!',
+      description: 'Thank you for your interest in SyncRivo. We\'ll keep your information on file and reach out when relevant opportunities arise.',
+    });
+    setShowGeneralApplication(false);
   };
 
   // Company stats for display
@@ -290,6 +300,7 @@ const Careers = () => {
               size="lg"
               variant="secondary"
               className="bg-white text-primary hover:bg-white/90"
+              onClick={() => setShowGeneralApplication(true)}
             >
               Send Us Your Resume
             </Button>
@@ -297,6 +308,12 @@ const Careers = () => {
         </div>
       </main>
       <Footer />
+      
+      <GeneralApplicationDialog
+        open={showGeneralApplication}
+        onOpenChange={setShowGeneralApplication}
+        onSubmit={handleGeneralApplication}
+      />
     </div>
   );
 };
