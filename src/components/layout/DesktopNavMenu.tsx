@@ -43,25 +43,29 @@ export function DesktopNavMenu({ navItems }: DesktopNavMenuProps) {
   ];
 
   return (
-    <div className="hidden md:flex items-center space-x-8">
+    <div className="flex items-center space-x-2">
       {translatedNavItems.map((item) => (
         item.children ? (
           <DropdownMenu key={item.label}>
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="ghost" 
-                className="flex items-center space-x-1 text-muted-foreground hover:text-foreground"
+                className="flex items-center space-x-1 text-muted-foreground hover:text-foreground px-4 py-2 h-11 font-medium transition-all duration-200 hover:bg-accent/10"
               >
                 <span>{item.label}</span>
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48 bg-background border border-border shadow-lg z-50">
+            <DropdownMenuContent align="start" className="w-56 bg-background border border-border shadow-xl rounded-lg z-50 p-1">
               {item.children.map((child) => (
-                <DropdownMenuItem key={child.href} asChild>
+                <DropdownMenuItem key={child.href} asChild className="rounded-md">
                   <Link 
                     to={child.href}
-                    className={`w-full ${isActive(child.href) ? 'text-primary bg-primary-light' : ''}`}
+                    className={`w-full px-3 py-2.5 transition-colors duration-200 ${
+                      isActive(child.href) 
+                        ? 'text-primary bg-primary/10 font-medium' 
+                        : 'hover:text-foreground hover:bg-accent/50'
+                    }`}
                   >
                     {child.label}
                   </Link>
@@ -73,9 +77,9 @@ export function DesktopNavMenu({ navItems }: DesktopNavMenuProps) {
           <Link
             key={item.href}
             to={item.href}
-            className={`text-sm font-medium transition-colors px-3 py-2 rounded-md ${
+            className={`text-sm font-medium transition-all duration-200 px-4 py-2 h-11 rounded-lg flex items-center ${
               isActive(item.href)
-                ? 'text-primary bg-primary-light'
+                ? 'text-primary bg-primary/10 font-semibold'
                 : 'text-muted-foreground hover:text-foreground hover:bg-accent/10'
             }`}
           >

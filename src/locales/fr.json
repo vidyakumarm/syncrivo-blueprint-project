@@ -40,10 +40,14 @@
     "api": "API"
   },
   "hero": {
-    "title": "Connectez Facilement Toutes Vos Intégrations Business",
-    "subtitle": "Unifiez vos flux de travail avec notre plateforme d'intégration puissante. Connectez, gérez et développez vos outils business dans un hub centralisé.",
-    "cta_primary": "Commencer Gratuitement",
-    "cta_secondary": "Voir les Intégrations"
+    "title": "Connectez Vos",
+    "title_highlight": "Plateformes de Messagerie",
+    "subtitle": "Intégrez facilement Teams, Webex, Google Chat, Zoom, Slack et autres outils de communication d'entreprise. Synchronisez les messages, canaux et conversations sur toutes vos plateformes en temps réel.",
+    "cta_primary": "Commencer à Connecter les Plateformes",
+    "cta_secondary": "Voir les Plateformes Supportées",
+    "badge": "Intégration Transparente des Plateformes de Messagerie",
+    "trusted_by": "Fait confiance par plus de 10 000 équipes dans le monde pour l'intégration des plateformes de messagerie",
+    "supported_platforms": "Plateformes de Messagerie Supportées"
   },
   "support": {
     "title": "Comment pouvons-nous vous aider ?",
@@ -73,6 +77,84 @@
     "join_discord": "Rejoindre Discord",
     "visit_forums": "Visiter les Forums",
     "view_github": "Voir GitHub"
+  },
+  "features": {
+    "title": "Fonctionnalités",
+    "subtitle": "Découvrez les fonctionnalités puissantes qui font de SyncRivo la plateforme d'intégration parfaite pour votre entreprise.",
+    "coming_soon": "Bientôt Disponible",
+    "coming_soon_desc": "Nous travaillons pour vous apporter des fonctionnalités extraordinaires. Revenez bientôt pour les mises à jour."
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "subtitle": "Choisissez le plan parfait pour les besoins de votre entreprise.",
+    "coming_soon": "Bientôt Disponible",
+    "coming_soon_desc": "Nous travaillons sur nos plans tarifaires. Revenez bientôt pour les détails."
+  },
+  "about": {
+    "title": "À Propos",
+    "subtitle": "Apprenez-en plus sur notre mission de simplifier les intégrations d'entreprise.",
+    "coming_soon": "Bientôt Disponible",
+    "coming_soon_desc": "Nous rédigeons notre histoire. Revenez bientôt pour en savoir plus sur nous."
+  },
+  "integrations": {
+    "title": "Intégrations",
+    "subtitle": "Connectez-vous avec des centaines d'outils et services d'entreprise populaires.",
+    "coming_soon": "Bientôt Disponible",
+    "coming_soon_desc": "Nous construisons d'incroyables intégrations. Revenez bientôt pour notre marketplace d'intégrations."
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Tout ce dont vous avez besoin pour commencer avec SyncRivo.",
+    "coming_soon": "Bientôt Disponible",
+    "coming_soon_desc": "Notre documentation complète est en préparation. Revenez bientôt pour les guides et tutoriels."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Restez à jour avec les dernières nouvelles, tutoriels et insights de notre équipe.",
+    "coming_soon": "Bientôt Disponible",
+    "coming_soon_desc": "Nous travaillons pour vous apporter un contenu extraordinaire. Revenez bientôt pour nos derniers articles de blog."
+  },
+  "careers": {
+    "title": "Carrières",
+    "subtitle": "Rejoignez notre équipe et aidez-nous à construire l'avenir de l'intégration des données.",
+    "growing": "Nous Nous Développons !",
+    "growing_desc": "Nous recherchons toujours des personnes talentueuses pour rejoindre notre équipe. Revenez bientôt pour les postes ouverts ou contactez-nous directement.",
+    "contact_email": "Contactez-nous à careers@company.com"
+  },
+  "status": {
+    "title": "Statut du Système",
+    "subtitle": "Statut en temps réel et surveillance de la disponibilité pour tous nos services.",
+    "coming_soon": "Bientôt Disponible",
+    "coming_soon_desc": "Notre page de statut est en préparation. Revenez bientôt pour la surveillance système en temps réel."
+  },
+  "security": {
+    "title": "Sécurité",
+    "subtitle": "Apprenez-en plus sur notre engagement à garder vos données sûres et sécurisées.",
+    "coming_soon": "Bientôt Disponible",
+    "coming_soon_desc": "Notre documentation de sécurité est en préparation. Revenez bientôt pour des informations détaillées sur la sécurité."
+  },
+  "login": {
+    "title": "Connexion",
+    "subtitle": "Bon retour ! Veuillez vous connecter à votre compte.",
+    "email": "Email",
+    "password": "Mot de passe",
+    "sign_in": "Se Connecter",
+    "dont_have_account": "Vous n'avez pas de compte ?",
+    "sign_up": "S'inscrire"
+  },
+  "signup": {
+    "title": "Créer un Compte",
+    "subtitle": "Rejoignez SyncRivo et commencez à connecter vos outils d'entreprise aujourd'hui.",
+    "display_name": "Nom d'Affichage",
+    "email": "Email",
+    "password": "Mot de passe",
+    "create_account": "Créer un Compte",
+    "already_have_account": "Vous avez déjà un compte ?",
+    "sign_in": "Se connecter"
+  },
+  "dashboard": {
+    "title": "Tableau de Bord",
+    "welcome": "Bienvenue sur votre tableau de bord"
   },
   "footer": {
     "tagline": "Connectez et gérez facilement toutes vos intégrations business dans une plateforme unifiée.",

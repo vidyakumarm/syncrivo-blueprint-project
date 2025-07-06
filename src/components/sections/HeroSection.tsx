@@ -16,6 +16,14 @@ import {
   Video,
   Phone
 } from 'lucide-react';
+
+// Platform icons
+import teamsIcon from '@/assets/teams-icon.svg';
+import slackIcon from '@/assets/slack-icon.svg'; 
+import zoomIcon from '@/assets/zoom-icon.png';
+import googleChatIcon from '@/assets/google-chat-icon.png';
+import webexIcon from '@/assets/webex-icon.png';
+import discordIcon from '@/assets/discord-icon.png';
 import { useTranslation } from 'react-i18next';
 import heroBg from '@/assets/hero-bg.jpg';
 import i18next from 'i18next';
@@ -154,20 +162,24 @@ export function HeroSection() {
           <h2 className="text-2xl font-bold text-center text-foreground mb-8">
             {t('hero.supported_platforms')}
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[
-              { name: 'Microsoft Teams', icon: Users, color: 'bg-blue-50 text-blue-600 border-blue-200' },
-              { name: 'Webex Teams', icon: Video, color: 'bg-green-50 text-green-600 border-green-200' },
-              { name: 'Google Chat', icon: MessageSquare, color: 'bg-red-50 text-red-600 border-red-200' },
-              { name: 'Zoom Chat', icon: Video, color: 'bg-blue-50 text-blue-600 border-blue-200' },
-              { name: 'Slack', icon: MessageCircle, color: 'bg-purple-50 text-purple-600 border-purple-200' },
-              { name: 'Discord', icon: MessageSquare, color: 'bg-indigo-50 text-indigo-600 border-indigo-200' },
-              { name: 'Mattermost', icon: MessageCircle, color: 'bg-gray-50 text-gray-600 border-gray-200' },
-              { name: 'Telegram', icon: Phone, color: 'bg-cyan-50 text-cyan-600 border-cyan-200' },
+              { name: 'Microsoft Teams', icon: teamsIcon, alt: 'Microsoft Teams logo', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300' },
+              { name: 'Slack', icon: slackIcon, alt: 'Slack logo', color: 'bg-purple-50 hover:bg-purple-100 border-purple-200 hover:border-purple-300' },
+              { name: 'Zoom', icon: zoomIcon, alt: 'Zoom logo', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300' },
+              { name: 'Google Chat', icon: googleChatIcon, alt: 'Google Chat logo', color: 'bg-red-50 hover:bg-red-100 border-red-200 hover:border-red-300' },
+              { name: 'Cisco Webex', icon: webexIcon, alt: 'Cisco Webex logo', color: 'bg-green-50 hover:bg-green-100 border-green-200 hover:border-green-300' },
+              { name: 'Discord', icon: discordIcon, alt: 'Discord logo', color: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200 hover:border-indigo-300' }
             ].map((platform, index) => (
-              <Card key={index} className={`p-4 text-center border-2 ${platform.color} hover:shadow-brand-md transition-all duration-300`}>
-                <platform.icon className="h-8 w-8 mx-auto mb-2" />
-                <p className="text-xs font-medium">{platform.name}</p>
+              <Card key={index} className={`p-6 text-center border-2 ${platform.color} hover:shadow-brand-lg transition-all duration-300 group cursor-pointer`}>
+                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <img 
+                    src={platform.icon} 
+                    alt={platform.alt}
+                    className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{platform.name}</p>
               </Card>
             ))}
           </div>

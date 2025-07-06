@@ -43,28 +43,28 @@ export function LanguageSelector() {
         <Button 
           variant="ghost" 
           size="sm" 
-          className="h-8 px-2 gap-2 text-muted-foreground hover:text-foreground"
+          className="h-11 px-3 gap-2 text-muted-foreground hover:text-foreground hover:bg-accent/10 transition-all duration-200"
         >
           <Globe className="h-4 w-4" />
           <span className="hidden sm:inline-block">{currentLanguage.flag}</span>
-          <span className="hidden md:inline-block">{currentLanguage.name}</span>
+          <span className="hidden md:inline-block font-medium">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent 
         align="end" 
-        className="w-48 bg-background border border-border shadow-lg z-50"
+        className="w-56 bg-background border border-border shadow-xl rounded-lg z-50 p-1"
       >
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}
             onClick={() => handleLanguageChange(language.code)}
             className={cn(
-              "flex items-center justify-between px-3 py-2 hover:bg-accent cursor-pointer",
-              i18n.language === language.code && "bg-accent text-accent-foreground"
+              "flex items-center justify-between px-3 py-2.5 hover:bg-accent/50 cursor-pointer transition-colors duration-200 rounded-md",
+              i18n.language === language.code && "bg-primary/10 text-primary font-medium"
             )}
           >
-            <div className="flex items-center gap-2">
-              <span className="text-base">{language.flag}</span>
+            <div className="flex items-center gap-3">
+              <span className="text-lg">{language.flag}</span>
               <span className="font-medium">{language.name}</span>
             </div>
             {i18n.language === language.code && (
