@@ -47,7 +47,13 @@
     "cta_secondary": "Voir les Plateformes Supportées",
     "badge": "Intégration Transparente des Plateformes de Messagerie",
     "trusted_by": "Fait confiance par plus de 10 000 équipes dans le monde pour l'intégration des plateformes de messagerie",
-    "supported_platforms": "Plateformes de Messagerie Supportées"
+    "supported_platforms": "Plateformes de Messagerie Supportées",
+    "real_time_sync": "Synchronisation en Temps Réel",
+    "real_time_sync_desc": "Les messages se synchronisent instantanément sur toutes les plateformes connectées",
+    "enterprise_security": "Sécurité d'Entreprise",
+    "enterprise_security_desc": "Conforme SOC 2 avec chiffrement de niveau entreprise",
+    "cross_platform": "Multi-Plateforme",
+    "cross_platform_desc": "Connectez n'importe quelle plateforme de messagerie avec des APIs unifiées"
   },
   "support": {
     "title": "Comment pouvons-nous vous aider ?",

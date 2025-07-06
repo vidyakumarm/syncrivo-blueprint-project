@@ -130,9 +130,9 @@ export function HeroSection() {
             <div className="w-12 h-12 bg-gradient-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
               <Zap className="h-6 w-6 text-white" />
             </div>
-            <h3 className="font-semibold text-foreground mb-2">Real-Time Sync</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('hero.real_time_sync')}</h3>
             <p className="text-sm text-muted-foreground">
-              Messages sync instantly across all connected platforms
+              {t('hero.real_time_sync_desc')}
             </p>
           </div>
 
@@ -140,9 +140,9 @@ export function HeroSection() {
             <div className="w-12 h-12 bg-gradient-success rounded-lg mx-auto mb-4 flex items-center justify-center">
               <Shield className="h-6 w-6 text-white" />
             </div>
-            <h3 className="font-semibold text-foreground mb-2">Enterprise Security</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('hero.enterprise_security')}</h3>
             <p className="text-sm text-muted-foreground">
-              SOC 2 compliant with enterprise-grade encryption
+              {t('hero.enterprise_security_desc')}
             </p>
           </div>
 
@@ -150,9 +150,9 @@ export function HeroSection() {
             <div className="w-12 h-12 bg-gradient-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
               <Globe className="h-6 w-6 text-white" />
             </div>
-            <h3 className="font-semibold text-foreground mb-2">Cross-Platform</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('hero.cross_platform')}</h3>
             <p className="text-sm text-muted-foreground">
-              Connect any messaging platform with unified APIs
+              {t('hero.cross_platform_desc')}
             </p>
           </div>
         </div>

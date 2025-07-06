@@ -47,7 +47,13 @@
     "cta_secondary": "View Supported Platforms",
     "badge": "Seamless Messaging Platform Integration",
     "trusted_by": "Trusted by 10,000+ teams worldwide for messaging platform integration",
-    "supported_platforms": "Supported Messaging Platforms"
+    "supported_platforms": "Supported Messaging Platforms",
+    "real_time_sync": "Real-Time Sync",
+    "real_time_sync_desc": "Messages sync instantly across all connected platforms",
+    "enterprise_security": "Enterprise Security",
+    "enterprise_security_desc": "SOC 2 compliant with enterprise-grade encryption",
+    "cross_platform": "Cross-Platform",
+    "cross_platform_desc": "Connect any messaging platform with unified APIs"
   },
   "support": {
     "title": "How can we help you?",

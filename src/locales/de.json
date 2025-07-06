@@ -47,7 +47,13 @@
     "cta_secondary": "Unterstützte Plattformen",
     "badge": "Nahtlose Messaging-Plattform-Integration",
     "trusted_by": "Vertraut von 10.000+ Teams weltweit für Messaging-Plattform-Integration",
-    "supported_platforms": "Unterstützte Messaging-Plattformen"
+    "supported_platforms": "Unterstützte Messaging-Plattformen",
+    "real_time_sync": "Echtzeit-Synchronisation",
+    "real_time_sync_desc": "Nachrichten werden sofort auf allen verbundenen Plattformen synchronisiert",
+    "enterprise_security": "Unternehmenssicherheit",
+    "enterprise_security_desc": "SOC 2-konform mit Verschlüsselung auf Unternehmensniveau",
+    "cross_platform": "Plattformübergreifend",
+    "cross_platform_desc": "Verbinden Sie jede Messaging-Plattform mit einheitlichen APIs"
   },
   "features": {
     "title": "Alles was Sie brauchen für",
