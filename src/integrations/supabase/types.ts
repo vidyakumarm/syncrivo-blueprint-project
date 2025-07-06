@@ -9,6 +9,143 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      job_applications: {
+        Row: {
+          applied_at: string
+          availability_date: string | null
+          cover_letter: string | null
+          current_salary: number | null
+          email: string
+          expected_salary: number | null
+          first_name: string
+          id: string
+          job_id: string
+          last_name: string
+          linkedin_url: string | null
+          notes: string | null
+          phone: string | null
+          portfolio_url: string | null
+          resume_url: string | null
+          status: string
+          updated_at: string
+          years_experience: number | null
+        }
+        Insert: {
+          applied_at?: string
+          availability_date?: string | null
+          cover_letter?: string | null
+          current_salary?: number | null
+          email: string
+          expected_salary?: number | null
+          first_name: string
+          id?: string
+          job_id: string
+          last_name: string
+          linkedin_url?: string | null
+          notes?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          resume_url?: string | null
+          status?: string
+          updated_at?: string
+          years_experience?: number | null
+        }
+        Update: {
+          applied_at?: string
+          availability_date?: string | null
+          cover_letter?: string | null
+          current_salary?: number | null
+          email?: string
+          expected_salary?: number | null
+          first_name?: string
+          id?: string
+          job_id?: string
+          last_name?: string
+          linkedin_url?: string | null
+          notes?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          resume_url?: string | null
+          status?: string
+          updated_at?: string
+          years_experience?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      jobs: {
+        Row: {
+          application_deadline: string | null
+          benefits: string[]
+          created_at: string
+          currency: string | null
+          department: string
+          description: string
+          id: string
+          is_active: boolean | null
+          level: string
+          location: string
+          posted_date: string
+          remote_allowed: boolean | null
+          requirements: string[]
+          responsibilities: string[]
+          salary_max: number | null
+          salary_min: number | null
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          application_deadline?: string | null
+          benefits?: string[]
+          created_at?: string
+          currency?: string | null
+          department: string
+          description: string
+          id?: string
+          is_active?: boolean | null
+          level: string
+          location: string
+          posted_date?: string
+          remote_allowed?: boolean | null
+          requirements?: string[]
+          responsibilities?: string[]
+          salary_max?: number | null
+          salary_min?: number | null
+          title: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          application_deadline?: string | null
+          benefits?: string[]
+          created_at?: string
+          currency?: string | null
+          department?: string
+          description?: string
+          id?: string
+          is_active?: boolean | null
+          level?: string
+          location?: string
+          posted_date?: string
+          remote_allowed?: boolean | null
+          requirements?: string[]
+          responsibilities?: string[]
+          salary_max?: number | null
+          salary_min?: number | null
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
