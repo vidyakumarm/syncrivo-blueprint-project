@@ -204,5 +204,21 @@
     "terms_of_service": "Conditions d'Utilisation",
     "help_center": "Centre d'Aide",
     "all_rights_reserved": "Tous droits réservés."
+  },
+  "not_found": {
+    "title": "404",
+    "subtitle": "Oops ! Page non trouvée",
+    "return_home": "Retour à l'Accueil"
+  },
+  "status": {
+    "status_title": "État du Système",
+    "status_subtitle": "État actuel de nos services et infrastructure",
+    "api_services": "Services API",
+    "api_services_desc": "Tous les endpoints API fonctionnent normalement",
+    "dashboard_service": "Tableau de Bord",
+    "dashboard_service_desc": "Le tableau de bord utilisateur fonctionne correctement",
+    "data_processing": "Traitement des Données",
+    "data_processing_desc": "Tous les services de traitement des données fonctionnent parfaitement",
+    "operational": "Opérationnel"
   }
 }

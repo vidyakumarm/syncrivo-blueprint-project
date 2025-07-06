@@ -3,6 +3,7 @@ import { CodeBlock } from '@/components/docs/CodeBlock';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 import { 
   Zap, 
   Book, 
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 
 export default function Docs() {
+  const { t } = useTranslation();
   const quickStartCode = `// Install SyncRivo SDK
 npm install @syncrivo/sdk
 
@@ -41,22 +43,22 @@ console.log('Integration created:', integration.id);`;
 
   const examples = [
     {
-      title: 'Slack to Webhook',
-      description: 'Forward Slack messages to your API',
+      title: t('docs.slack_webhook'),
+      description: t('docs.slack_webhook_desc'),
       language: 'JavaScript',
       badge: 'Popular',
       icon: <Zap className="h-5 w-5" />
     },
     {
-      title: 'Google Drive Sync',
-      description: 'Monitor file changes in Google Drive',
+      title: t('docs.google_drive'),
+      description: t('docs.google_drive_desc'),
       language: 'Python',
       badge: 'New',
       icon: <Code className="h-5 w-5" />
     },
     {
-      title: 'Notion Database',
-      description: 'Sync Notion pages to your database',
+      title: t('docs.notion_database'),
+      description: t('docs.notion_database_desc'),
       language: 'TypeScript',
       badge: 'Beta',
       icon: <Book className="h-5 w-5" />
@@ -64,10 +66,10 @@ console.log('Integration created:', integration.id);`;
   ];
 
   const stats = [
-    { label: 'Integrations', value: '50+', icon: <Zap className="h-4 w-4" /> },
-    { label: 'API Calls/month', value: '10M+', icon: <CheckCircle2 className="h-4 w-4" /> },
-    { label: 'Avg Response Time', value: '< 100ms', icon: <Clock className="h-4 w-4" /> },
-    { label: 'Active Users', value: '5K+', icon: <Users className="h-4 w-4" /> },
+    { label: t('docs.integrations_stat'), value: '50+', icon: <Zap className="h-4 w-4" /> },
+    { label: t('docs.api_calls_stat'), value: '10M+', icon: <CheckCircle2 className="h-4 w-4" /> },
+    { label: t('docs.response_time_stat'), value: '< 100ms', icon: <Clock className="h-4 w-4" /> },
+    { label: t('docs.active_users_stat'), value: '5K+', icon: <Users className="h-4 w-4" /> },
   ];
 
   return (
@@ -77,23 +79,22 @@ console.log('Integration created:', integration.id);`;
         <div className="text-center space-y-6">
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-light text-primary text-sm font-medium">
             <Star className="h-3 w-3 mr-1" />
-            Documentation v2.0
+            {t('docs.version')}
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
-            SyncRivo Documentation
+            {t('docs.docs_title')}
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to build powerful integrations and connect your favorite tools. 
-            Get started in minutes with our comprehensive guides and API reference.
+            {t('docs.docs_subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button className="bg-gradient-primary w-full sm:w-auto">
               <Book className="h-4 w-4 mr-2" />
-              Quick Start Guide
+              {t('docs.quick_start_guide')}
             </Button>
             <Button variant="outline" className="w-full sm:w-auto">
               <Code className="h-4 w-4 mr-2" />
-              API Reference
+              {t('docs.api_reference')}
             </Button>
           </div>
         </div>
@@ -118,25 +119,24 @@ console.log('Integration created:', integration.id);`;
           <CardHeader>
             <CardTitle className="flex items-center">
               <Zap className="h-5 w-5 mr-2" />
-              Quick Start
+              {t('docs.quick_start')}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-6">
-              Get up and running with SyncRivo in less than 5 minutes. Create your first integration 
-              and start syncing data between your favorite tools.
+              {t('docs.quick_start_desc')}
             </p>
             <CodeBlock 
               code={quickStartCode}
               language="javascript"
-              title="Create Your First Integration"
+              title={t('docs.create_integration')}
             />
             <div className="flex items-center justify-between mt-6">
               <p className="text-sm text-muted-foreground">
-                Need help? Check out our step-by-step guide →
+                {t('docs.need_help')}
               </p>
               <Button variant="outline" size="sm">
-                Full Tutorial
+                {t('docs.full_tutorial')}
                 <ArrowRight className="h-3 w-3 ml-2" />
               </Button>
             </div>
@@ -145,7 +145,7 @@ console.log('Integration created:', integration.id);`;
 
         {/* Popular Examples */}
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-6">Popular Examples</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-6">{t('docs.popular_examples')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {examples.map((example, index) => (
               <Card key={index} className="bg-gradient-card hover:shadow-brand-md transition-shadow cursor-pointer">
@@ -163,7 +163,7 @@ console.log('Integration created:', integration.id);`;
                   <div className="flex items-center justify-between">
                     <Badge variant="outline">{example.language}</Badge>
                     <Button variant="ghost" size="sm">
-                      View Code
+                      {t('docs.view_code')}
                       <ArrowRight className="h-3 w-3 ml-2" />
                     </Button>
                   </div>
@@ -176,7 +176,7 @@ console.log('Integration created:', integration.id);`;
         {/* Getting Started Steps */}
         <Card>
           <CardHeader>
-            <CardTitle>Getting Started</CardTitle>
+            <CardTitle>{t('docs.getting_started')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
@@ -185,9 +185,9 @@ console.log('Integration created:', integration.id);`;
                   1
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Create an Account</h3>
+                  <h3 className="font-semibold text-foreground mb-1">{t('docs.create_account')}</h3>
                   <p className="text-muted-foreground">
-                    Sign up for a free SyncRivo account and get your API key from the dashboard.
+                    {t('docs.create_account_desc')}
                   </p>
                 </div>
               </div>
@@ -197,9 +197,9 @@ console.log('Integration created:', integration.id);`;
                   2
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Install the SDK</h3>
+                  <h3 className="font-semibold text-foreground mb-1">{t('docs.install_sdk')}</h3>
                   <p className="text-muted-foreground">
-                    Use npm, pip, or our REST API directly to start building integrations.
+                    {t('docs.install_sdk_desc')}
                   </p>
                 </div>
               </div>
@@ -209,9 +209,9 @@ console.log('Integration created:', integration.id);`;
                   3
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Build Your First Integration</h3>
+                  <h3 className="font-semibold text-foreground mb-1">{t('docs.build_integration')}</h3>
                   <p className="text-muted-foreground">
-                    Follow our quick start guide to create your first data sync in minutes.
+                    {t('docs.build_integration_desc')}
                   </p>
                 </div>
               </div>

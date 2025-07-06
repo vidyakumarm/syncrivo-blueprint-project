@@ -11,24 +11,24 @@ export default function Pricing() {
   
   const plans = [
     {
-      name: 'Starter',
-      price: 'Free',
-      description: 'Perfect for small teams getting started',
-      features: ['5 integrations', '1,000 operations/month', 'Basic support', 'Community access']
+      name: t('pricing.starter'),
+      price: t('pricing.free'),
+      description: t('pricing.starter_desc'),
+      features: [t('pricing.integrations_5'), t('pricing.operations_1k'), t('pricing.support_basic'), t('pricing.community_access')]
     },
     {
-      name: 'Professional',
+      name: t('pricing.professional'),
       price: '$49',
-      period: '/month',
-      description: 'For growing businesses',
-      features: ['50 integrations', '100,000 operations/month', 'Priority support', 'Advanced analytics'],
+      period: t('pricing.per_month'),
+      description: t('pricing.professional_desc'),
+      features: [t('pricing.integrations_50'), t('pricing.operations_100k'), t('pricing.support_priority'), t('pricing.advanced_analytics')],
       popular: true
     },
     {
-      name: 'Enterprise',
-      price: 'Custom',
-      description: 'For large organizations',
-      features: ['Unlimited integrations', 'Unlimited operations', 'Dedicated support', 'Custom workflows']
+      name: t('pricing.enterprise'),
+      price: t('pricing.custom'),
+      description: t('pricing.enterprise_desc'),
+      features: [t('pricing.integrations_unlimited'), t('pricing.operations_unlimited'), t('pricing.support_dedicated'), t('pricing.custom_workflows')]
     }
   ];
 
@@ -53,7 +53,7 @@ export default function Pricing() {
                   {plan.popular && (
                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                       <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">
-                        Most Popular
+                        {t('pricing.most_popular')}
                       </span>
                     </div>
                   )}
