@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useActivityLogs } from '@/hooks/useDashboardData';
+import { useActivityLogs, type ActivityLog } from '@/hooks/useDashboardData';
 import { 
   Search,
   Filter,
@@ -19,6 +19,7 @@ import {
 export default function DashboardActivity() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const { activities, loading } = useActivityLogs();
 
   const filteredActivities = activities.filter(activity => {
@@ -53,13 +54,13 @@ export default function DashboardActivity() {
   const handleExport = () => {
     const csvHeaders = ['Timestamp', 'Integration', 'Action', 'Status', 'Duration', 'Records Processed', 'Details'];
     const csvData = filteredActivities.map(activity => [
-      activity.timestamp,
-      activity.integration,
+      new Date(activity.created_at).toLocaleString(),
+      activity.connections?.name || 'Unknown',
       activity.action,
       activity.status,
-      activity.duration,
-      activity.recordsProcessed.toString(),
-      activity.details.replace(/,/g, ';') // Replace commas to avoid CSV issues
+      activity.duration ? `${activity.duration}ms` : 'N/A',
+      activity.records_processed.toString(),
+      (activity.details || '').replace(/,/g, ';') // Replace commas to avoid CSV issues
     ]);
 
     const csvContent = [
@@ -81,22 +82,9 @@ export default function DashboardActivity() {
   const handleRefresh = async () => {
     setIsRefreshing(true);
     
-    // Simulate API call delay
+    // Simulate refresh delay - in real app this would refetch data
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Add a new mock activity to show refresh worked
-    const newActivity: ActivityLog = {
-      id: Date.now().toString(),
-      timestamp: new Date().toISOString().replace('T', ' ').slice(0, 19),
-      integration: 'System',
-      action: 'Data Refresh',
-      status: 'success',
-      duration: '0.8s',
-      recordsProcessed: filteredActivities.length,
-      details: 'Activity log refreshed successfully'
-    };
-    
-    setActivities(prev => [newActivity, ...prev]);
     setIsRefreshing(false);
   };
 
@@ -163,17 +151,17 @@ export default function DashboardActivity() {
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-1">
                         <h4 className="font-medium text-foreground">
-                          {activity.integration} - {activity.action}
+                          {activity.connections?.name || 'Unknown'} - {activity.action}
                         </h4>
                         {getStatusBadge(activity.status)}
                       </div>
                       <p className="text-sm text-muted-foreground mb-2">
-                        {activity.details}
+                        {activity.details || 'No details available'}
                       </p>
                       <div className="flex items-center space-x-4 text-xs text-muted-foreground">
-                        <span>{activity.timestamp}</span>
-                        <span>Duration: {activity.duration}</span>
-                        <span>Records: {activity.recordsProcessed.toLocaleString()}</span>
+                        <span>{new Date(activity.created_at).toLocaleString()}</span>
+                        <span>Duration: {activity.duration ? `${activity.duration}ms` : 'N/A'}</span>
+                        <span>Records: {activity.records_processed.toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
