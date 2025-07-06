@@ -40,10 +40,20 @@
     "api": "API"
   },
   "hero": {
-    "title": "Conecte Perfeitamente Todas as Suas Integrações de Negócio",
-    "subtitle": "Unifique seus fluxos de trabalho com nossa poderosa plataforma de integração. Conecte, gerencie e escale suas ferramentas de negócio em um hub centralizado.",
-    "cta_primary": "Começar Grátis",
-    "cta_secondary": "Ver Integrações"
+    "title": "Conecte suas",
+    "title_highlight": "Plataformas de Mensagem",
+    "subtitle": "Integre perfeitamente Teams, Webex, Google Chat, Zoom, Slack e outras ferramentas de comunicação empresarial. Sincronize mensagens, canais e conversas em todas as suas plataformas em tempo real.",
+    "cta_primary": "Começar a Conectar Plataformas",
+    "cta_secondary": "Ver Plataformas Suportadas",
+    "badge": "Integração Perfeita de Plataformas de Mensagem",
+    "trusted_by": "Confiado por mais de 10.000 equipes em todo o mundo para integração de plataformas de mensagem",
+    "supported_platforms": "Plataformas de Mensagem Suportadas",
+    "real_time_sync": "Sincronização em Tempo Real",
+    "real_time_sync_desc": "Mensagens sincronizam instantaneamente em todas as plataformas conectadas",
+    "enterprise_security": "Segurança Empresarial",
+    "enterprise_security_desc": "Compatível com SOC 2 com criptografia de nível empresarial",
+    "cross_platform": "Multiplataforma",
+    "cross_platform_desc": "Conecte qualquer plataforma de mensagem com APIs unificadas"
   },
   "support": {
     "title": "Como podemos ajudá-lo?",
@@ -74,6 +84,99 @@
     "visit_forums": "Visitar Fóruns",
     "view_github": "Ver GitHub"
   },
+  "features": {
+    "title": "Recursos",
+    "subtitle": "Descubra os recursos poderosos que fazem do SyncRivo a plataforma de integração perfeita para seu negócio.",
+    "coming_soon": "Em Breve",
+    "coming_soon_desc": "Estamos trabalhando para trazer recursos incríveis. Volte em breve para atualizações."
+  },
+  "pricing": {
+    "title": "Preços",
+    "subtitle": "Escolha o plano perfeito para as necessidades do seu negócio.",
+    "coming_soon": "Em Breve",
+    "coming_soon_desc": "Estamos trabalhando em nossos planos de preços. Volte em breve para detalhes.",
+    "most_popular": "Mais Popular",
+    "starter": "Iniciante",
+    "professional": "Profissional",  
+    "enterprise": "Empresarial",
+    "free": "Grátis",
+    "custom": "Personalizado",
+    "per_month": "/mês",
+    "starter_desc": "Perfeito para pequenas equipes começando",
+    "professional_desc": "Para empresas em crescimento",
+    "enterprise_desc": "Para grandes organizações"
+  },
+  "about": {
+    "title": "Sobre Nós",
+    "subtitle": "Saiba mais sobre nossa missão de simplificar integrações de negócios.",
+    "coming_soon": "Em Breve",
+    "coming_soon_desc": "Estamos criando nossa história. Volte em breve para saber mais sobre nós."
+  },
+  "integrations": {
+    "title": "Integrações",
+    "subtitle": "Conecte-se com centenas de ferramentas e serviços populares para negócios.",
+    "coming_soon": "Em Breve",
+    "coming_soon_desc": "Estamos construindo integrações incríveis. Volte em breve para nosso marketplace de integrações."
+  },
+  "docs": {
+    "title": "Documentação",
+    "subtitle": "Tudo que você precisa para começar com o SyncRivo.",
+    "coming_soon": "Em Breve",
+    "coming_soon_desc": "Nossa documentação abrangente está sendo preparada. Volte em breve para guias e tutoriais."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Mantenha-se atualizado com as últimas notícias, tutoriais e insights da nossa equipe.",
+    "coming_soon": "Em Breve",
+    "coming_soon_desc": "Estamos trabalhando para trazer conteúdo incrível. Volte em breve para nossos últimos posts do blog."
+  },
+  "careers": {
+    "title": "Carreiras",
+    "subtitle": "Junte-se à nossa equipe e nos ajude a construir o futuro da integração de dados.",
+    "growing": "Estamos Crescendo!",
+    "growing_desc": "Sempre estamos procurando indivíduos talentosos para se juntar à nossa equipe. Volte em breve para posições abertas ou entre em contato conosco diretamente.",
+    "contact_email": "Entre em contato conosco em careers@company.com"
+  },
+  "status": {
+    "title": "Status do Sistema",
+    "subtitle": "Status em tempo real e monitoramento de tempo de atividade para todos os nossos serviços.",
+    "coming_soon": "Em Breve",
+    "coming_soon_desc": "Nossa página de status está sendo preparada. Volte em breve para monitoramento do sistema em tempo real."
+  },
+  "security": {
+    "title": "Segurança",
+    "subtitle": "Saiba sobre nosso compromisso em manter seus dados seguros e protegidos.",
+    "coming_soon": "Em Breve",
+    "coming_soon_desc": "Nossa documentação de segurança está sendo preparada. Volte em breve para informações detalhadas de segurança."
+  },
+  "login": {
+    "title": "Entrar",
+    "subtitle": "Bem-vindo de volta! Por favor, entre em sua conta.",
+    "email": "Email",
+    "password": "Senha",
+    "sign_in": "Entrar",
+    "dont_have_account": "Não tem uma conta?",
+    "sign_up": "Cadastre-se"
+  },
+  "signup": {
+    "title": "Criar Conta",
+    "subtitle": "Junte-se ao SyncRivo e comece a conectar suas ferramentas de negócio hoje.",
+    "display_name": "Nome de Exibição",
+    "email": "Email",
+    "password": "Senha",
+    "create_account": "Criar Conta",
+    "already_have_account": "Já tem uma conta?",
+    "sign_in": "Entrar"
+  },
+  "dashboard": {
+    "title": "Painel",
+    "welcome": "Bem-vindo ao seu painel"
+  },
+  "not_found": {
+    "title": "Página Não Encontrada",
+    "subtitle": "A página que você está procurando não existe.",
+    "return_home": "Voltar ao Início"
+  },
   "footer": {
     "tagline": "Conecte e gerencie perfeitamente todas as suas integrações de negócio em uma plataforma unificada.",
     "product": "Produto",
@@ -83,5 +186,40 @@
     "terms_of_service": "Termos de Serviço",
     "help_center": "Central de Ajuda",
     "all_rights_reserved": "Todos os direitos reservados."
+  },
+  "home": {
+    "features_badge": "Recursos Poderosos",
+    "features_title": "Tudo que você precisa para integração de plataformas de mensagem",
+    "features_subtitle": "SyncRio fornece ferramentas abrangentes para conectar, sincronizar e gerenciar todas as suas plataformas de mensagem empresarial de um hub central.",
+    "universal_sync": "Sincronização Universal de Mensagens",
+    "universal_sync_desc": "Conecte Teams, Webex, Google Chat, Zoom, Slack e mais com sincronização bidirecional de mensagens.",
+    "team_management": "Gerenciamento de Equipe",
+    "team_management_desc": "Gerencie usuários, permissões e acesso em todas as plataformas de mensagem conectadas.",
+    "smart_workflows": "Fluxos de Trabalho Inteligentes",
+    "smart_workflows_desc": "Automatize o roteamento de mensagens, notificações e conversas entre plataformas.",
+    "analytics_insights": "Analytics e Insights",
+    "analytics_insights_desc": "Rastreie volumes de mensagens, uso de plataformas e padrões de comunicação.",
+    "use_cases_title": "Perfeito para todas as necessidades de comunicação empresarial",
+    "use_cases_subtitle": "Seja gerenciando comunicação empresarial ou colaboração de equipes remotas, o SyncRio se adapta às suas necessidades específicas de integração de mensagens.",
+    "enterprise_communication": "Comunicação Empresarial",
+    "enterprise_communication_desc": "Unifique mensagens entre diferentes departamentos usando várias plataformas.",
+    "remote_collaboration": "Colaboração de Equipe Remota",
+    "remote_collaboration_desc": "Mantenha equipes distribuídas conectadas, independentemente de sua plataforma preferida.",
+    "customer_support": "Suporte ao Cliente",
+    "customer_support_desc": "Integre canais de suporte ao cliente com ferramentas de comunicação interna.",
+    "project_management": "Gerenciamento de Projetos",
+    "project_management_desc": "Sincronize atualizações de projetos e notificações em todos os canais de comunicação da equipe.",
+    "how_it_works": "Como o SyncRio Funciona",
+    "how_it_works_subtitle": "Conecte suas plataformas de mensagem e sincronize em apenas três passos simples.",
+    "connect_platforms": "Conectar Plataformas",
+    "connect_platforms_desc": "Adicione suas plataformas de mensagem como Teams, Webex, Google Chat, Zoom e Slack com autenticação OAuth segura.",
+    "configure_sync": "Configurar Sincronização",
+    "configure_sync_desc": "Configure roteamento de mensagens, mapeamento de canais e preferências de sincronização para corresponder ao fluxo de trabalho de comunicação da sua equipe.",
+    "start_syncing": "Começar a Sincronizar",
+    "start_syncing_desc": "Mensagens sincronizam automaticamente em todas as plataformas conectadas em tempo real, mantendo sua equipe conectada em todos os lugares.",
+    "cta_title": "Pronto para unificar suas plataformas de mensagem?",
+    "cta_subtitle": "Junte-se a milhares de equipes que confiam no SyncRio para conectar perfeitamente suas ferramentas de comunicação empresarial.",
+    "start_free_trial": "Iniciar Teste Gratuito",
+    "view_demo": "Ver Demo ao Vivo"
   }
 }

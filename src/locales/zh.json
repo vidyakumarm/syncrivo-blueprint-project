@@ -40,10 +40,20 @@
     "api": "API"
   },
   "hero": {
-    "title": "无缝连接所有业务集成",
-    "subtitle": "通过我们强大的集成平台统一您的工作流程。在一个集中的枢纽中连接、管理和扩展您的业务工具。",
-    "cta_primary": "免费开始",
-    "cta_secondary": "查看集成"
+    "title": "连接您的",
+    "title_highlight": "消息平台",
+    "subtitle": "无缝集成Teams、Webex、Google Chat、Zoom、Slack和其他商业通信工具。实时同步消息、频道和对话。",
+    "cta_primary": "开始连接平台",
+    "cta_secondary": "查看支持的平台",
+    "badge": "无缝消息平台集成",
+    "trusted_by": "全球超过10,000个团队信赖我们的消息平台集成",
+    "supported_platforms": "支持的消息平台",
+    "real_time_sync": "实时同步",
+    "real_time_sync_desc": "消息在所有连接的平台间即时同步",
+    "enterprise_security": "企业级安全",
+    "enterprise_security_desc": "符合SOC 2标准，具有企业级加密",
+    "cross_platform": "跨平台",
+    "cross_platform_desc": "通过统一API连接任何消息平台"
   },
   "support": {
     "title": "我们如何帮助您？",
@@ -74,6 +84,99 @@
     "visit_forums": "访问论坛",
     "view_github": "查看GitHub"
   },
+  "features": {
+    "title": "功能",
+    "subtitle": "发现使SyncRivo成为您业务完美集成平台的强大功能。",
+    "coming_soon": "即将推出",
+    "coming_soon_desc": "我们正在为您带来惊人的功能。请稍后查看更新。"
+  },
+  "pricing": {
+    "title": "定价",
+    "subtitle": "为您的业务需求选择完美的计划。",
+    "coming_soon": "即将推出",
+    "coming_soon_desc": "我们正在制定价格计划。请稍后查看详情。",
+    "most_popular": "最受欢迎",
+    "starter": "入门版",
+    "professional": "专业版",  
+    "enterprise": "企业版",
+    "free": "免费",
+    "custom": "定制",
+    "per_month": "/月",
+    "starter_desc": "适合刚起步的小团队",
+    "professional_desc": "适用于成长中的企业",
+    "enterprise_desc": "适用于大型组织"
+  },
+  "about": {
+    "title": "关于我们",
+    "subtitle": "了解更多关于我们简化业务集成的使命。",
+    "coming_soon": "即将推出",
+    "coming_soon_desc": "我们正在编写我们的故事。请稍后回来了解更多关于我们的信息。"
+  },
+  "integrations": {
+    "title": "集成",
+    "subtitle": "连接数百种流行的商业工具和服务。",
+    "coming_soon": "即将推出",
+    "coming_soon_desc": "我们正在构建令人惊叹的集成。请稍后查看我们的集成市场。"
+  },
+  "docs": {
+    "title": "文档",
+    "subtitle": "开始使用SyncRivo所需的一切。",
+    "coming_soon": "即将推出",
+    "coming_soon_desc": "我们的综合文档正在准备中。请稍后查看指南和教程。"
+  },
+  "blog": {
+    "title": "博客",
+    "subtitle": "了解我们团队的最新新闻、教程和见解。",
+    "coming_soon": "即将推出",
+    "coming_soon_desc": "我们正在为您带来精彩内容。请稍后查看我们的最新博客文章。"
+  },
+  "careers": {
+    "title": "职业",
+    "subtitle": "加入我们的团队，帮助我们构建数据集成的未来。",
+    "growing": "我们在成长！",
+    "growing_desc": "我们始终在寻找有才华的人加入我们的团队。请稍后查看空缺职位或直接联系我们。",
+    "contact_email": "通过careers@company.com联系我们"
+  },
+  "status": {
+    "title": "系统状态",
+    "subtitle": "我们所有服务的实时状态和正常运行时间监控。",
+    "coming_soon": "即将推出",
+    "coming_soon_desc": "我们的状态页面正在准备中。请稍后查看实时系统监控。"
+  },
+  "security": {
+    "title": "安全",
+    "subtitle": "了解我们对保护您的数据安全的承诺。",
+    "coming_soon": "即将推出",
+    "coming_soon_desc": "我们的安全文档正在准备中。请稍后查看详细的安全信息。"
+  },
+  "login": {
+    "title": "登录",
+    "subtitle": "欢迎回来！请登录您的账户。",
+    "email": "邮箱",
+    "password": "密码",
+    "sign_in": "登录",
+    "dont_have_account": "还没有账户？",
+    "sign_up": "注册"
+  },
+  "signup": {
+    "title": "创建账户",
+    "subtitle": "加入SyncRivo，今天就开始连接您的商业工具。",
+    "display_name": "显示名称",
+    "email": "邮箱",
+    "password": "密码",
+    "create_account": "创建账户",
+    "already_have_account": "已有账户？",
+    "sign_in": "登录"
+  },
+  "dashboard": {
+    "title": "仪表板",
+    "welcome": "欢迎来到您的仪表板"
+  },
+  "not_found": {
+    "title": "页面未找到",
+    "subtitle": "您正在寻找的页面不存在。",
+    "return_home": "返回首页"
+  },
   "footer": {
     "tagline": "在统一平台中无缝连接和管理所有业务集成。",
     "product": "产品",
@@ -83,5 +186,40 @@
     "terms_of_service": "服务条款",
     "help_center": "帮助中心",
     "all_rights_reserved": "版权所有。"
+  },
+  "home": {
+    "features_badge": "强大功能",
+    "features_title": "消息平台集成所需的一切",
+    "features_subtitle": "SyncRio提供全面的工具来连接、同步和管理所有来自一个中央枢纽的商业消息平台。",
+    "universal_sync": "通用消息同步",
+    "universal_sync_desc": "连接Teams、Webex、Google Chat、Zoom、Slack等，实现双向消息同步。",
+    "team_management": "团队管理",
+    "team_management_desc": "管理所有连接的消息平台上的用户、权限和访问。",
+    "smart_workflows": "智能工作流",
+    "smart_workflows_desc": "自动化消息路由、通知和跨平台对话。",
+    "analytics_insights": "分析和洞察",
+    "analytics_insights_desc": "跟踪消息量、平台使用情况和通信模式。",
+    "use_cases_title": "完美适用于每个商业通信需求",
+    "use_cases_subtitle": "无论您是管理企业通信还是远程团队协作，SyncRio都能适应您的特定消息集成需求。",
+    "enterprise_communication": "企业通信",
+    "enterprise_communication_desc": "使用各种平台统一不同部门之间的消息传递。",
+    "remote_collaboration": "远程团队协作",
+    "remote_collaboration_desc": "无论他们喜欢的平台如何，都能保持分布式团队的连接。",
+    "customer_support": "客户支持",
+    "customer_support_desc": "将客户支持渠道与内部通信工具集成。",
+    "project_management": "项目管理",
+    "project_management_desc": "在所有团队通信渠道间同步项目更新和通知。",
+    "how_it_works": "SyncRio如何工作",
+    "how_it_works_subtitle": "只需三个简单步骤即可连接并同步您的消息平台。",
+    "connect_platforms": "连接平台",
+    "connect_platforms_desc": "通过安全的OAuth认证添加您的消息平台，如Teams、Webex、Google Chat、Zoom和Slack。",
+    "configure_sync": "配置同步",
+    "configure_sync_desc": "设置消息路由、频道映射和同步偏好以匹配您团队的通信工作流。",
+    "start_syncing": "开始同步",
+    "start_syncing_desc": "消息在所有连接的平台间实时自动同步，让您的团队在任何地方都能保持连接。",
+    "cta_title": "准备统一您的消息平台了吗？",
+    "cta_subtitle": "加入数千个信赖SyncRio无缝连接其商业通信工具的团队。",
+    "start_free_trial": "开始免费试用",
+    "view_demo": "查看实时演示"
   }
 }
