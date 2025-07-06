@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import { z } from 'zod';
 import {
   Dialog,
   DialogContent,
@@ -57,6 +57,9 @@ export function JobApplicationDialog({
   onSubmit 
 }: JobApplicationDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadingResume, setUploadingResume] = useState(false);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [resumeUrl, setResumeUrl] = useState('');
   const { toast } = useToast();
 
   const form = useForm<ApplicationForm>({
@@ -76,6 +79,44 @@ export function JobApplicationDialog({
     },
   });
 
+  const handleResumeUpload = async (file: File) => {
+    setUploadingResume(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+      
+      const { error: uploadError, data } = await supabase.storage
+        .from('resumes')
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('resumes')
+        .getPublicUrl(fileName);
+
+      setResumeUrl(publicUrl);
+      setResumeFile(file);
+      
+      toast({
+        title: 'Resume Uploaded!',
+        description: 'Your resume has been successfully uploaded.',
+      });
+    } catch (error) {
+      console.error('Error uploading resume:', error);
+      toast({
+        title: 'Upload Failed',
+        description: 'Failed to upload resume. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setUploadingResume(false);
+    }
+  };
+
   const handleSubmit = async (data: ApplicationForm) => {
     setIsSubmitting(true);
     
@@ -88,6 +129,7 @@ export function JobApplicationDialog({
           last_name: data.lastName,
           email: data.email,
           phone: data.phone || null,
+          resume_url: resumeUrl || null,
           linkedin_url: data.linkedinUrl || null,
           portfolio_url: data.portfolioUrl || null,
           years_experience: data.yearsExperience || null,
@@ -105,6 +147,8 @@ export function JobApplicationDialog({
       });
 
       form.reset();
+      setResumeFile(null);
+      setResumeUrl('');
       onSubmit();
     } catch (error) {
       console.error('Error submitting application:', error);
@@ -346,9 +390,65 @@ export function JobApplicationDialog({
                 <Upload className="h-4 w-4 text-muted-foreground" />
                 <span className="text-sm font-medium">Resume Upload</span>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Resume upload functionality coming soon. For now, please include your resume details in your cover letter or provide a link to your portfolio.
-              </p>
+              
+              {!resumeFile ? (
+                <div>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Upload your resume in PDF, DOC, or DOCX format (max 5MB)
+                  </p>
+                  <input
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        if (file.size > 5 * 1024 * 1024) {
+                          toast({
+                            title: 'File Too Large',
+                            description: 'Please upload a file smaller than 5MB.',
+                            variant: 'destructive',
+                          });
+                          return;
+                        }
+                        handleResumeUpload(file);
+                      }
+                    }}
+                    className="block w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 file:cursor-pointer cursor-pointer"
+                    disabled={uploadingResume}
+                  />
+                  {uploadingResume && (
+                    <div className="flex items-center gap-2 mt-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span className="text-sm text-muted-foreground">Uploading...</span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center justify-between bg-success/10 border border-success/20 rounded-md p-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-success/20 rounded-md flex items-center justify-center">
+                      <Upload className="h-4 w-4 text-success" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-success">{resumeFile.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {(resumeFile.size / 1024 / 1024).toFixed(1)} MB
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setResumeFile(null);
+                      setResumeUrl('');
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              )}
             </div>
 
             <div className="flex gap-3 pt-4">
