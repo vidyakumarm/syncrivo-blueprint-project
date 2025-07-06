@@ -30,9 +30,15 @@ const Careers = () => {
     search: '',
     department: '',
     location: '',
+    country: '',
     type: '',
     level: '',
     remoteOnly: false,
+    salaryMin: 0,
+    salaryMax: 500000,
+    datePosted: '',
+    skills: [],
+    companySize: '',
   });
   const { toast } = useToast();
 
@@ -73,22 +79,48 @@ const Careers = () => {
 
       const matchesDepartment = !filters.department || job.department === filters.department;
       const matchesLocation = !filters.location || job.location === filters.location;
+      const matchesCountry = !filters.country || job.location.includes(filters.country);
       const matchesType = !filters.type || job.type === filters.type;
       const matchesLevel = !filters.level || job.level === filters.level;
       const matchesRemote = !filters.remoteOnly || job.remote_allowed;
+      
+      const matchesSalary = (!filters.salaryMin || !job.salary_min || job.salary_min >= filters.salaryMin) &&
+                           (!filters.salaryMax || filters.salaryMax === 500000 || !job.salary_max || job.salary_max <= filters.salaryMax);
+      
+      const matchesDatePosted = !filters.datePosted || (() => {
+        const jobDate = new Date(job.posted_date);
+        const daysAgo = parseInt(filters.datePosted);
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - daysAgo);
+        return jobDate >= cutoffDate;
+      })();
 
-      return matchesSearch && matchesDepartment && matchesLocation && 
-             matchesType && matchesLevel && matchesRemote;
+      const matchesSkills = filters.skills.length === 0 || filters.skills.some(skill =>
+        job.requirements.some(req => req.toLowerCase().includes(skill.toLowerCase())) ||
+        job.description.toLowerCase().includes(skill.toLowerCase())
+      );
+
+      return matchesSearch && matchesDepartment && matchesLocation && matchesCountry &&
+             matchesType && matchesLevel && matchesRemote && matchesSalary && 
+             matchesDatePosted && matchesSkills;
     });
   }, [jobs, filters]);
 
   // Extract unique values for filters
   const filterOptions = useMemo(() => {
+    const allSkills = [...new Set(jobs.flatMap(job => 
+      job.requirements.concat(
+        job.description.split(/[,\s]+/).filter(word => word.length > 3)
+      )
+    ))].slice(0, 20);
+
     return {
       departments: [...new Set(jobs.map(job => job.department))],
       locations: [...new Set(jobs.map(job => job.location))],
+      countries: [...new Set(jobs.map(job => job.location.split(',').pop()?.trim() || job.location))],
       types: [...new Set(jobs.map(job => job.type))],
       levels: [...new Set(jobs.map(job => job.level))],
+      skills: allSkills,
     };
   }, [jobs]);
 
@@ -228,8 +260,10 @@ const Careers = () => {
                 onFiltersChange={setFilters}
                 departments={filterOptions.departments}
                 locations={filterOptions.locations}
+                countries={filterOptions.countries}
                 types={filterOptions.types}
                 levels={filterOptions.levels}
+                availableSkills={filterOptions.skills}
               />
             </div>
 
@@ -274,9 +308,15 @@ const Careers = () => {
                       search: '',
                       department: '',
                       location: '',
+                      country: '',
                       type: '',
                       level: '',
                       remoteOnly: false,
+                      salaryMin: 0,
+                      salaryMax: 500000,
+                      datePosted: '',
+                      skills: [],
+                      companySize: '',
                     })}
                   >
                     Clear Filters
