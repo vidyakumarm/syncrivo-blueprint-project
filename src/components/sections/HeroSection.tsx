@@ -18,9 +18,16 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import heroBg from '@/assets/hero-bg.jpg';
+import i18next from 'i18next';
 
 export function HeroSection() {
   const { t } = useTranslation();
+
+  console.log('🎭 [HeroSection] Component rendered', {
+    timestamp: new Date().toISOString(),
+    currentLanguage: i18next.language,
+    path: window.location.pathname
+  });
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

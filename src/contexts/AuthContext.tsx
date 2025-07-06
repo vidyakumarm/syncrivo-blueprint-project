@@ -18,10 +18,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
+  console.log('🔐 [AuthProvider] Component initialized', {
+    timestamp: new Date().toISOString(),
+    initialState: { user: null, session: null, loading: true }
+  });
+
   useEffect(() => {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
+        console.log('🔐 [AuthProvider] Auth state changed', {
+          timestamp: new Date().toISOString(),
+          event,
+          userId: session?.user?.id || null,
+          userEmail: session?.user?.email || null,
+          hasSession: !!session
+        });
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
@@ -30,6 +42,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('🔐 [AuthProvider] Retrieved existing session', {
+        timestamp: new Date().toISOString(),
+        hasSession: !!session,
+        userId: session?.user?.id || null
+      });
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
@@ -39,6 +56,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signUp = async (email: string, password: string, displayName?: string) => {
+    console.log('🔐 [AuthProvider] Sign up attempt', {
+      timestamp: new Date().toISOString(),
+      email,
+      hasDisplayName: !!displayName
+    });
+    
     const redirectUrl = `${window.location.origin}/`;
     
     const { error } = await supabase.auth.signUp({
@@ -52,19 +75,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     });
     
+    console.log('🔐 [AuthProvider] Sign up result', {
+      timestamp: new Date().toISOString(),
+      success: !error,
+      error: error?.message || null
+    });
+    
     return { error };
   };
 
   const signIn = async (email: string, password: string) => {
+    console.log('🔐 [AuthProvider] Sign in attempt', {
+      timestamp: new Date().toISOString(),
+      email
+    });
+    
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password
+    });
+    
+    console.log('🔐 [AuthProvider] Sign in result', {
+      timestamp: new Date().toISOString(),
+      success: !error,
+      error: error?.message || null
     });
     
     return { error };
   };
 
   const signOut = async () => {
+    console.log('🔐 [AuthProvider] Sign out initiated', {
+      timestamp: new Date().toISOString(),
+      userId: user?.id || null
+    });
     await supabase.auth.signOut();
   };
 

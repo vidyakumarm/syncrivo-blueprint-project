@@ -20,6 +20,12 @@ export default function Signup() {
   const { signUp, user } = useAuth();
   const navigate = useNavigate();
 
+  console.log('📝 [Signup] Component mounted', {
+    timestamp: new Date().toISOString(),
+    hasUser: !!user,
+    path: window.location.pathname
+  });
+
   // Redirect if already authenticated
   useEffect(() => {
     if (user) {
@@ -30,12 +36,22 @@ export default function Signup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('📝 [Signup] Form submission attempt', {
+      timestamp: new Date().toISOString(),
+      email,
+      displayName,
+      hasPassword: !!password,
+      passwordLength: password.length
+    });
+    
     if (!email || !password || !displayName) {
+      console.log('📝 [Signup] Validation failed - missing required fields');
       toast.error('Please fill in all required fields');
       return;
     }
 
     if (password.length < 6) {
+      console.log('📝 [Signup] Validation failed - password too short');
       toast.error('Password must be at least 6 characters');
       return;
     }
@@ -46,16 +62,29 @@ export default function Signup() {
       const { error } = await signUp(email, password, displayName);
       
       if (error) {
+        console.log('📝 [Signup] Sign up failed', {
+          timestamp: new Date().toISOString(),
+          error: error.message
+        });
         if (error.message.includes('already registered')) {
           toast.error('This email is already registered. Try signing in instead.');
         } else {
           toast.error(error.message);
         }
       } else {
+        console.log('📝 [Signup] Sign up successful', {
+          timestamp: new Date().toISOString(),
+          email,
+          displayName
+        });
         toast.success('Check your email to confirm your account!');
         navigate('/');
       }
     } catch (error) {
+      console.error('📝 [Signup] Unexpected error', {
+        timestamp: new Date().toISOString(),
+        error
+      });
       toast.error('An unexpected error occurred');
     } finally {
       setLoading(false);

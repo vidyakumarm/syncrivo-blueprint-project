@@ -16,7 +16,19 @@ export function Navigation() {
   const { user, signOut } = useAuth();
   const { t } = useTranslation();
 
+  console.log('🧭 [Navigation] Component rendered', {
+    timestamp: new Date().toISOString(),
+    hasUser: !!user,
+    userEmail: user?.email || null,
+    mobileMenuOpen,
+    currentPath: window.location.pathname
+  });
+
   const handleSignOut = async () => {
+    console.log('🧭 [Navigation] Sign out initiated', {
+      timestamp: new Date().toISOString(),
+      userId: user?.id || null
+    });
     await signOut();
   };
 

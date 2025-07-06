@@ -49,14 +49,32 @@ export function useConnections() {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
+  console.log('🔗 [useConnections] Hook initialized', {
+    timestamp: new Date().toISOString(),
+    hasUser: !!user,
+    userId: user?.id || null
+  });
+
   useEffect(() => {
     if (!user) return;
 
     const fetchConnections = async () => {
+      console.log('🔗 [useConnections] Fetching connections', {
+        timestamp: new Date().toISOString(),
+        userId: user?.id
+      });
+      
       const { data, error } = await supabase
         .from('connections')
         .select('*')
         .order('created_at', { ascending: false });
+      
+      console.log('🔗 [useConnections] Fetch result', {
+        timestamp: new Date().toISOString(),
+        success: !error,
+        connectionCount: data?.length || 0,
+        error: error?.message || null
+      });
       
       if (!error && data) {
         setConnections(data as Connection[]);
@@ -123,10 +141,21 @@ export function useActivityLogs() {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
+  console.log('📋 [useActivityLogs] Hook initialized', {
+    timestamp: new Date().toISOString(),
+    hasUser: !!user,
+    userId: user?.id || null
+  });
+
   useEffect(() => {
     if (!user) return;
 
     const fetchActivities = async () => {
+      console.log('📋 [useActivityLogs] Fetching activities', {
+        timestamp: new Date().toISOString(),
+        userId: user?.id
+      });
+      
       const { data, error } = await supabase
         .from('activity_logs')
         .select(`
@@ -135,6 +164,13 @@ export function useActivityLogs() {
         `)
         .order('created_at', { ascending: false })
         .limit(50);
+      
+      console.log('📋 [useActivityLogs] Fetch result', {
+        timestamp: new Date().toISOString(),
+        success: !error,
+        activityCount: data?.length || 0,
+        error: error?.message || null
+      });
       
       if (!error && data) {
         setActivities(data as ActivityLog[]);

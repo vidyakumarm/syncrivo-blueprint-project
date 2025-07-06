@@ -18,6 +18,12 @@ export default function Login() {
   const { signIn, user } = useAuth();
   const navigate = useNavigate();
 
+  console.log('🔑 [Login] Component mounted', {
+    timestamp: new Date().toISOString(),
+    hasUser: !!user,
+    path: window.location.pathname
+  });
+
   // Redirect if already authenticated
   useEffect(() => {
     if (user) {
@@ -28,7 +34,14 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('🔑 [Login] Form submission attempt', {
+      timestamp: new Date().toISOString(),
+      email,
+      hasPassword: !!password
+    });
+    
     if (!email || !password) {
+      console.log('🔑 [Login] Validation failed - missing fields');
       toast.error('Please fill in all fields');
       return;
     }
@@ -39,16 +52,28 @@ export default function Login() {
       const { error } = await signIn(email, password);
       
       if (error) {
+        console.log('🔑 [Login] Sign in failed', {
+          timestamp: new Date().toISOString(),
+          error: error.message
+        });
         if (error.message.includes('Invalid login credentials')) {
           toast.error('Invalid email or password');
         } else {
           toast.error(error.message);
         }
       } else {
+        console.log('🔑 [Login] Sign in successful', {
+          timestamp: new Date().toISOString(),
+          email
+        });
         toast.success('Welcome back!');
         navigate('/dashboard');
       }
     } catch (error) {
+      console.error('🔑 [Login] Unexpected error', {
+        timestamp: new Date().toISOString(),
+        error
+      });
       toast.error('An unexpected error occurred');
     } finally {
       setLoading(false);

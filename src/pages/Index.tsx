@@ -21,6 +21,12 @@ import {
 } from 'lucide-react';
 
 const Index = () => {
+  console.log('🏠 [HomePage] Component mounted', {
+    timestamp: new Date().toISOString(),
+    path: window.location.pathname,
+    userAgent: navigator.userAgent
+  });
+
   const features = [
     {
       icon: MessageSquare,

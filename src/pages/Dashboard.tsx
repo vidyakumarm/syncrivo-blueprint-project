@@ -24,6 +24,14 @@ export default function Dashboard() {
   const { activities } = useActivityLogs();
   const { metrics } = useDashboardMetrics();
 
+  console.log('📊 [Dashboard] Component mounted', {
+    timestamp: new Date().toISOString(),
+    userId: user?.id || null,
+    loading,
+    connectionsCount: connections?.length || 0,
+    activitiesCount: activities?.length || 0
+  });
+
   // Temporarily allow access without authentication for development
   // TODO: Re-enable authentication in production
   // useEffect(() => {
