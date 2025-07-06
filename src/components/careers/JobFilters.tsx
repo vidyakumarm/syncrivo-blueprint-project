@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Select,
   SelectContent,
@@ -374,15 +375,16 @@ export function JobFilters({
 
             {/* Options */}
             <div className="flex flex-wrap gap-4">
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="remote-only"
                   checked={filters.remoteOnly}
-                  onChange={(e) => updateFilter('remoteOnly', e.target.checked)}
-                  className="rounded border-border"
+                  onCheckedChange={(checked) => updateFilter('remoteOnly', !!checked)}
                 />
-                <span className="text-sm">Remote positions only</span>
-              </label>
+                <label htmlFor="remote-only" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Remote positions only
+                </label>
+              </div>
             </div>
           </div>
         </Card>
