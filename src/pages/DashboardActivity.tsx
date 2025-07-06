@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useActivityLogs } from '@/hooks/useDashboardData';
 import { 
   Search,
   Filter,
@@ -15,92 +16,17 @@ import {
   Download
 } from 'lucide-react';
 
-interface ActivityLog {
-  id: string;
-  timestamp: string;
-  integration: string;
-  action: string;
-  status: 'success' | 'error' | 'pending';
-  duration: string;
-  recordsProcessed: number;
-  details: string;
-}
-
 export default function DashboardActivity() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [activities, setActivities] = useState<ActivityLog[]>([
-    {
-      id: '1',
-      timestamp: '2024-01-15 14:32:15',
-      integration: 'Slack Workspace',
-      action: 'Data Sync',
-      status: 'success',
-      duration: '2.1s',
-      recordsProcessed: 247,
-      details: 'Successfully synced messages and channel data'
-    },
-    {
-      id: '2',
-      timestamp: '2024-01-15 14:30:45',
-      integration: 'Google Drive',
-      action: 'File Sync',
-      status: 'error',
-      duration: '5.8s',
-      recordsProcessed: 0,
-      details: 'Authentication failed - token expired'
-    },
-    {
-      id: '3',
-      timestamp: '2024-01-15 14:28:20',
-      integration: 'Notion Database',
-      action: 'Schema Update',
-      status: 'success',
-      duration: '1.4s',
-      recordsProcessed: 156,
-      details: 'Updated database schema and synced records'
-    },
-    {
-      id: '4',
-      timestamp: '2024-01-15 14:25:10',
-      integration: 'Airtable Base',
-      action: 'Data Sync',
-      status: 'pending',
-      duration: '0.0s',
-      recordsProcessed: 0,
-      details: 'Sync queued and waiting to process'
-    },
-    {
-      id: '5',
-      timestamp: '2024-01-15 14:22:35',
-      integration: 'Trello Board',
-      action: 'Card Sync',
-      status: 'success',
-      duration: '3.2s',
-      recordsProcessed: 89,
-      details: 'Synced cards, lists, and board metadata'
-    },
-    {
-      id: '6',
-      timestamp: '2024-01-15 14:20:12',
-      integration: 'Slack Workspace',
-      action: 'User Sync',
-      status: 'success',
-      duration: '1.8s',
-      recordsProcessed: 45,
-      details: 'Updated user profiles and status information'
-    },
-  ]);
+  const { activities, loading } = useActivityLogs();
 
   const filteredActivities = activities.filter(activity => {
-    // If no search term, match all for search criteria
     const matchesSearch = !searchTerm.trim() || 
-                         activity.integration.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          activity.action.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         activity.details.toLowerCase().includes(searchTerm.toLowerCase());
+                         activity.details?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (activity.connections?.name.toLowerCase().includes(searchTerm.toLowerCase()));
     
-    // Filter by status
     const matchesStatus = statusFilter === 'all' || activity.status === statusFilter;
     
     return matchesSearch && matchesStatus;

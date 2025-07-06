@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useActivityLogs } from '@/hooks/useDashboardData';
 
 interface ChartData {
   time: string;
@@ -8,34 +9,55 @@ interface ChartData {
 }
 
 export function RealTimeChart() {
-  const [data, setData] = useState<ChartData[]>([
-    { time: '12:00', syncs: 45, errors: 2 },
-    { time: '12:05', syncs: 52, errors: 1 },
-    { time: '12:10', syncs: 48, errors: 3 },
-    { time: '12:15', syncs: 61, errors: 0 },
-    { time: '12:20', syncs: 55, errors: 1 },
-    { time: '12:25', syncs: 67, errors: 2 },
-  ]);
+  const { activities } = useActivityLogs();
+  const [data, setData] = useState<ChartData[]>([]);
 
-  // Simulate real-time updates
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setData(prevData => {
-        const newTime = new Date().toLocaleTimeString('en-US', { 
-          hour12: false, 
-          hour: '2-digit', 
-          minute: '2-digit' 
-        });
-        const newSyncs = Math.floor(Math.random() * 30) + 40;
-        const newErrors = Math.floor(Math.random() * 5);
-        
-        const newData = [...prevData.slice(1), { time: newTime, syncs: newSyncs, errors: newErrors }];
-        return newData;
+  // Process activities into chart data
+  const processActivitiesForChart = () => {
+    const now = new Date();
+    const intervals = [];
+    
+    // Create 6 time intervals (every 5 minutes for last 30 minutes)
+    for (let i = 5; i >= 0; i--) {
+      const time = new Date(now.getTime() - (i * 5 * 60 * 1000));
+      const timeStr = time.toLocaleTimeString('en-US', { 
+        hour12: false, 
+        hour: '2-digit', 
+        minute: '2-digit' 
       });
-    }, 5000);
+      
+      const intervalStart = new Date(time.getTime() - (2.5 * 60 * 1000));
+      const intervalEnd = new Date(time.getTime() + (2.5 * 60 * 1000));
+      
+      const intervalActivities = activities.filter(activity => {
+        const activityTime = new Date(activity.created_at);
+        return activityTime >= intervalStart && activityTime <= intervalEnd;
+      });
+      
+      const syncs = intervalActivities.filter(a => a.status === 'success').length;
+      const errors = intervalActivities.filter(a => a.status === 'error').length;
+      
+      intervals.push({ time: timeStr, syncs, errors });
+    }
+    
+    return intervals;
+  };
+
+  // Process activities into chart data and update every 5 seconds
+  useEffect(() => {
+    const updateData = () => {
+      const chartData = processActivitiesForChart();
+      setData(chartData);
+    };
+
+    // Initial data load
+    updateData();
+
+    // Update every 5 seconds
+    const interval = setInterval(updateData, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [activities]); // Re-run when activities change
 
   return (
     <Card className="col-span-2">

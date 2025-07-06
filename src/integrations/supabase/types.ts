@@ -9,6 +9,122 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      activity_logs: {
+        Row: {
+          action: string
+          connection_id: string | null
+          created_at: string
+          details: string | null
+          duration: number | null
+          error_message: string | null
+          id: string
+          records_processed: number | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          action: string
+          connection_id?: string | null
+          created_at?: string
+          details?: string | null
+          duration?: number | null
+          error_message?: string | null
+          id?: string
+          records_processed?: number | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          action?: string
+          connection_id?: string | null
+          created_at?: string
+          details?: string | null
+          duration?: number | null
+          error_message?: string | null
+          id?: string
+          records_processed?: number | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_logs_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      connections: {
+        Row: {
+          config: Json | null
+          created_at: string
+          icon: string | null
+          id: string
+          last_sync: string | null
+          name: string
+          status: string
+          sync_count: number | null
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          config?: Json | null
+          created_at?: string
+          icon?: string | null
+          id?: string
+          last_sync?: string | null
+          name: string
+          status?: string
+          sync_count?: number | null
+          type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          config?: Json | null
+          created_at?: string
+          icon?: string | null
+          id?: string
+          last_sync?: string | null
+          name?: string
+          status?: string
+          sync_count?: number | null
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      dashboard_metrics: {
+        Row: {
+          id: string
+          metadata: Json | null
+          metric_type: string
+          timestamp: string
+          user_id: string
+          value: number
+        }
+        Insert: {
+          id?: string
+          metadata?: Json | null
+          metric_type: string
+          timestamp?: string
+          user_id: string
+          value: number
+        }
+        Update: {
+          id?: string
+          metadata?: Json | null
+          metric_type?: string
+          timestamp?: string
+          user_id?: string
+          value?: number
+        }
+        Relationships: []
+      }
       job_applications: {
         Row: {
           applied_at: string
@@ -168,6 +284,42 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_preferences: {
+        Row: {
+          created_at: string
+          email_notifications: boolean | null
+          id: string
+          push_notifications: boolean | null
+          sync_frequency: string | null
+          theme: string | null
+          timezone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email_notifications?: boolean | null
+          id?: string
+          push_notifications?: boolean | null
+          sync_frequency?: string | null
+          theme?: string | null
+          timezone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email_notifications?: boolean | null
+          id?: string
+          push_notifications?: boolean | null
+          sync_frequency?: string | null
+          theme?: string | null
+          timezone?: string | null
           updated_at?: string
           user_id?: string
         }

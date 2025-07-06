@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { useConnections } from '@/hooks/useDashboardData';
+import { useToast } from '@/hooks/use-toast';
 import { 
   Plus, 
   Search, 
@@ -17,85 +19,43 @@ import {
   AlertCircle
 } from 'lucide-react';
 
-interface Connection {
-  id: string;
-  name: string;
-  type: string;
-  status: 'active' | 'paused' | 'error';
-  lastSync: string;
-  syncCount: number;
-  icon: string;
-}
-
 export default function DashboardConnections() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
-  const [selectedConnection, setSelectedConnection] = useState<Connection | null>(null);
+  const [selectedConnection, setSelectedConnection] = useState<any>(null);
   const [newConnection, setNewConnection] = useState({
     name: '',
     type: '',
     icon: '🔗'
   });
-  const [connections, setConnections] = useState<Connection[]>([
-    {
-      id: '1',
-      name: 'Slack Workspace',
-      type: 'Communication',
-      status: 'active',
-      lastSync: '2 minutes ago',
-      syncCount: 245,
-      icon: '💬'
-    },
-    {
-      id: '2',
-      name: 'Google Drive',
-      type: 'Storage',
-      status: 'error',
-      lastSync: '5 minutes ago',
-      syncCount: 189,
-      icon: '📁'
-    },
-    {
-      id: '3',
-      name: 'Notion Database',
-      type: 'Productivity',
-      status: 'active',
-      lastSync: '1 minute ago',
-      syncCount: 412,
-      icon: '📝'
-    },
-    {
-      id: '4',
-      name: 'Airtable Base',
-      type: 'Database',
-      status: 'paused',
-      lastSync: '1 hour ago',
-      syncCount: 67,
-      icon: '🗃️'
-    },
-    {
-      id: '5',
-      name: 'Trello Board',
-      type: 'Project Management',
-      status: 'active',
-      lastSync: '30 seconds ago',
-      syncCount: 156,
-      icon: '📋'
-    },
-  ]);
+  const { connections, loading, addConnection, updateConnection, deleteConnection } = useConnections();
+  const { toast } = useToast();
 
   const filteredConnections = connections.filter(connection =>
     connection.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     connection.type.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const toggleConnectionStatus = (connectionId: string) => {
-    setConnections(prev => prev.map(conn => 
-      conn.id === connectionId 
-        ? { ...conn, status: conn.status === 'active' ? 'paused' : 'active' as 'active' | 'paused' | 'error' }
-        : conn
-    ));
+  const toggleConnectionStatus = async (connectionId: string) => {
+    const connection = connections.find(conn => conn.id === connectionId);
+    if (!connection) return;
+    
+    const newStatus = connection.status === 'active' ? 'paused' : 'active';
+    const success = await updateConnection(connectionId, { status: newStatus });
+    
+    if (success) {
+      toast({
+        title: "Connection updated",
+        description: `Connection ${newStatus === 'active' ? 'resumed' : 'paused'} successfully.`,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Failed to update connection status.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleSettingsClick = (connectionId: string) => {
@@ -106,34 +66,65 @@ export default function DashboardConnections() {
     }
   };
 
-  const handleUpdateConnection = () => {
+  const handleUpdateConnection = async () => {
     if (!selectedConnection) return;
     
-    setConnections(prev => prev.map(conn => 
-      conn.id === selectedConnection.id ? selectedConnection : conn
-    ));
-    setSettingsDialogOpen(false);
-    setSelectedConnection(null);
+    const success = await updateConnection(selectedConnection.id, {
+      name: selectedConnection.name,
+      type: selectedConnection.type,
+      icon: selectedConnection.icon,
+      status: selectedConnection.status
+    });
+    
+    if (success) {
+      toast({
+        title: "Connection updated",
+        description: "Connection settings updated successfully.",
+      });
+      setSettingsDialogOpen(false);
+      setSelectedConnection(null);
+    } else {
+      toast({
+        title: "Error",
+        description: "Failed to update connection.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleNewConnection = () => {
+  const handleNewConnection = async () => {
     if (!newConnection.name || !newConnection.type) {
+      toast({
+        title: "Missing fields",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
       return;
     }
     
-    const connection: Connection = {
-      id: Date.now().toString(),
+    const success = await addConnection({
       name: newConnection.name,
       type: newConnection.type,
       status: 'active',
-      lastSync: 'Never',
-      syncCount: 0,
-      icon: newConnection.icon,
-    };
+      last_sync: null,
+      sync_count: 0,
+      icon: newConnection.icon
+    });
     
-    setConnections(prev => [...prev, connection]);
-    setNewConnection({ name: '', type: '', icon: '🔗' });
-    setIsDialogOpen(false);
+    if (success) {
+      toast({
+        title: "Connection created",
+        description: "New connection added successfully.",
+      });
+      setNewConnection({ name: '', type: '', icon: '🔗' });
+      setIsDialogOpen(false);
+    } else {
+      toast({
+        title: "Error",
+        description: "Failed to create connection.",
+        variant: "destructive",
+      });
+    }
   };
 
   const connectionTypes = [
@@ -273,11 +264,11 @@ export default function DashboardConnections() {
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Last sync:</span>
-                    <span className="text-foreground">{connection.lastSync}</span>
+                    <span className="text-foreground">{connection.last_sync || 'Never'}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Total syncs:</span>
-                    <span className="text-foreground">{connection.syncCount.toLocaleString()}</span>
+                    <span className="text-foreground">{connection.sync_count.toLocaleString()}</span>
                   </div>
                   <div className="flex space-x-2 pt-2">
                     <Button
