@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import {
   Dialog,
   DialogContent,
@@ -27,21 +25,19 @@ import { supabase } from '@/integrations/supabase/client';
 import { Job } from './JobCard';
 import { Upload, Loader2 } from 'lucide-react';
 
-const applicationSchema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().optional(),
-  linkedinUrl: z.string().url('Invalid LinkedIn URL').optional().or(z.literal('')),
-  portfolioUrl: z.string().url('Invalid portfolio URL').optional().or(z.literal('')),
-  yearsExperience: z.coerce.number().min(0).optional(),
-  currentSalary: z.coerce.number().min(0).optional(),
-  expectedSalary: z.coerce.number().min(0).optional(),
-  availabilityDate: z.string().optional(),
-  coverLetter: z.string().min(10, 'Cover letter must be at least 10 characters'),
-});
-
-type ApplicationForm = z.infer<typeof applicationSchema>;
+interface ApplicationForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  linkedinUrl?: string;
+  portfolioUrl?: string;
+  yearsExperience?: number;
+  currentSalary?: number;
+  expectedSalary?: number;
+  availabilityDate?: string;
+  coverLetter: string;
+}
 
 interface JobApplicationDialogProps {
   open: boolean;
@@ -63,7 +59,6 @@ export function JobApplicationDialog({
   const { toast } = useToast();
 
   const form = useForm<ApplicationForm>({
-    resolver: zodResolver(applicationSchema),
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -118,6 +113,43 @@ export function JobApplicationDialog({
   };
 
   const handleSubmit = async (data: ApplicationForm) => {
+    // Basic validation
+    if (!data.firstName.trim()) {
+      toast({
+        title: 'Validation Error',
+        description: 'First name is required.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    if (!data.lastName.trim()) {
+      toast({
+        title: 'Validation Error',
+        description: 'Last name is required.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    if (!data.email.trim() || !data.email.includes('@')) {
+      toast({
+        title: 'Validation Error',
+        description: 'Please enter a valid email address.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    if (!data.coverLetter.trim() || data.coverLetter.length < 10) {
+      toast({
+        title: 'Validation Error',
+        description: 'Cover letter must be at least 10 characters long.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
