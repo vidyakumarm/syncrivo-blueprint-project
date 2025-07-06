@@ -74,21 +74,21 @@ export default function Dashboard() {
       <div className="space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-foreground">{t('dashboard.title')} Overview</h1>
-          <p className="text-muted-foreground">Monitor your integrations and sync activity in real-time</p>
+          <h1 className="text-3xl font-bold text-foreground">SyncRio Dashboard</h1>
+          <p className="text-muted-foreground">Connect and sync messages across Teams, Webex, Google Chat, Zoom and other messaging platforms</p>
         </div>
 
         {/* Metrics Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <MetricCard
-            title="Records Processed"
+            title="Messages Synced"
             value={formatNumber(totalRecordsProcessed)}
             change={`+${formatNumber(Math.floor(totalRecordsProcessed * 0.15))}`}
             isPositive={true}
             icon={<Activity className="h-5 w-5" />}
           />
           <MetricCard
-            title="Active Connections"
+            title="Active Platforms"
             value={activeConnections.toString()}
             change={`+${Math.floor(activeConnections * 0.2)}`}
             isPositive={true}
@@ -102,7 +102,7 @@ export default function Dashboard() {
             icon={<CheckCircle2 className="h-5 w-5" />}
           />
           <MetricCard
-            title="Total Connections"
+            title="Connected Platforms"
             value={totalConnections.toString()}
             change={`+${Math.floor(totalConnections * 0.05)}`}
             isPositive={true}
@@ -117,7 +117,7 @@ export default function Dashboard() {
           {/* Recent Activity */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-foreground">Recent Activity</CardTitle>
+              <CardTitle className="text-foreground">Recent Platform Activity</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {recentActivities.length > 0 ? recentActivities.map((activity) => (
@@ -143,7 +143,7 @@ export default function Dashboard() {
               )) : (
                 <div className="text-center text-muted-foreground py-4">
                   <p>No recent activity yet.</p>
-                  <p className="text-sm">Start by adding some connections!</p>
+                  <p className="text-sm">Start by connecting messaging platforms!</p>
                 </div>
               )}
             </CardContent>

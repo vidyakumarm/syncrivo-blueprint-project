@@ -62,18 +62,18 @@ export function RealTimeChart() {
   return (
     <Card className="col-span-2">
       <CardHeader>
-        <CardTitle className="text-foreground">Real-Time Sync Activity</CardTitle>
+        <CardTitle className="text-foreground">Real-Time Message Sync Activity</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center p-4 bg-success-light rounded-lg">
               <div className="text-2xl font-bold text-success">{data[data.length - 1]?.syncs || 0}</div>
-              <div className="text-sm text-muted-foreground">Current Syncs/5min</div>
+              <div className="text-sm text-muted-foreground">Messages Synced/5min</div>
             </div>
             <div className="text-center p-4 bg-destructive/10 rounded-lg">
               <div className="text-2xl font-bold text-destructive">{data[data.length - 1]?.errors || 0}</div>
-              <div className="text-sm text-muted-foreground">Current Errors/5min</div>
+              <div className="text-sm text-muted-foreground">Platform Errors/5min</div>
             </div>
           </div>
           <div className="text-sm text-muted-foreground text-center">

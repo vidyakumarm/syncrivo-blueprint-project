@@ -128,14 +128,14 @@ export default function DashboardConnections() {
   };
 
   const connectionTypes = [
-    'Communication',
-    'Storage', 
-    'Productivity',
-    'Database',
-    'Project Management',
-    'CRM',
-    'E-commerce',
-    'Analytics'
+    'Microsoft Teams',
+    'Webex Teams', 
+    'Google Chat',
+    'Zoom Chat',
+    'Slack',
+    'Discord',
+    'Mattermost',
+    'Telegram'
   ];
 
   const getStatusColor = (status: string) => {
@@ -162,35 +162,35 @@ export default function DashboardConnections() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Connections</h1>
-            <p className="text-muted-foreground">Manage your integrations and sync settings</p>
+            <h1 className="text-3xl font-bold text-foreground">Messaging Platforms</h1>
+            <p className="text-muted-foreground">Connect Teams, Webex, Google Chat, Zoom and other messaging platforms</p>
           </div>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <Button className="bg-gradient-primary">
                 <Plus className="h-4 w-4 mr-2" />
-                New Connection
+                Connect Platform
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
-                <DialogTitle>Create New Connection</DialogTitle>
+                <DialogTitle>Connect New Messaging Platform</DialogTitle>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="name">Connection Name</Label>
+                  <Label htmlFor="name">Platform Name</Label>
                   <Input
                     id="name"
-                    placeholder="Enter connection name"
+                    placeholder="e.g., Marketing Team Slack, Sales Webex"
                     value={newConnection.name}
                     onChange={(e) => setNewConnection(prev => ({ ...prev, name: e.target.value }))}
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="type">Connection Type</Label>
+                  <Label htmlFor="type">Platform Type</Label>
                   <Select value={newConnection.type} onValueChange={(value) => setNewConnection(prev => ({ ...prev, type: value }))}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select connection type" />
+                      <SelectValue placeholder="Select messaging platform" />
                     </SelectTrigger>
                     <SelectContent>
                       {connectionTypes.map((type) => (
@@ -221,7 +221,7 @@ export default function DashboardConnections() {
                   disabled={!newConnection.name || !newConnection.type}
                   className="bg-gradient-primary"
                 >
-                  Create Connection
+                  Connect Platform
                 </Button>
               </div>
             </DialogContent>
@@ -233,7 +233,7 @@ export default function DashboardConnections() {
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search connections..."
+              placeholder="Search messaging platforms..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -305,7 +305,7 @@ export default function DashboardConnections() {
 
         {filteredConnections.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No connections found matching your search.</p>
+            <p className="text-muted-foreground">No messaging platforms found matching your search.</p>
           </div>
         )}
 
@@ -313,12 +313,12 @@ export default function DashboardConnections() {
         <Dialog open={settingsDialogOpen} onOpenChange={setSettingsDialogOpen}>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-              <DialogTitle>Connection Settings</DialogTitle>
+              <DialogTitle>Platform Settings</DialogTitle>
             </DialogHeader>
             {selectedConnection && (
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="settings-name">Connection Name</Label>
+                  <Label htmlFor="settings-name">Platform Name</Label>
                   <Input
                     id="settings-name"
                     value={selectedConnection.name}
@@ -326,7 +326,7 @@ export default function DashboardConnections() {
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="settings-type">Connection Type</Label>
+                  <Label htmlFor="settings-type">Platform Type</Label>
                   <Select value={selectedConnection.type} onValueChange={(value) => setSelectedConnection(prev => prev ? { ...prev, type: value } : null)}>
                     <SelectTrigger>
                       <SelectValue />
@@ -374,7 +374,7 @@ export default function DashboardConnections() {
                 Cancel
               </Button>
               <Button onClick={handleUpdateConnection} className="bg-gradient-primary">
-                Update Connection
+                Update Platform
               </Button>
             </div>
           </DialogContent>

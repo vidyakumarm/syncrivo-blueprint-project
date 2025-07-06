@@ -94,8 +94,8 @@ export default function DashboardActivity() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Activity Log</h1>
-            <p className="text-muted-foreground">Monitor all sync activities and integration events</p>
+            <h1 className="text-3xl font-bold text-foreground">Platform Activity</h1>
+            <p className="text-muted-foreground">Monitor message sync activity across all connected platforms</p>
           </div>
           <div className="flex space-x-2">
             <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>
@@ -114,7 +114,7 @@ export default function DashboardActivity() {
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search activities..."
+              placeholder="Search platform activities..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -137,7 +137,7 @@ export default function DashboardActivity() {
         {/* Activity List */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-foreground">Recent Activities</CardTitle>
+            <CardTitle className="text-foreground">Recent Platform Activities</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -171,7 +171,7 @@ export default function DashboardActivity() {
 
             {filteredActivities.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">No activities found matching your filters.</p>
+                <p className="text-muted-foreground">No platform activities found matching your filters.</p>
               </div>
             )}
           </CardContent>
