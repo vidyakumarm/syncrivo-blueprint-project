@@ -38,87 +38,94 @@ export function HeroSection() {
   });
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-12">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <img 
           src={heroBg} 
           alt="" 
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-15"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-background/10 to-accent/25" />
+        <div className="absolute inset-0 bg-background/20 backdrop-blur-[1px]" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="animate-fade-in">
+        <div className="animate-fade-in space-y-8">
           {/* Badge */}
-          <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium bg-primary-light text-primary border-primary/20">
-            <MessageSquare className="w-4 h-4 mr-2" />
-            {t('hero.badge')}
-          </Badge>
+          <div className="flex justify-center mb-8">
+            <Badge variant="secondary" className="px-6 py-3 text-base font-semibold bg-card/80 backdrop-blur-sm text-primary border-2 border-primary/30 shadow-lg hover:shadow-xl transition-all duration-300">
+              <MessageSquare className="w-5 h-5 mr-3" />
+              {t('hero.badge')}
+            </Badge>
+          </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-            {t('hero.title')}
-            <span className="block bg-gradient-hero bg-clip-text text-transparent">
-              {t('hero.title_highlight')}
-            </span>
-          </h1>
+          <div className="space-y-6 mb-10">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.1] tracking-tight">
+              <span className="block mb-2">{t('hero.title')}</span>
+              <span className="block bg-gradient-hero bg-clip-text text-transparent drop-shadow-sm">
+                {t('hero.title_highlight')}
+              </span>
+            </h1>
+          </div>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            {t('hero.subtitle')}
-          </p>
+          <div className="mb-12">
+            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-medium">
+              {t('hero.subtitle')}
+            </p>
+          </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <Button 
               asChild 
               size="lg" 
-              className="bg-gradient-primary hover:bg-primary-hover text-white font-semibold px-8 py-3 text-lg shadow-glow animate-glow"
+              className="bg-gradient-primary hover:bg-primary-hover text-white font-bold px-10 py-4 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 rounded-full"
             >
               <Link to="/signup">
                 {t('hero.cta_primary')}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-3 h-5 w-5" />
               </Link>
             </Button>
             
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-2 border-primary/30 hover:bg-primary-light font-semibold px-8 py-3 text-lg"
+              className="border-2 border-primary/40 hover:bg-card/80 backdrop-blur-sm font-semibold px-10 py-4 text-lg hover:shadow-lg transition-all duration-300 rounded-full"
             >
-              <MessageSquare className="mr-2 h-5 w-5" />
+              <MessageSquare className="mr-3 h-5 w-5" />
               {t('hero.cta_secondary')}
             </Button>
           </div>
 
           {/* Social Proof */}
-          <div className="flex flex-col items-center space-y-4 animate-slide-up">
-            <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col items-center space-y-6 animate-slide-up mb-20">
+            <p className="text-base font-medium text-muted-foreground">
               {t('hero.trusted_by')}
             </p>
-            <div className="flex items-center space-x-8 opacity-60">
-              <div className="flex items-center space-x-2">
-                <Users className="h-4 w-4" />
-                <span className="text-xs text-muted-foreground">MICROSOFT TEAMS</span>
+            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 opacity-70 hover:opacity-90 transition-opacity duration-300">
+              <div className="flex items-center space-x-2 bg-card/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-border/30">
+                <Users className="h-4 w-4 text-blue-500" />
+                <span className="text-xs font-medium text-muted-foreground">MICROSOFT TEAMS</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Video className="h-4 w-4" />
-                <span className="text-xs text-muted-foreground">WEBEX</span>
+              <div className="flex items-center space-x-2 bg-card/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-border/30">
+                <Video className="h-4 w-4 text-green-500" />
+                <span className="text-xs font-medium text-muted-foreground">WEBEX</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <MessageSquare className="h-4 w-4" />
-                <span className="text-xs text-muted-foreground">GOOGLE CHAT</span>
+              <div className="flex items-center space-x-2 bg-card/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-border/30">
+                <MessageSquare className="h-4 w-4 text-red-500" />
+                <span className="text-xs font-medium text-muted-foreground">GOOGLE CHAT</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Video className="h-4 w-4" />
-                <span className="text-xs text-muted-foreground">ZOOM</span>
+              <div className="flex items-center space-x-2 bg-card/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-border/30">
+                <Video className="h-4 w-4 text-blue-400" />
+                <span className="text-xs font-medium text-muted-foreground">ZOOM</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <MessageCircle className="h-4 w-4" />
-                <span className="text-xs text-muted-foreground">SLACK</span>
+              <div className="flex items-center space-x-2 bg-card/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-border/30">
+                <MessageCircle className="h-4 w-4 text-purple-500" />
+                <span className="text-xs font-medium text-muted-foreground">SLACK</span>
               </div>
             </div>
           </div>
