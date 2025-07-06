@@ -40,21 +40,20 @@ export function HeroSection() {
           {/* Badge */}
           <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium bg-primary-light text-primary border-primary/20">
             <MessageSquare className="w-4 h-4 mr-2" />
-            Seamless Messaging Platform Integration
+            {t('hero.badge')}
           </Badge>
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Connect Your
+            {t('hero.title')}
             <span className="block bg-gradient-hero bg-clip-text text-transparent">
-              Messaging Platforms
+              {t('hero.title_highlight')}
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            Seamlessly integrate Teams, Webex, Google Chat, Zoom, Slack and other business communication tools. 
-            Sync messages, channels, and conversations across all your platforms in real-time.
+            {t('hero.subtitle')}
           </p>
 
           {/* CTA Buttons */}
@@ -65,7 +64,7 @@ export function HeroSection() {
               className="bg-gradient-primary hover:bg-primary-hover text-white font-semibold px-8 py-3 text-lg shadow-glow animate-glow"
             >
               <Link to="/signup">
-                Start Connecting Platforms
+                {t('hero.cta_primary')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -76,14 +75,14 @@ export function HeroSection() {
               className="border-2 border-primary/30 hover:bg-primary-light font-semibold px-8 py-3 text-lg"
             >
               <MessageSquare className="mr-2 h-5 w-5" />
-              View Supported Platforms
+              {t('hero.cta_secondary')}
             </Button>
           </div>
 
           {/* Social Proof */}
           <div className="flex flex-col items-center space-y-4 animate-slide-up">
             <p className="text-sm text-muted-foreground">
-              Trusted by 10,000+ teams worldwide for messaging platform integration
+              {t('hero.trusted_by')}
             </p>
             <div className="flex items-center space-x-8 opacity-60">
               <div className="flex items-center space-x-2">
@@ -146,7 +145,7 @@ export function HeroSection() {
         {/* Supported Platforms Grid */}
         <div className="mt-20 max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-foreground mb-8">
-            Supported Messaging Platforms
+            {t('hero.supported_platforms')}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
             {[

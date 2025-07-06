@@ -40,14 +40,97 @@
     "api": "API"
   },
   "hero": {
-    "title": "Verbinden Sie Nahtlos All Ihre Business-Integrationen",
-    "subtitle": "Vereinheitlichen Sie Ihre Workflows mit unserer leistungsstarken Integrationsplattform. Verbinden, verwalten und skalieren Sie Ihre Business-Tools in einem zentralisierten Hub.",
-    "cta_primary": "Kostenlos Starten",
-    "cta_secondary": "Integrationen Anzeigen"
+    "title": "Verbinden Sie Ihre",
+    "title_highlight": "Messaging-Plattformen",
+    "subtitle": "Nahtlose Integration von Teams, Webex, Google Chat, Zoom, Slack und anderen Business-Kommunikationstools. Synchronisieren Sie Nachrichten, Kanäle und Unterhaltungen plattformübergreifend in Echtzeit.",
+    "cta_primary": "Plattformen Verbinden",
+    "cta_secondary": "Unterstützte Plattformen",
+    "badge": "Nahtlose Messaging-Plattform-Integration",
+    "trusted_by": "Vertraut von 10.000+ Teams weltweit für Messaging-Plattform-Integration",
+    "supported_platforms": "Unterstützte Messaging-Plattformen"
+  },
+  "features": {
+    "title": "Alles was Sie brauchen für",
+    "title_highlight": "Messaging-Plattform-Integration",
+    "subtitle": "Von einfacher Nachrichtensynchronisation bis hin zu komplexen plattformübergreifenden Workflows bietet SyncRio alle Tools, die Sie benötigen, um Teams, Webex, Google Chat, Zoom, Slack und andere Messaging-Plattformen zu integrieren.",
+    "badge": "Messaging-Plattform-Funktionen",
+    "built_for": "Entwickelt für Messaging-Plattform-Integration",
+    "built_for_desc": "Jede Funktion ist darauf ausgelegt, die Integration von Messaging-Plattformen einfach, sicher und skalierbar zu gestalten.",
+    "perfect_for": "Perfekt für jedes Kommunikationsszenario",
+    "perfect_for_desc": "Ob Sie Unternehmenskommunikation oder Remote-Teams verwalten, SyncRio passt sich Ihren Messaging-Integrationsbedürfnissen an.",
+    "stay_in_control": "Behalten Sie die Kontrolle über Ihre Messaging-Plattformen",
+    "stay_in_control_desc": "Erhalten Sie vollständige Transparenz über Ihre Messaging-Plattform-Integrationen mit Echtzeit-Überwachung, detaillierten Analysen und proaktiven Benachrichtigungen für alle verbundenen Plattformen.",
+    "ready_to_connect": "Bereit, Ihre Messaging-Plattformen zu verbinden?",
+    "ready_to_connect_desc": "Schließen Sie sich Tausenden von Teams an, die SyncRio vertrauen, um ihre Business-Kommunikationstools nahtlos zu integrieren.",
+    "universal_sync": "Universelle Nachrichtensynchronisation",
+    "universal_sync_desc": "Verbinden Sie Teams, Webex, Google Chat, Zoom, Slack und mehr mit bidirektionaler Nachrichtensynchronisation.",
+    "cross_platform_teams": "Plattformübergreifende Teams",
+    "cross_platform_teams_desc": "Verwalten Sie Teammitglieder und Berechtigungen über alle verbundenen Messaging-Plattformen hinweg.",
+    "enterprise_security": "Unternehmenssicherheit",
+    "enterprise_security_desc": "Bank-Level-Sicherheit mit SOC 2-Compliance und Ende-zu-Ende-Verschlüsselung für alle Nachrichtendaten.",
+    "real_time_processing": "Echtzeit-Verarbeitung",
+    "real_time_processing_desc": "Nachrichten erscheinen sofort auf allen Plattformen mit Subsekundenlatenz und zuverlässiger Zustellung.",
+    "smart_channel_mapping": "Intelligente Kanal-Zuordnung",
+    "smart_channel_mapping_desc": "Ordnen Sie Kanäle, Räume und Unterhaltungen zwischen verschiedenen Messaging-Plattformen intelligent zu.",
+    "communication_analytics": "Kommunikationsanalysen",
+    "communication_analytics_desc": "Erhalten Sie Einblicke in Teamkommunikationsmuster, Plattformnutzung und Nachrichtenvolumen.",
+    "real_time_sync": "Echtzeit-Synchronisation",
+    "real_time_sync_desc": "Nachrichten werden sofort auf allen verbundenen Plattformen synchronisiert",
+    "bi_sync": "Bidirektionale Synchronisation",
+    "bi_sync_desc": "Unterstützung für Dateianhänge",
+    "file_support": "Unterstützung für Dateianhänge",
+    "unified_directory": "Einheitliches Benutzerverzeichnis",
+    "role_access": "Rollenbasierte Zugangskontrolle",
+    "team_presence": "Team-Präsenz-Synchronisation",
+    "soc2_certified": "SOC 2 Typ II zertifiziert",
+    "end_to_end": "Ende-zu-Ende-Verschlüsselung",
+    "audit_logs": "Audit-Logs & Compliance",
+    "sub_second": "Subsekundenlatenz",
+    "guaranteed_delivery": "Garantierte Zustellung",
+    "offline_queuing": "Offline-Nachrichtenwarteschlange",
+    "auto_detection": "Automatische Kanal-Erkennung",
+    "custom_mapping": "Benutzerdefinierte Zuordnungsregeln",
+    "bi_directional": "Bidirektionale Synchronisation",
+    "platform_metrics": "Plattformnutzungsmetriken",
+    "patterns": "Kommunikationsmuster",
+    "custom_reporting": "Benutzerdefinierte Berichte"
+  },
+  "use_cases": {
+    "enterprise_communication": "Unternehmenskommunikation",
+    "enterprise_communication_desc": "Vereinheitlichen Sie Messaging über Abteilungen hinweg mit Teams, Webex, Google Chat und anderen Plattformen.",
+    "remote_team_sync": "Remote-Team-Synchronisation",
+    "remote_team_sync_desc": "Halten Sie verteilte Teams verbunden, unabhängig von ihrer bevorzugten Messaging-Plattform.",
+    "customer_support_hub": "Kundensupport-Hub",
+    "customer_support_hub_desc": "Integrieren Sie Kundensupport-Kanäle mit internen Messaging-Plattformen für nahtlose Kommunikation.",
+    "project_coordination": "Projektkoordination",
+    "project_coordination_desc": "Synchronisieren Sie Projekt-Updates und Benachrichtigungen automatisch über alle Team-Messaging-Kanäle."
+  },
+  "how_it_works": {
+    "title": "Wie SyncRio funktioniert",
+    "subtitle": "Verbinden Sie Ihre Messaging-Plattformen in nur drei einfachen Schritten.",
+    "step1_title": "Plattformen Verbinden",
+    "step1_desc": "Fügen Sie Ihre Messaging-Plattformen wie Teams, Webex, Google Chat, Zoom und Slack mit sicherer OAuth-Authentifizierung hinzu.",
+    "step2_title": "Synchronisation Konfigurieren",
+    "step2_desc": "Richten Sie Nachrichtenrouting, Kanal-Zuordnung und Synchronisationseinstellungen ein, um dem Kommunikationsworkflow Ihres Teams zu entsprechen.",
+    "step3_title": "Synchronisation Starten",
+    "step3_desc": "Nachrichten werden automatisch in Echtzeit über alle verbundenen Plattformen synchronisiert und halten Ihr Team überall verbunden."
+  },
+  "monitoring": {
+    "badge": "Echtzeit-Überwachung",
+    "integration_health": "Integrations-Gesundheit",
+    "healthy": "Gesund",
+    "uptime": "Betriebszeit",
+    "messages_hour": "Nachr./Std.",
+    "syncing": "Synchronisiert",
+    "real_time_metrics": "Echtzeit-Nachrichtensynchronisationsmetriken",
+    "connectivity_monitoring": "Plattformkonnektivitäts-Überwachung",
+    "delivery_analytics": "Nachrichtenzustellungsanalysen",
+    "usage_insights": "Plattformübergreifende Nutzungseinblicke",
+    "health_scoring": "Integrations-Gesundheitsbewertung"
   },
   "support": {
     "title": "Wie können wir Ihnen helfen?",
-    "subtitle": "Erhalten Sie den Support, den Sie benötigen, um das Beste aus SyncRivo herauszuholen. Unser Team ist hier, um Ihnen zum Erfolg zu verhelfen.",
+    "subtitle": "Erhalten Sie den Support, den Sie benötigen, um das Beste aus SyncRio herauszuholen. Unser Team ist hier, um Ihnen zum Erfolg zu verhelfen.",
     "live_chat": "Live-Chat",
     "live_chat_desc": "Erhalten Sie sofortige Hilfe von unserem Support-Team",
     "email_support": "E-Mail-Support",
@@ -74,8 +157,80 @@
     "visit_forums": "Foren Besuchen",
     "view_github": "GitHub Anzeigen"
   },
+  "integrations": {
+    "title": "Integrationen",
+    "subtitle": "Verbinden Sie sich mit Hunderten beliebter Messaging-Plattformen und Business-Tools.",
+    "coming_soon": "Kommt Bald",
+    "coming_soon_desc": "Wir bauen erstaunliche Integrationen. Schauen Sie bald wieder für unseren Integrationsmarktplatz vorbei."
+  },
+  "pricing": {
+    "title": "Preise", 
+    "subtitle": "Wählen Sie den perfekten Plan für Ihre Business-Bedürfnisse.",
+    "coming_soon": "Kommt Bald",
+    "coming_soon_desc": "Wir arbeiten an unseren Preisplänen. Schauen Sie bald wieder für Details vorbei."
+  },
+  "about": {
+    "title": "Über Uns",
+    "subtitle": "Erfahren Sie mehr über unsere Mission, Business-Messaging-Integrationen zu vereinfachen.",
+    "coming_soon": "Kommt Bald", 
+    "coming_soon_desc": "Wir gestalten unsere Geschichte. Schauen Sie bald wieder vorbei, um mehr über uns zu erfahren."
+  },
+  "docs": {
+    "title": "Dokumentation",
+    "subtitle": "Alles, was Sie brauchen, um mit SyncRio zu beginnen.",
+    "coming_soon": "Kommt Bald",
+    "coming_soon_desc": "Unsere umfassende Dokumentation wird vorbereitet. Schauen Sie bald wieder für Anleitungen und Tutorials vorbei."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten, Tutorials und Einblicken unseres Teams.",
+    "coming_soon": "Kommt Bald",
+    "coming_soon_desc": "Wir arbeiten daran, Ihnen erstaunliche Inhalte zu bringen. Schauen Sie bald wieder für unsere neuesten Blog-Posts vorbei."
+  },
+  "careers": {
+    "title": "Karriere",
+    "subtitle": "Treten Sie unserem Team bei und helfen Sie uns, die Zukunft der Messaging-Integration zu gestalten.",
+    "growing": "Wir Wachsen!",
+    "growing_desc": "Wir suchen immer nach talentierten Personen, die unserem Team beitreten. Schauen Sie bald wieder für offene Stellen vorbei oder kontaktieren Sie uns direkt.",
+    "contact_email": "Kontaktieren Sie uns unter careers@company.com"
+  },
+  "status": {
+    "title": "System-Status",
+    "subtitle": "Echtzeit-Status und Betriebszeit-Überwachung für alle unsere Services.",
+    "coming_soon": "Kommt Bald",
+    "coming_soon_desc": "Unsere Status-Seite wird vorbereitet. Schauen Sie bald wieder für Echtzeit-System-Überwachung vorbei."
+  },
+  "security": {
+    "title": "Sicherheit",
+    "subtitle": "Erfahren Sie mehr über unser Engagement, Ihre Daten sicher und geschützt zu halten.",
+    "coming_soon": "Kommt Bald",
+    "coming_soon_desc": "Unsere Sicherheitsdokumentation wird vorbereitet. Schauen Sie bald wieder für detaillierte Sicherheitsinformationen vorbei."
+  },
+  "login": {
+    "title": "Anmelden",
+    "subtitle": "Willkommen zurück! Bitte melden Sie sich in Ihrem Konto an.",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "sign_in": "Anmelden",
+    "dont_have_account": "Haben Sie kein Konto?",
+    "sign_up": "Registrieren"
+  },
+  "signup": {
+    "title": "Konto Erstellen", 
+    "subtitle": "Treten Sie SyncRio bei und beginnen Sie noch heute, Ihre Business-Tools zu verbinden.",
+    "display_name": "Anzeigename",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "create_account": "Konto Erstellen",
+    "already_have_account": "Haben Sie bereits ein Konto?",
+    "sign_in": "Anmelden"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen zu Ihrem Dashboard"
+  },
   "footer": {
-    "tagline": "Verbinden und verwalten Sie nahtlos alle Ihre Business-Integrationen in einer einheitlichen Plattform.",
+    "tagline": "Verbinden und verwalten Sie nahtlos alle Ihre Business-Messaging-Integrationen in einer einheitlichen Plattform.",
     "product": "Produkt",
     "company": "Unternehmen",
     "legal": "Rechtliches",
@@ -83,5 +238,11 @@
     "terms_of_service": "Nutzungsbedingungen",
     "help_center": "Hilfe-Center",
     "all_rights_reserved": "Alle Rechte vorbehalten."
+  },
+  "buttons": {
+    "start_free_trial": "Kostenlose Testversion Starten",
+    "view_live_demo": "Live-Demo Anzeigen",
+    "start_connecting": "Plattformen Verbinden Starten",
+    "view_supported": "Unterstützte Plattformen Anzeigen"
   }
 }

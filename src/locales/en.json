@@ -40,10 +40,14 @@
     "api": "API"
   },
   "hero": {
-    "title": "Seamlessly Connect All Your Business Integrations",
-    "subtitle": "Unify your workflows with our powerful integration platform. Connect, manage, and scale your business tools in one centralized hub.",
-    "cta_primary": "Get Started Free",
-    "cta_secondary": "View Integrations"
+    "title": "Connect Your",
+    "title_highlight": "Messaging Platforms",
+    "subtitle": "Seamlessly integrate Teams, Webex, Google Chat, Zoom, Slack and other business communication tools. Sync messages, channels, and conversations across all your platforms in real-time.",
+    "cta_primary": "Start Connecting Platforms",
+    "cta_secondary": "View Supported Platforms",
+    "badge": "Seamless Messaging Platform Integration",
+    "trusted_by": "Trusted by 10,000+ teams worldwide for messaging platform integration",
+    "supported_platforms": "Supported Messaging Platforms"
   },
   "support": {
     "title": "How can we help you?",

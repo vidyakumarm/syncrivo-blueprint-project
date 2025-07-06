@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { LanguageSelector } from '@/components/ui/language-selector';
 import { useAuth } from '@/contexts/AuthContext';
+import { useTranslation } from 'react-i18next';
 import { Menu, X } from 'lucide-react';
 import { NavigationHeader } from './NavigationHeader';
 import { DesktopNavMenu } from './DesktopNavMenu';
@@ -13,22 +14,23 @@ import { MobileNavMenu } from './MobileNavMenu';
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const { t } = useTranslation();
 
   const handleSignOut = async () => {
     await signOut();
   };
 
   const navItems = [
-    { label: 'Features', href: '/features' },
-    { label: 'Integrations', href: '/integrations' },
-    { label: 'Pricing', href: '/pricing' },
+    { label: t('common.features'), href: '/features' },
+    { label: t('common.integrations'), href: '/integrations' },
+    { label: t('common.pricing'), href: '/pricing' },
     { 
-      label: 'Resources', 
+      label: t('nav.resources'), 
       href: '/docs',
       children: [
-        { label: 'Documentation', href: '/docs' },
-        { label: 'Support', href: '/support' },
-        { label: 'About', href: '/about' },
+        { label: t('common.documentation'), href: '/docs' },
+        { label: t('common.support'), href: '/support' },
+        { label: t('common.about'), href: '/about' },
       ]
     },
   ];
