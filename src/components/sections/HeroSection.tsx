@@ -63,10 +63,10 @@ export function HeroSection() {
 
           {/* Headline */}
           <div className="space-y-6 mb-10">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.1] tracking-tight">
-              <span className="block mb-2">{t('hero.title')}</span>
-              <span className="block bg-gradient-hero bg-clip-text text-transparent drop-shadow-sm">
-                {t('hero.title_highlight')}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight">
+              <span className="block text-foreground mb-3">Connect Your</span>
+              <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
+                Messaging Platforms
               </span>
             </h1>
           </div>
