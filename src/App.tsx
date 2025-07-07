@@ -1,85 +1,86 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "next-themes";
-import { AuthProvider } from "@/contexts/AuthContext";
-import { CookieProvider } from "@/contexts/CookieContext";
-import { CookieConsent } from "@/components/cookies/CookieConsent";
-import Index from "./pages/Index";
-import Features from "./pages/Features";
-import Integrations from "./pages/Integrations";
-import IntegrationDetail from "./pages/IntegrationDetail";
-import Pricing from "./pages/Pricing";
-import Docs from "./pages/Docs";
-import Support from "./pages/Support";
-import About from "./pages/About";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import DashboardConnections from "./pages/DashboardConnections";
-import DashboardActivity from "./pages/DashboardActivity";
-import DashboardSettings from "./pages/DashboardSettings";
-import Terms from "./pages/Terms";
-import Privacy from "./pages/Privacy";
-import Blog from "./pages/Blog";
-import Careers from "./pages/Careers";
-import Status from "./pages/Status";
-import Community from "./pages/Community";
-import Security from "./pages/Security";
-import DocsApi from "./pages/DocsApi";
-import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ThemeProvider } from '@/components/theme-provider';
+import { AuthProvider } from '@/contexts/AuthContext';
+import { CookieProvider } from '@/contexts/CookieContext';
+import { Toaster } from '@/components/ui/toaster';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './lib/i18n';
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <CookieProvider>
-        <AuthProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <CookieConsent />
-            <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/integrations" element={<Integrations />} />
-          <Route path="/integrations/:id" element={<IntegrationDetail />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/docs" element={<Docs />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/connections" element={<DashboardConnections />} />
-          <Route path="/dashboard/activity" element={<DashboardActivity />} />
-          <Route path="/dashboard/settings/*" element={<DashboardSettings />} />
-          <Route path="/legal/terms" element={<Terms />} />
-          <Route path="/legal/privacy" element={<Privacy />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/status" element={<Status />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/security" element={<Security />} />
-          <Route path="/docs/api" element={<DocsApi />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        </BrowserRouter>
-          </TooltipProvider>
-        </AuthProvider>
-      </CookieProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
+// Pages
+import Index from '@/pages/Index';
+import About from '@/pages/About';
+import Features from '@/pages/Features';
+import Integrations from '@/pages/Integrations';
+import Pricing from '@/pages/Pricing';
+import Documentation from '@/pages/Documentation';
+import Support from '@/pages/Support';
+import Community from '@/pages/Community';
+import Blog from '@/pages/Blog';
+import Careers from '@/pages/Careers';
+import Status from '@/pages/Status';
+import Security from '@/pages/Security';
+import Login from '@/pages/Login';
+import Signup from '@/pages/Signup';
+import Dashboard from '@/pages/Dashboard';
+import DashboardConnections from '@/pages/DashboardConnections';
+import DashboardActivity from '@/pages/DashboardActivity';
+import DashboardProfile from '@/pages/DashboardProfile';
+import DashboardTeam from '@/pages/DashboardTeam';
+import DashboardSecurity from '@/pages/DashboardSecurity';
+import NotFound from '@/pages/NotFound';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      retry: 1,
+    },
+  },
+});
+
+function App() {
+  return (
+    <I18nextProvider i18n={i18n}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+          <CookieProvider>
+            <AuthProvider>
+              <Router>
+                <div className="min-h-screen bg-background">
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/features" element={<Features />} />
+                    <Route path="/integrations" element={<Integrations />} />
+                    <Route path="/pricing" element={<Pricing />} />
+                    <Route path="/docs" element={<Documentation />} />
+                    <Route path="/support" element={<Support />} />
+                    <Route path="/community" element={<Community />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/careers" element={<Careers />} />
+                    <Route path="/status" element={<Status />} />
+                    <Route path="/security" element={<Security />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/dashboard/connections" element={<DashboardConnections />} />
+                    <Route path="/dashboard/activity" element={<DashboardActivity />} />
+                    <Route path="/dashboard/settings/profile" element={<DashboardProfile />} />
+                    <Route path="/dashboard/settings/team" element={<DashboardTeam />} />
+                    <Route path="/dashboard/settings/security" element={<DashboardSecurity />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </div>
+                <Toaster />
+              </Router>
+            </AuthProvider>
+          </CookieProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </I18nextProvider>
+  );
+}
 
 export default App;
