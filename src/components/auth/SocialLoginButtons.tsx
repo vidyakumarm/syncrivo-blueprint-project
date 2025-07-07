@@ -14,7 +14,7 @@ export function SocialLoginButtons() {
   const [loading, setLoading] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleSocialLogin = async (provider: 'google' | 'apple' | 'slack') => {
+  const handleSocialLogin = async (provider: 'google' | 'microsoft' | 'apple' | 'slack') => {
     console.log(`🔑 [SocialLogin] ${provider} sign in attempt`, {
       timestamp: new Date().toISOString(),
       provider
@@ -61,10 +61,18 @@ export function SocialLoginButtons() {
     {
       name: 'google',
       label: 'Google',
-      icon: '🟢', // Using emoji since Google icon doesn't exist in lucide-react
+      icon: '🔵', // Using emoji since Google icon doesn't exist in lucide-react
       bgColor: 'bg-white hover:bg-gray-50',
       textColor: 'text-gray-700',
       borderColor: 'border-gray-300'
+    },
+    {
+      name: 'microsoft',
+      label: 'Microsoft',
+      icon: '🟦', // Using emoji since Microsoft icon doesn't exist in lucide-react
+      bgColor: 'bg-[#0078d4] hover:bg-[#106ebe]',
+      textColor: 'text-white',
+      borderColor: 'border-[#0078d4]'
     },
     {
       name: 'apple',
@@ -97,7 +105,7 @@ export function SocialLoginButtons() {
         </div>
       </div>
       
-      <div className="grid grid-cols-1 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         {socialProviders.map((provider) => {
           const isLoading = loading === provider.name;
           
