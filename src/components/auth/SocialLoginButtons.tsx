@@ -14,7 +14,7 @@ export function SocialLoginButtons() {
   const [loading, setLoading] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleSocialLogin = async (provider: 'google' | 'microsoft' | 'apple' | 'slack') => {
+  const handleSocialLogin = async (provider: 'google' | 'azure' | 'apple' | 'slack') => {
     console.log(`🔑 [SocialLogin] ${provider} sign in attempt`, {
       timestamp: new Date().toISOString(),
       provider
@@ -67,7 +67,7 @@ export function SocialLoginButtons() {
       borderColor: 'border-gray-300'
     },
     {
-      name: 'microsoft',
+      name: 'azure',
       label: 'Microsoft',
       icon: '🟦', // Using emoji since Microsoft icon doesn't exist in lucide-react
       bgColor: 'bg-[#0078d4] hover:bg-[#106ebe]',
