@@ -6,15 +6,15 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 
-// Import allowed icons from lucide-react
-import { Apple, Microsoft, Google, Slack } from 'lucide-react';
+// Import correct icons from lucide-react
+import { Apple, Slack } from 'lucide-react';
 
 export function SocialLoginButtons() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleSocialLogin = async (provider: 'google' | 'microsoft' | 'apple' | 'slack') => {
+  const handleSocialLogin = async (provider: 'google' | 'apple' | 'slack') => {
     console.log(`🔑 [SocialLogin] ${provider} sign in attempt`, {
       timestamp: new Date().toISOString(),
       provider
@@ -61,18 +61,10 @@ export function SocialLoginButtons() {
     {
       name: 'google',
       label: 'Google',
-      icon: Google,
+      icon: '🟢', // Using emoji since Google icon doesn't exist in lucide-react
       bgColor: 'bg-white hover:bg-gray-50',
       textColor: 'text-gray-700',
       borderColor: 'border-gray-300'
-    },
-    {
-      name: 'microsoft',
-      label: 'Microsoft',
-      icon: Microsoft,
-      bgColor: 'bg-[#0078d4] hover:bg-[#106ebe]',
-      textColor: 'text-white',
-      borderColor: 'border-[#0078d4]'
     },
     {
       name: 'apple',
@@ -105,9 +97,8 @@ export function SocialLoginButtons() {
         </div>
       </div>
       
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3">
         {socialProviders.map((provider) => {
-          const IconComponent = provider.icon;
           const isLoading = loading === provider.name;
           
           return (
@@ -116,12 +107,18 @@ export function SocialLoginButtons() {
               variant="outline"
               onClick={() => handleSocialLogin(provider.name)}
               disabled={!!loading}
-              className={`${provider.bgColor} ${provider.textColor} ${provider.borderColor} border transition-colors`}
+              className={`${provider.bgColor} ${provider.textColor} ${provider.borderColor} border transition-colors flex items-center justify-center`}
             >
               {isLoading ? (
                 <div className="w-4 h-4 border-2 border-current border-t-transparent animate-spin rounded-full" />
               ) : (
-                <IconComponent className="w-4 h-4" />
+                <>
+                  {typeof provider.icon === 'string' ? (
+                    <span className="w-4 h-4 flex items-center justify-center text-sm">{provider.icon}</span>
+                  ) : (
+                    <provider.icon className="w-4 h-4" />
+                  )}
+                </>
               )}
               <span className="ml-2">{provider.label}</span>
             </Button>
