@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { SocialLoginButtons } from '@/components/auth/SocialLoginButtons';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 
@@ -90,7 +92,7 @@ export default function Login() {
               <CardHeader>
                 <CardTitle className="text-2xl text-center">{t('login.title')}</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-6">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <Label htmlFor="email">{t('login.email')}</Label>
@@ -121,13 +123,16 @@ export default function Login() {
                   >
                     {loading ? t('common.loading') : t('login.sign_in')}
                   </Button>
-                  <p className="text-center text-sm text-muted-foreground">
-                    {t('login.dont_have_account')}{' '}
-                    <Link to="/signup" className="text-primary hover:underline">
-                      {t('login.sign_up')}
-                    </Link>
-                  </p>
                 </form>
+
+                <SocialLoginButtons />
+
+                <p className="text-center text-sm text-muted-foreground">
+                  {t('login.dont_have_account')}{' '}
+                  <Link to="/signup" className="text-primary hover:underline">
+                    {t('login.sign_up')}
+                  </Link>
+                </p>
               </CardContent>
             </Card>
           </div>

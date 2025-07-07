@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
@@ -32,11 +33,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           event,
           userId: session?.user?.id || null,
           userEmail: session?.user?.email || null,
-          hasSession: !!session
+          hasSession: !!session,
+          provider: session?.user?.app_metadata?.provider || null
         });
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
+
+        // Handle successful social login redirects
+        if (event === 'SIGNED_IN' && session?.user) {
+          const provider = session.user.app_metadata?.provider;
+          if (provider && provider !== 'email') {
+            console.log('🔐 [AuthProvider] Social login successful', {
+              timestamp: new Date().toISOString(),
+              provider,
+              userId: session.user.id
+            });
+            // The user will be automatically redirected to dashboard by the route protection
+          }
+        }
       }
     );
 
@@ -45,7 +60,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('🔐 [AuthProvider] Retrieved existing session', {
         timestamp: new Date().toISOString(),
         hasSession: !!session,
-        userId: session?.user?.id || null
+        userId: session?.user?.id || null,
+        provider: session?.user?.app_metadata?.provider || null
       });
       setSession(session);
       setUser(session?.user ?? null);
