@@ -14,7 +14,7 @@ import About from '@/pages/About';
 import Features from '@/pages/Features';
 import Integrations from '@/pages/Integrations';
 import Pricing from '@/pages/Pricing';
-import Documentation from '@/pages/Documentation';
+import Docs from '@/pages/Docs';
 import Support from '@/pages/Support';
 import Community from '@/pages/Community';
 import Blog from '@/pages/Blog';
@@ -55,7 +55,7 @@ function App() {
                     <Route path="/features" element={<Features />} />
                     <Route path="/integrations" element={<Integrations />} />
                     <Route path="/pricing" element={<Pricing />} />
-                    <Route path="/docs" element={<Documentation />} />
+                    <Route path="/docs" element={<Docs />} />
                     <Route path="/support" element={<Support />} />
                     <Route path="/community" element={<Community />} />
                     <Route path="/blog" element={<Blog />} />
