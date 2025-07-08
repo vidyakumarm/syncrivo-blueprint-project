@@ -56,10 +56,11 @@
     "cross_platform_desc": "Verbinden Sie jede Messaging-Plattform mit einheitlichen APIs"
   },
   "features": {
-    "title": "Alles was Sie brauchen für",
-    "title_highlight": "Messaging-Plattform-Integration",
-    "subtitle": "Von einfacher Nachrichtensynchronisation bis hin zu komplexen plattformübergreifenden Workflows bietet SyncRio alle Tools, die Sie benötigen, um Teams, Webex, Google Chat, Zoom, Slack und andere Messaging-Plattformen zu integrieren.",
-    "badge": "Messaging-Plattform-Funktionen",
+    "hero_badge": "Messaging-Plattform-Funktionen",
+    "hero_title": "Alles was Sie brauchen für",
+    "hero_title_highlight": "Messaging-Plattform-Integration",
+    "hero_subtitle": "Von einfacher Nachrichtensynchronisation bis hin zu komplexen plattformübergreifenden Workflows bietet SyncRio alle Tools, die Sie benötigen, um Teams, Webex, Google Chat, Zoom, Slack und andere Messaging-Plattformen zu integrieren.",
+    "hero_cta": "Plattformen Verbinden Starten",
     "built_for": "Entwickelt für Messaging-Plattform-Integration",
     "built_for_desc": "Jede Funktion ist darauf ausgelegt, die Integration von Messaging-Plattformen einfach, sicher und skalierbar zu gestalten.",
     "perfect_for": "Perfekt für jedes Kommunikationsszenario",
@@ -99,7 +100,32 @@
     "bi_directional": "Bidirektionale Synchronisation",
     "platform_metrics": "Plattformnutzungsmetriken",
     "patterns": "Kommunikationsmuster",
-    "custom_reporting": "Benutzerdefinierte Berichte"
+    "custom_reporting": "Benutzerdefinierte Berichte",
+    "section_title": "Entwickelt für Messaging-Plattform-Integration",
+    "section_subtitle": "Jede Funktion ist darauf ausgelegt, die Integration von Messaging-Plattformen einfach, sicher und skalierbar zu gestalten.",
+    "use_cases_title": "Perfekt für jedes Kommunikationsszenario",
+    "use_cases_subtitle": "Ob Sie Unternehmenskommunikation oder Remote-Teams verwalten, SyncRio passt sich Ihren Messaging-Integrationsbedürfnissen an.",
+    "monitoring_badge": "Echtzeit-Überwachung",
+    "monitoring_title": "Behalten Sie die Kontrolle über Ihre Messaging-Plattformen",
+    "monitoring_subtitle": "Erhalten Sie vollständige Transparenz über Ihre Messaging-Plattform-Integrationen mit Echtzeit-Überwachung, detaillierten Analysen und proaktiven Benachrichtigungen für alle verbundenen Plattformen.",
+    "monitoring_features": {
+      "sync_metrics": "Echtzeit-Nachrichtensynchronisationsmetriken",
+      "connectivity": "Plattformkonnektivitäts-Überwachung",
+      "delivery_analytics": "Nachrichtenzustellungsanalysen",
+      "usage_insights": "Plattformübergreifende Nutzungseinblicke",
+      "health_scoring": "Integrations-Gesundheitsbewertung"
+    },
+    "health_panel": {
+      "title": "Integrations-Gesundheit",
+      "status_healthy": "Gesund",
+      "teams_uptime": "99,9% Betriebszeit",
+      "chat_messages": "2,3k Nachrichten/Stunde",
+      "slack_syncing": "Synchronisiert"
+    },
+    "cta_title": "Bereit, Ihre Messaging-Plattformen zu verbinden?",
+    "cta_subtitle": "Schließen Sie sich Tausenden von Teams an, die SyncRio vertrauen, um ihre Business-Kommunikationstools nahtlos zu integrieren.",
+    "start_trial": "Kostenlose Testversion Starten",
+    "view_demo": "Live-Demo Anzeigen"
   },
   "use_cases": {
     "enterprise_communication": "Unternehmenskommunikation",
