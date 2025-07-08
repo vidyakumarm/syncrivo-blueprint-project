@@ -79,8 +79,7 @@ export function RealTimeChart() {
             </div>
           </div>
           <div className="text-sm text-muted-foreground text-center">
-            {t('dashboard.last_updated')
-              .replace('{{time}}', data[data.length - 1]?.time || '--:--')}
+            {t('dashboard.last_updated').replace('{{time}}', data[data.length - 1]?.time || '--:--')}
           </div>
         </div>
       </CardContent>
