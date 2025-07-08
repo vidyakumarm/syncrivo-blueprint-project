@@ -269,7 +269,58 @@
     },
     "activity": {
       "title": "Platform Activity",
-      "subtitle": "Monitor message sync activity across all connected platforms"
+      "subtitle": "Monitor message sync activity across all connected platforms",
+      "refresh": "Refresh",
+      "refreshing": "Refreshing...",
+      "export": "Export",
+      "search_placeholder": "Search platform activities...",
+      "status_filter": {
+        "placeholder": "Status",
+        "all": "All Status",
+        "success": "Success",
+        "error": "Error",
+        "pending": "Pending"
+      },
+      "status": {
+        "success": "Success",
+        "error": "Error",
+        "pending": "Pending",
+        "unknown": "Unknown"
+      },
+      "recent_activities": "Recent Platform Activities",
+      "unknown": "Unknown",
+      "no_details": "No details available",
+      "duration": "Duration",
+      "records": "Records",
+      "na": "N/A",
+      "no_activities": "No platform activities found matching your filters.",
+      "csv": {
+        "timestamp": "Timestamp",
+        "integration": "Integration",
+        "action": "Action",
+        "status": "Status",
+        "duration": "Duration",
+        "records_processed": "Records Processed",
+        "details": "Details"
+      }
+    },
+    "profile": {
+      "title": "Profile Settings",
+      "subtitle": "Manage your account settings",
+      "personal_info": "Personal Information",
+      "coming_soon": "Profile settings coming soon"
+    },
+    "team": {
+      "title": "Team Settings",
+      "subtitle": "Manage your team members and permissions",
+      "members": "Team Members",
+      "coming_soon": "Team management coming soon"
+    },
+    "security": {
+      "title": "Security Settings",
+      "subtitle": "Manage your account security",
+      "password": "Password & Authentication",
+      "coming_soon": "Security settings coming soon"
     },
     "settings": {
       "subtitle": "Manage your account and preferences"

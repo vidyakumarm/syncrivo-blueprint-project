@@ -308,7 +308,58 @@
     },
     "activity": {
       "title": "プラットフォーム活動",
-      "subtitle": "すべての接続されたプラットフォームでのメッセージ同期活動を監視"
+      "subtitle": "すべての接続されたプラットフォームでのメッセージ同期活動を監視",
+      "refresh": "更新",
+      "refreshing": "更新中...",
+      "export": "エクスポート",
+      "search_placeholder": "プラットフォーム活動を検索...",
+      "status_filter": {
+        "placeholder": "ステータス",
+        "all": "すべてのステータス",
+        "success": "成功",
+        "error": "エラー",
+        "pending": "保留中"
+      },
+      "status": {
+        "success": "成功",
+        "error": "エラー",
+        "pending": "保留中",
+        "unknown": "不明"
+      },
+      "recent_activities": "最近のプラットフォーム活動",
+      "unknown": "不明",
+      "no_details": "詳細なし",
+      "duration": "期間",
+      "records": "レコード",
+      "na": "N/A",
+      "no_activities": "フィルターに一致するプラットフォーム活動が見つかりません。",
+      "csv": {
+        "timestamp": "タイムスタンプ",
+        "integration": "統合",
+        "action": "アクション",
+        "status": "ステータス",
+        "duration": "期間",
+        "records_processed": "処理されたレコード",
+        "details": "詳細"
+      }
+    },
+    "profile": {
+      "title": "プロフィール設定",
+      "subtitle": "アカウント設定を管理",
+      "personal_info": "個人情報",
+      "coming_soon": "プロフィール設定は近日公開"
+    },
+    "team": {
+      "title": "チーム設定",
+      "subtitle": "チームメンバーと権限を管理",
+      "members": "チームメンバー",
+      "coming_soon": "チーム管理は近日公開"
+    },
+    "security": {
+      "title": "セキュリティ設定",
+      "subtitle": "アカウントのセキュリティを管理",
+      "password": "パスワードと認証",
+      "coming_soon": "セキュリティ設定は近日公開"
     },
     "settings": {
       "subtitle": "アカウントと設定を管理"

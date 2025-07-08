@@ -310,7 +310,58 @@
     },
     "activity": {
       "title": "Activité de la Plateforme",
-      "subtitle": "Surveillez l'activité de synchronisation des messages sur toutes les plateformes connectées"
+      "subtitle": "Surveillez l'activité de synchronisation des messages sur toutes les plateformes connectées",
+      "refresh": "Actualiser",
+      "refreshing": "Actualisation...",
+      "export": "Exporter",
+      "search_placeholder": "Rechercher les activités de plateforme...",
+      "status_filter": {
+        "placeholder": "Statut",
+        "all": "Tous les Statuts",
+        "success": "Succès",
+        "error": "Erreur",
+        "pending": "En attente"
+      },
+      "status": {
+        "success": "Succès",
+        "error": "Erreur",
+        "pending": "En attente",
+        "unknown": "Inconnu"
+      },
+      "recent_activities": "Activités Récentes de Plateforme",
+      "unknown": "Inconnu",
+      "no_details": "Aucun détail disponible",
+      "duration": "Durée",
+      "records": "Enregistrements",
+      "na": "N/A",
+      "no_activities": "Aucune activité de plateforme trouvée correspondant à vos filtres.",
+      "csv": {
+        "timestamp": "Horodatage",
+        "integration": "Intégration",
+        "action": "Action",
+        "status": "Statut",
+        "duration": "Durée",
+        "records_processed": "Enregistrements Traités",
+        "details": "Détails"
+      }
+    },
+    "profile": {
+      "title": "Paramètres de Profil",
+      "subtitle": "Gérez les paramètres de votre compte",
+      "personal_info": "Informations Personnelles",
+      "coming_soon": "Paramètres de profil bientôt disponibles"
+    },
+    "team": {
+      "title": "Paramètres d'Équipe",
+      "subtitle": "Gérez les membres de votre équipe et les permissions",
+      "members": "Membres de l'Équipe",
+      "coming_soon": "Gestion d'équipe bientôt disponible"
+    },
+    "security": {
+      "title": "Paramètres de Sécurité",
+      "subtitle": "Gérez la sécurité de votre compte",
+      "password": "Mot de passe et Authentification",
+      "coming_soon": "Paramètres de sécurité bientôt disponibles"
     },
     "settings": {
       "subtitle": "Gérez votre compte et vos préférences"

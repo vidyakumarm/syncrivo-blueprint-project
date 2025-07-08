@@ -369,7 +369,58 @@
     },
     "activity": {
       "title": "Plattform-Aktivität",
-      "subtitle": "Überwachen Sie die Nachrichten-Synchronisationsaktivität auf allen verbundenen Plattformen"
+      "subtitle": "Überwachen Sie die Nachrichten-Synchronisationsaktivität auf allen verbundenen Plattformen",
+      "refresh": "Aktualisieren",
+      "refreshing": "Aktualisierung läuft...",
+      "export": "Exportieren",
+      "search_placeholder": "Plattform-Aktivitäten suchen...",
+      "status_filter": {
+        "placeholder": "Status",
+        "all": "Alle Status",
+        "success": "Erfolg",
+        "error": "Fehler",
+        "pending": "Ausstehend"
+      },
+      "status": {
+        "success": "Erfolg",
+        "error": "Fehler",
+        "pending": "Ausstehend",
+        "unknown": "Unbekannt"
+      },
+      "recent_activities": "Neueste Plattform-Aktivitäten",
+      "unknown": "Unbekannt",
+      "no_details": "Keine Details verfügbar",
+      "duration": "Dauer",
+      "records": "Datensätze",
+      "na": "N/V",
+      "no_activities": "Keine Plattform-Aktivitäten gefunden, die Ihren Filtern entsprechen.",
+      "csv": {
+        "timestamp": "Zeitstempel",
+        "integration": "Integration",
+        "action": "Aktion",
+        "status": "Status",
+        "duration": "Dauer",
+        "records_processed": "Verarbeitete Datensätze",
+        "details": "Details"
+      }
+    },
+    "profile": {
+      "title": "Profil-Einstellungen",
+      "subtitle": "Verwalten Sie Ihre Konto-Einstellungen",
+      "personal_info": "Persönliche Informationen",
+      "coming_soon": "Profil-Einstellungen kommen bald"
+    },
+    "team": {
+      "title": "Team-Einstellungen",
+      "subtitle": "Verwalten Sie Ihre Teammitglieder und Berechtigungen",
+      "members": "Team-Mitglieder",
+      "coming_soon": "Team-Verwaltung kommt bald"
+    },
+    "security": {
+      "title": "Sicherheits-Einstellungen",
+      "subtitle": "Verwalten Sie die Sicherheit Ihres Kontos",
+      "password": "Passwort & Authentifizierung",
+      "coming_soon": "Sicherheits-Einstellungen kommen bald"
     },
     "settings": {
       "subtitle": "Verwalten Sie Ihr Konto und Ihre Einstellungen"

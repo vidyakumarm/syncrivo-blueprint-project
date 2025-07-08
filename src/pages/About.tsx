@@ -1,9 +1,9 @@
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
-import { useTranslation } from 'react-i18next';
+import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 
 export default function About() {
-  const { t } = useTranslation();
+  const { t } = useTranslationWithFallback();
 
   return (
     <div className="min-h-screen bg-background">

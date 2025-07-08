@@ -308,7 +308,58 @@
     },
     "activity": {
       "title": "平台活动",
-      "subtitle": "监控所有已连接平台的消息同步活动"
+      "subtitle": "监控所有已连接平台的消息同步活动",
+      "refresh": "刷新",
+      "refreshing": "刷新中...",
+      "export": "导出",
+      "search_placeholder": "搜索平台活动...",
+      "status_filter": {
+        "placeholder": "状态",
+        "all": "所有状态",
+        "success": "成功",
+        "error": "错误",
+        "pending": "待处理"
+      },
+      "status": {
+        "success": "成功",
+        "error": "错误",
+        "pending": "待处理",
+        "unknown": "未知"
+      },
+      "recent_activities": "最近的平台活动",
+      "unknown": "未知",
+      "no_details": "无详情",
+      "duration": "持续时间",
+      "records": "记录",
+      "na": "不适用",
+      "no_activities": "未找到符合筛选条件的平台活动。",
+      "csv": {
+        "timestamp": "时间戳",
+        "integration": "集成",
+        "action": "操作",
+        "status": "状态",
+        "duration": "持续时间",
+        "records_processed": "处理的记录",
+        "details": "详情"
+      }
+    },
+    "profile": {
+      "title": "个人资料设置",
+      "subtitle": "管理您的账户设置",
+      "personal_info": "个人信息",
+      "coming_soon": "个人资料设置即将推出"
+    },
+    "team": {
+      "title": "团队设置",
+      "subtitle": "管理您的团队成员和权限",
+      "members": "团队成员",
+      "coming_soon": "团队管理即将推出"
+    },
+    "security": {
+      "title": "安全设置",
+      "subtitle": "管理您的账户安全",
+      "password": "密码和身份验证",
+      "coming_soon": "安全设置即将推出"
     },
     "settings": {
       "subtitle": "管理您的账户和偏好设置"

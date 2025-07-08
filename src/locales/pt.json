@@ -308,7 +308,58 @@
     },
     "activity": {
       "title": "Atividade da Plataforma",
-      "subtitle": "Monitore a atividade de sincronização de mensagens em todas as plataformas conectadas"
+      "subtitle": "Monitore a atividade de sincronização de mensagens em todas as plataformas conectadas",
+      "refresh": "Atualizar",
+      "refreshing": "Atualizando...",
+      "export": "Exportar",
+      "search_placeholder": "Pesquisar atividades da plataforma...",
+      "status_filter": {
+        "placeholder": "Status",
+        "all": "Todos os Status",
+        "success": "Sucesso",
+        "error": "Erro",
+        "pending": "Pendente"
+      },
+      "status": {
+        "success": "Sucesso",
+        "error": "Erro",
+        "pending": "Pendente",
+        "unknown": "Desconhecido"
+      },
+      "recent_activities": "Atividades Recentes da Plataforma",
+      "unknown": "Desconhecido",
+      "no_details": "Nenhum detalhe disponível",
+      "duration": "Duração",
+      "records": "Registros",
+      "na": "N/A",
+      "no_activities": "Nenhuma atividade da plataforma encontrada que corresponda aos seus filtros.",
+      "csv": {
+        "timestamp": "Timestamp",
+        "integration": "Integração",
+        "action": "Ação",
+        "status": "Status",
+        "duration": "Duração",
+        "records_processed": "Registros Processados",
+        "details": "Detalhes"
+      }
+    },
+    "profile": {
+      "title": "Configurações de Perfil",
+      "subtitle": "Gerencie as configurações da sua conta",
+      "personal_info": "Informações Pessoais",
+      "coming_soon": "Configurações de perfil em breve"
+    },
+    "team": {
+      "title": "Configurações da Equipe",
+      "subtitle": "Gerencie os membros da sua equipe e permissões",
+      "members": "Membros da Equipe",
+      "coming_soon": "Gerenciamento de equipe em breve"
+    },
+    "security": {
+      "title": "Configurações de Segurança",
+      "subtitle": "Gerencie a segurança da sua conta",
+      "password": "Senha e Autenticação",
+      "coming_soon": "Configurações de segurança em breve"
     },
     "settings": {
       "subtitle": "Gerencie sua conta e preferências"

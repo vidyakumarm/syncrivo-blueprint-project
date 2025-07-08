@@ -310,7 +310,58 @@
     },
     "activity": {
       "title": "Actividad de la Plataforma",
-      "subtitle": "Monitorea la actividad de sincronización de mensajes en todas las plataformas conectadas"
+      "subtitle": "Monitorea la actividad de sincronización de mensajes en todas las plataformas conectadas",
+      "refresh": "Actualizar",
+      "refreshing": "Actualizando...",
+      "export": "Exportar",
+      "search_placeholder": "Buscar actividades de plataforma...",
+      "status_filter": {
+        "placeholder": "Estado",
+        "all": "Todos los Estados",
+        "success": "Éxito",
+        "error": "Error",
+        "pending": "Pendiente"
+      },
+      "status": {
+        "success": "Éxito",
+        "error": "Error",
+        "pending": "Pendiente",
+        "unknown": "Desconocido"
+      },
+      "recent_activities": "Actividades Recientes de Plataforma",
+      "unknown": "Desconocido",
+      "no_details": "No hay detalles disponibles",
+      "duration": "Duración",
+      "records": "Registros",
+      "na": "N/A",
+      "no_activities": "No se encontraron actividades de plataforma que coincidan con sus filtros.",
+      "csv": {
+        "timestamp": "Marca de tiempo",
+        "integration": "Integración",
+        "action": "Acción",
+        "status": "Estado",
+        "duration": "Duración",
+        "records_processed": "Registros Procesados",
+        "details": "Detalles"
+      }
+    },
+    "profile": {
+      "title": "Configuración de Perfil",
+      "subtitle": "Administre la configuración de su cuenta",
+      "personal_info": "Información Personal",
+      "coming_soon": "Configuración de perfil próximamente"
+    },
+    "team": {
+      "title": "Configuración de Equipo",
+      "subtitle": "Administre los miembros de su equipo y permisos",
+      "members": "Miembros del Equipo",
+      "coming_soon": "Gestión de equipos próximamente"
+    },
+    "security": {
+      "title": "Configuración de Seguridad",
+      "subtitle": "Administre la seguridad de su cuenta",
+      "password": "Contraseña y Autenticación",
+      "coming_soon": "Configuración de seguridad próximamente"
     },
     "settings": {
       "subtitle": "Gestiona tu cuenta y preferencias"
