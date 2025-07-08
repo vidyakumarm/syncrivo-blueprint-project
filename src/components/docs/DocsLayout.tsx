@@ -19,6 +19,7 @@ import {
   Webhook
 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DocsLayoutProps {
   children: React.ReactNode;
@@ -36,44 +37,45 @@ interface DocSection {
 export function DocsLayout({ children }: DocsLayoutProps) {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation();
 
   const docSections: DocSection[] = [
     {
-      title: 'Getting Started',
+      title: t('docs.sidebar.getting_started'),
       items: [
-        { title: 'Quick Start', href: '/docs/quickstart' },
-        { title: 'Installation', href: '/docs/installation' },
-        { title: 'Authentication', href: '/docs/authentication' },
-        { title: 'Your First Integration', href: '/docs/first-integration' },
+        { title: t('docs.quick_start'), href: '/docs/quickstart' },
+        { title: t('docs.sidebar.installation'), href: '/docs/installation' },
+        { title: t('docs.sidebar.authentication'), href: '/docs/authentication' },
+        { title: t('docs.sidebar.first_integration'), href: '/docs/first-integration' },
       ]
     },
     {
-      title: 'Integrations',
+      title: t('docs.sidebar.integrations'),
       items: [
-        { title: 'Slack', href: '/docs/integrations/slack', badge: 'Popular' },
-        { title: 'Google Drive', href: '/docs/integrations/google-drive' },
-        { title: 'Notion', href: '/docs/integrations/notion', badge: 'New' },
-        { title: 'Airtable', href: '/docs/integrations/airtable' },
-        { title: 'Trello', href: '/docs/integrations/trello' },
-        { title: 'Custom API', href: '/docs/integrations/custom-api' },
+        { title: t('docs.sidebar.slack'), href: '/docs/integrations/slack', badge: t('docs.badge_popular') },
+        { title: t('docs.sidebar.google_drive'), href: '/docs/integrations/google-drive' },
+        { title: t('docs.sidebar.notion'), href: '/docs/integrations/notion', badge: t('docs.badge_new') },
+        { title: t('docs.sidebar.airtable'), href: '/docs/integrations/airtable' },
+        { title: t('docs.sidebar.trello'), href: '/docs/integrations/trello' },
+        { title: t('docs.sidebar.custom_api'), href: '/docs/integrations/custom-api' },
       ]
     },
     {
-      title: 'API Reference',
+      title: t('docs.sidebar.api_reference'),
       items: [
-        { title: 'REST API', href: '/docs/api/rest' },
-        { title: 'Webhooks', href: '/docs/api/webhooks' },
-        { title: 'GraphQL', href: '/docs/api/graphql', badge: 'Beta' },
-        { title: 'SDK Reference', href: '/docs/api/sdk' },
+        { title: t('docs.sidebar.rest_api'), href: '/docs/api/rest' },
+        { title: t('docs.sidebar.webhooks'), href: '/docs/api/webhooks' },
+        { title: t('docs.sidebar.graphql'), href: '/docs/api/graphql', badge: t('docs.badge_beta') },
+        { title: t('docs.sidebar.sdk_reference'), href: '/docs/api/sdk' },
       ]
     },
     {
-      title: 'Advanced',
+      title: t('docs.sidebar.advanced'),
       items: [
-        { title: 'Data Mapping', href: '/docs/advanced/data-mapping' },
-        { title: 'Error Handling', href: '/docs/advanced/error-handling' },
-        { title: 'Rate Limiting', href: '/docs/advanced/rate-limiting' },
-        { title: 'Security', href: '/docs/advanced/security' },
+        { title: t('docs.sidebar.data_mapping'), href: '/docs/advanced/data-mapping' },
+        { title: t('docs.sidebar.error_handling'), href: '/docs/advanced/error-handling' },
+        { title: t('docs.sidebar.rate_limiting'), href: '/docs/advanced/rate-limiting' },
+        { title: t('docs.sidebar.security'), href: '/docs/advanced/security' },
       ]
     }
   ];
@@ -93,7 +95,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Search docs..."
+                    placeholder={t('docs.sidebar.search_placeholder')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10"
@@ -141,26 +143,26 @@ export function DocsLayout({ children }: DocsLayoutProps) {
                 <Card className="p-4 bg-gradient-card">
                   <h4 className="font-semibold text-foreground mb-3 flex items-center">
                     <HelpCircle className="h-4 w-4 mr-2" />
-                    Need Help?
+                    {t('docs.sidebar.need_help')}
                   </h4>
                   <div className="space-y-2">
                     <Link 
                       to="/support" 
                       className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      Contact Support
+                      {t('docs.sidebar.contact_support')}
                     </Link>
                     <Link 
                       to="/support#community" 
                       className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      Community Forum
+                      {t('docs.sidebar.community_forum')}
                     </Link>
                     <Link 
                       to="/support#examples" 
                       className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      Code Examples
+                      {t('docs.sidebar.code_examples')}
                     </Link>
                   </div>
                 </Card>
