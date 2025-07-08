@@ -4,8 +4,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Shield, Lock, Eye, Database, Clock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Privacy() {
+  const { t } = useTranslation();
   const lastUpdated = "January 1, 2024";
 
   const sections = [
@@ -86,13 +88,13 @@ export default function Privacy() {
             <Button variant="ghost" asChild className="flex items-center">
               <Link to="/">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
+                {t('privacy.back_to_home')}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <Badge variant="outline" className="text-xs">
                 <Clock className="h-3 w-3 mr-1" />
-                Updated {lastUpdated}
+                {t('privacy.updated')} {lastUpdated}
               </Badge>
             </div>
           </div>
@@ -104,15 +106,14 @@ export default function Privacy() {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
             <Shield className="h-8 w-8 text-primary mr-3" />
-            <h1 className="text-4xl font-bold text-foreground">Privacy Policy</h1>
+            <h1 className="text-4xl font-bold text-foreground">{t('privacy.title')}</h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Your privacy is important to us. This policy explains how we collect, 
-            use, and protect your information when you use SyncRivo.
+            {t('privacy.subtitle')}
           </p>
           <div className="flex items-center justify-center mt-6 text-sm text-muted-foreground">
             <Lock className="h-4 w-4 mr-2" />
-            Last updated: {lastUpdated}
+            {t('privacy.last_updated')}: {lastUpdated}
           </div>
         </div>
 
@@ -121,27 +122,27 @@ export default function Privacy() {
           <Card className="text-center">
             <CardContent className="pt-6">
               <Lock className="h-8 w-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">Secure by Design</h3>
+              <h3 className="font-semibold text-foreground mb-2">{t('privacy.secure_by_design')}</h3>
               <p className="text-sm text-muted-foreground">
-                Enterprise-grade security with end-to-end encryption
+                {t('privacy.secure_by_design_desc')}
               </p>
             </CardContent>
           </Card>
           <Card className="text-center">
             <CardContent className="pt-6">
               <Eye className="h-8 w-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">Transparent Data Use</h3>
+              <h3 className="font-semibold text-foreground mb-2">{t('privacy.transparent_data_use')}</h3>
               <p className="text-sm text-muted-foreground">
-                Clear information about how your data is used
+                {t('privacy.transparent_data_use_desc')}
               </p>
             </CardContent>
           </Card>
           <Card className="text-center">
             <CardContent className="pt-6">
               <Shield className="h-8 w-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">Your Rights Protected</h3>
+              <h3 className="font-semibold text-foreground mb-2">{t('privacy.your_rights_protected')}</h3>
               <p className="text-sm text-muted-foreground">
-                Full control over your personal information
+                {t('privacy.your_rights_protected_desc')}
               </p>
             </CardContent>
           </Card>
@@ -150,7 +151,7 @@ export default function Privacy() {
         {/* Table of Contents */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-lg">Table of Contents</CardTitle>
+            <CardTitle className="text-lg">{t('privacy.table_of_contents')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-2">
@@ -191,11 +192,11 @@ export default function Privacy() {
         {/* Contact Information */}
         <Card className="mt-12">
           <CardHeader>
-            <CardTitle>Questions About Your Privacy?</CardTitle>
+            <CardTitle>{t('privacy.questions_privacy')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              If you have any questions about this Privacy Policy or our privacy practices, please contact us:
+              {t('privacy.questions_privacy_desc')}
             </p>
             <div className="space-y-2 text-sm">
               <p><strong>Email:</strong> privacy@syncrivo.com</p>
@@ -204,10 +205,10 @@ export default function Privacy() {
             </div>
             <div className="flex items-center space-x-4 mt-6">
               <Button asChild>
-                <Link to="/support">Contact Support</Link>
+                <Link to="/support">{t('privacy.contact_support')}</Link>
               </Button>
               <Button variant="outline" asChild>
-                <Link to="/legal/terms">Terms of Service</Link>
+                <Link to="/terms">{t('privacy.terms_of_service')}</Link>
               </Button>
             </div>
           </CardContent>

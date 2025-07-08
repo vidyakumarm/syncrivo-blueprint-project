@@ -1,25 +1,27 @@
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { CodeBlock } from '@/components/docs/CodeBlock';
+import { useTranslation } from 'react-i18next';
 
 const DocsApi = () => {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <main className="pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">API Documentation</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{t('docs_api.title')}</h1>
             <p className="text-xl text-muted-foreground">
-              Complete reference for integrating with our API
+              {t('docs_api.subtitle')}
             </p>
           </div>
           
           <div className="space-y-8">
             <section className="bg-card rounded-lg p-6 shadow-sm">
-              <h2 className="text-2xl font-semibold mb-4">Authentication</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t('docs_api.authentication')}</h2>
               <p className="text-muted-foreground mb-4">
-                All API requests require authentication using an API key in the Authorization header.
+                {t('docs_api.authentication_desc')}
               </p>
               <CodeBlock
                 code={`curl -H "Authorization: Bearer YOUR_API_KEY" \\
@@ -29,9 +31,9 @@ const DocsApi = () => {
             </section>
             
             <section className="bg-card rounded-lg p-6 shadow-sm">
-              <h2 className="text-2xl font-semibold mb-4">Base URL</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t('docs_api.base_url')}</h2>
               <p className="text-muted-foreground mb-4">
-                All API requests should be made to:
+                {t('docs_api.base_url_desc')}
               </p>
               <CodeBlock
                 code="https://api.example.com/v1"
@@ -40,11 +42,11 @@ const DocsApi = () => {
             </section>
             
             <section className="bg-card rounded-lg p-6 shadow-sm">
-              <h2 className="text-2xl font-semibold mb-4">Endpoints</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t('docs_api.endpoints')}</h2>
               
-              <h3 className="text-lg font-medium mb-3">GET /data</h3>
+              <h3 className="text-lg font-medium mb-3">{t('docs_api.get_data')}</h3>
               <p className="text-muted-foreground mb-4">
-                Retrieve your data records
+                {t('docs_api.get_data_desc')}
               </p>
               <CodeBlock
                 code={`{
@@ -61,9 +63,9 @@ const DocsApi = () => {
                 language="json"
               />
               
-              <h3 className="text-lg font-medium mb-3 mt-6">POST /data</h3>
+              <h3 className="text-lg font-medium mb-3 mt-6">{t('docs_api.post_data')}</h3>
               <p className="text-muted-foreground mb-4">
-                Create a new data record
+                {t('docs_api.post_data_desc')}
               </p>
               <CodeBlock
                 code={`curl -X POST \\
@@ -76,9 +78,9 @@ const DocsApi = () => {
             </section>
             
             <section className="bg-card rounded-lg p-6 shadow-sm">
-              <h2 className="text-2xl font-semibold mb-4">Error Responses</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t('docs_api.error_responses')}</h2>
               <p className="text-muted-foreground mb-4">
-                The API returns standard HTTP status codes and error messages:
+                {t('docs_api.error_responses_desc')}
               </p>
               <CodeBlock
                 code={`{

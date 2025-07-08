@@ -410,6 +410,92 @@
     },
     "settings": {
       "subtitle": "Manage your account and preferences"
+    },
+    "profile": {
+      "title": "Profile Settings",
+      "subtitle": "Manage your account settings",
+      "personal_info": "Personal Information",
+      "coming_soon": "Profile settings coming soon"
+    },
+    "team": {
+      "title": "Team Settings",
+      "subtitle": "Manage your team members and permissions",
+      "members": "Team Members",
+      "coming_soon": "Team management coming soon"
+    },
+    "security": {
+      "title": "Security Settings",
+      "subtitle": "Manage your account security",
+      "password": "Password & Authentication",
+      "coming_soon": "Security settings coming soon"
     }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "Your privacy is important to us. This policy explains how we collect, use, and protect your information when you use SyncRivo.",
+    "last_updated": "Last updated",
+    "back_to_home": "Back to Home",
+    "updated": "Updated",
+    "secure_by_design": "Secure by Design",
+    "secure_by_design_desc": "Enterprise-grade security with end-to-end encryption",
+    "transparent_data_use": "Transparent Data Use",
+    "transparent_data_use_desc": "Clear information about how your data is used",
+    "your_rights_protected": "Your Rights Protected",
+    "your_rights_protected_desc": "Full control over your personal information",
+    "table_of_contents": "Table of Contents",
+    "questions_privacy": "Questions About Your Privacy?",
+    "questions_privacy_desc": "If you have any questions about this Privacy Policy or our privacy practices, please contact us:",
+    "contact_support": "Contact Support",
+    "terms_of_service": "Terms of Service"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "subtitle": "Please read these terms carefully before using SyncRivo's services. These terms govern your use of our platform and services.",
+    "last_updated": "Last updated",
+    "back_to_home": "Back to Home",
+    "updated": "Updated",
+    "table_of_contents": "Table of Contents",
+    "questions_terms": "Questions About These Terms?",
+    "questions_terms_desc": "If you have any questions about these Terms of Service, please contact us:",
+    "contact_support": "Contact Support",
+    "privacy_policy": "Privacy Policy"
+  },
+  "integration_detail": {
+    "not_found_title": "Integration Not Found",
+    "not_found_desc": "The integration you're looking for doesn't exist or has been moved.",
+    "browse_all": "Browse All Integrations",
+    "rating": "rating",
+    "users": "users",
+    "connect_now": "Connect Now",
+    "view_demo": "View Demo",
+    "integration_details": "Integration Details",
+    "pricing": "Pricing",
+    "setup_time": "Setup Time",
+    "api_version": "API Version",
+    "last_updated": "Last Updated",
+    "enterprise_security": "Enterprise Security",
+    "real_time_sync": "Real-time Sync",
+    "full_documentation": "Full Documentation",
+    "view_documentation": "View Documentation",
+    "key_features": "Key Features",
+    "popular_use_cases": "Popular Use Cases",
+    "ready_to_connect": "Ready to connect",
+    "setup_integration_desc": "Set up your integration in minutes and start automating your workflows today.",
+    "start_integration": "Start Integration"
+  },
+  "docs_api": {
+    "title": "API Documentation",
+    "subtitle": "Complete reference for integrating with our API",
+    "authentication": "Authentication",
+    "authentication_desc": "All API requests require authentication using an API key in the Authorization header.",
+    "base_url": "Base URL",
+    "base_url_desc": "All API requests should be made to:",
+    "endpoints": "Endpoints",
+    "get_data": "GET /data",
+    "get_data_desc": "Retrieve your data records",
+    "post_data": "POST /data",
+    "post_data_desc": "Create a new data record",
+    "error_responses": "Error Responses",
+    "error_responses_desc": "The API returns standard HTTP status codes and error messages:"
   }
 }

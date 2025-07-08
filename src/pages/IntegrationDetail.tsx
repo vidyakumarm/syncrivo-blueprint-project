@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +22,7 @@ import { Link } from 'react-router-dom';
 
 export default function IntegrationDetail() {
   const { id } = useParams();
+  const { t } = useTranslation();
 
   // Mock data - in a real app, this would come from an API
   const integrationData: { [key: string]: any } = {
@@ -121,12 +123,12 @@ export default function IntegrationDetail() {
         <Navigation />
         <main className="pt-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Integration Not Found</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{t('integration_detail.not_found_title')}</h1>
             <p className="text-lg text-muted-foreground mb-8">
-              The integration you're looking for doesn't exist or has been moved.
+              {t('integration_detail.not_found_desc')}
             </p>
             <Button asChild>
-              <Link to="/integrations">Browse All Integrations</Link>
+              <Link to="/integrations">{t('integration_detail.browse_all')}</Link>
             </Button>
           </div>
         </main>
@@ -159,12 +161,12 @@ export default function IntegrationDetail() {
                   <div className="flex items-center">
                     <Star className="h-5 w-5 text-yellow-400 fill-current mr-1" />
                     <span className="font-semibold mr-1">{integration.rating}</span>
-                    <span className="text-muted-foreground text-sm">rating</span>
+                    <span className="text-muted-foreground text-sm">{t('integration_detail.rating')}</span>
                   </div>
                   <div className="flex items-center">
                     <Users className="h-5 w-5 text-muted-foreground mr-1" />
                     <span className="font-semibold mr-1">{integration.users}</span>
-                    <span className="text-muted-foreground text-sm">users</span>
+                    <span className="text-muted-foreground text-sm">{t('integration_detail.users')}</span>
                   </div>
                   <Badge variant="secondary" className="px-3 py-1">
                     {integration.category}
@@ -178,12 +180,12 @@ export default function IntegrationDetail() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button size="lg" className="bg-gradient-primary hover:bg-primary-hover">
                     <Zap className="mr-2 h-5 w-5" />
-                    Connect Now
+                    {t('integration_detail.connect_now')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                   <Button variant="outline" size="lg">
                     <Play className="mr-2 h-5 w-5" />
-                    View Demo
+                    {t('integration_detail.view_demo')}
                   </Button>
                 </div>
               </div>
@@ -193,24 +195,24 @@ export default function IntegrationDetail() {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Settings className="mr-2 h-5 w-5" />
-                    Integration Details
+                    {t('integration_detail.integration_details')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Pricing</span>
+                    <span className="text-muted-foreground">{t('integration_detail.pricing')}</span>
                     <span className="font-medium text-success">{integration.pricing}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Setup Time</span>
+                    <span className="text-muted-foreground">{t('integration_detail.setup_time')}</span>
                     <span className="font-medium">{integration.setupTime}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">API Version</span>
+                    <span className="text-muted-foreground">{t('integration_detail.api_version')}</span>
                     <span className="font-medium">{integration.apiVersion}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Last Updated</span>
+                    <span className="text-muted-foreground">{t('integration_detail.last_updated')}</span>
                     <span className="font-medium">{integration.lastUpdated}</span>
                   </div>
                   
@@ -219,22 +221,22 @@ export default function IntegrationDetail() {
                   <div className="space-y-2">
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Shield className="mr-2 h-4 w-4 text-success" />
-                      Enterprise Security
+                      {t('integration_detail.enterprise_security')}
                     </div>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Zap className="mr-2 h-4 w-4 text-primary" />
-                      Real-time Sync
+                      {t('integration_detail.real_time_sync')}
                     </div>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <FileText className="mr-2 h-4 w-4 text-accent" />
-                      Full Documentation
+                      {t('integration_detail.full_documentation')}
                     </div>
                   </div>
 
                   <Button className="w-full" asChild>
                     <Link to="/docs" className="flex items-center justify-center">
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      View Documentation
+                      {t('integration_detail.view_documentation')}
                     </Link>
                   </Button>
                 </CardContent>
@@ -246,7 +248,7 @@ export default function IntegrationDetail() {
         {/* Features Section */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Key Features</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">{t('integration_detail.key_features')}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {integration.features.map((feature: string, index: number) => (
                 <div key={index} className="flex items-center p-4 rounded-lg border border-border bg-card hover:shadow-brand-sm transition-shadow">
@@ -261,7 +263,7 @@ export default function IntegrationDetail() {
         {/* Use Cases Section */}
         <section className="py-20 bg-muted/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Popular Use Cases</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">{t('integration_detail.popular_use_cases')}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {integration.useCases.map((useCase: any, index: number) => (
                 <Card key={index} className="hover:shadow-brand-md transition-all duration-300">
@@ -283,18 +285,18 @@ export default function IntegrationDetail() {
         <section className="py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-foreground mb-6">
-              Ready to connect {integration.name}?
+              {t('integration_detail.ready_to_connect')} {integration.name}?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Set up your {integration.name} integration in minutes and start automating your workflows today.
+              {t('integration_detail.setup_integration_desc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-gradient-primary hover:bg-primary-hover">
                 <Zap className="mr-2 h-5 w-5" />
-                Start Integration
+                {t('integration_detail.start_integration')}
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to="/support">Contact Support</Link>
+                <Link to="/support">{t('common.support')}</Link>
               </Button>
             </div>
           </div>

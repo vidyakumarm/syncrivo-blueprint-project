@@ -4,8 +4,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Scale, Shield, Clock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Terms() {
+  const { t } = useTranslation();
   const lastUpdated = "January 1, 2024";
 
   const sections = [
@@ -70,13 +72,13 @@ export default function Terms() {
             <Button variant="ghost" asChild className="flex items-center">
               <Link to="/">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
+                {t('terms.back_to_home')}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <Badge variant="outline" className="text-xs">
                 <Clock className="h-3 w-3 mr-1" />
-                Updated {lastUpdated}
+                {t('terms.updated')} {lastUpdated}
               </Badge>
             </div>
           </div>
@@ -88,22 +90,21 @@ export default function Terms() {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
             <Scale className="h-8 w-8 text-primary mr-3" />
-            <h1 className="text-4xl font-bold text-foreground">Terms of Service</h1>
+            <h1 className="text-4xl font-bold text-foreground">{t('terms.title')}</h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Please read these terms carefully before using SyncRivo's services. 
-            These terms govern your use of our platform and services.
+            {t('terms.subtitle')}
           </p>
           <div className="flex items-center justify-center mt-6 text-sm text-muted-foreground">
             <Shield className="h-4 w-4 mr-2" />
-            Last updated: {lastUpdated}
+            {t('terms.last_updated')}: {lastUpdated}
           </div>
         </div>
 
         {/* Table of Contents */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-lg">Table of Contents</CardTitle>
+            <CardTitle className="text-lg">{t('terms.table_of_contents')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-2">
@@ -142,11 +143,11 @@ export default function Terms() {
         {/* Contact Information */}
         <Card className="mt-12">
           <CardHeader>
-            <CardTitle>Questions About These Terms?</CardTitle>
+            <CardTitle>{t('terms.questions_terms')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              If you have any questions about these Terms of Service, please contact us:
+              {t('terms.questions_terms_desc')}
             </p>
             <div className="space-y-2 text-sm">
               <p><strong>Email:</strong> legal@syncrivo.com</p>
@@ -154,10 +155,10 @@ export default function Terms() {
             </div>
             <div className="flex items-center space-x-4 mt-6">
               <Button asChild>
-                <Link to="/support">Contact Support</Link>
+                <Link to="/support">{t('terms.contact_support')}</Link>
               </Button>
               <Button variant="outline" asChild>
-                <Link to="/legal/privacy">Privacy Policy</Link>
+                <Link to="/privacy">{t('terms.privacy_policy')}</Link>
               </Button>
             </div>
           </CardContent>

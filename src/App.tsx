@@ -24,6 +24,10 @@ import Security from '@/pages/Security';
 import Login from '@/pages/Login';
 import Signup from '@/pages/Signup';
 import Dashboard from '@/pages/Dashboard';
+import Privacy from '@/pages/Privacy';
+import Terms from '@/pages/Terms';
+import IntegrationDetail from '@/pages/IntegrationDetail';
+import DocsApi from '@/pages/DocsApi';
 import DashboardConnections from '@/pages/DashboardConnections';
 import DashboardActivity from '@/pages/DashboardActivity';
 import DashboardProfile from '@/pages/DashboardProfile';
@@ -70,6 +74,10 @@ function App() {
                     <Route path="/dashboard/settings/profile" element={<DashboardProfile />} />
                     <Route path="/dashboard/settings/team" element={<DashboardTeam />} />
                     <Route path="/dashboard/settings/security" element={<DashboardSecurity />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/integrations/:id" element={<IntegrationDetail />} />
+                    <Route path="/docs/api" element={<DocsApi />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </div>
