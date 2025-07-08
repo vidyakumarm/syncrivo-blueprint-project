@@ -181,8 +181,45 @@
   "integrations": {
     "title": "Integrações",
     "subtitle": "Conecte-se com centenas de ferramentas e serviços populares para negócios.",
-    "coming_soon": "Em Breve",
-    "coming_soon_desc": "Estamos construindo integrações incríveis. Volte em breve para nosso marketplace de integrações."
+    "hero_badge": "Integrações Perfeitas",
+    "hero_title": "Conecte Suas Ferramentas de Negócio",
+    "hero_title_highlight": "Perfeitamente",
+    "hero_subtitle": "Integre com centenas de aplicações e serviços empresariais populares. De CRMs a ferramentas de marketing, o SyncRivo conecta tudo.",
+    "search_placeholder": "Pesquisar integrações...",
+    "category_placeholder": "Todas as Categorias",
+    "popular_title": "Integrações Populares",
+    "popular_subtitle": "Integrações mais usadas pela nossa comunidade",
+    "featured_badge": "Destaque",
+    "users_suffix": "usuários",
+    "all_integrations": "Todas as Integrações",
+    "no_results": "Nenhuma integração encontrada que corresponda aos seus critérios.",
+    "clear_filters": "Limpar Filtros",
+    "popular_badge": "Popular",
+    "cta_title": "Não vê sua integração?",
+    "cta_subtitle": "Estamos constantemente adicionando novas integrações. Solicite a sua ou construa você mesmo com nossa API poderosa.",
+    "view_api_docs": "Ver Documentação da API",
+    "request_integration": "Solicitar Integração",
+    "categories": {
+      "all": "Todas as Categorias",
+      "crm": "CRM",
+      "marketing": "Marketing",
+      "ecommerce": "E-commerce",
+      "support": "Suporte",
+      "finance": "Finanças",
+      "productivity": "Produtividade",
+      "communication": "Comunicação"
+    },
+    "descriptions": {
+      "slack": "Conecte seu espaço de trabalho Slack para comunicação de equipe perfeita e notificações em tempo real.",
+      "salesforce": "Sincronize dados de clientes e automatize fluxos de trabalho com a plataforma CRM líder mundial.",
+      "shopify": "Integre sua loja de e-commerce para sincronizar pedidos, inventário e dados de clientes automaticamente.",
+      "hubspot": "Conecte seus fluxos de trabalho de marketing e vendas com a plataforma abrangente do HubSpot.",
+      "stripe": "Processe pagamentos e sincronize dados de transação com a poderosa plataforma de pagamento Stripe.",
+      "mailchimp": "Automatize campanhas de email marketing e sincronize dados de clientes com o Mailchimp.",
+      "zendesk": "Simplifique o suporte ao cliente conectando seu help desk e sistema de tickets.",
+      "notion": "Sincronize dados com seu espaço de trabalho Notion para maior produtividade e colaboração.",
+      "google_workspace": "Conecte o Google Workspace para integração perfeita de documentos e fluxos de trabalho colaborativos."
+    }
   },
   "docs": {
     "title": "Documentação",

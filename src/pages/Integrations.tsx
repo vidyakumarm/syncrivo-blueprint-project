@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -11,7 +11,7 @@ import { Search, Filter, Star, ExternalLink, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Integrations() {
-  const { t } = useTranslation();
+  const { t } = useTranslationWithFallback();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 

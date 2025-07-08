@@ -181,8 +181,45 @@
   "integrations": {
     "title": "集成",
     "subtitle": "连接数百种流行的商业工具和服务。",
-    "coming_soon": "即将推出",
-    "coming_soon_desc": "我们正在构建令人惊叹的集成。请稍后查看我们的集成市场。"
+    "hero_badge": "无缝集成",
+    "hero_title": "连接您的商业工具",
+    "hero_title_highlight": "无缝地",
+    "hero_subtitle": "与数百种流行的商业应用程序和服务集成。从CRM到营销工具，SyncRivo连接一切。",
+    "search_placeholder": "搜索集成...",
+    "category_placeholder": "所有类别",
+    "popular_title": "热门集成",
+    "popular_subtitle": "我们社区最常用的集成",
+    "featured_badge": "精选",
+    "users_suffix": "用户",
+    "all_integrations": "所有集成",
+    "no_results": "未找到符合您条件的集成。",
+    "clear_filters": "清除筛选",
+    "popular_badge": "热门",
+    "cta_title": "没有看到您的集成？",
+    "cta_subtitle": "我们不断添加新的集成。请求您的集成或使用我们强大的API自己构建。",
+    "view_api_docs": "查看API文档",
+    "request_integration": "请求集成",
+    "categories": {
+      "all": "所有类别",
+      "crm": "客户关系管理",
+      "marketing": "营销",
+      "ecommerce": "电子商务",
+      "support": "支持",
+      "finance": "金融",
+      "productivity": "生产力",
+      "communication": "通信"
+    },
+    "descriptions": {
+      "slack": "连接您的Slack工作区，实现无缝团队沟通和实时通知。",
+      "salesforce": "与世界领先的CRM平台同步客户数据并自动化工作流程。",
+      "shopify": "集成您的电子商务商店，自动同步订单、库存和客户数据。",
+      "hubspot": "将您的营销和销售工作流程与HubSpot的综合平台连接。",
+      "stripe": "使用Stripe强大的支付平台处理付款并同步交易数据。",
+      "mailchimp": "自动化电子邮件营销活动并与Mailchimp同步客户数据。",
+      "zendesk": "通过连接您的帮助台和票务系统来简化客户支持。",
+      "notion": "与您的Notion工作区同步数据，以增强生产力和协作。",
+      "google_workspace": "连接Google Workspace，实现无缝文档和协作工作流程集成。"
+    }
   },
   "docs": {
     "title": "文档",
