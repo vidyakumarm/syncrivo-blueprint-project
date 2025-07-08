@@ -282,8 +282,42 @@
     "sign_in": "Entrar"
   },
   "dashboard": {
-    "title": "Painel",
-    "welcome": "Bem-vindo ao seu painel"
+    "title": "Painel SyncRio",
+    "subtitle": "Conecte e sincronize mensagens entre Teams, Webex, Google Chat, Zoom e outras plataformas de mensagem",
+    "welcome": "Bem-vindo ao seu painel",
+    "metrics": {
+      "messages_synced": "Mensagens Sincronizadas",
+      "active_platforms": "Plataformas Ativas",
+      "successful_syncs": "Sincronizações Bem-sucedidas",
+      "connected_platforms": "Plataformas Conectadas"
+    },
+    "recent_activity": "Atividade Recente da Plataforma",
+    "no_activity": "Nenhuma atividade recente.",
+    "start_connecting": "Comece conectando plataformas de mensagem!",
+    "sidebar": {
+      "overview": "Visão Geral",
+      "connections": "Conexões",
+      "activity": "Atividade",
+      "profile": "Perfil",
+      "team": "Equipe",
+      "security": "Segurança"
+    },
+    "connections": {
+      "title": "Plataformas de Mensagem",
+      "subtitle": "Conecte Teams, Webex, Google Chat, Zoom e outras plataformas de mensagem"
+    },
+    "activity": {
+      "title": "Atividade da Plataforma",
+      "subtitle": "Monitore a atividade de sincronização de mensagens em todas as plataformas conectadas"
+    },
+    "settings": {
+      "subtitle": "Gerencie sua conta e preferências"
+    },
+    "realtime_chart_title": "Atividade de Sincronização de Mensagens em Tempo Real",
+    "messages_synced_5min": "Mensagens Sincronizadas/5min",
+    "platform_errors_5min": "Erros da Plataforma/5min",
+    "last_updated": "Última atualização: {{time}} (Atualiza a cada 5 segundos)",
+    "from_last_month": "do mês passado"
   },
   "not_found": {
     "title": "Página Não Encontrada",

@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, TrendingDown } from 'lucide-react';
+import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 
 interface MetricCardProps {
   title: string;
@@ -10,6 +11,7 @@ interface MetricCardProps {
 }
 
 export function MetricCard({ title, value, change, isPositive, icon }: MetricCardProps) {
+  const { t } = useTranslationWithFallback();
   return (
     <Card className="bg-gradient-card shadow-brand-sm hover:shadow-brand-md transition-shadow">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -31,7 +33,7 @@ export function MetricCard({ title, value, change, isPositive, icon }: MetricCar
           <span className={isPositive ? 'text-success' : 'text-destructive'}>
             {change}
           </span>
-          <span className="ml-1">from last month</span>
+          <span className="ml-1">{t('dashboard.from_last_month')}</span>
         </p>
       </CardContent>
     </Card>

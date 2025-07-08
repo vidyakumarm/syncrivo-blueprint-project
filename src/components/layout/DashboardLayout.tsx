@@ -3,7 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 import { 
   BarChart3, 
   Settings, 
@@ -20,7 +20,7 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const location = useLocation();
-  const { t } = useTranslation();
+  const { t } = useTranslationWithFallback();
 
   const sidebarItems = [
     { name: t('dashboard.sidebar.overview'), href: '/dashboard', icon: BarChart3 },

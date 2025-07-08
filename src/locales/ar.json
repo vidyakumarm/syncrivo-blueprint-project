@@ -282,8 +282,42 @@
     "sign_in": "تسجيل الدخول"
   },
   "dashboard": {
-    "title": "لوحة التحكم",
-    "welcome": "مرحباً بك في لوحة التحكم الخاصة بك"
+    "title": "لوحة تحكم SyncRivo",
+    "subtitle": "اربط ومزامنة الرسائل عبر Teams و Webex و Google Chat و Zoom ومنصات المراسلة الأخرى",
+    "welcome": "مرحباً بك في لوحة التحكم الخاصة بك",
+    "metrics": {
+      "messages_synced": "الرسائل المتزامنة",
+      "active_platforms": "المنصات النشطة",
+      "successful_syncs": "المزامنات الناجحة",
+      "connected_platforms": "المنصات المتصلة"
+    },
+    "recent_activity": "نشاط المنصة الأخير",
+    "no_activity": "لا يوجد نشاط حديث.",
+    "start_connecting": "ابدأ بربط منصات المراسلة!",
+    "sidebar": {
+      "overview": "نظرة عامة",
+      "connections": "الاتصالات",
+      "activity": "النشاط",
+      "profile": "الملف الشخصي",
+      "team": "الفريق",
+      "security": "الأمان"
+    },
+    "connections": {
+      "title": "منصات المراسلة",
+      "subtitle": "اربط Teams و Webex و Google Chat و Zoom ومنصات المراسلة الأخرى"
+    },
+    "activity": {
+      "title": "نشاط المنصة",
+      "subtitle": "راقب نشاط مزامنة الرسائل عبر جميع المنصات المتصلة"
+    },
+    "settings": {
+      "subtitle": "إدارة حسابك وتفضيلاتك"
+    },
+    "realtime_chart_title": "نشاط مزامنة الرسائل في الوقت الفعلي",
+    "messages_synced_5min": "الرسائل المتزامنة/5 دقائق",
+    "platform_errors_5min": "أخطاء المنصة/5 دقائق",
+    "last_updated": "آخر تحديث: {{time}} (يتم التحديث كل 5 ثوان)",
+    "from_last_month": "من الشهر الماضي"
   },
   "not_found": {
     "title": "الصفحة غير موجودة",

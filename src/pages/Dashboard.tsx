@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { MetricCard } from '@/components/dashboard/MetricCard';
 import { RealTimeChart } from '@/components/dashboard/RealTimeChart';
@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 export default function Dashboard() {
-  const { t } = useTranslation();
+  const { t } = useTranslationWithFallback();
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { connections } = useConnections();

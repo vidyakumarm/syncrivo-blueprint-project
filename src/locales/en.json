@@ -243,8 +243,42 @@
     "sign_in": "Sign in"
   },
   "dashboard": {
-    "title": "Dashboard",
-    "welcome": "Welcome to your dashboard"
+    "title": "SyncRivo Dashboard",
+    "subtitle": "Connect and sync messages across Teams, Webex, Google Chat, Zoom and other messaging platforms",
+    "welcome": "Welcome to your dashboard",
+    "metrics": {
+      "messages_synced": "Messages Synced",
+      "active_platforms": "Active Platforms",
+      "successful_syncs": "Successful Syncs",
+      "connected_platforms": "Connected Platforms"
+    },
+    "recent_activity": "Recent Platform Activity",
+    "no_activity": "No recent activity.",
+    "start_connecting": "Start connecting messaging platforms!",
+    "sidebar": {
+      "overview": "Overview",
+      "connections": "Connections",
+      "activity": "Activity",
+      "profile": "Profile",
+      "team": "Team",
+      "security": "Security"
+    },
+    "connections": {
+      "title": "Messaging Platforms",
+      "subtitle": "Connect Teams, Webex, Google Chat, Zoom and other messaging platforms"
+    },
+    "activity": {
+      "title": "Platform Activity",
+      "subtitle": "Monitor message sync activity across all connected platforms"
+    },
+    "settings": {
+      "subtitle": "Manage your account and preferences"
+    },
+    "realtime_chart_title": "Real-Time Message Sync Activity",
+    "messages_synced_5min": "Messages Synced/5min",
+    "platform_errors_5min": "Platform Errors/5min",
+    "last_updated": "Last updated: {{time}} (Updates every 5 seconds)",
+    "from_last_month": "from last month"
   },
   "footer": {
     "tagline": "Seamlessly connect and manage all your business integrations in one unified platform.",
@@ -482,57 +516,6 @@
     "title": "404",
     "subtitle": "Oops! Page not found",
     "return_home": "Return to Home"
-  },
-  "dashboard": {
-    "title": "SyncRio Dashboard",
-    "subtitle": "Connect and sync messages across Teams, Webex, Google Chat, Zoom and other messaging platforms",
-    "welcome": "Welcome to your Dashboard",
-    "metrics": {
-      "messages_synced": "Messages Synced",
-      "active_platforms": "Active Platforms", 
-      "successful_syncs": "Successful Syncs",
-      "connected_platforms": "Connected Platforms"
-    },
-    "recent_activity": "Recent Platform Activity",
-    "no_activity": "No recent activity yet.",
-    "start_connecting": "Start by connecting messaging platforms!",
-    "sidebar": {
-      "overview": "Overview",
-      "connections": "Connections", 
-      "activity": "Activity",
-      "profile": "Profile",
-      "team": "Team",
-      "security": "Security"
-    },
-    "connections": {
-      "title": "Messaging Platforms",
-      "subtitle": "Connect Teams, Webex, Google Chat, Zoom and other messaging platforms"
-    },
-    "activity": {
-      "title": "Platform Activity",
-      "subtitle": "Monitor message sync activity across all connected platforms"
-    },
-    "settings": {
-      "subtitle": "Manage your account and preferences"
-    },
-    "profile": {
-      "title": "Profile Settings",
-      "subtitle": "Manage your account settings",
-      "personal_info": "Personal Information",
-      "coming_soon": "Profile settings coming soon"
-    },
-    "team": {
-      "title": "Team Settings",
-      "subtitle": "Manage your team members and permissions",
-      "members": "Team Members",
-      "coming_soon": "Team management coming soon"
-    },
-    "security": {
-      "title": "Security Settings",
-      "subtitle": "Manage your account security",
-      "password": "Password & Authentication",
-      "coming_soon": "Security settings coming soon"
-    }
   },
   "privacy": {
     "title": "Privacy Policy",

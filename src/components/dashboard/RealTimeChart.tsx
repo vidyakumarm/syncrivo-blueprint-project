@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useActivityLogs } from '@/hooks/useDashboardData';
+import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 
 interface ChartData {
   time: string;
@@ -9,6 +10,7 @@ interface ChartData {
 }
 
 export function RealTimeChart() {
+  const { t } = useTranslationWithFallback();
   const { activities } = useActivityLogs();
   const [data, setData] = useState<ChartData[]>([]);
 
@@ -62,22 +64,23 @@ export function RealTimeChart() {
   return (
     <Card className="col-span-2">
       <CardHeader>
-        <CardTitle className="text-foreground">Real-Time Message Sync Activity</CardTitle>
+        <CardTitle className="text-foreground">{t('dashboard.realtime_chart_title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center p-4 bg-success-light rounded-lg">
               <div className="text-2xl font-bold text-success">{data[data.length - 1]?.syncs || 0}</div>
-              <div className="text-sm text-muted-foreground">Messages Synced/5min</div>
+              <div className="text-sm text-muted-foreground">{t('dashboard.messages_synced_5min')}</div>
             </div>
             <div className="text-center p-4 bg-destructive/10 rounded-lg">
               <div className="text-2xl font-bold text-destructive">{data[data.length - 1]?.errors || 0}</div>
-              <div className="text-sm text-muted-foreground">Platform Errors/5min</div>
+              <div className="text-sm text-muted-foreground">{t('dashboard.platform_errors_5min')}</div>
             </div>
           </div>
           <div className="text-sm text-muted-foreground text-center">
-            Last updated: {data[data.length - 1]?.time} (Updates every 5 seconds)
+            {t('dashboard.last_updated')
+              .replace('{{time}}', data[data.length - 1]?.time || '--:--')}
           </div>
         </div>
       </CardContent>

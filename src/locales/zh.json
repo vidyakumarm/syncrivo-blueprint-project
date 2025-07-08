@@ -312,7 +312,12 @@
     },
     "settings": {
       "subtitle": "管理您的账户和偏好设置"
-    }
+    },
+    "realtime_chart_title": "实时消息同步活动",
+    "messages_synced_5min": "5分钟内同步消息",
+    "platform_errors_5min": "5分钟内平台错误",
+    "last_updated": "最后更新: {{time}} (每5秒更新一次)",
+    "from_last_month": "比上月"
   },
   "not_found": {
     "title": "页面未找到",

@@ -284,8 +284,42 @@
     "sign_in": "Se connecter"
   },
   "dashboard": {
-    "title": "Tableau de Bord",
-    "welcome": "Bienvenue sur votre tableau de bord"
+    "title": "Tableau de Bord SyncRio",
+    "subtitle": "Connectez et synchronisez les messages entre Teams, Webex, Google Chat, Zoom et autres plateformes de messagerie",
+    "welcome": "Bienvenue sur votre tableau de bord",
+    "metrics": {
+      "messages_synced": "Messages Synchronisés",
+      "active_platforms": "Plateformes Actives",
+      "successful_syncs": "Synchronisations Réussies",
+      "connected_platforms": "Plateformes Connectées"
+    },
+    "recent_activity": "Activité Récente de la Plateforme",
+    "no_activity": "Aucune activité récente.",
+    "start_connecting": "Commencez par connecter des plateformes de messagerie !",
+    "sidebar": {
+      "overview": "Vue d'ensemble",
+      "connections": "Connexions",
+      "activity": "Activité",
+      "profile": "Profil",
+      "team": "Équipe",
+      "security": "Sécurité"
+    },
+    "connections": {
+      "title": "Plateformes de Messagerie",
+      "subtitle": "Connectez Teams, Webex, Google Chat, Zoom et autres plateformes de messagerie"
+    },
+    "activity": {
+      "title": "Activité de la Plateforme",
+      "subtitle": "Surveillez l'activité de synchronisation des messages sur toutes les plateformes connectées"
+    },
+    "settings": {
+      "subtitle": "Gérez votre compte et vos préférences"
+    },
+    "realtime_chart_title": "Activité de Synchronisation de Messages en Temps Réel",
+    "messages_synced_5min": "Messages Synchronisés/5min",
+    "platform_errors_5min": "Erreurs de Plateforme/5min",
+    "last_updated": "Dernière mise à jour : {{time}} (Mise à jour toutes les 5 secondes)",
+    "from_last_month": "du mois dernier"
   },
   "footer": {
     "tagline": "Connectez et gérez facilement toutes vos intégrations business dans une plateforme unifiée.",
