@@ -108,21 +108,29 @@ const Index = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
               {features.map((feature, index) => (
-                <Card key={index} className="border-border/50 hover:shadow-brand-lg transition-all duration-300 hover:border-primary/20">
+                <Card 
+                  key={index} 
+                  className="group border-border/50 hover:shadow-brand-xl transition-all duration-500 hover:border-primary/20 transform hover:-translate-y-3 animate-fade-in"
+                  style={{ animationDelay: `${index * 200}ms` }}
+                >
                   <CardHeader>
-                    <div className="w-12 h-12 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center">
-                      <feature.icon className="h-6 w-6 text-white" />
+                    <div className="w-12 h-12 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center group-hover:scale-110 group-hover:shadow-brand-lg transition-all duration-300">
+                      <feature.icon className="h-6 w-6 text-white group-hover:animate-pulse" />
                     </div>
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
-                    <p className="text-muted-foreground">
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">{feature.title}</CardTitle>
+                    <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                       {feature.description}
                     </p>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       {feature.benefits.map((benefit, i) => (
-                        <li key={i} className="flex items-center text-sm text-muted-foreground">
-                          <CheckCircle2 className="h-4 w-4 text-success mr-2 flex-shrink-0" />
+                        <li 
+                          key={i} 
+                          className="flex items-center text-sm text-muted-foreground group-hover:text-foreground transition-all duration-300 animate-fade-in"
+                          style={{ animationDelay: `${(index * 200) + (i * 100)}ms` }}
+                        >
+                          <CheckCircle2 className="h-4 w-4 text-success mr-2 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                           {benefit}
                         </li>
                       ))}
@@ -148,13 +156,17 @@ const Index = () => {
 
             <div className="grid md:grid-cols-2 gap-8">
               {useCases.map((useCase, index) => (
-                <Card key={index} className={`border-2 ${useCase.color} hover:shadow-brand-md transition-all duration-300`}>
+                <Card 
+                  key={index} 
+                  className={`group border-2 ${useCase.color} hover:shadow-brand-lg transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 animate-fade-in`}
+                  style={{ animationDelay: `${index * 150}ms` }}
+                >
                   <CardHeader>
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl">{useCase.icon}</span>
-                      <CardTitle className="text-xl">{useCase.title}</CardTitle>
+                      <span className="text-2xl group-hover:scale-110 transition-transform duration-300 animate-float" style={{ animationDelay: `${index * 500}ms` }}>{useCase.icon}</span>
+                      <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">{useCase.title}</CardTitle>
                     </div>
-                    <p className="text-muted-foreground mt-2">
+                    <p className="text-muted-foreground mt-2 group-hover:text-foreground transition-colors duration-300">
                       {useCase.description}
                     </p>
                   </CardHeader>
@@ -177,35 +189,25 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center text-white font-bold text-xl">
-                  1
+              {[
+                { number: 1, title: t('home.connect_platforms'), desc: t('home.connect_platforms_desc') },
+                { number: 2, title: t('home.configure_sync'), desc: t('home.configure_sync_desc') },
+                { number: 3, title: t('home.start_syncing'), desc: t('home.start_syncing_desc') }
+              ].map((step, index) => (
+                <div 
+                  key={step.number} 
+                  className="text-center animate-fade-in"
+                  style={{ animationDelay: `${index * 200}ms` }}
+                >
+                  <div className="w-16 h-16 bg-gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center text-white font-bold text-xl shadow-brand-lg hover:shadow-brand-xl hover:scale-110 transition-all duration-300 animate-pulse-glow">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-4">{step.title}</h3>
+                  <p className="text-muted-foreground">
+                    {step.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.connect_platforms')}</h3>
-                <p className="text-muted-foreground">
-                  {t('home.connect_platforms_desc')}
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center text-white font-bold text-xl">
-                  2
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.configure_sync')}</h3>
-                <p className="text-muted-foreground">
-                  {t('home.configure_sync_desc')}
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center text-white font-bold text-xl">
-                  3
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.start_syncing')}</h3>
-                <p className="text-muted-foreground">
-                  {t('home.start_syncing_desc')}
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -219,15 +221,20 @@ const Index = () => {
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               {t('home.cta_subtitle')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary-hover">
-                <Link to="/signup">
-                  {t('home.start_free_trial')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '400ms' }}>
+              <Button asChild size="lg" className="group relative overflow-hidden bg-gradient-primary hover:bg-gradient-primary-hover shadow-brand-xl hover:shadow-brand-2xl transform hover:scale-105 transition-all duration-300">
+                <Link to="/signup" aria-label="Start your free trial with SyncRivo">
+                  <span className="relative z-10 flex items-center">
+                    {t('home.start_free_trial')}
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/dashboard">{t('home.view_demo')}</Link>
+              <Button variant="outline" size="lg" asChild className="group hover:shadow-brand-lg hover:border-primary/60 transition-all duration-300">
+                <Link to="/dashboard">
+                  <span className="group-hover:text-primary transition-colors duration-300">{t('home.view_demo')}</span>
+                </Link>
               </Button>
             </div>
           </div>
