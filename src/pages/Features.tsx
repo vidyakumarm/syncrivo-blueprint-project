@@ -122,24 +122,23 @@ export default function Features() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium bg-primary-light text-primary border-primary/20">
               <MessageSquare className="w-4 h-4 mr-2" />
-              Messaging Platform Features
+              {t('features.hero_badge')}
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Everything you need to
+              {t('features.hero_title')}
               <span className="block bg-gradient-hero bg-clip-text text-transparent">
-                connect messaging platforms
+                {t('features.hero_title_highlight')}
               </span>
             </h1>
             
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-              From simple message syncing to complex cross-platform workflows, SyncRio provides all the tools 
-              you need to integrate Teams, Webex, Google Chat, Zoom, Slack and other messaging platforms.
+              {t('features.hero_subtitle')}
             </p>
             
             <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary-hover">
               <Link to="/signup">
-                Start Connecting Platforms
+                {t('features.hero_cta')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -151,10 +150,10 @@ export default function Features() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                Built for messaging platform integration
+                {t('features.section_title')}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Every feature is designed to make messaging platform integration simple, secure, and scalable.
+                {t('features.section_subtitle')}
               </p>
             </div>
 
@@ -191,10 +190,10 @@ export default function Features() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                Perfect for every communication scenario
+                {t('features.use_cases_title')}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Whether you're managing enterprise communication or remote teams, SyncRio adapts to your messaging integration needs.
+                {t('features.use_cases_subtitle')}
               </p>
             </div>
 
@@ -223,25 +222,24 @@ export default function Features() {
               <div>
                 <Badge variant="secondary" className="mb-4 px-3 py-1 text-sm font-medium bg-accent-light text-accent border-accent/20">
                   <Monitor className="w-4 h-4 mr-2" />
-                  Real-Time Monitoring
+                  {t('features.monitoring_badge')}
                 </Badge>
                 
                 <h2 className="text-3xl font-bold text-foreground mb-6">
-                  Stay in control of your messaging platforms
+                  {t('features.monitoring_title')}
                 </h2>
                 
                 <p className="text-lg text-muted-foreground mb-8">
-                  Get complete visibility into your messaging platform integrations with real-time monitoring, 
-                  detailed analytics, and proactive alerting for all connected platforms.
+                  {t('features.monitoring_subtitle')}
                 </p>
                 
                 <div className="space-y-4">
                   {[
-                    'Real-time message sync metrics',
-                    'Platform connectivity monitoring',
-                    'Message delivery analytics',
-                    'Cross-platform usage insights',
-                    'Integration health scoring'
+                    t('features.monitoring_features.sync_metrics'),
+                    t('features.monitoring_features.connectivity'),
+                    t('features.monitoring_features.delivery_analytics'),
+                    t('features.monitoring_features.usage_insights'),
+                    t('features.monitoring_features.health_scoring')
                   ].map((item, index) => (
                     <div key={index} className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-success mr-3" />
@@ -254,8 +252,8 @@ export default function Features() {
               <div className="bg-gradient-card p-8 rounded-2xl border border-border shadow-brand-lg">
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-muted-foreground">Integration Health</span>
-                    <Badge variant="secondary" className="bg-success-light text-success">Healthy</Badge>
+                    <span className="text-sm font-medium text-muted-foreground">{t('features.health_panel.title')}</span>
+                    <Badge variant="secondary" className="bg-success-light text-success">{t('features.health_panel.status_healthy')}</Badge>
                   </div>
                   
                   <div className="space-y-4">
@@ -263,7 +261,7 @@ export default function Features() {
                       <span className="text-sm text-foreground">Microsoft Teams</span>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-success rounded-full"></div>
-                        <span className="text-xs text-muted-foreground">99.9% uptime</span>
+                        <span className="text-xs text-muted-foreground">{t('features.health_panel.teams_uptime')}</span>
                       </div>
                     </div>
                     
@@ -271,7 +269,7 @@ export default function Features() {
                       <span className="text-sm text-foreground">Google Chat Sync</span>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-success rounded-full"></div>
-                        <span className="text-xs text-muted-foreground">2.3k messages/hour</span>
+                        <span className="text-xs text-muted-foreground">{t('features.health_panel.chat_messages')}</span>
                       </div>
                     </div>
                     
@@ -279,7 +277,7 @@ export default function Features() {
                       <span className="text-sm text-foreground">Slack Integration</span>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                        <span className="text-xs text-muted-foreground">Syncing</span>
+                        <span className="text-xs text-muted-foreground">{t('features.health_panel.slack_syncing')}</span>
                       </div>
                     </div>
                   </div>
@@ -293,17 +291,17 @@ export default function Features() {
         <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-foreground mb-6">
-              Ready to connect your messaging platforms?
+              {t('features.cta_title')}
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join thousands of teams that trust SyncRio to seamlessly integrate their business communication tools.
+              {t('features.cta_subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary-hover">
-                <Link to="/signup">Start Free Trial</Link>
+                <Link to="/signup">{t('features.start_trial')}</Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to="/dashboard">View Live Demo</Link>
+                <Link to="/dashboard">{t('features.view_demo')}</Link>
               </Button>
             </div>
           </div>

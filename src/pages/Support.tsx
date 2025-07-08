@@ -27,27 +27,27 @@ export default function Support() {
       title: t('support.live_chat'),
       description: t('support.live_chat_desc'),
       icon: <MessageCircle className="h-6 w-6" />,
-      availability: '24/7',
-      responseTime: '< 2 minutes',
-      badge: 'Fastest',
+      availability: t('support.availability_24_7'),
+      responseTime: t('support.response_2min'),
+      badge: t('support.badge_fastest'),
       action: t('support.start_chat')
     },
     {
       title: t('support.email_support'),
       description: t('support.email_support_desc'),
       icon: <Mail className="h-6 w-6" />,
-      availability: 'Mon-Fri 9AM-6PM EST',
-      responseTime: '< 24 hours',
-      badge: 'Most Popular',
+      availability: t('support.availability_business'),
+      responseTime: t('support.response_24hr'),
+      badge: t('support.badge_popular'),
       action: t('support.send_email')
     },
     {
       title: t('support.phone_support'),
       description: t('support.phone_support_desc'),
       icon: <Phone className="h-6 w-6" />,
-      availability: 'Business hours only',
-      responseTime: 'Immediate',
-      badge: 'Enterprise',
+      availability: t('support.availability_hours_only'),
+      responseTime: t('support.response_immediate'),
+      badge: t('support.badge_enterprise'),
       action: t('support.schedule_call')
     }
   ];
@@ -55,35 +55,35 @@ export default function Support() {
   const resources = [
     {
       title: t('common.documentation'),
-      description: 'Comprehensive guides and API reference',
+      description: t('support.resources.documentation_desc'),
       icon: <BookOpen className="h-5 w-5" />,
       link: '/docs'
     },
     {
-      title: 'Community Forum',
-      description: 'Connect with other SyncRivo users',
+      title: t('support.resources.community_title'),
+      description: t('support.resources.community_desc'),
       icon: <Users className="h-5 w-5" />,
       link: '#community'
     },
     {
-      title: 'Status Page',
-      description: 'Check system status and uptime',
+      title: t('support.resources.status_title'),
+      description: t('support.resources.status_desc'),
       icon: <Zap className="h-5 w-5" />,
       link: '#status'
     },
     {
-      title: 'Video Tutorials',
-      description: 'Step-by-step video guides',
+      title: t('support.resources.tutorials_title'),
+      description: t('support.resources.tutorials_desc'),
       icon: <ExternalLink className="h-5 w-5" />,
       link: '#tutorials'
     }
   ];
 
   const stats = [
-    { label: 'Average Response Time', value: '< 1 hour', icon: <Clock className="h-4 w-4" /> },
-    { label: 'Customer Satisfaction', value: '98%', icon: <Heart className="h-4 w-4" /> },
-    { label: 'Issues Resolved', value: '99.2%', icon: <CheckCircle2 className="h-4 w-4" /> },
-    { label: 'Support Articles', value: '200+', icon: <BookOpen className="h-4 w-4" /> },
+    { label: t('support.stats.avg_response'), value: '< 1 hour', icon: <Clock className="h-4 w-4" /> },
+    { label: t('support.stats.satisfaction'), value: '98%', icon: <Heart className="h-4 w-4" /> },
+    { label: t('support.stats.issues_resolved'), value: '99.2%', icon: <CheckCircle2 className="h-4 w-4" /> },
+    { label: t('support.stats.articles'), value: '200+', icon: <BookOpen className="h-4 w-4" /> },
   ];
 
   return (
@@ -117,9 +117,9 @@ export default function Support() {
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">Choose Your Support Channel</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-4">{t('support.support_channel_title')}</h2>
               <p className="text-muted-foreground">
-                Multiple ways to get help, pick what works best for you
+                {t('support.support_channel_subtitle')}
               </p>
             </div>
 
@@ -143,7 +143,7 @@ export default function Support() {
                         <span className="text-muted-foreground">{channel.availability}</span>
                       </div>
                       <div className="font-medium text-foreground">
-                        Response time: {channel.responseTime}
+                        {t('support.response_time_label')}: {channel.responseTime}
                       </div>
                     </div>
                     <Button 

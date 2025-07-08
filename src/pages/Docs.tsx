@@ -46,21 +46,21 @@ console.log('Integration created:', integration.id);`;
       title: t('docs.slack_webhook'),
       description: t('docs.slack_webhook_desc'),
       language: 'JavaScript',
-      badge: 'Popular',
+      badge: t('docs.badge_popular'),
       icon: <Zap className="h-5 w-5" />
     },
     {
       title: t('docs.google_drive'),
       description: t('docs.google_drive_desc'),
       language: 'Python',
-      badge: 'New',
+      badge: t('docs.badge_new'),
       icon: <Code className="h-5 w-5" />
     },
     {
       title: t('docs.notion_database'),
       description: t('docs.notion_database_desc'),
       language: 'TypeScript',
-      badge: 'Beta',
+      badge: t('docs.badge_beta'),
       icon: <Book className="h-5 w-5" />
     }
   ];
