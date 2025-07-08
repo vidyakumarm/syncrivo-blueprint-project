@@ -70,9 +70,9 @@ export function HeroSection() {
           {/* Enhanced Headline */}
           <div className="space-y-6 mb-10">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight">
-              <span className="block text-foreground mb-3 animate-slide-in-left">Connect Your</span>
+              <span className="block text-foreground mb-3 animate-slide-in-left">{t('hero.title')}</span>
               <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent animate-slide-in-right">
-                Messaging Platforms
+                {t('hero.title_highlight')}
               </span>
             </h1>
           </div>
