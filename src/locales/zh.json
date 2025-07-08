@@ -159,8 +159,6 @@
   "pricing": {
     "title": "定价",
     "subtitle": "为您的业务需求选择完美的计划。",
-    "coming_soon": "即将推出",
-    "coming_soon_desc": "我们正在制定价格计划。请稍后查看详情。",
     "most_popular": "最受欢迎",
     "starter": "入门版",
     "professional": "专业版",  
@@ -170,7 +168,19 @@
     "per_month": "/月",
     "starter_desc": "适合刚起步的小团队",
     "professional_desc": "适用于成长中的企业",
-    "enterprise_desc": "适用于大型组织"
+    "enterprise_desc": "适用于大型组织",
+    "integrations_5": "5个集成",
+    "integrations_50": "50个集成",
+    "integrations_unlimited": "无限集成",
+    "operations_1k": "1,000次操作/月",
+    "operations_100k": "100,000次操作/月",
+    "operations_unlimited": "无限操作",
+    "support_basic": "基础支持",
+    "support_priority": "优先支持",
+    "support_dedicated": "专属支持",
+    "community_access": "社区访问",
+    "advanced_analytics": "高级分析",
+    "custom_workflows": "自定义工作流"
   },
   "about": {
     "title": "关于我们",

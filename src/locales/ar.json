@@ -159,8 +159,6 @@
   "pricing": {
     "title": "التسعير",
     "subtitle": "اختر الخطة المثالية لاحتياجات عملك.",
-    "coming_soon": "قريباً",
-    "coming_soon_desc": "نحن نعمل على خطط التسعير الخاصة بنا. تحقق مرة أخرى قريباً للحصول على التفاصيل.",
     "most_popular": "الأكثر شعبية",
     "starter": "المبتدئ",
     "professional": "المحترف",  
@@ -170,7 +168,19 @@
     "per_month": "/شهر",
     "starter_desc": "مثالي للفرق الصغيرة التي تبدأ",
     "professional_desc": "للشركات النامية",
-    "enterprise_desc": "للمؤسسات الكبيرة"
+    "enterprise_desc": "للمؤسسات الكبيرة",
+    "integrations_5": "5 تكاملات",
+    "integrations_50": "50 تكامل",
+    "integrations_unlimited": "تكاملات غير محدودة",
+    "operations_1k": "1,000 عملية/شهر",
+    "operations_100k": "100,000 عملية/شهر",
+    "operations_unlimited": "عمليات غير محدودة",
+    "support_basic": "دعم أساسي",
+    "support_priority": "دعم أولوية",
+    "support_dedicated": "دعم مخصص",
+    "community_access": "الوصول للمجتمع",
+    "advanced_analytics": "تحليلات متقدمة",
+    "custom_workflows": "مسارات عمل مخصصة"
   },
   "about": {
     "title": "من نحن",

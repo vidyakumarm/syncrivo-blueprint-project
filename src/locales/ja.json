@@ -159,8 +159,6 @@
   "pricing": {
     "title": "価格",
     "subtitle": "あなたのビジネスニーズに最適なプランをお選びください。",
-    "coming_soon": "近日公開",
-    "coming_soon_desc": "価格プランを作成中です。詳細については近日中にご確認ください。",
     "most_popular": "最も人気",
     "starter": "スターター",
     "professional": "プロフェッショナル",  
@@ -170,7 +168,19 @@
     "per_month": "/月",
     "starter_desc": "始めたばかりの小さなチームに最適",
     "professional_desc": "成長中の企業向け",
-    "enterprise_desc": "大規模な組織向け"
+    "enterprise_desc": "大規模な組織向け",
+    "integrations_5": "5つの統合",
+    "integrations_50": "50の統合",
+    "integrations_unlimited": "無制限の統合",
+    "operations_1k": "1,000操作/月",
+    "operations_100k": "100,000操作/月",
+    "operations_unlimited": "無制限の操作",
+    "support_basic": "基本サポート",
+    "support_priority": "優先サポート",
+    "support_dedicated": "専用サポート",
+    "community_access": "コミュニティアクセス",
+    "advanced_analytics": "高度な分析",
+    "custom_workflows": "カスタムワークフロー"
   },
   "about": {
     "title": "私たちについて",

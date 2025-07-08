@@ -159,8 +159,6 @@
   "pricing": {
     "title": "Preços",
     "subtitle": "Escolha o plano perfeito para as necessidades do seu negócio.",
-    "coming_soon": "Em Breve",
-    "coming_soon_desc": "Estamos trabalhando em nossos planos de preços. Volte em breve para detalhes.",
     "most_popular": "Mais Popular",
     "starter": "Iniciante",
     "professional": "Profissional",  
@@ -170,7 +168,19 @@
     "per_month": "/mês",
     "starter_desc": "Perfeito para pequenas equipes começando",
     "professional_desc": "Para empresas em crescimento",
-    "enterprise_desc": "Para grandes organizações"
+    "enterprise_desc": "Para grandes organizações",
+    "integrations_5": "5 integrações",
+    "integrations_50": "50 integrações",
+    "integrations_unlimited": "Integrações ilimitadas",
+    "operations_1k": "1.000 operações/mês",
+    "operations_100k": "100.000 operações/mês",
+    "operations_unlimited": "Operações ilimitadas",
+    "support_basic": "Suporte básico",
+    "support_priority": "Suporte prioritário",
+    "support_dedicated": "Suporte dedicado",
+    "community_access": "Acesso à comunidade",
+    "advanced_analytics": "Análises avançadas",
+    "custom_workflows": "Fluxos de trabalho personalizados"
   },
   "about": {
     "title": "Sobre Nós",
