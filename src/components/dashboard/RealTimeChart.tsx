@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useActivityLogs } from '@/hooks/useDashboardData';
 import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface ChartData {
   time: string;
@@ -13,6 +14,7 @@ export function RealTimeChart() {
   const { t } = useTranslationWithFallback();
   const { activities } = useActivityLogs();
   const [data, setData] = useState<ChartData[]>([]);
+  const [currentTime, setCurrentTime] = useState('');
 
   // Process activities into chart data
   const processActivitiesForChart = () => {
@@ -45,6 +47,22 @@ export function RealTimeChart() {
     return intervals;
   };
 
+  // Update current time
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(now.toLocaleTimeString('en-US', { 
+        hour12: false, 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      }));
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Process activities into chart data and update every 5 seconds
   useEffect(() => {
     const updateData = () => {
@@ -62,25 +80,62 @@ export function RealTimeChart() {
   }, [activities]); // Re-run when activities change
 
   return (
-    <Card className="col-span-2">
+    <Card className="lg:col-span-2">
       <CardHeader>
-        <CardTitle className="text-foreground">{t('dashboard.realtime_chart_title')}</CardTitle>
+        <CardTitle className="text-base sm:text-lg text-foreground">{t('dashboard.realtime_chart_title')}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="text-center p-4 bg-success-light rounded-lg">
-              <div className="text-2xl font-bold text-success">{data[data.length - 1]?.syncs || 0}</div>
-              <div className="text-sm text-muted-foreground">{t('dashboard.messages_synced_5min')}</div>
-            </div>
-            <div className="text-center p-4 bg-destructive/10 rounded-lg">
-              <div className="text-2xl font-bold text-destructive">{data[data.length - 1]?.errors || 0}</div>
-              <div className="text-sm text-muted-foreground">{t('dashboard.platform_errors_5min')}</div>
-            </div>
-          </div>
-          <div className="text-sm text-muted-foreground text-center">
-            {t('dashboard.last_updated').replace('{{time}}', data[data.length - 1]?.time || '--:--')}
-          </div>
+        {/* Chart Container with responsive height */}
+        <div className="h-64 sm:h-80 w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <XAxis 
+                dataKey="time" 
+                stroke="hsl(var(--muted-foreground))"
+                fontSize={12}
+                tickMargin={8}
+                tick={{ fontSize: 11 }}
+              />
+              <YAxis 
+                stroke="hsl(var(--muted-foreground))"
+                fontSize={12}
+                tickMargin={8}
+                tick={{ fontSize: 11 }}
+                width={40}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: 'hsl(var(--background))',
+                  border: '1px solid hsl(var(--border))',
+                  borderRadius: '8px',
+                  fontSize: '12px'
+                }}
+                labelStyle={{ color: 'hsl(var(--foreground))' }}
+              />
+              <Line
+                type="monotone"
+                dataKey="syncs"
+                stroke="hsl(var(--primary))"
+                strokeWidth={2}
+                dot={{ fill: 'hsl(var(--primary))', strokeWidth: 0, r: 3 }}
+                name={t('dashboard.messages_synced_5min')}
+              />
+              <Line
+                type="monotone"
+                dataKey="errors"
+                stroke="hsl(var(--destructive))"
+                strokeWidth={2}
+                dot={{ fill: 'hsl(var(--destructive))', strokeWidth: 0, r: 3 }}
+                name={t('dashboard.platform_errors_5min')}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        
+        {/* Status */}
+        <div className="mt-4 text-xs text-muted-foreground text-center">
+          {t('dashboard.last_updated').replace('{{time}}', currentTime)}
         </div>
       </CardContent>
     </Card>

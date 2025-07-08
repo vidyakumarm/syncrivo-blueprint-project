@@ -79,79 +79,79 @@ export default function Dashboard() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">{t('dashboard.title')}</h1>
-          <p className="text-muted-foreground">{t('dashboard.subtitle')}</p>
+        <div className="text-center sm:text-left">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">{t('dashboard.title')}</h1>
+          <p className="text-sm sm:text-base text-muted-foreground mt-1">{t('dashboard.subtitle')}</p>
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <MetricCard
             title={t('dashboard.metrics.messages_synced')}
             value={formatNumber(totalRecordsProcessed)}
             change={`+${formatNumber(Math.floor(totalRecordsProcessed * 0.15))}`}
             isPositive={true}
-            icon={<Activity className="h-5 w-5" />}
+            icon={<Activity className="h-4 w-4 sm:h-5 sm:w-5" />}
           />
           <MetricCard
             title={t('dashboard.metrics.active_platforms')}
             value={activeConnections.toString()}
             change={`+${Math.floor(activeConnections * 0.2)}`}
             isPositive={true}
-            icon={<Zap className="h-5 w-5" />}
+            icon={<Zap className="h-4 w-4 sm:h-5 sm:w-5" />}
           />
           <MetricCard
             title={t('dashboard.metrics.successful_syncs')}
             value={formatNumber(successfulSyncs)}
             change={`+${Math.floor(successfulSyncs * 0.1)}`}
             isPositive={true}
-            icon={<CheckCircle2 className="h-5 w-5" />}
+            icon={<CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5" />}
           />
           <MetricCard
             title={t('dashboard.metrics.connected_platforms')}
             value={totalConnections.toString()}
             change={`+${Math.floor(totalConnections * 0.05)}`}
             isPositive={true}
-            icon={<Clock className="h-5 w-5" />}
+            icon={<Clock className="h-4 w-4 sm:h-5 sm:w-5" />}
           />
         </div>
 
         {/* Charts and Activity */}
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-3">
           <RealTimeChart />
           
           {/* Recent Activity */}
-          <Card>
+          <Card className="lg:col-span-1">
             <CardHeader>
-              <CardTitle className="text-foreground">{t('dashboard.recent_activity')}</CardTitle>
+              <CardTitle className="text-base sm:text-lg text-foreground">{t('dashboard.recent_activity')}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 sm:space-y-4">
               {recentActivities.length > 0 ? recentActivities.map((activity) => (
-                <div key={activity.id} className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
+                <div key={activity.id} className="flex items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-start sm:items-center space-x-3 min-w-0 flex-1">
                     {activity.status === 'success' ? (
-                      <CheckCircle2 className="h-4 w-4 text-success" />
+                      <CheckCircle2 className="h-4 w-4 text-success flex-shrink-0 mt-0.5 sm:mt-0" />
                     ) : (
-                      <AlertCircle className="h-4 w-4 text-destructive" />
+                      <AlertCircle className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5 sm:mt-0" />
                     )}
-                    <div>
-                      <p className="text-sm font-medium text-foreground">{activity.action}</p>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-foreground truncate">{activity.action}</p>
                       <p className="text-xs text-muted-foreground">{activity.time}</p>
                     </div>
                   </div>
                   <Badge 
                     variant={activity.status === 'success' ? 'default' : 'destructive'}
-                    className="capitalize"
+                    className="capitalize text-xs flex-shrink-0"
                   >
                     {activity.status}
                   </Badge>
                 </div>
               )) : (
-                <div className="text-center text-muted-foreground py-4">
-                  <p>{t('dashboard.no_activity')}</p>
-                  <p className="text-sm">{t('dashboard.start_connecting')}</p>
+                <div className="text-center text-muted-foreground py-6 sm:py-4">
+                  <p className="text-sm">{t('dashboard.no_activity')}</p>
+                  <p className="text-xs mt-1">{t('dashboard.start_connecting')}</p>
                 </div>
               )}
             </CardContent>

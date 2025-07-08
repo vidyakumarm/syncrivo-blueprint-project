@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { User, LogOut } from 'lucide-react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
+import { LanguageSelector } from '@/components/ui/language-selector';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 interface NavItem {
   label: string;
@@ -94,6 +96,11 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
               </Link>
             </>
           )}
+        </div>
+        {/* Mobile Theme & Language Controls */}
+        <div className="flex items-center justify-center space-x-4 py-4 border-t border-border/20 sm:hidden">
+          <LanguageSelector />
+          <ThemeToggle />
         </div>
       </div>
     </div>

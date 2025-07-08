@@ -177,6 +177,32 @@ All colors MUST be HSL.
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    /* Enhanced mobile typography */
+    font-size: 16px; /* Prevents iOS zoom on input focus */
+    line-height: 1.5;
+  }
+
+  /* Mobile-first responsive typography */
+  @media (max-width: 640px) {
+    body {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    
+    h1 { font-size: 1.75rem; /* 28px */ }
+    h2 { font-size: 1.5rem; /* 24px */ }
+    h3 { font-size: 1.25rem; /* 20px */ }
+    h4 { font-size: 1.125rem; /* 18px */ }
+    
+    /* Ensure minimum touch targets */
+    button, 
+    a[role="button"], 
+    input[type="button"], 
+    input[type="submit"], 
+    .btn {
+      min-height: 44px;
+      min-width: 44px;
+    }
   }
 
   /* Motion preferences */
