@@ -181,8 +181,45 @@
   "integrations": {
     "title": "統合",
     "subtitle": "数百の人気ビジネスツールとサービスに接続。",
-    "coming_soon": "近日公開",
-    "coming_soon_desc": "素晴らしい統合を構築中です。統合マーケットプレイスを近日中にご確認ください。"
+    "hero_badge": "シームレスな統合",
+    "hero_title": "ビジネスツールを接続",
+    "hero_title_highlight": "シームレスに",
+    "hero_subtitle": "数百の人気ビジネスアプリケーションとサービスと統合。CRMからマーケティングツールまで、SyncRivoがすべてを接続します。",
+    "search_placeholder": "統合を検索...",
+    "category_placeholder": "すべてのカテゴリ",
+    "popular_title": "人気の統合",
+    "popular_subtitle": "コミュニティで最も使用されている統合",
+    "featured_badge": "注目",
+    "users_suffix": "ユーザー",
+    "all_integrations": "すべての統合",
+    "no_results": "条件に一致する統合が見つかりません。",
+    "clear_filters": "フィルターをクリア",
+    "popular_badge": "人気",
+    "cta_title": "お探しの統合が見つかりませんか？",
+    "cta_subtitle": "新しい統合を常に追加しています。リクエストするか、強力なAPIで独自に構築してください。",
+    "view_api_docs": "APIドキュメントを表示",
+    "request_integration": "統合をリクエスト",
+    "categories": {
+      "all": "すべてのカテゴリ",
+      "crm": "CRM",
+      "marketing": "マーケティング",
+      "ecommerce": "Eコマース",
+      "support": "サポート",
+      "finance": "金融",
+      "productivity": "生産性",
+      "communication": "コミュニケーション"
+    },
+    "descriptions": {
+      "slack": "Slackワークスペースを接続して、シームレスなチームコミュニケーションとリアルタイム通知を実現。",
+      "salesforce": "世界をリードするCRMプラットフォームで顧客データを同期し、ワークフローを自動化。",
+      "shopify": "Eコマースストアを統合して、注文、在庫、顧客データを自動的に同期。",
+      "hubspot": "HubSpotの包括的プラットフォームでマーケティングと営業ワークフローを接続。",
+      "stripe": "Stripeの強力な決済プラットフォームで支払いを処理し、取引データを同期。",
+      "mailchimp": "Mailchimpでメールマーケティングキャンペーンを自動化し、顧客データを同期。",
+      "zendesk": "ヘルプデスクとチケットシステムを接続して顧客サポートを合理化。",
+      "notion": "Notionワークスペースとデータを同期して、生産性とコラボレーションを向上。",
+      "google_workspace": "Google Workspaceを接続して、ドキュメントと協調ワークフローの統合をシームレスに。"
+    }
   },
   "docs": {
     "title": "ドキュメント",
