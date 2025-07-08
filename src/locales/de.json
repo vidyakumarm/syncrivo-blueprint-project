@@ -425,7 +425,15 @@
     "cta_title": "Bereit, Ihre Messaging-Plattformen zu vereinheitlichen?",
     "cta_subtitle": "Schließen Sie sich Tausenden von Teams an, die SyncRio vertrauen, um ihre Business-Kommunikationstools nahtlos zu verbinden.",
     "start_free_trial": "Kostenlose Testversion starten",
-    "view_demo": "Live-Demo ansehen"
+    "view_demo": "Live-Demo ansehen",
+    "platform_names": {
+      "microsoft_teams": "Microsoft Teams",
+      "slack": "Slack",
+      "zoom": "Zoom",
+      "google_chat": "Google Chat",
+      "cisco_webex": "Cisco Webex",
+      "discord": "Discord"
+    }
   },
   "footer": {
     "tagline": "Verbinden und verwalten Sie nahtlos alle Ihre Business-Messaging-Integrationen in einer einheitlichen Plattform.",

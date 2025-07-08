@@ -283,7 +283,15 @@
     "cta_title": "Ready to unify your messaging platforms?",
     "cta_subtitle": "Join thousands of teams that trust SyncRio to seamlessly connect their business communication tools.",
     "start_free_trial": "Start Free Trial",
-    "view_demo": "View Live Demo"
+    "view_demo": "View Live Demo",
+    "platform_names": {
+      "microsoft_teams": "Microsoft Teams",
+      "slack": "Slack", 
+      "zoom": "Zoom",
+      "google_chat": "Google Chat",
+      "cisco_webex": "Cisco Webex",
+      "discord": "Discord"
+    }
   },
   "features": {
     "hero_badge": "Messaging Platform Features",

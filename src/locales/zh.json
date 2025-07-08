@@ -294,6 +294,18 @@
     "smart_workflows_desc": "自动化消息路由、通知和跨平台对话。",
     "analytics_insights": "分析和洞察",
     "analytics_insights_desc": "跟踪消息量、平台使用情况和通信模式。",
+    "real_time_sync": "实时消息同步",
+    "channel_mapping": "频道映射",
+    "file_support": "文件附件支持",
+    "unified_directory": "统一用户目录",
+    "role_access": "基于角色的访问",
+    "team_analytics": "团队分析",
+    "custom_routing": "自定义消息路由",
+    "automated_responses": "自动回复",
+    "workflow_triggers": "工作流触发器",
+    "message_analytics": "消息分析",
+    "platform_metrics": "平台指标",
+    "usage_reports": "使用报告",
     "use_cases_title": "完美适用于每个商业通信需求",
     "use_cases_subtitle": "无论您是管理企业通信还是远程团队协作，SyncRio都能适应您的特定消息集成需求。",
     "enterprise_communication": "企业通信",
@@ -315,6 +327,14 @@
     "cta_title": "准备统一您的消息平台了吗？",
     "cta_subtitle": "加入数千个信赖SyncRio无缝连接其商业通信工具的团队。",
     "start_free_trial": "开始免费试用",
-    "view_demo": "查看实时演示"
+    "view_demo": "查看实时演示",
+    "platform_names": {
+      "microsoft_teams": "微软Teams",
+      "slack": "Slack",
+      "zoom": "Zoom",
+      "google_chat": "谷歌聊天",
+      "cisco_webex": "思科Webex",
+      "discord": "Discord"
+    }
   }
 }

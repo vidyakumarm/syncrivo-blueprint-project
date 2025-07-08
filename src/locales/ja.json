@@ -327,6 +327,14 @@
     "cta_title": "メッセージングプラットフォームを統一する準備はできましたか？",
     "cta_subtitle": "SyncRioを信頼してビジネスコミュニケーションツールをシームレスに接続する数千のチームに参加。",
     "start_free_trial": "無料トライアル開始",
-    "view_demo": "ライブデモを見る"
+    "view_demo": "ライブデモを見る",
+    "platform_names": {
+      "microsoft_teams": "Microsoft Teams",
+      "slack": "Slack",
+      "zoom": "Zoom",
+      "google_chat": "Google Chat",
+      "cisco_webex": "Cisco Webex", 
+      "discord": "Discord"
+    }
   }
 }

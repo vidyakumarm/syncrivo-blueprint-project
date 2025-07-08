@@ -24,12 +24,12 @@ import zoomIcon from '@/assets/zoom-icon.png';
 import googleChatIcon from '@/assets/google-chat-icon.png';
 import webexIcon from '@/assets/webex-icon.png';
 import discordIcon from '@/assets/discord-icon.png';
-import { useTranslation } from 'react-i18next';
+import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 import heroBg from '@/assets/hero-bg.jpg';
 import i18next from 'i18next';
 
 export function HeroSection() {
-  const { t } = useTranslation();
+  const { t } = useTranslationWithFallback();
 
   console.log('🎭 [HeroSection] Component rendered', {
     timestamp: new Date().toISOString(),
@@ -117,11 +117,11 @@ export function HeroSection() {
             </p>
             <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 opacity-70 hover:opacity-90 transition-opacity duration-300">
               {[
-                { icon: Users, color: 'text-blue-500', name: 'MICROSOFT TEAMS' },
-                { icon: Video, color: 'text-green-500', name: 'WEBEX' },
-                { icon: MessageSquare, color: 'text-red-500', name: 'GOOGLE CHAT' },
-                { icon: Video, color: 'text-blue-400', name: 'ZOOM' },
-                { icon: MessageCircle, color: 'text-purple-500', name: 'SLACK' }
+                { icon: Users, color: 'text-blue-500', name: t('home.platform_names.microsoft_teams') },
+                { icon: Video, color: 'text-green-500', name: t('home.platform_names.cisco_webex') },
+                { icon: MessageSquare, color: 'text-red-500', name: t('home.platform_names.google_chat') },
+                { icon: Video, color: 'text-blue-400', name: t('home.platform_names.zoom') },
+                { icon: MessageCircle, color: 'text-purple-500', name: t('home.platform_names.slack') }
               ].map((platform, index) => (
                 <div 
                   key={platform.name}
@@ -166,12 +166,12 @@ export function HeroSection() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[
-              { name: 'Microsoft Teams', icon: teamsIcon, alt: 'Microsoft Teams logo', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700' },
-              { name: 'Slack', icon: slackIcon, alt: 'Slack logo', color: 'bg-purple-50 hover:bg-purple-100 border-purple-200 hover:border-purple-300 dark:bg-purple-950/50 dark:hover:bg-purple-900/50 dark:border-purple-800 dark:hover:border-purple-700' },
-              { name: 'Zoom', icon: zoomIcon, alt: 'Zoom logo', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700' },
-              { name: 'Google Chat', icon: googleChatIcon, alt: 'Google Chat logo', color: 'bg-red-50 hover:bg-red-100 border-red-200 hover:border-red-300 dark:bg-red-950/50 dark:hover:bg-red-900/50 dark:border-red-800 dark:hover:border-red-700' },
-              { name: 'Cisco Webex', icon: webexIcon, alt: 'Cisco Webex logo', color: 'bg-green-50 hover:bg-green-100 border-green-200 hover:border-green-300 dark:bg-green-950/50 dark:hover:bg-green-900/50 dark:border-green-800 dark:hover:border-green-700' },
-              { name: 'Discord', icon: discordIcon, alt: 'Discord logo', color: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200 hover:border-indigo-300 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/50 dark:border-indigo-800 dark:hover:border-indigo-700' }
+              { name: t('home.platform_names.microsoft_teams'), icon: teamsIcon, alt: 'Microsoft Teams logo', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700' },
+              { name: t('home.platform_names.slack'), icon: slackIcon, alt: 'Slack logo', color: 'bg-purple-50 hover:bg-purple-100 border-purple-200 hover:border-purple-300 dark:bg-purple-950/50 dark:hover:bg-purple-900/50 dark:border-purple-800 dark:hover:border-purple-700' },
+              { name: t('home.platform_names.zoom'), icon: zoomIcon, alt: 'Zoom logo', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700' },
+              { name: t('home.platform_names.google_chat'), icon: googleChatIcon, alt: 'Google Chat logo', color: 'bg-red-50 hover:bg-red-100 border-red-200 hover:border-red-300 dark:bg-red-950/50 dark:hover:bg-red-900/50 dark:border-red-800 dark:hover:border-red-700' },
+              { name: t('home.platform_names.cisco_webex'), icon: webexIcon, alt: 'Cisco Webex logo', color: 'bg-green-50 hover:bg-green-100 border-green-200 hover:border-green-300 dark:bg-green-950/50 dark:hover:bg-green-900/50 dark:border-green-800 dark:hover:border-green-700' },
+              { name: t('home.platform_names.discord'), icon: discordIcon, alt: 'Discord logo', color: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200 hover:border-indigo-300 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/50 dark:border-indigo-800 dark:hover:border-indigo-700' }
             ].map((platform, index) => (
               <Card 
                 key={index} 

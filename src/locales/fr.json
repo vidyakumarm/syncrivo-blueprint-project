@@ -338,7 +338,15 @@
     "cta_title": "Prêt à unifier vos plateformes de messagerie ?",
     "cta_subtitle": "Rejoignez des milliers d'équipes qui font confiance à SyncRio pour connecter facilement leurs outils de communication d'entreprise.",
     "start_free_trial": "Commencer l'Essai Gratuit",
-    "view_demo": "Voir la Démo en Direct"
+    "view_demo": "Voir la Démo en Direct",
+    "platform_names": {
+      "microsoft_teams": "Microsoft Teams",
+      "slack": "Slack",
+      "zoom": "Zoom",
+      "google_chat": "Google Chat", 
+      "cisco_webex": "Cisco Webex",
+      "discord": "Discord"
+    }
   },
   "dashboard": {
     "title": "Tableau de Bord SyncRio",
