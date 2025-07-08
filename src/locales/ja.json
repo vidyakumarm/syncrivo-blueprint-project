@@ -363,7 +363,12 @@
     },
     "settings": {
       "subtitle": "アカウントと設定を管理"
-    }
+    },
+    "realtime_chart_title": "リアルタイムメッセージ同期アクティビティ",
+    "messages_synced_5min": "同期されたメッセージ/5分",
+    "platform_errors_5min": "プラットフォームエラー/5分",
+    "last_updated": "最終更新: {{time}} (5秒ごとに更新)",
+    "from_last_month": "先月から"
   },
   "not_found": {
     "title": "ページが見つかりません",

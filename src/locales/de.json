@@ -424,7 +424,12 @@
     },
     "settings": {
       "subtitle": "Verwalten Sie Ihr Konto und Ihre Einstellungen"
-    }
+    },
+    "realtime_chart_title": "Echtzeit-Nachrichtensynchronisationsaktivität",
+    "messages_synced_5min": "Nachrichten Synchronisiert/5min",
+    "platform_errors_5min": "Plattform-Fehler/5min",
+    "last_updated": "Zuletzt aktualisiert: {{time}} (Wird alle 5 Sekunden aktualisiert)",
+    "from_last_month": "vom letzten Monat"
   },
   "not_found": {
     "title": "Seite nicht gefunden",
