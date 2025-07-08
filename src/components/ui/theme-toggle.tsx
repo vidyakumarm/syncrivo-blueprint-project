@@ -1,5 +1,5 @@
 import { Moon, Sun, Palette } from "lucide-react"
-import { useTheme } from "next-themes"
+import { useTheme } from "@/components/theme-provider"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -9,14 +9,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function ThemeToggle() {
-  const { setTheme, theme, systemTheme, resolvedTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
   
   console.log('🎨 [ThemeToggle] Current theme state', {
     timestamp: new Date().toISOString(),
     theme,
-    systemTheme,
-    resolvedTheme,
-    actualTheme: resolvedTheme || (theme === 'system' ? systemTheme : theme)
+    currentTheme: theme
   })
 
   return (

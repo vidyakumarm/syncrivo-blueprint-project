@@ -33,6 +33,12 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement;
+    
+    console.log('🎨 [ThemeProvider] Applying theme', {
+      timestamp: new Date().toISOString(),
+      theme,
+      currentClasses: root.className
+    });
 
     root.classList.remove('light', 'dark');
 
@@ -42,10 +48,23 @@ export function ThemeProvider({
         ? 'dark'
         : 'light';
 
+      console.log('🎨 [ThemeProvider] System theme detected', { systemTheme });
       root.classList.add(systemTheme);
-      return;
+      
+      // Listen for system theme changes
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleChange = (e: MediaQueryListEvent) => {
+        const newSystemTheme = e.matches ? 'dark' : 'light';
+        console.log('🎨 [ThemeProvider] System theme changed', { newSystemTheme });
+        root.classList.remove('light', 'dark');
+        root.classList.add(newSystemTheme);
+      };
+      
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
     }
 
+    console.log('🎨 [ThemeProvider] Applying manual theme', { theme });
     root.classList.add(theme);
   }, [theme]);
 
