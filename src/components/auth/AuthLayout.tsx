@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { RotatingLogo } from '@/components/ui/rotating-logo';
-import heroImage from '@/assets/sync-collaboration-hero.svg';
+import { CollaborationHeroSVG } from './CollaborationHeroSVG';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -45,11 +45,9 @@ export function AuthLayout({ children, title, subtitle }: AuthLayoutProps) {
           <div className="hidden lg:flex items-center justify-center">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl transform scale-150"></div>
-              <img 
-                src={heroImage} 
-                alt="Team collaboration across platforms" 
-                className="relative z-10 w-full max-w-lg h-auto drop-shadow-2xl"
-              />
+              <div className="relative z-10">
+                <CollaborationHeroSVG />
+              </div>
             </div>
           </div>
         </div>
