@@ -144,10 +144,86 @@
     "custom_workflows": "Custom workflows"
   },
   "about": {
-    "title": "About Us",
+    "title": "About SyncRivo",
     "subtitle": "Learn more about our mission to simplify business integrations.",
-    "coming_soon": "Coming Soon", 
-    "coming_soon_desc": "We're crafting our story. Check back soon to learn more about us."
+    "hero": {
+      "title": "Connecting Teams,",
+      "title_highlight": "Transforming Work",
+      "subtitle": "We're on a mission to break down communication silos and create a unified workspace where teams can collaborate effortlessly across any platform.",
+      "badge": "Founded in 2023"
+    },
+    "story": {
+      "title": "Our Story",
+      "subtitle": "Born from the frustration of fragmented communication",
+      "content": "SyncRivo was founded by a team of engineers who experienced firsthand the challenges of managing multiple messaging platforms in modern workplaces. We realized that while each platform had its strengths, the constant switching between tools was hindering productivity and breaking the flow of collaboration.",
+      "mission": "Our Mission",
+      "mission_content": "To create a seamless communication experience that empowers teams to focus on what matters most - their work, not the tools they use."
+    },
+    "values": {
+      "title": "Our Values",
+      "subtitle": "The principles that guide everything we do",
+      "innovation": {
+        "title": "Innovation",
+        "description": "We continuously push the boundaries of what's possible in workplace communication and integration technology."
+      },
+      "security": {
+        "title": "Security First",
+        "description": "Your data's security and privacy are paramount. We implement enterprise-grade security measures in everything we build."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "description": "We believe in the power of teamwork and build tools that bring people together, not drive them apart."
+      },
+      "simplicity": {
+        "title": "Simplicity",
+        "description": "Complex problems deserve elegant solutions. We strive to make powerful technology simple and intuitive to use."
+      }
+    },
+    "timeline": {
+      "title": "Our Journey",
+      "subtitle": "Key milestones in our growth",
+      "founded": {
+        "year": "2023",
+        "title": "SyncRivo Founded",
+        "description": "Started with a vision to unify workplace communication"
+      },
+      "mvp": {
+        "year": "2023",
+        "title": "MVP Launch",
+        "description": "Released first version supporting Teams and Slack integration"
+      },
+      "expansion": {
+        "year": "2024",
+        "title": "Platform Expansion",
+        "description": "Added support for Google Chat, Webex, Zoom, and Discord"
+      },
+      "enterprise": {
+        "year": "2024",
+        "title": "Enterprise Ready",
+        "description": "Achieved SOC 2 compliance and launched enterprise features"
+      },
+      "growth": {
+        "year": "2024",
+        "title": "Growing Community",
+        "description": "Reached 10,000+ teams using SyncRivo worldwide"
+      }
+    },
+    "stats": {
+      "users": "10,000+",
+      "users_label": "Active Teams",
+      "platforms": "15+",
+      "platforms_label": "Supported Platforms",
+      "messages": "1M+",
+      "messages_label": "Messages Synced Daily",
+      "uptime": "99.9%",
+      "uptime_label": "Service Uptime"
+    },
+    "cta": {
+      "title": "Ready to Transform Your Team's Communication?",
+      "subtitle": "Join thousands of teams who have already simplified their workflow with SyncRivo.",
+      "primary": "Start Free Trial",
+      "secondary": "Contact Sales"
+    }
   },
   "integrations": {
     "title": "Integrations",
