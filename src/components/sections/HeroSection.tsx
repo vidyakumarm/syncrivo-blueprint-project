@@ -160,40 +160,18 @@ export function HeroSection() {
           ))}
         </div>
 
-        {/* Enhanced Integration Ecosystem Grid */}
-        <div className="mt-20 max-w-6xl mx-auto animate-fade-in" style={{ animationDelay: '1200ms' }}>
-          <h2 className="text-2xl font-bold text-center text-foreground mb-4">
-            {t('hero.supported_platforms')}
-          </h2>
-          <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Connect communication platforms with business applications for seamless workflow automation
+        {/* Quick Platform Preview */}
+        <div className="mt-20 max-w-4xl mx-auto text-center animate-fade-in" style={{ animationDelay: '1200ms' }}>
+          <p className="text-lg text-muted-foreground mb-8">
+            Connect 26+ messaging platforms with your business applications
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {[
-              { name: 'Teams + Salesforce', icon: teamsIcon, alt: 'Microsoft Teams integration', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700', desc: 'CRM notifications' },
-              { name: 'Slack + Jira', icon: slackIcon, alt: 'Slack integration', color: 'bg-purple-50 hover:bg-purple-100 border-purple-200 hover:border-purple-300 dark:bg-purple-950/50 dark:hover:bg-purple-900/50 dark:border-purple-800 dark:hover:border-purple-700', desc: 'Project updates' },
-              { name: 'Zoom + HubSpot', icon: zoomIcon, alt: 'Zoom integration', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700', desc: 'Meeting summaries' },
-              { name: 'Chat + Zendesk', icon: googleChatIcon, alt: 'Google Chat integration', color: 'bg-red-50 hover:bg-red-100 border-red-200 hover:border-red-300 dark:bg-red-950/50 dark:hover:bg-red-900/50 dark:border-red-800 dark:hover:border-red-700', desc: 'Support tickets' },
-              { name: 'Webex + Monday', icon: webexIcon, alt: 'Cisco Webex integration', color: 'bg-green-50 hover:bg-green-100 border-green-200 hover:border-green-300 dark:bg-green-950/50 dark:hover:bg-green-900/50 dark:border-green-800 dark:hover:border-green-700', desc: 'Task automation' },
-              { name: 'API Connections', icon: discordIcon, alt: 'Custom API integrations', color: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200 hover:border-indigo-300 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/50 dark:border-indigo-800 dark:hover:border-indigo-700', desc: '50+ more apps' }
-            ].map((platform, index) => (
-              <Card 
-                key={index} 
-                className={`p-6 text-center border-2 ${platform.color} hover:shadow-brand-lg transition-all duration-300 group cursor-pointer transform hover:-translate-y-1 animate-fade-in`}
-                style={{ animationDelay: `${1300 + index * 100}ms` }}
-              >
-                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                  <img 
-                    src={platform.icon} 
-                    alt={platform.alt}
-                    className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300 filter group-hover:brightness-110"
-                    loading="lazy"
-                  />
-                </div>
-                <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{platform.name}</p>
-                <p className="text-xs text-muted-foreground mt-1">{platform.desc}</p>
-              </Card>
-            ))}
+          <div className="flex justify-center items-center space-x-8 opacity-60 hover:opacity-90 transition-opacity duration-300">
+            <img src={teamsIcon} alt="Microsoft Teams" className="w-8 h-8 object-contain" />
+            <img src={slackIcon} alt="Slack" className="w-8 h-8 object-contain" />
+            <img src={zoomIcon} alt="Zoom" className="w-8 h-8 object-contain" />
+            <img src={googleChatIcon} alt="Google Chat" className="w-8 h-8 object-contain" />
+            <img src={webexIcon} alt="Webex" className="w-8 h-8 object-contain" />
+            <span className="text-muted-foreground font-medium">+ 21 more</span>
           </div>
         </div>
       </div>

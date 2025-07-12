@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { SupportedPlatformsSection } from '@/components/sections/SupportedPlatformsSection';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -237,6 +238,9 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Supported Platforms Section */}
+        <SupportedPlatformsSection />
 
         {/* Add testimonials section */}
         <TestimonialsSection />
