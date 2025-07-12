@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { MessageSquare, Users, Headphones, Globe } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
+import { MessageSquare, Users, Headphones, Globe, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 // Import existing platform icons
 import teamsIcon from '@/assets/teams-icon.svg';
@@ -13,155 +14,253 @@ interface Platform {
   name: string;
   icon: string | React.ComponentType<any>;
   category: 'team' | 'developer' | 'customer' | 'regional';
-  bgColor: string;
+  description: string;
+  isPopular?: boolean;
 }
 
 const platforms: Platform[] = [
   // Team Collaboration & Internal Messaging
-  { name: 'Slack', icon: slackIcon, category: 'team', bgColor: 'bg-purple-50' },
-  { name: 'Microsoft Teams', icon: teamsIcon, category: 'team', bgColor: 'bg-blue-50' },
-  { name: 'Google Chat', icon: googleChatIcon, category: 'team', bgColor: 'bg-green-50' },
-  { name: 'Zoom Team Chat', icon: zoomIcon, category: 'team', bgColor: 'bg-blue-50' },
-  { name: 'Webex by Cisco', icon: webexIcon, category: 'team', bgColor: 'bg-green-50' },
-  { name: 'Mattermost', icon: MessageSquare, category: 'team', bgColor: 'bg-indigo-50' },
-  { name: 'Rocket.Chat', icon: MessageSquare, category: 'team', bgColor: 'bg-red-50' },
-  { name: 'Flock', icon: MessageSquare, category: 'team', bgColor: 'bg-yellow-50' },
-  { name: 'Twist', icon: MessageSquare, category: 'team', bgColor: 'bg-purple-50' },
-  { name: 'Ryver', icon: MessageSquare, category: 'team', bgColor: 'bg-teal-50' },
+  { name: 'Slack', icon: slackIcon, category: 'team', description: 'Team collaboration & workflows', isPopular: true },
+  { name: 'Microsoft Teams', icon: teamsIcon, category: 'team', description: 'Enterprise communication hub', isPopular: true },
+  { name: 'Google Chat', icon: googleChatIcon, category: 'team', description: 'Google Workspace messaging', isPopular: true },
+  { name: 'Zoom Team Chat', icon: zoomIcon, category: 'team', description: 'Video meetings & chat', isPopular: true },
+  { name: 'Webex by Cisco', icon: webexIcon, category: 'team', description: 'Enterprise video collaboration', isPopular: true },
+  { name: 'Mattermost', icon: MessageSquare, category: 'team', description: 'Open-source team messaging' },
+  { name: 'Rocket.Chat', icon: MessageSquare, category: 'team', description: 'Customizable team chat' },
+  { name: 'Flock', icon: MessageSquare, category: 'team', description: 'Team communication platform' },
+  { name: 'Twist', icon: MessageSquare, category: 'team', description: 'Organized team messaging' },
+  { name: 'Ryver', icon: MessageSquare, category: 'team', description: 'Team collaboration suite' },
 
   // Developer-Focused Messaging
-  { name: 'Discord', icon: discordIcon, category: 'developer', bgColor: 'bg-indigo-50' },
-  { name: 'Gitter', icon: MessageSquare, category: 'developer', bgColor: 'bg-gray-50' },
+  { name: 'Discord', icon: discordIcon, category: 'developer', description: 'Gaming & developer communities', isPopular: true },
+  { name: 'Gitter', icon: MessageSquare, category: 'developer', description: 'Developer chat rooms' },
 
   // Customer Communication & Support
-  { name: 'Intercom', icon: Headphones, category: 'customer', bgColor: 'bg-blue-50' },
-  { name: 'Zendesk Messaging', icon: Headphones, category: 'customer', bgColor: 'bg-green-50' },
-  { name: 'Freshchat', icon: Headphones, category: 'customer', bgColor: 'bg-orange-50' },
-  { name: 'Tawk.to', icon: Headphones, category: 'customer', bgColor: 'bg-green-50' },
-  { name: 'Drift', icon: Headphones, category: 'customer', bgColor: 'bg-purple-50' },
-  { name: 'LiveChat', icon: Headphones, category: 'customer', bgColor: 'bg-orange-50' },
-  { name: 'Front', icon: Headphones, category: 'customer', bgColor: 'bg-blue-50' },
-  { name: 'HubSpot Conversations', icon: Headphones, category: 'customer', bgColor: 'bg-orange-50' },
+  { name: 'Intercom', icon: Headphones, category: 'customer', description: 'Customer messaging platform', isPopular: true },
+  { name: 'Zendesk Messaging', icon: Headphones, category: 'customer', description: 'Customer support chat' },
+  { name: 'Freshchat', icon: Headphones, category: 'customer', description: 'Modern messaging software' },
+  { name: 'Tawk.to', icon: Headphones, category: 'customer', description: 'Free live chat software' },
+  { name: 'Drift', icon: Headphones, category: 'customer', description: 'Conversational marketing' },
+  { name: 'LiveChat', icon: Headphones, category: 'customer', description: 'Customer service platform' },
+  { name: 'Front', icon: Headphones, category: 'customer', description: 'Shared inbox for teams' },
+  { name: 'HubSpot Conversations', icon: Headphones, category: 'customer', description: 'CRM-integrated messaging' },
 
   // Region-Specific Messaging
-  { name: 'WeCom', icon: Globe, category: 'regional', bgColor: 'bg-green-50' },
-  { name: 'LINE Works', icon: Globe, category: 'regional', bgColor: 'bg-green-50' },
-  { name: 'Kakao Work', icon: Globe, category: 'regional', bgColor: 'bg-yellow-50' },
-  { name: 'Telegram Business', icon: Globe, category: 'regional', bgColor: 'bg-blue-50' },
-  { name: 'WhatsApp Business', icon: Globe, category: 'regional', bgColor: 'bg-green-50' },
-  { name: 'Signal for Work', icon: Globe, category: 'regional', bgColor: 'bg-blue-50' },
+  { name: 'WeCom', icon: Globe, category: 'regional', description: 'Chinese enterprise messaging' },
+  { name: 'LINE Works', icon: Globe, category: 'regional', description: 'Japanese business messaging' },
+  { name: 'Kakao Work', icon: Globe, category: 'regional', description: 'Korean workplace chat' },
+  { name: 'Telegram Business', icon: Globe, category: 'regional', description: 'Secure business messaging' },
+  { name: 'WhatsApp Business', icon: Globe, category: 'regional', description: 'Customer communication', isPopular: true },
+  { name: 'Signal for Work', icon: Globe, category: 'regional', description: 'Privacy-focused messaging' },
 ];
+
+const categoryConfig = {
+  team: { label: 'Team Collaboration', color: 'bg-blue-500', bgColor: 'bg-blue-50' },
+  developer: { label: 'Developer Tools', color: 'bg-purple-500', bgColor: 'bg-purple-50' },
+  customer: { label: 'Customer Support', color: 'bg-green-500', bgColor: 'bg-green-50' },
+  regional: { label: 'Regional Platforms', color: 'bg-orange-500', bgColor: 'bg-orange-50' },
+};
 
 export function PlatformCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [visiblePlatforms, setVisiblePlatforms] = useState<Platform[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Create infinite scroll effect by duplicating platforms
-  useEffect(() => {
-    const duplicatedPlatforms = [...platforms, ...platforms, ...platforms];
-    setVisiblePlatforms(duplicatedPlatforms);
-  }, []);
+  const filteredPlatforms = selectedCategory 
+    ? platforms.filter(p => p.category === selectedCategory)
+    : platforms;
 
-  // Auto-scroll functionality
+  const displayedPlatforms = showAll ? filteredPlatforms : filteredPlatforms.slice(0, 12);
+
+  // Auto-scroll functionality (only when not showing all)
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || showAll || selectedCategory) return;
     
     const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % platforms.length);
-    }, 2000); // Scroll every 2 seconds
+      setCurrentIndex(prev => (prev + 1) % Math.max(1, platforms.length - 7));
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, [isHovered]);
+  }, [isHovered, showAll, selectedCategory]);
 
-  const renderIcon = (platform: Platform, index: number) => {
+  const nextSlide = () => {
+    setCurrentIndex(prev => Math.min(prev + 1, Math.max(0, displayedPlatforms.length - 8)));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(prev => Math.max(prev - 1, 0));
+  };
+
+  const renderIcon = (platform: Platform) => {
     if (typeof platform.icon === 'string') {
       return (
         <img 
           src={platform.icon} 
-          alt={platform.name}
-          className="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300"
+          alt={`${platform.name} integration`}
+          className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300"
         />
       );
     } else {
       const IconComponent = platform.icon;
       return (
         <IconComponent 
-          className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" 
+          className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-300" 
         />
       );
     }
   };
 
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="text-center mb-8">
-        <p className="text-lg text-muted-foreground mb-6">
-          Connect 26+ messaging platforms with your business applications
+    <div className="max-w-7xl mx-auto px-4">
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+          Connect 26+ Messaging Platforms
+        </h3>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Seamlessly integrate with all major communication platforms. Real-time sync, unified workflows, enterprise-grade security.
         </p>
       </div>
 
-      {/* Scrolling Platform Carousel */}
-      <div 
-        className="relative overflow-hidden"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div 
-          className="flex transition-transform duration-1000 ease-in-out"
-          style={{ 
-            transform: `translateX(-${(currentIndex * 100) / 8}%)`,
-            width: `${(visiblePlatforms.length * 100) / 8}%`
-          }}
+      {/* Category Filters */}
+      <div className="flex flex-wrap justify-center gap-3 mb-8">
+        <Button
+          variant={selectedCategory === null ? "default" : "outline"}
+          size="sm"
+          onClick={() => setSelectedCategory(null)}
+          className="transition-all duration-300"
         >
-          {visiblePlatforms.map((platform, index) => (
-            <div
-              key={`${platform.name}-${index}`}
-              className={`flex-shrink-0 group cursor-pointer mx-3 p-4 rounded-xl ${platform.bgColor} border border-border/30 hover:border-primary/30 hover:shadow-brand-md transition-all duration-300 min-w-[120px]`}
-              style={{ width: `${100 / 8}%` }}
+          All Platforms
+        </Button>
+        {Object.entries(categoryConfig).map(([key, config]) => (
+          <Button
+            key={key}
+            variant={selectedCategory === key ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSelectedCategory(key)}
+            className="transition-all duration-300"
+          >
+            <div className={`w-2 h-2 ${config.color} rounded-full mr-2`} />
+            {config.label}
+          </Button>
+        ))}
+      </div>
+
+      {/* Main Platform Display */}
+      <div className="relative">
+        {/* Navigation Arrows - Desktop */}
+        {!showAll && displayedPlatforms.length > 8 && (
+          <>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={prevSlide}
+              disabled={currentIndex === 0}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
             >
-              <div className="flex flex-col items-center space-y-2">
-                <div className="flex items-center justify-center w-12 h-12 bg-white rounded-lg shadow-sm group-hover:shadow-md transition-shadow duration-300">
-                  {renderIcon(platform, index)}
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={nextSlide}
+              disabled={currentIndex >= Math.max(0, displayedPlatforms.length - 8)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </>
+        )}
+
+        {/* Platform Grid/Carousel */}
+        <div 
+          className="overflow-hidden mx-12"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          ref={carouselRef}
+        >
+          <div 
+            className={`grid transition-all duration-500 ease-in-out gap-4 ${
+              showAll 
+                ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8' 
+                : 'grid-cols-8 md:grid-cols-8'
+            }`}
+            style={!showAll ? { 
+              transform: `translateX(-${currentIndex * (100 / 8)}%)`,
+              width: `${Math.max(100, (displayedPlatforms.length * 100) / 8)}%`
+            } : {}}
+          >
+            {displayedPlatforms.map((platform, index) => (
+              <div
+                key={`${platform.name}-${index}`}
+                className={`group relative cursor-pointer p-4 rounded-2xl border-2 border-border/20 hover:border-primary/40 bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:shadow-brand-lg transition-all duration-300 transform hover:-translate-y-1 ${
+                  platform.isPopular ? 'ring-2 ring-primary/20' : ''
+                }`}
+              >
+                {/* Popular Badge */}
+                {platform.isPopular && (
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-primary rounded-full flex items-center justify-center">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </div>
+                )}
+
+                <div className="flex flex-col items-center space-y-3">
+                  <div className={`flex items-center justify-center w-16 h-16 rounded-xl shadow-sm group-hover:shadow-md transition-shadow duration-300 ${categoryConfig[platform.category].bgColor}`}>
+                    {renderIcon(platform)}
+                  </div>
+                  <div className="text-center">
+                    <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-1">
+                      {platform.name}
+                    </h4>
+                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2 group-hover:text-foreground transition-colors duration-300">
+                      {platform.description}
+                    </p>
+                  </div>
                 </div>
-                <span className="text-xs font-medium text-center text-foreground group-hover:text-primary transition-colors duration-300">
-                  {platform.name}
-                </span>
+
+                {/* Hover Tooltip */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-foreground text-background text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-20">
+                  {platform.description}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[4px] border-l-transparent border-r-transparent border-t-foreground"></div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Gradient fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
-      </div>
-
-      {/* Category Indicators */}
-      <div className="flex justify-center items-center space-x-6 mt-8 text-sm text-muted-foreground">
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-gradient-primary rounded-full"></div>
-          <span>Team Collaboration</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-gradient-success rounded-full"></div>
-          <span>Developer Tools</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-gradient-warning rounded-full"></div>
-          <span>Customer Support</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-gradient-accent rounded-full"></div>
-          <span>Regional Platforms</span>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Call to Action */}
-      <div className="text-center mt-6">
-        <button className="text-sm text-primary hover:text-primary-foreground bg-transparent hover:bg-primary/10 px-4 py-2 rounded-lg transition-all duration-300 font-medium">
-          View Full Integration List →
-        </button>
+      {/* Show More/Less Toggle */}
+      <div className="text-center mt-8">
+        <Button
+          variant="outline"
+          onClick={() => setShowAll(!showAll)}
+          className="group text-primary hover:text-primary-foreground hover:bg-primary/10 border-primary/30 hover:border-primary transition-all duration-300"
+        >
+          {showAll ? 'Show Less' : `View All ${platforms.length} Integrations`}
+          <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
+        </Button>
+      </div>
+
+      {/* Stats Section */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 p-6 bg-muted/30 rounded-2xl">
+        <div className="text-center">
+          <div className="text-2xl font-bold text-primary">26+</div>
+          <div className="text-sm text-muted-foreground">Platforms</div>
+        </div>
+        <div className="text-center">
+          <div className="text-2xl font-bold text-primary">99.9%</div>
+          <div className="text-sm text-muted-foreground">Uptime</div>
+        </div>
+        <div className="text-center">
+          <div className="text-2xl font-bold text-primary">Real-time</div>
+          <div className="text-sm text-muted-foreground">Sync</div>
+        </div>
+        <div className="text-center">
+          <div className="text-2xl font-bold text-primary">Enterprise</div>
+          <div className="text-sm text-muted-foreground">Security</div>
+        </div>
       </div>
     </div>
   );
