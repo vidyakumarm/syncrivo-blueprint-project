@@ -104,8 +104,8 @@ const Index = () => {
                 {t('home.features_badge')}
               </Badge>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                <span className="block text-foreground mb-2">{t('home.features_title')}</span>
-                <span className="text-gradient-primary">{t('home.features_title_highlight', 'That Just Work')}</span>
+                <span className="block text-foreground mb-2">{t('home.main_heading')}</span>
+                <span className="text-gradient-primary">Advanced Integration Capabilities</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 {t('home.features_subtitle')}

@@ -40,20 +40,20 @@
     "api": "API"
   },
   "hero": {
-    "title": "Connect Your",
-    "title_highlight": "Messaging Platforms",
-    "subtitle": "Seamlessly integrate Teams, Webex, Google Chat, Zoom, Slack and other business communication tools. Sync messages, channels, and conversations across all your platforms in real-time.",
-    "cta_primary": "Start Connecting Platforms",
-    "cta_secondary": "View Supported Platforms",
-    "badge": "Seamless Messaging Platform Integration",
-    "trusted_by": "Trusted by 10,000+ teams worldwide for messaging platform integration",
-    "supported_platforms": "Supported Messaging Platforms",
-    "real_time_sync": "Real-Time Sync",
-    "real_time_sync_desc": "Messages sync instantly across all connected platforms",
-    "enterprise_security": "Enterprise Security",
-    "enterprise_security_desc": "SOC 2 compliant with enterprise-grade encryption",
-    "cross_platform": "Cross-Platform",
-    "cross_platform_desc": "Connect any messaging platform with unified APIs"
+    "title": "Streamline Your Business with Powerful",
+    "title_highlight": "Data Integration & API Synchronization",
+    "subtitle": "Transform your workflow with SyncRivo's advanced data integration platform. Seamlessly sync apps, automate business processes, and streamline operations with enterprise-grade security and real-time synchronization.",
+    "cta_primary": "Start Free Integration",
+    "cta_secondary": "View Live Demo",
+    "badge": "Advanced Data Integration Platform",
+    "trusted_by": "Trusted by 10,000+ businesses worldwide for seamless data integration",
+    "supported_platforms": "Supported Integration Platforms",
+    "real_time_sync": "Real-Time Data Synchronization",
+    "real_time_sync_desc": "Instant data sync across all connected platforms with zero delays",
+    "enterprise_security": "Enterprise-Grade Security",
+    "enterprise_security_desc": "Advanced encryption and compliance for secure data integration",
+    "cross_platform": "Cross-Platform API Integration",
+    "cross_platform_desc": "Connect any app or service with powerful API management tools"
   },
   "support": {
     "title": "How can we help you?",
@@ -144,39 +144,41 @@
     "custom_workflows": "Custom workflows"
   },
   "about": {
-    "title": "About SyncRivo",
-    "subtitle": "Learn more about our mission to simplify business integrations.",
+    "title": "About SyncRivo - Your Trusted Data Integration Partner",
+    "subtitle": "Learn about SyncRivo's mission to simplify business operations through innovative data integration solutions and discover our team's expertise.",
+    "seo_title": "About SyncRivo | Leading Data Integration & API Management Company",
+    "seo_description": "Learn about SyncRivo's mission to simplify business operations through innovative data integration solutions. Discover our team's expertise and commitment to your success.",
     "hero": {
-      "title": "Connecting Teams,",
-      "title_highlight": "Transforming Work",
-      "subtitle": "We're on a mission to break down communication silos and create a unified workspace where teams can collaborate effortlessly across any platform.",
-      "badge": "Founded in 2023"
+      "title": "About SyncRivo - Your Trusted",
+      "title_highlight": "Data Integration Partner",
+      "subtitle": "We're on a mission to revolutionize business operations by breaking down data silos and creating unified workflows where teams can collaborate effortlessly across any platform or application.",
+      "badge": "Trusted by 10,000+ Businesses"
     },
     "story": {
-      "title": "Our Story",
-      "subtitle": "Born from the frustration of fragmented communication",
-      "content": "SyncRivo was founded by a team of engineers who experienced firsthand the challenges of managing multiple messaging platforms in modern workplaces. We realized that while each platform had its strengths, the constant switching between tools was hindering productivity and breaking the flow of collaboration.",
-      "mission": "Our Mission",
-      "mission_content": "To create a seamless communication experience that empowers teams to focus on what matters most - their work, not the tools they use."
+      "title": "Our Mission: Simplifying Business Integration",
+      "subtitle": "Born from the need for seamless data connectivity",
+      "content": "SyncRivo was founded by a team of integration experts who experienced firsthand the challenges of managing disconnected business applications in modern enterprises. We realized that while each system had its strengths, the constant manual data transfers and integration complexities were hindering productivity and limiting business growth.",
+      "mission": "Our Core Mission",
+      "mission_content": "To create a seamless data integration experience that empowers businesses to focus on what matters most - growing their operations, not managing their data pipelines."
     },
     "values": {
-      "title": "Our Values",
+      "title": "Our Core Values and Commitment",
       "subtitle": "The principles that guide everything we do",
       "innovation": {
-        "title": "Innovation",
-        "description": "We continuously push the boundaries of what's possible in workplace communication and integration technology."
+        "title": "Innovation Excellence",
+        "description": "We continuously push the boundaries of what's possible in data integration technology, delivering cutting-edge solutions that transform business operations."
       },
       "security": {
-        "title": "Security First",
-        "description": "Your data's security and privacy are paramount. We implement enterprise-grade security measures in everything we build."
+        "title": "Security and Privacy First",
+        "description": "Your data's security and privacy are paramount. We implement enterprise-grade security measures and maintain strict compliance standards in everything we build."
       },
       "collaboration": {
-        "title": "Collaboration",
-        "description": "We believe in the power of teamwork and build tools that bring people together, not drive them apart."
+        "title": "Seamless Collaboration",
+        "description": "We believe in the power of connected systems and build tools that bring applications together, enabling seamless workflows across your entire tech stack."
       },
       "simplicity": {
-        "title": "Simplicity",
-        "description": "Complex problems deserve elegant solutions. We strive to make powerful technology simple and intuitive to use."
+        "title": "Elegant Simplicity",
+        "description": "Complex integration challenges deserve elegant solutions. We strive to make powerful enterprise technology simple, intuitive, and accessible to all businesses."
       }
     },
     "timeline": {
@@ -275,29 +277,32 @@
     "coming_soon_desc": "Our comprehensive documentation is being prepared. Check back soon for guides and tutorials."
   },
   "blog": {
-    "title": "SyncRivo Blog",
-    "subtitle": "Stay updated with the latest news, tutorials, and insights from our team.",
+    "title": "SyncRivo Blog | Integration Guides, API Tutorials & Best Practices",
+    "subtitle": "Stay updated with the latest integration strategies, API tutorials, and business automation insights from SyncRivo's expert team. Boost your workflow efficiency today.",
+    "seo_title": "SyncRivo Blog | Integration Guides, API Tutorials & Best Practices",
+    "seo_description": "Stay updated with the latest integration strategies, API tutorials, and business automation insights from SyncRivo's expert team. Boost your workflow efficiency today.",
     "hero": {
-      "title": "Insights & Updates",
-      "subtitle": "Discover best practices, product updates, and expert insights on messaging platform integration and workplace collaboration.",
-      "badge": "Latest Stories"
+      "title": "Integration Insights: Expert Guides and",
+      "title_highlight": "Best Practices",
+      "subtitle": "Discover the latest integration strategies, API tutorials, and business automation insights from SyncRivo's expert team. Master data synchronization and workflow optimization.",
+      "badge": "Latest Integration Stories"
     },
     "featured": {
-      "title": "Featured Posts",
-      "subtitle": "Don't miss our most popular content"
+      "title": "Latest Integration Strategies and Trends",
+      "subtitle": "Don't miss our most valuable integration insights"
     },
     "categories": {
       "title": "Browse by Category",
       "all": "All Posts",
-      "product_updates": "Product Updates",
-      "tutorials": "Tutorials", 
-      "integrations": "Integrations",
+      "product_updates": "API Updates",
+      "tutorials": "Integration Tutorials", 
+      "integrations": "Platform Integrations",
       "best_practices": "Best Practices",
       "company_news": "Company News"
     },
     "recent": {
-      "title": "Recent Posts",
-      "subtitle": "Our latest articles and updates"
+      "title": "Step-by-Step API Implementation Guides",
+      "subtitle": "Our latest integration tutorials and updates"
     },
     "newsletter": {
       "title": "Stay in the Loop",
@@ -476,11 +481,14 @@
     "all_rights_reserved": "All rights reserved."
   },
   "home": {
-    "features_badge": "Powerful Features",
-    "features_title": "Everything you need for messaging platform integration",
-    "features_subtitle": "SyncRio provides comprehensive tools to connect, sync, and manage all your business messaging platforms from one central hub.",
-    "universal_sync": "Universal Messaging Sync",
-    "universal_sync_desc": "Connect Teams, Webex, Google Chat, Zoom, Slack and more with bidirectional message synchronization.",
+    "seo_title": "Advanced Data Integration Platform | SyncRivo",
+    "seo_description": "Streamline business operations with SyncRivo's powerful data integration platform. Connect apps, automate workflows, and sync data in real-time with enterprise security.",
+    "main_heading": "Why Choose SyncRivo for Data Integration?",
+    "features_badge": "Powerful Integration Features",
+    "features_title": "Everything you need for seamless data integration",
+    "features_subtitle": "SyncRivo provides comprehensive tools to connect, sync, and manage all your business applications from one central platform.",
+    "universal_sync": "Universal Data Synchronization",
+    "universal_sync_desc": "Connect and sync data between any applications with our advanced integration engine",
     "team_management": "Team Management",
     "team_management_desc": "Manage users, permissions, and access across all connected messaging platforms.",
     "smart_workflows": "Smart Workflows",
@@ -531,22 +539,24 @@
     }
   },
   "features": {
-    "hero_badge": "Messaging Platform Features",
-    "hero_title": "Everything you need to",
-    "hero_title_highlight": "connect messaging platforms",
-    "hero_subtitle": "From simple message syncing to complex cross-platform workflows, SyncRio provides all the tools you need to integrate Teams, Webex, Google Chat, Zoom, Slack and other messaging platforms.",
-    "hero_cta": "Start Connecting Platforms",
-    "universal_sync": "Universal Messaging Sync",
-    "universal_sync_desc": "Connect Teams, Webex, Google Chat, Zoom, Slack and more with bidirectional message synchronization.",
-    "cross_platform_teams": "Cross-Platform Teams",
-    "cross_platform_teams_desc": "Manage distributed teams across multiple messaging platforms with unified presence and directory.",
-    "enterprise_security": "Enterprise Security",
-    "enterprise_security_desc": "SOC 2 certified platform with end-to-end encryption and comprehensive audit logging.",
-    "real_time_processing": "Real-Time Processing",
-    "real_time_processing_desc": "Sub-second message delivery with guaranteed reliability and offline queuing support.",
-    "smart_channel_mapping": "Smart Channel Mapping",
-    "smart_channel_mapping_desc": "Intelligent channel detection and mapping with custom routing rules and bidirectional sync.",
-    "communication_analytics": "Communication Analytics",
+    "seo_title": "SyncRivo Features | Advanced API Integration & Data Sync Tools",
+    "seo_description": "Explore SyncRivo's comprehensive integration features: real-time sync, secure APIs, automated workflows, and enterprise-grade reliability for seamless operations.",
+    "hero_badge": "Advanced Integration Features",
+    "hero_title": "Powerful Integration Features for",
+    "hero_title_highlight": "Modern Businesses",
+    "hero_subtitle": "Transform your business operations with SyncRivo's comprehensive suite of data integration and API management tools designed for enterprise success.",
+    "hero_cta": "Start Free Integration",
+    "universal_sync": "Real-Time Data Synchronization Across Platforms",
+    "universal_sync_desc": "Seamlessly sync data between applications with our advanced real-time integration engine, ensuring consistent information across all your business tools.",
+    "cross_platform_teams": "Secure API Management and Authentication",
+    "cross_platform_teams_desc": "Manage API access, authentication, and security with enterprise-grade controls designed to protect your sensitive business data.",
+    "enterprise_security": "Enterprise-Grade Security and Compliance",
+    "enterprise_security_desc": "SOC 2 certified platform with end-to-end encryption, comprehensive audit logging, and GDPR compliance for enterprise peace of mind.",
+    "real_time_processing": "Automated Workflow Creation and Monitoring",
+    "real_time_processing_desc": "Create, deploy, and monitor automated workflows with sub-second processing and guaranteed reliability across all integrations.",
+    "smart_channel_mapping": "Smart Data Transformation and Mapping",
+    "smart_channel_mapping_desc": "Intelligent data mapping and transformation with custom rules, field validation, and bidirectional synchronization capabilities.",
+    "communication_analytics": "Advanced Analytics and Reporting",
     "communication_analytics_desc": "Comprehensive insights into cross-platform communication patterns and usage metrics.",
     "real_time_sync": "Real-time message sync",
     "file_support": "File attachments support",
@@ -731,8 +741,10 @@
     "return_home": "Return to Home"
   },
   "privacy": {
-    "title": "Privacy Policy",
-    "subtitle": "Your privacy is important to us. This policy explains how we collect, use, and protect your information when you use SyncRivo.",
+    "title": "Privacy Policy - How SyncRivo Protects Your Data",
+    "subtitle": "Learn how SyncRivo safeguards your data with industry-leading security measures. Transparent privacy practices for enterprise data integration services.",
+    "seo_title": "SyncRivo Privacy Policy | Data Protection & Security Commitment",
+    "seo_description": "Learn how SyncRivo safeguards your data with industry-leading security measures. Transparent privacy practices for enterprise data integration services.",
     "last_updated": "Last updated",
     "back_to_home": "Back to Home",
     "updated": "Updated",
@@ -749,8 +761,10 @@
     "terms_of_service": "Terms of Service"
   },
   "terms": {
-    "title": "Terms of Service",
-    "subtitle": "Please read these terms carefully before using SyncRivo's services. These terms govern your use of our platform and services.",
+    "title": "Terms of Service - SyncRivo Platform Usage Agreement",
+    "subtitle": "Review SyncRivo's terms of service for our data integration platform. Clear guidelines for usage, responsibilities, and service agreements.",
+    "seo_title": "SyncRivo Terms of Service | Platform Usage Guidelines",
+    "seo_description": "Review SyncRivo's terms of service for our data integration platform. Clear guidelines for usage, responsibilities, and service agreements.",
     "last_updated": "Last updated",
     "back_to_home": "Back to Home",
     "updated": "Updated",
