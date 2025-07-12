@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { CookieProvider } from '@/contexts/CookieContext';
 import { Toaster } from '@/components/ui/toaster';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './lib/i18n';
 
@@ -53,6 +54,7 @@ function App() {
           <CookieProvider>
             <AuthProvider>
               <Router>
+                <ScrollToTop />
                 <div className="min-h-screen bg-background">
                   <Routes>
                     <Route path="/" element={<Index />} />
