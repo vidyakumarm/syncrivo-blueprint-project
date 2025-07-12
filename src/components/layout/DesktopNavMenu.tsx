@@ -25,22 +25,8 @@ export function DesktopNavMenu({ navItems }: DesktopNavMenuProps) {
   
   const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + '/');
 
-  // Use translated nav items instead of props
-  const translatedNavItems = [
-    { label: t('dashboard.title'), href: '/dashboard' },
-    { label: t('common.features'), href: '/features' },
-    { label: t('common.integrations'), href: '/integrations' },
-    { label: t('common.pricing'), href: '/pricing' },
-    { 
-      label: t('nav.resources'), 
-      href: '/docs',
-      children: [
-        { label: t('common.documentation'), href: '/docs' },
-        { label: t('common.support'), href: '/support' },
-        { label: t('common.about'), href: '/about' },
-      ]
-    },
-  ];
+  // Use passed navItems instead of creating duplicate dashboard link
+  const translatedNavItems = navItems;
 
   return (
     <div className="flex items-center space-x-2">

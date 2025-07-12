@@ -31,15 +31,12 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
     onLinkClick();
   };
 
-  // Use translated nav items
+  // Conditionally add dashboard link for authenticated users only
   const translatedNavItems = [
-    { label: t('dashboard.title'), href: '/dashboard' },
-    { label: t('common.features'), href: '/features' },
-    { label: t('common.integrations'), href: '/integrations' },
-    { label: t('common.pricing'), href: '/pricing' },
-    { label: t('common.documentation'), href: '/docs' },
-    { label: t('common.support'), href: '/support' },
-    { label: t('common.about'), href: '/about' },
+    ...(user ? [{ label: t('dashboard.title'), href: '/dashboard' }] : []),
+    ...navItems.flatMap(item => 
+      item.children ? item.children : [item]
+    )
   ];
 
   return (
