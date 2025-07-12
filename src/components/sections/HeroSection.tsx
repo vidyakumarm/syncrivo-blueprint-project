@@ -117,19 +117,20 @@ export function HeroSection() {
             </p>
             <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 opacity-70 hover:opacity-90 transition-opacity duration-300">
               {[
-                { icon: Users, color: 'text-blue-500', name: t('home.platform_names.microsoft_teams') },
-                { icon: Video, color: 'text-green-500', name: t('home.platform_names.cisco_webex') },
-                { icon: MessageSquare, color: 'text-red-500', name: t('home.platform_names.google_chat') },
-                { icon: Video, color: 'text-blue-400', name: t('home.platform_names.zoom') },
-                { icon: MessageCircle, color: 'text-purple-500', name: t('home.platform_names.slack') }
-              ].map((platform, index) => (
+                { icon: Users, color: 'text-blue-500', name: 'Microsoft Teams Integration', desc: 'Connect with CRM' },
+                { icon: Video, color: 'text-green-500', name: 'Webex Meeting Sync', desc: 'Auto-create tickets' },
+                { icon: MessageSquare, color: 'text-red-500', name: 'Slack Workflow Hub', desc: 'Project notifications' },
+                { icon: Video, color: 'text-blue-400', name: 'Zoom Recording Pipeline', desc: 'Auto-transcription' },
+                { icon: Workflow, color: 'text-purple-500', name: 'API Integration Layer', desc: '50+ business apps' }
+              ].map((integration, index) => (
                 <div 
-                  key={platform.name}
-                  className="flex items-center space-x-2 bg-card/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-border/30 hover:bg-card/50 hover:border-border/50 transition-all duration-300 animate-fade-in"
+                  key={integration.name}
+                  className="flex flex-col items-center space-y-1 bg-card/30 backdrop-blur-sm px-4 py-3 rounded-lg border border-border/30 hover:bg-card/50 hover:border-border/50 transition-all duration-300 animate-fade-in"
                   style={{ animationDelay: `${700 + index * 100}ms` }}
                 >
-                  <platform.icon className={`h-4 w-4 ${platform.color} animate-pulse`} />
-                  <span className="text-xs font-medium text-muted-foreground">{platform.name}</span>
+                  <integration.icon className={`h-4 w-4 ${integration.color} animate-pulse`} />
+                  <span className="text-xs font-medium text-muted-foreground text-center">{integration.name}</span>
+                  <span className="text-xs text-muted-foreground/70 text-center">{integration.desc}</span>
                 </div>
               ))}
             </div>
@@ -137,12 +138,12 @@ export function HeroSection() {
         </div>
 
         {/* Enhanced Messaging Platform Highlights */}
-        <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
-          {[
-            { icon: Zap, title: t('hero.real_time_sync'), desc: t('hero.real_time_sync_desc'), gradient: 'bg-gradient-primary' },
-            { icon: Shield, title: t('hero.enterprise_security'), desc: t('hero.enterprise_security_desc'), gradient: 'bg-gradient-success' },
-            { icon: Globe, title: t('hero.cross_platform'), desc: t('hero.cross_platform_desc'), gradient: 'bg-gradient-primary' }
-          ].map((feature, index) => (
+          <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
+            {[
+              { icon: Workflow, title: t('hero.real_time_sync'), desc: t('hero.real_time_sync_desc'), gradient: 'bg-gradient-primary' },
+              { icon: Shield, title: t('hero.enterprise_security'), desc: t('hero.enterprise_security_desc'), gradient: 'bg-gradient-success' },
+              { icon: Globe, title: t('hero.cross_platform'), desc: t('hero.cross_platform_desc'), gradient: 'bg-gradient-primary' }
+            ].map((feature, index) => (
             <div 
               key={feature.title}
               className="group text-center p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:shadow-brand-lg hover:bg-card/70 hover:border-border/70 transition-all duration-300 transform hover:-translate-y-2 animate-fade-in"
@@ -159,19 +160,22 @@ export function HeroSection() {
           ))}
         </div>
 
-        {/* Enhanced Supported Platforms Grid */}
+        {/* Enhanced Integration Ecosystem Grid */}
         <div className="mt-20 max-w-6xl mx-auto animate-fade-in" style={{ animationDelay: '1200ms' }}>
-          <h2 className="text-2xl font-bold text-center text-foreground mb-8">
+          <h2 className="text-2xl font-bold text-center text-foreground mb-4">
             {t('hero.supported_platforms')}
           </h2>
+          <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
+            Connect communication platforms with business applications for seamless workflow automation
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[
-              { name: t('home.platform_names.microsoft_teams'), icon: teamsIcon, alt: 'Microsoft Teams logo', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700' },
-              { name: t('home.platform_names.slack'), icon: slackIcon, alt: 'Slack logo', color: 'bg-purple-50 hover:bg-purple-100 border-purple-200 hover:border-purple-300 dark:bg-purple-950/50 dark:hover:bg-purple-900/50 dark:border-purple-800 dark:hover:border-purple-700' },
-              { name: t('home.platform_names.zoom'), icon: zoomIcon, alt: 'Zoom logo', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700' },
-              { name: t('home.platform_names.google_chat'), icon: googleChatIcon, alt: 'Google Chat logo', color: 'bg-red-50 hover:bg-red-100 border-red-200 hover:border-red-300 dark:bg-red-950/50 dark:hover:bg-red-900/50 dark:border-red-800 dark:hover:border-red-700' },
-              { name: t('home.platform_names.cisco_webex'), icon: webexIcon, alt: 'Cisco Webex logo', color: 'bg-green-50 hover:bg-green-100 border-green-200 hover:border-green-300 dark:bg-green-950/50 dark:hover:bg-green-900/50 dark:border-green-800 dark:hover:border-green-700' },
-              { name: t('home.platform_names.discord'), icon: discordIcon, alt: 'Discord logo', color: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200 hover:border-indigo-300 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/50 dark:border-indigo-800 dark:hover:border-indigo-700' }
+              { name: 'Teams + Salesforce', icon: teamsIcon, alt: 'Microsoft Teams integration', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700', desc: 'CRM notifications' },
+              { name: 'Slack + Jira', icon: slackIcon, alt: 'Slack integration', color: 'bg-purple-50 hover:bg-purple-100 border-purple-200 hover:border-purple-300 dark:bg-purple-950/50 dark:hover:bg-purple-900/50 dark:border-purple-800 dark:hover:border-purple-700', desc: 'Project updates' },
+              { name: 'Zoom + HubSpot', icon: zoomIcon, alt: 'Zoom integration', color: 'bg-blue-50 hover:bg-blue-100 border-blue-200 hover:border-blue-300 dark:bg-blue-950/50 dark:hover:bg-blue-900/50 dark:border-blue-800 dark:hover:border-blue-700', desc: 'Meeting summaries' },
+              { name: 'Chat + Zendesk', icon: googleChatIcon, alt: 'Google Chat integration', color: 'bg-red-50 hover:bg-red-100 border-red-200 hover:border-red-300 dark:bg-red-950/50 dark:hover:bg-red-900/50 dark:border-red-800 dark:hover:border-red-700', desc: 'Support tickets' },
+              { name: 'Webex + Monday', icon: webexIcon, alt: 'Cisco Webex integration', color: 'bg-green-50 hover:bg-green-100 border-green-200 hover:border-green-300 dark:bg-green-950/50 dark:hover:bg-green-900/50 dark:border-green-800 dark:hover:border-green-700', desc: 'Task automation' },
+              { name: 'API Connections', icon: discordIcon, alt: 'Custom API integrations', color: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200 hover:border-indigo-300 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/50 dark:border-indigo-800 dark:hover:border-indigo-700', desc: '50+ more apps' }
             ].map((platform, index) => (
               <Card 
                 key={index} 
@@ -187,6 +191,7 @@ export function HeroSection() {
                   />
                 </div>
                 <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{platform.name}</p>
+                <p className="text-xs text-muted-foreground mt-1">{platform.desc}</p>
               </Card>
             ))}
           </div>
