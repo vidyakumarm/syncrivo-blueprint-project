@@ -79,6 +79,7 @@ function App() {
                     <Route path="/dashboard/settings/team" element={<DashboardTeam />} />
                     <Route path="/dashboard/settings/security" element={<DashboardSecurity />} />
                     <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/legal/privacy" element={<Privacy />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/integrations/:id" element={<IntegrationDetail />} />
                     <Route path="/docs/api" element={<DocsApi />} />
