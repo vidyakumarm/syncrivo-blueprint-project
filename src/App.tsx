@@ -33,6 +33,7 @@ import DashboardActivity from '@/pages/DashboardActivity';
 import DashboardProfile from '@/pages/DashboardProfile';
 import DashboardTeam from '@/pages/DashboardTeam';
 import DashboardSecurity from '@/pages/DashboardSecurity';
+import DashboardSettings from '@/pages/DashboardSettings';
 import NotFound from '@/pages/NotFound';
 
 const queryClient = new QueryClient({
@@ -71,6 +72,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/dashboard/connections" element={<DashboardConnections />} />
                     <Route path="/dashboard/activity" element={<DashboardActivity />} />
+                    <Route path="/dashboard/settings" element={<DashboardSettings />} />
                     <Route path="/dashboard/settings/profile" element={<DashboardProfile />} />
                     <Route path="/dashboard/settings/team" element={<DashboardTeam />} />
                     <Route path="/dashboard/settings/security" element={<DashboardSecurity />} />

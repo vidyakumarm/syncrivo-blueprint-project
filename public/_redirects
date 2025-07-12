@@ -1,0 +1,3 @@
+# Netlify SPA redirect rules
+# All routes that don't match a static file should serve index.html
+/*    /index.html   200
