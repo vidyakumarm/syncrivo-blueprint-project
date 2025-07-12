@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Scale, Shield, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '@/components/layout/Footer';
 
 export default function Terms() {
   const { t } = useTranslation();
@@ -164,6 +165,7 @@ export default function Terms() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </div>
   );
 }

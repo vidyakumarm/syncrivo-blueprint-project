@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Shield, Lock, Eye, Database, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '@/components/layout/Footer';
 
 export default function Privacy() {
   const { t } = useTranslation();
@@ -214,6 +215,7 @@ export default function Privacy() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </div>
   );
 }
