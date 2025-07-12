@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Separator } from '@/components/ui/separator';
+import { RotatingWorldIcon } from '@/components/ui/rotating-world-icon';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -37,13 +38,17 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <span className="text-2xl">🌐</span>
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-                SyncRivo<sup>®</sup>
+            <Link to="/" className="flex items-center space-x-3 mb-4 group">
+              <RotatingWorldIcon 
+                size="lg" 
+                speed="slow" 
+                className="transition-transform duration-300 group-hover:scale-110" 
+              />
+              <span className="text-xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent group-hover:from-primary-hover group-hover:via-accent-hover group-hover:to-primary-hover transition-all duration-300">
+                SyncRivo<sup className="text-xs">®</sup>
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground max-w-xs">
+            <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
               {t('footer.tagline')}
             </p>
           </div>
