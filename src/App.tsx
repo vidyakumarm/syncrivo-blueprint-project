@@ -81,6 +81,7 @@ function App() {
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/legal/privacy" element={<Privacy />} />
                     <Route path="/terms" element={<Terms />} />
+                    <Route path="/legal/terms" element={<Terms />} />
                     <Route path="/integrations/:id" element={<IntegrationDetail />} />
                     <Route path="/docs/api" element={<DocsApi />} />
                     <Route path="*" element={<NotFound />} />
