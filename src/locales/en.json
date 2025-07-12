@@ -43,7 +43,7 @@
     "title": "Connect Every",
     "title_highlight": "Conversation",
     "subtitle": "Sync Slack, Teams, Webex, and Zoom in one unified workspace. Eliminate communication silos and boost team productivity across all platforms.",
-    "cta_primary": "Try SyncRivo Free",
+    "cta_primary": "Try SyncRivo® Free",
     "cta_secondary": "Request a Demo",
     "badge": "Business Communication Integration Platform",
     "trusted_by": "Trusted by 10,000+ teams worldwide for seamless communication integration",
@@ -57,7 +57,7 @@
   },
   "support": {
     "title": "How can we help you?",
-    "subtitle": "Get the support you need to make the most of SyncRivo. Our team is here to help you succeed.",
+    "subtitle": "Get the support you need to make the most of SyncRivo®. Our team is here to help you succeed.",
     "live_chat": "Live Chat",
     "live_chat_desc": "Get instant help from our support team",
     "email_support": "Email Support",
@@ -113,7 +113,7 @@
   },
   "features": {
     "title": "Features",
-    "subtitle": "Discover the powerful features that make SyncRivo the perfect integration platform for your business.",
+    "subtitle": "Discover the powerful features that make SyncRivo® the perfect integration platform for your business.",
     "coming_soon": "Coming Soon",
     "coming_soon_desc": "We're working on bringing you amazing features. Check back soon for updates."
   },
@@ -144,12 +144,12 @@
     "custom_workflows": "Custom workflows"
   },
   "about": {
-    "title": "About SyncRivo - Your Trusted Data Integration Partner",
-    "subtitle": "Learn about SyncRivo's mission to simplify business operations through innovative data integration solutions and discover our team's expertise.",
-    "seo_title": "About SyncRivo | Leading Data Integration & API Management Company",
-    "seo_description": "Learn about SyncRivo's mission to simplify business operations through innovative data integration solutions. Discover our team's expertise and commitment to your success.",
+    "title": "About SyncRivo® - Your Trusted Data Integration Partner",
+    "subtitle": "Learn about SyncRivo®'s mission to simplify business operations through innovative data integration solutions and discover our team's expertise.",
+    "seo_title": "About SyncRivo® | Leading Data Integration & API Management Company",
+    "seo_description": "Learn about SyncRivo®'s mission to simplify business operations through innovative data integration solutions. Discover our team's expertise and commitment to your success.",
     "hero": {
-      "title": "About SyncRivo - Your Trusted",
+      "title": "About SyncRivo® - Your Trusted",
       "title_highlight": "Data Integration Partner",
       "subtitle": "We're on a mission to revolutionize business operations by breaking down data silos and creating unified workflows where teams can collaborate effortlessly across any platform or application.",
       "badge": "Trusted by 10,000+ Businesses"
@@ -157,7 +157,7 @@
     "story": {
       "title": "Our Mission: Simplifying Business Integration",
       "subtitle": "Born from the need for seamless data connectivity",
-      "content": "SyncRivo was founded by a team of integration experts who experienced firsthand the challenges of managing disconnected business applications in modern enterprises. We realized that while each system had its strengths, the constant manual data transfers and integration complexities were hindering productivity and limiting business growth.",
+      "content": "SyncRivo® was founded by a team of integration experts who experienced firsthand the challenges of managing disconnected business applications in modern enterprises. We realized that while each system had its strengths, the constant manual data transfers and integration complexities were hindering productivity and limiting business growth.",
       "mission": "Our Core Mission",
       "mission_content": "To create a seamless data integration experience that empowers businesses to focus on what matters most - growing their operations, not managing their data pipelines."
     },
@@ -186,7 +186,7 @@
       "subtitle": "Key milestones in our growth",
       "founded": {
         "year": "2023",
-        "title": "SyncRivo Founded",
+        "title": "SyncRivo® Founded",
         "description": "Started with a vision to unify workplace communication"
       },
       "mvp": {
@@ -207,7 +207,7 @@
       "growth": {
         "year": "2024",
         "title": "Growing Community",
-        "description": "Reached 10,000+ teams using SyncRivo worldwide"
+        "description": "Reached 10,000+ teams using SyncRivo® worldwide"
       }
     },
     "stats": {
@@ -222,7 +222,7 @@
     },
     "cta": {
       "title": "Ready to Transform Your Team's Communication?",
-      "subtitle": "Join thousands of teams who have already simplified their workflow with SyncRivo.",
+      "subtitle": "Join thousands of teams who have already simplified their workflow with SyncRivo®.",
       "primary": "Start Free Trial",
       "secondary": "Contact Sales"
     }
@@ -233,7 +233,7 @@
     "hero_badge": "Seamless Integrations",
     "hero_title": "Connect Your Business Tools",
     "hero_title_highlight": "Seamlessly",
-    "hero_subtitle": "Integrate with hundreds of popular business applications and services. From CRMs to marketing tools, SyncRivo connects everything.",
+    "hero_subtitle": "Integrate with hundreds of popular business applications and services. From CRMs to marketing tools, SyncRivo® connects everything.",
     "search_placeholder": "Search integrations...",
     "category_placeholder": "All Categories",
     "popular_title": "Popular Integrations",
@@ -277,14 +277,14 @@
     "coming_soon_desc": "Our comprehensive documentation is being prepared. Check back soon for guides and tutorials."
   },
   "blog": {
-    "title": "SyncRivo Blog | Integration Guides, API Tutorials & Best Practices",
-    "subtitle": "Stay updated with the latest integration strategies, API tutorials, and business automation insights from SyncRivo's expert team. Boost your workflow efficiency today.",
-    "seo_title": "SyncRivo Blog | Integration Guides, API Tutorials & Best Practices",
-    "seo_description": "Stay updated with the latest integration strategies, API tutorials, and business automation insights from SyncRivo's expert team. Boost your workflow efficiency today.",
+    "title": "SyncRivo® Blog | Integration Guides, API Tutorials & Best Practices",
+    "subtitle": "Stay updated with the latest integration strategies, API tutorials, and business automation insights from SyncRivo®'s expert team. Boost your workflow efficiency today.",
+    "seo_title": "SyncRivo® Blog | Integration Guides, API Tutorials & Best Practices",
+    "seo_description": "Stay updated with the latest integration strategies, API tutorials, and business automation insights from SyncRivo®'s expert team. Boost your workflow efficiency today.",
     "hero": {
       "title": "Integration Insights: Expert Guides and",
       "title_highlight": "Best Practices",
-      "subtitle": "Discover the latest integration strategies, API tutorials, and business automation insights from SyncRivo's expert team. Master data synchronization and workflow optimization.",
+      "subtitle": "Discover the latest integration strategies, API tutorials, and business automation insights from SyncRivo®'s expert team. Master data synchronization and workflow optimization.",
       "badge": "Latest Integration Stories"
     },
     "featured": {
@@ -373,7 +373,7 @@
   },
   "signup": {
     "title": "Create Account", 
-    "subtitle": "Join SyncRivo and start connecting your business tools today.",
+    "subtitle": "Join SyncRivo® and start connecting your business tools today.",
     "display_name": "Display Name",
     "email": "Email",
     "password": "Password",
@@ -382,7 +382,7 @@
     "sign_in": "Sign in"
   },
   "dashboard": {
-    "title": "SyncRivo Dashboard",
+    "title": "SyncRivo® Dashboard",
     "subtitle": "Connect and sync messages across Teams, Webex, Google Chat, Zoom and other messaging platforms",
     "welcome": "Welcome to your dashboard",
     "metrics": {

@@ -11,37 +11,37 @@ export function RotatingLogo({ className = "" }: RotatingLogoProps) {
   const logoVariants = [
     { 
       icon: Zap, 
-      text: "SyncRivo",
+      text: "SyncRivo®",
       subtitle: "Connect",
       color: "text-primary"
     },
     { 
       icon: RefreshCw, 
-      text: "SyncRivo",
+      text: "SyncRivo®",
       subtitle: "Sync",
       color: "text-accent"
     },
     { 
       icon: Link, 
-      text: "SyncRivo",
+      text: "SyncRivo®",
       subtitle: "Integrate",
       color: "text-primary"
     },
     { 
       icon: Workflow, 
-      text: "SyncRivo",
+      text: "SyncRivo®",
       subtitle: "Automate",
       color: "text-accent"
     },
     { 
       icon: Database, 
-      text: "SyncRivo",
+      text: "SyncRivo®",
       subtitle: "Organize",
       color: "text-primary"
     },
     { 
       icon: Cloud, 
-      text: "SyncRivo",
+      text: "SyncRivo®",
       subtitle: "Scale",
       color: "text-accent"
     }

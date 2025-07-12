@@ -40,7 +40,7 @@ export function Footer() {
             <Link to="/" className="flex items-center space-x-2 mb-4">
               <span className="text-2xl">🌐</span>
               <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-                SyncRivo
+                SyncRivo<sup>®</sup>
               </span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
@@ -72,7 +72,7 @@ export function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © 2025 SyncRivo. {t('footer.all_rights_reserved')}
+            © 2025 SyncRivo®. {t('footer.all_rights_reserved')}
           </p>
           <div className="flex items-center space-x-6 mt-4 sm:mt-0">
             <a
