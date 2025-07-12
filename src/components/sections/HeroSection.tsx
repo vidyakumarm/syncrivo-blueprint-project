@@ -27,6 +27,7 @@ import discordIcon from '@/assets/discord-icon.png';
 import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 import heroBg from '@/assets/hero-bg.jpg';
 import i18next from 'i18next';
+import { PlatformCarousel } from './PlatformCarousel';
 
 export function HeroSection() {
   const { t } = useTranslationWithFallback();
@@ -160,19 +161,9 @@ export function HeroSection() {
           ))}
         </div>
 
-        {/* Quick Platform Preview */}
-        <div className="mt-20 max-w-4xl mx-auto text-center animate-fade-in" style={{ animationDelay: '1200ms' }}>
-          <p className="text-lg text-muted-foreground mb-8">
-            Connect 26+ messaging platforms with your business applications
-          </p>
-          <div className="flex justify-center items-center space-x-8 opacity-60 hover:opacity-90 transition-opacity duration-300">
-            <img src={teamsIcon} alt="Microsoft Teams" className="w-8 h-8 object-contain" />
-            <img src={slackIcon} alt="Slack" className="w-8 h-8 object-contain" />
-            <img src={zoomIcon} alt="Zoom" className="w-8 h-8 object-contain" />
-            <img src={googleChatIcon} alt="Google Chat" className="w-8 h-8 object-contain" />
-            <img src={webexIcon} alt="Webex" className="w-8 h-8 object-contain" />
-            <span className="text-muted-foreground font-medium">+ 21 more</span>
-          </div>
+        {/* Enhanced Platform Carousel */}
+        <div className="mt-20 animate-fade-in" style={{ animationDelay: '1200ms' }}>
+          <PlatformCarousel />
         </div>
       </div>
 
