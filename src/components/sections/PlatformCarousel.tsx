@@ -8,11 +8,23 @@ import slackOfficial from '@/assets/brands/slack-official.svg';
 import teamsOfficial from '@/assets/brands/teams-official.svg';
 import discordOfficial from '@/assets/brands/discord-official.png';
 import googleMeet from '@/assets/brands/google-meet.svg';
-
-// Import existing assets as fallbacks
 import zoomIcon from '@/assets/zoom-icon.png';
 import googleChatIcon from '@/assets/google-chat-icon.png';
 import webexIcon from '@/assets/webex-icon.png';
+import mattermostOfficial from '@/assets/brands/mattermost-official.svg';
+import rocketchatOfficial from '@/assets/brands/rocketchat-official.svg';
+import intercomOfficial from '@/assets/brands/intercom-official.svg';
+import zendeskOfficial from '@/assets/brands/zendesk-official.svg';
+import freshchatOfficial from '@/assets/brands/freshchat-official.svg';
+import livechatOfficial from '@/assets/brands/livechat-official.svg';
+import driftOfficial from '@/assets/brands/drift-official.svg';
+import hubspotOfficial from '@/assets/brands/hubspot-official.svg';
+import whatsappOfficial from '@/assets/brands/whatsapp-official.svg';
+import telegramOfficial from '@/assets/brands/telegram-official.svg';
+import lineOfficial from '@/assets/brands/line-official.svg';
+import wechatOfficial from '@/assets/brands/wechat-official.svg';
+import gitterOfficial from '@/assets/brands/gitter-official.svg';
+import frontOfficial from '@/assets/brands/front-official.svg';
 
 interface Platform {
   name: string;
@@ -87,20 +99,20 @@ const platforms: Platform[] = [
   },
 
   // Additional platforms
-  { name: 'Mattermost', icon: googleChatIcon, category: 'team', description: 'Open-source team messaging', useCase: 'Self-hosted, custom integrations', integration: 'API-based' },
-  { name: 'Rocket.Chat', icon: googleChatIcon, category: 'team', description: 'Customizable team chat', useCase: 'White-label solutions', integration: 'API-based' },
-  { name: 'Intercom', icon: googleChatIcon, category: 'customer', description: 'Customer messaging platform', useCase: 'Support ticket routing', integration: 'Bidirectional', isPopular: true },
-  { name: 'Zendesk Messaging', icon: googleChatIcon, category: 'customer', description: 'Customer support chat', useCase: 'Ticket creation, agent routing', integration: 'API-based' },
-  { name: 'Freshchat', icon: googleChatIcon, category: 'customer', description: 'Modern messaging software', useCase: 'Lead qualification, support', integration: 'Webhook' },
-  { name: 'LiveChat', icon: googleChatIcon, category: 'customer', description: 'Customer service platform', useCase: 'Website chat, visitor tracking', integration: 'Real-time' },
-  { name: 'Drift', icon: googleChatIcon, category: 'customer', description: 'Conversational marketing', useCase: 'Sales automation, lead capture', integration: 'Bidirectional' },
-  { name: 'HubSpot Conversations', icon: googleChatIcon, category: 'customer', description: 'CRM-integrated messaging', useCase: 'Contact management, sales pipeline', integration: 'API-based' },
-  { name: 'WhatsApp Business', icon: googleChatIcon, category: 'regional', description: 'Customer communication', useCase: 'Order updates, customer service', integration: 'API-based', isPopular: true },
-  { name: 'WeCom', icon: googleChatIcon, category: 'regional', description: 'Chinese enterprise messaging', useCase: 'Enterprise communication in China', integration: 'API-based' },
-  { name: 'LINE Works', icon: googleChatIcon, category: 'regional', description: 'Japanese business messaging', useCase: 'Business communication in Japan', integration: 'Webhook' },
-  { name: 'Telegram Business', icon: googleChatIcon, category: 'regional', description: 'Secure business messaging', useCase: 'Encrypted business communication', integration: 'API-based' },
-  { name: 'Gitter', icon: googleChatIcon, category: 'developer', description: 'Developer chat rooms', useCase: 'Code repository integration', integration: 'API-based' },
-  { name: 'Front', icon: googleChatIcon, category: 'customer', description: 'Shared inbox for teams', useCase: 'Email management, team collaboration', integration: 'Bidirectional' },
+  { name: 'Mattermost', icon: mattermostOfficial, category: 'team', description: 'Open-source team messaging', useCase: 'Self-hosted, custom integrations', integration: 'API-based' },
+  { name: 'Rocket.Chat', icon: rocketchatOfficial, category: 'team', description: 'Customizable team chat', useCase: 'White-label solutions', integration: 'API-based' },
+  { name: 'Intercom', icon: intercomOfficial, category: 'customer', description: 'Customer messaging platform', useCase: 'Support ticket routing', integration: 'Bidirectional', isPopular: true },
+  { name: 'Zendesk Messaging', icon: zendeskOfficial, category: 'customer', description: 'Customer support chat', useCase: 'Ticket creation, agent routing', integration: 'API-based' },
+  { name: 'Freshchat', icon: freshchatOfficial, category: 'customer', description: 'Modern messaging software', useCase: 'Lead qualification, support', integration: 'Webhook' },
+  { name: 'LiveChat', icon: livechatOfficial, category: 'customer', description: 'Customer service platform', useCase: 'Website chat, visitor tracking', integration: 'Real-time' },
+  { name: 'Drift', icon: driftOfficial, category: 'customer', description: 'Conversational marketing', useCase: 'Sales automation, lead capture', integration: 'Bidirectional' },
+  { name: 'HubSpot Conversations', icon: hubspotOfficial, category: 'customer', description: 'CRM-integrated messaging', useCase: 'Contact management, sales pipeline', integration: 'API-based' },
+  { name: 'WhatsApp Business', icon: whatsappOfficial, category: 'regional', description: 'Customer communication', useCase: 'Order updates, customer service', integration: 'API-based', isPopular: true },
+  { name: 'WeCom', icon: wechatOfficial, category: 'regional', description: 'Chinese enterprise messaging', useCase: 'Enterprise communication in China', integration: 'API-based' },
+  { name: 'LINE Works', icon: lineOfficial, category: 'regional', description: 'Japanese business messaging', useCase: 'Business communication in Japan', integration: 'Webhook' },
+  { name: 'Telegram Business', icon: telegramOfficial, category: 'regional', description: 'Secure business messaging', useCase: 'Encrypted business communication', integration: 'API-based' },
+  { name: 'Gitter', icon: gitterOfficial, category: 'developer', description: 'Developer chat rooms', useCase: 'Code repository integration', integration: 'API-based' },
+  { name: 'Front', icon: frontOfficial, category: 'customer', description: 'Shared inbox for teams', useCase: 'Email management, team collaboration', integration: 'Bidirectional' },
 ];
 
 const categoryConfig = {
