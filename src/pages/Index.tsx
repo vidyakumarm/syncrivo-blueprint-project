@@ -93,54 +93,56 @@ const Index = () => {
       <main>
         <HeroSection />
         
-        {/* Enhanced Features Section */}
-        <section className="py-24 bg-muted/20 relative overflow-hidden">
-          {/* Background enhancements */}
-          <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
+        {/* Minimalist Features Section - Asymmetric Grid */}
+        <section className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-minimal" />
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-20">
-              <Badge variant="secondary" className="mb-8 px-6 py-3 text-base font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
-                <Workflow className="w-5 h-5 mr-2" />
+            <div className="mb-20">
+              <Badge 
+                variant="outline" 
+                className="mb-6 px-4 py-2 text-sm border-primary/20 bg-primary/5"
+              >
                 {t('home.features_badge')}
               </Badge>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                <span className="block text-foreground mb-2">{t('home.main_heading')}</span>
-                <span className="text-gradient-primary">Advanced Integration Capabilities</span>
+              <h2 className="text-4xl sm:text-5xl font-bold mb-6 max-w-2xl">
+                {t('home.main_heading')}
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-muted-foreground max-w-2xl">
                 {t('home.features_subtitle')}
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12 mb-20">
+            {/* Asymmetric Feature Grid */}
+            <div className="grid lg:grid-cols-12 gap-8">
               {features.map((feature, index) => (
                 <Card 
                   key={index} 
-                  className="group glass-card card-interactive animate-fade-in p-8 border-2 border-border/30 hover:border-primary/30"
-                  style={{ animationDelay: `${index * 200}ms` }}
+                  className={`group glass-card card-interactive p-8 border border-border/20 hover:border-primary/20 ${
+                    index % 3 === 0 ? 'lg:col-span-7' : 'lg:col-span-5'
+                  } animate-fade-in`}
+                  style={{ animationDelay: `${index * 150}ms` }}
                 >
-                  <CardHeader className="pb-6">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-2xl mb-6 flex items-center justify-center group-hover:scale-110 group-hover:shadow-brand-lg transition-all duration-300">
-                      <feature.icon className="h-8 w-8 text-white group-hover:animate-pulse" />
+                  <CardHeader className="p-0 mb-6">
+                    <div className="w-12 h-12 bg-gradient-primary rounded-xl mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      <feature.icon className="h-6 w-6 text-white" />
                     </div>
-                    <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300 mb-4">
+                    <CardTitle className="text-2xl font-bold mb-3">
                       {feature.title}
                     </CardTitle>
-                    <p className="text-lg text-muted-foreground group-hover:text-foreground transition-colors duration-300 leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
                   </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-4">
+                  <CardContent className="p-0">
+                    <ul className="space-y-3">
                       {feature.benefits.map((benefit, i) => (
                         <li 
                           key={i} 
-                          className="flex items-start text-base text-muted-foreground group-hover:text-foreground transition-all duration-300 animate-fade-in"
-                          style={{ animationDelay: `${(index * 200) + (i * 100)}ms` }}
+                          className="flex items-start text-sm text-muted-foreground"
                         >
-                          <CheckCircle2 className="h-5 w-5 text-success mr-3 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
-                          <span className="leading-relaxed">{benefit}</span>
+                          <CheckCircle2 className="h-4 w-4 text-success mr-2 flex-shrink-0 mt-0.5" />
+                          <span>{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -151,61 +153,64 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Enhanced Use Cases Section */}
-        <section className="py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-20">
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                {t('home.use_cases_title')}
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                {t('home.use_cases_subtitle')}
-              </p>
-            </div>
+        {/* Minimalist Use Cases - Asymmetric Cards */}
+        <section className="py-32 bg-muted/30 diagonal-section">
+          <div className="diagonal-content">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-16">
+                <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 max-w-2xl">
+                  {t('home.use_cases_title')}
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl">
+                  {t('home.use_cases_subtitle')}
+                </p>
+              </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {useCases.map((useCase, index) => (
-                <Card 
-                  key={index} 
-                  className={`group glass-card card-interactive border-2 ${useCase.color} p-8 animate-fade-in`}
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <CardHeader className="pb-0">
-                    <div className="flex items-center space-x-4 mb-6">
-                      <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-2xl animate-float" style={{ animationDelay: `${index * 500}ms` }}>
+              <div className="grid md:grid-cols-2 gap-6">
+                {useCases.map((useCase, index) => (
+                  <Card 
+                    key={index} 
+                    className={`group glass-card card-interactive border border-border/20 hover:border-primary/20 p-8 ${
+                      index % 2 === 0 ? 'md:translate-y-8' : 'md:-translate-y-8'
+                    } animate-fade-in`}
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <CardHeader className="p-0">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500">
                           {useCase.icon}
-                        </span>
+                        </div>
+                        <ArrowRight className="h-5 w-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       </div>
-                      <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">
+                      <CardTitle className="text-xl font-bold mb-3">
                         {useCase.title}
                       </CardTitle>
-                    </div>
-                    <p className="text-lg text-muted-foreground group-hover:text-foreground transition-colors duration-300 leading-relaxed">
-                      {useCase.description}
-                    </p>
-                  </CardHeader>
-                </Card>
-              ))}
+                      <p className="text-muted-foreground leading-relaxed">
+                        {useCase.description}
+                      </p>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Enhanced How It Works Section */}
-        <section className="py-24 bg-gradient-to-br from-primary-light/30 to-accent-light/20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-mesh opacity-25" />
+        {/* Minimalist Process Section */}
+        <section className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-minimal" />
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-20">
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
+            <div className="mb-16">
+              <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 max-w-2xl">
                 {t('home.how_it_works')}
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-muted-foreground max-w-2xl">
                 {t('home.how_it_works_subtitle')}
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-12">
+            <div className="grid md:grid-cols-3 gap-8">
               {[
                 { number: 1, title: t('home.connect_platforms'), desc: t('home.connect_platforms_desc') },
                 { number: 2, title: t('home.configure_sync'), desc: t('home.configure_sync_desc') },
@@ -213,26 +218,30 @@ const Index = () => {
               ].map((step, index) => (
                 <div 
                   key={step.number} 
-                  className="text-center group animate-fade-in"
-                  style={{ animationDelay: `${index * 200}ms` }}
+                  className="group relative animate-fade-in"
+                  style={{ animationDelay: `${index * 150}ms` }}
                 >
-                  {/* Enhanced step number */}
-                  <div className="relative mb-8">
-                    <div className="w-20 h-20 bg-gradient-primary rounded-full mx-auto flex items-center justify-center text-white font-bold text-2xl shadow-brand-lg group-hover:shadow-brand-xl group-hover:scale-110 transition-all duration-300">
-                      {step.number}
-                    </div>
-                    {/* Connection line (except for last step) */}
-                    {index < 2 && (
-                      <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-primary to-accent opacity-30 transform translate-x-10 -translate-y-0.5" />
-                    )}
+                  <div className="absolute -top-4 -left-4 text-8xl font-bold text-primary/5 -z-10">
+                    {step.number}
                   </div>
                   
-                  <h3 className="text-2xl font-semibold text-foreground mb-6 group-hover:text-primary transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
-                    {step.desc}
-                  </p>
+                  <div className="relative">
+                    <div className="w-12 h-12 bg-gradient-primary rounded-xl mb-6 flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-500">
+                      {step.number}
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-foreground mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+
+                  {/* Minimal connector line */}
+                  {index < 2 && (
+                    <div className="hidden md:block absolute top-6 left-full w-8 h-px bg-border/30" />
+                  )}
                 </div>
               ))}
             </div>
