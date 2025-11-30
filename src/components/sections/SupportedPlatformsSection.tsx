@@ -24,12 +24,24 @@ import slackOfficial from '@/assets/brands/slack-official.svg';
 import teamsOfficial from '@/assets/brands/teams-official.svg';
 import discordOfficial from '@/assets/brands/discord-official.png';
 import googleMeet from '@/assets/brands/google-meet.svg';
-
-// Import existing assets as fallbacks
 import zoomIcon from '@/assets/zoom-icon.png';
-import googleChatIcon from '@/assets/google-chat-icon.png';
 import webexIcon from '@/assets/webex-icon.png';
-import discordIcon from '@/assets/discord-icon.png';
+import mattermostOfficial from '@/assets/brands/mattermost-official.svg';
+import rocketchatOfficial from '@/assets/brands/rocketchat-official.svg';
+import flockOfficial from '@/assets/brands/flock-official.svg';
+import gitterOfficial from '@/assets/brands/gitter-official.svg';
+import intercomOfficial from '@/assets/brands/intercom-official.svg';
+import zendeskOfficial from '@/assets/brands/zendesk-official.svg';
+import freshchatOfficial from '@/assets/brands/freshchat-official.svg';
+import tawkOfficial from '@/assets/brands/tawk-official.svg';
+import driftOfficial from '@/assets/brands/drift-official.svg';
+import livechatOfficial from '@/assets/brands/livechat-official.svg';
+import wechatOfficial from '@/assets/brands/wechat-official.svg';
+import lineOfficial from '@/assets/brands/line-official.svg';
+import kakaotalkOfficial from '@/assets/brands/kakaotalk-official.svg';
+import telegramOfficial from '@/assets/brands/telegram-official.svg';
+import whatsappOfficial from '@/assets/brands/whatsapp-official.svg';
+import signalOfficial from '@/assets/brands/signal-official.svg';
 
 interface Platform {
   name: string;
@@ -68,9 +80,9 @@ export function SupportedPlatformsSection() {
         { name: 'Google Chat', logoUrl: googleMeet, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Workspace sync', capabilities: ['Space mapping', 'Bot integration', 'Calendar sync'], category: 'collaboration', popular: true },
         { name: 'Zoom Team Chat', logoUrl: zoomIcon, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'Meeting bridge', capabilities: ['Video integration', 'Recording sync', 'Transcript sharing'], category: 'collaboration', popular: true },
         { name: 'Webex by Cisco', logoUrl: webexIcon, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Enterprise ready', capabilities: ['Security compliant', 'Admin controls', 'Analytics'], category: 'collaboration' },
-        { name: 'Mattermost', logoUrl: discordIcon, color: 'bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/50', borderColor: 'border-indigo-200 hover:border-indigo-300 dark:border-indigo-800 dark:hover:border-indigo-700', integration: 'Self-hosted sync', capabilities: ['Open source', 'Custom plugins', 'On-premise'], category: 'collaboration' },
-        { name: 'Rocket.Chat', logoUrl: googleChatIcon, color: 'bg-red-50 hover:bg-red-100 dark:bg-red-950/50 dark:hover:bg-red-900/50', borderColor: 'border-red-200 hover:border-red-300 dark:border-red-800 dark:hover:border-red-700', integration: 'API integration', capabilities: ['Omnichannel', 'Live chat', 'Video calls'], category: 'collaboration' },
-        { name: 'Flock', logoUrl: googleChatIcon, color: 'bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-950/50 dark:hover:bg-yellow-900/50', borderColor: 'border-yellow-200 hover:border-yellow-300 dark:border-yellow-800 dark:hover:border-yellow-700', integration: 'Team sync', capabilities: ['Project management', 'To-do integration', 'Polls & notes'], category: 'collaboration' }
+        { name: 'Mattermost', logoUrl: mattermostOfficial, color: 'bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/50', borderColor: 'border-indigo-200 hover:border-indigo-300 dark:border-indigo-800 dark:hover:border-indigo-700', integration: 'Self-hosted sync', capabilities: ['Open source', 'Custom plugins', 'On-premise'], category: 'collaboration' },
+        { name: 'Rocket.Chat', logoUrl: rocketchatOfficial, color: 'bg-red-50 hover:bg-red-100 dark:bg-red-950/50 dark:hover:bg-red-900/50', borderColor: 'border-red-200 hover:border-red-300 dark:border-red-800 dark:hover:border-red-700', integration: 'API integration', capabilities: ['Omnichannel', 'Live chat', 'Video calls'], category: 'collaboration' },
+        { name: 'Flock', logoUrl: flockOfficial, color: 'bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-950/50 dark:hover:bg-yellow-900/50', borderColor: 'border-yellow-200 hover:border-yellow-300 dark:border-yellow-800 dark:hover:border-yellow-700', integration: 'Team sync', capabilities: ['Project management', 'To-do integration', 'Polls & notes'], category: 'collaboration' }
       ]
     },
     {
@@ -81,7 +93,7 @@ export function SupportedPlatformsSection() {
       color: 'purple',
       platforms: [
         { name: 'Discord', logoUrl: discordOfficial, color: 'bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/50', borderColor: 'border-indigo-200 hover:border-indigo-300 dark:border-indigo-800 dark:hover:border-indigo-700', integration: 'Community sync', capabilities: ['Voice channels', 'Bot integration', 'Server management'], category: 'developer', popular: true },
-        { name: 'Gitter', logoUrl: googleChatIcon, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'GitHub integration', capabilities: ['Repository chat', 'Code snippets', 'Markdown support'], category: 'developer' }
+        { name: 'Gitter', logoUrl: gitterOfficial, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'GitHub integration', capabilities: ['Repository chat', 'Code snippets', 'Markdown support'], category: 'developer' }
       ]
     },
     {
@@ -91,12 +103,12 @@ export function SupportedPlatformsSection() {
       icon: Headphones,
       color: 'green',
       platforms: [
-        { name: 'Intercom', logoUrl: googleChatIcon, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'Customer sync', capabilities: ['Live chat', 'Help desk', 'Customer data'], category: 'customer', popular: true },
-        { name: 'Zendesk Messaging', logoUrl: googleChatIcon, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Ticket sync', capabilities: ['Support tickets', 'Knowledge base', 'Agent tools'], category: 'customer', popular: true },
-        { name: 'Freshchat', logoUrl: googleChatIcon, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'CRM integration', capabilities: ['Lead scoring', 'Campaign tracking', 'Multi-channel'], category: 'customer' },
-        { name: 'Tawk.to', logoUrl: googleChatIcon, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Website chat', capabilities: ['Free live chat', 'Visitor monitoring', 'File sharing'], category: 'customer' },
-        { name: 'Drift', logoUrl: googleChatIcon, color: 'bg-orange-50 hover:bg-orange-100 dark:bg-orange-950/50 dark:hover:bg-orange-900/50', borderColor: 'border-orange-200 hover:border-orange-300 dark:border-orange-800 dark:hover:border-orange-700', integration: 'Sales sync', capabilities: ['Conversational marketing', 'Lead qualification', 'Meeting booking'], category: 'customer' },
-        { name: 'LiveChat', logoUrl: googleChatIcon, color: 'bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-950/50 dark:hover:bg-yellow-900/50', borderColor: 'border-yellow-200 hover:border-yellow-300 dark:border-yellow-800 dark:hover:border-yellow-700', integration: 'Support integration', capabilities: ['Chat widget', 'Ticketing', 'Analytics'], category: 'customer' }
+        { name: 'Intercom', logoUrl: intercomOfficial, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'Customer sync', capabilities: ['Live chat', 'Help desk', 'Customer data'], category: 'customer', popular: true },
+        { name: 'Zendesk Messaging', logoUrl: zendeskOfficial, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Ticket sync', capabilities: ['Support tickets', 'Knowledge base', 'Agent tools'], category: 'customer', popular: true },
+        { name: 'Freshchat', logoUrl: freshchatOfficial, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'CRM integration', capabilities: ['Lead scoring', 'Campaign tracking', 'Multi-channel'], category: 'customer' },
+        { name: 'Tawk.to', logoUrl: tawkOfficial, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Website chat', capabilities: ['Free live chat', 'Visitor monitoring', 'File sharing'], category: 'customer' },
+        { name: 'Drift', logoUrl: driftOfficial, color: 'bg-orange-50 hover:bg-orange-100 dark:bg-orange-950/50 dark:hover:bg-orange-900/50', borderColor: 'border-orange-200 hover:border-orange-300 dark:border-orange-800 dark:hover:border-orange-700', integration: 'Sales sync', capabilities: ['Conversational marketing', 'Lead qualification', 'Meeting booking'], category: 'customer' },
+        { name: 'LiveChat', logoUrl: livechatOfficial, color: 'bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-950/50 dark:hover:bg-yellow-900/50', borderColor: 'border-yellow-200 hover:border-yellow-300 dark:border-yellow-800 dark:hover:border-yellow-700', integration: 'Support integration', capabilities: ['Chat widget', 'Ticketing', 'Analytics'], category: 'customer' }
       ]
     },
     {
@@ -106,12 +118,12 @@ export function SupportedPlatformsSection() {
       icon: Earth,
       color: 'orange',
       platforms: [
-        { name: 'WeCom (WeChat Work)', logoUrl: googleChatIcon, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'China business', capabilities: ['Enterprise features', 'Mini programs', 'API integration'], category: 'regional', popular: true },
-        { name: 'LINE Works', logoUrl: googleChatIcon, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Japan business', capabilities: ['Stickers', 'Video calls', 'File sharing'], category: 'regional' },
-        { name: 'Kakao Work', logoUrl: googleChatIcon, color: 'bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-950/50 dark:hover:bg-yellow-900/50', borderColor: 'border-yellow-200 hover:border-yellow-300 dark:border-yellow-800 dark:hover:border-yellow-700', integration: 'Korea business', capabilities: ['Enterprise chat', 'Calendar sync', 'Drive integration'], category: 'regional' },
-        { name: 'Telegram for Business', logoUrl: googleChatIcon, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'Secure messaging', capabilities: ['Bot API', 'Channels', 'File sharing'], category: 'regional', popular: true },
-        { name: 'WhatsApp Business', logoUrl: googleChatIcon, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Customer support', capabilities: ['Business profiles', 'Catalogs', 'Quick replies'], category: 'regional', popular: true },
-        { name: 'Signal for Work', logoUrl: googleChatIcon, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'Secure enterprise', capabilities: ['End-to-end encryption', 'Group management', 'File sharing'], category: 'regional' }
+        { name: 'WeCom (WeChat Work)', logoUrl: wechatOfficial, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'China business', capabilities: ['Enterprise features', 'Mini programs', 'API integration'], category: 'regional', popular: true },
+        { name: 'LINE Works', logoUrl: lineOfficial, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Japan business', capabilities: ['Stickers', 'Video calls', 'File sharing'], category: 'regional' },
+        { name: 'Kakao Work', logoUrl: kakaotalkOfficial, color: 'bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-950/50 dark:hover:bg-yellow-900/50', borderColor: 'border-yellow-200 hover:border-yellow-300 dark:border-yellow-800 dark:hover:border-yellow-700', integration: 'Korea business', capabilities: ['Enterprise chat', 'Calendar sync', 'Drive integration'], category: 'regional' },
+        { name: 'Telegram for Business', logoUrl: telegramOfficial, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'Secure messaging', capabilities: ['Bot API', 'Channels', 'File sharing'], category: 'regional', popular: true },
+        { name: 'WhatsApp Business', logoUrl: whatsappOfficial, color: 'bg-green-50 hover:bg-green-100 dark:bg-green-950/50 dark:hover:bg-green-900/50', borderColor: 'border-green-200 hover:border-green-300 dark:border-green-800 dark:hover:border-green-700', integration: 'Customer support', capabilities: ['Business profiles', 'Catalogs', 'Quick replies'], category: 'regional', popular: true },
+        { name: 'Signal for Work', logoUrl: signalOfficial, color: 'bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/50', borderColor: 'border-blue-200 hover:border-blue-300 dark:border-blue-800 dark:hover:border-blue-700', integration: 'Secure enterprise', capabilities: ['End-to-end encryption', 'Group management', 'File sharing'], category: 'regional' }
       ]
     }
   ];
