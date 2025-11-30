@@ -118,18 +118,19 @@ export function HeroSection() {
             </p>
             <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 opacity-70 hover:opacity-90 transition-opacity duration-300">
               {[
-                { icon: Users, color: 'text-blue-500', name: 'Microsoft Teams Integration', desc: 'Connect with CRM' },
-                { icon: Video, color: 'text-green-500', name: 'Webex Meeting Sync', desc: 'Auto-create tickets' },
-                { icon: MessageSquare, color: 'text-red-500', name: 'Slack Workflow Hub', desc: 'Project notifications' },
-                { icon: Video, color: 'text-blue-400', name: 'Zoom Recording Pipeline', desc: 'Auto-transcription' },
-                { icon: Workflow, color: 'text-purple-500', name: 'API Integration Layer', desc: '50+ business apps' }
+                { icon: teamsIcon, name: 'Microsoft Teams Integration', desc: 'Connect with CRM' },
+                { icon: webexIcon, name: 'Webex Meeting Sync', desc: 'Auto-create tickets' },
+                { icon: slackIcon, name: 'Slack Workflow Hub', desc: 'Project notifications' },
+                { icon: zoomIcon, name: 'Zoom Recording Pipeline', desc: 'Auto-transcription' },
+                { icon: googleChatIcon, name: 'Google Chat Sync', desc: 'Team collaboration' },
+                { icon: discordIcon, name: 'Discord Integration', desc: 'Community management' }
               ].map((integration, index) => (
                 <div 
                   key={integration.name}
                   className="flex flex-col items-center space-y-1 bg-card/30 backdrop-blur-sm px-4 py-3 rounded-lg border border-border/30 hover:bg-card/50 hover:border-border/50 transition-all duration-300 animate-fade-in"
                   style={{ animationDelay: `${700 + index * 100}ms` }}
                 >
-                  <integration.icon className={`h-4 w-4 ${integration.color} animate-pulse`} />
+                  <img src={integration.icon} alt={integration.name} className="h-8 w-8 object-contain animate-pulse" />
                   <span className="text-xs font-medium text-muted-foreground text-center">{integration.name}</span>
                   <span className="text-xs text-muted-foreground/70 text-center">{integration.desc}</span>
                 </div>
