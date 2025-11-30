@@ -27,7 +27,7 @@ export interface Job {
   benefits: string[];
   salary_min?: number;
   salary_max?: number;
-  currency: string;
+  salary_currency?: string | null;
   remote_allowed: boolean;
   posted_date: string;
 }
@@ -41,10 +41,10 @@ export function JobCard({ job, onApply }: JobCardProps) {
   const [showApplicationDialog, setShowApplicationDialog] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const formatSalary = (min?: number, max?: number, currency = 'USD') => {
+  const formatSalary = (min?: number, max?: number, currency?: string | null) => {
     if (!min || !max) return 'Competitive';
     const formatNumber = (num: number) => (num / 1000).toFixed(0) + 'K';
-    return `$${formatNumber(min)} - $${formatNumber(max)} ${currency}`;
+    return `$${formatNumber(min)} - $${formatNumber(max)} ${currency || 'USD'}`;
   };
 
   const formatDate = (dateString: string) => {
@@ -100,7 +100,7 @@ export function JobCard({ job, onApply }: JobCardProps) {
             <div className="text-right">
               <div className="flex items-center gap-1 text-sm font-medium text-foreground mb-1">
                 <DollarSign className="h-4 w-4" />
-                {formatSalary(job.salary_min, job.salary_max, job.currency)}
+                {formatSalary(job.salary_min, job.salary_max, job.salary_currency)}
               </div>
               <div className="text-xs text-muted-foreground">
                 Posted {formatDate(job.posted_date)}

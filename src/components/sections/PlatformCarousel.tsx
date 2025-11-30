@@ -86,21 +86,21 @@ const platforms: Platform[] = [
     isOfficial: true
   },
 
-  // Additional platforms (using branded placeholders)
-  { name: 'Mattermost', icon: '/api/placeholder/64/64', category: 'team', description: 'Open-source team messaging', useCase: 'Self-hosted, custom integrations', integration: 'API-based' },
-  { name: 'Rocket.Chat', icon: '/api/placeholder/64/64', category: 'team', description: 'Customizable team chat', useCase: 'White-label solutions', integration: 'API-based' },
-  { name: 'Intercom', icon: '/api/placeholder/64/64', category: 'customer', description: 'Customer messaging platform', useCase: 'Support ticket routing', integration: 'Bidirectional', isPopular: true },
-  { name: 'Zendesk Messaging', icon: '/api/placeholder/64/64', category: 'customer', description: 'Customer support chat', useCase: 'Ticket creation, agent routing', integration: 'API-based' },
-  { name: 'Freshchat', icon: '/api/placeholder/64/64', category: 'customer', description: 'Modern messaging software', useCase: 'Lead qualification, support', integration: 'Webhook' },
-  { name: 'LiveChat', icon: '/api/placeholder/64/64', category: 'customer', description: 'Customer service platform', useCase: 'Website chat, visitor tracking', integration: 'Real-time' },
-  { name: 'Drift', icon: '/api/placeholder/64/64', category: 'customer', description: 'Conversational marketing', useCase: 'Sales automation, lead capture', integration: 'Bidirectional' },
-  { name: 'HubSpot Conversations', icon: '/api/placeholder/64/64', category: 'customer', description: 'CRM-integrated messaging', useCase: 'Contact management, sales pipeline', integration: 'API-based' },
-  { name: 'WhatsApp Business', icon: '/api/placeholder/64/64', category: 'regional', description: 'Customer communication', useCase: 'Order updates, customer service', integration: 'API-based', isPopular: true },
-  { name: 'WeCom', icon: '/api/placeholder/64/64', category: 'regional', description: 'Chinese enterprise messaging', useCase: 'Enterprise communication in China', integration: 'API-based' },
-  { name: 'LINE Works', icon: '/api/placeholder/64/64', category: 'regional', description: 'Japanese business messaging', useCase: 'Business communication in Japan', integration: 'Webhook' },
-  { name: 'Telegram Business', icon: '/api/placeholder/64/64', category: 'regional', description: 'Secure business messaging', useCase: 'Encrypted business communication', integration: 'API-based' },
-  { name: 'Gitter', icon: '/api/placeholder/64/64', category: 'developer', description: 'Developer chat rooms', useCase: 'Code repository integration', integration: 'API-based' },
-  { name: 'Front', icon: '/api/placeholder/64/64', category: 'customer', description: 'Shared inbox for teams', useCase: 'Email management, team collaboration', integration: 'Bidirectional' },
+  // Additional platforms
+  { name: 'Mattermost', icon: googleChatIcon, category: 'team', description: 'Open-source team messaging', useCase: 'Self-hosted, custom integrations', integration: 'API-based' },
+  { name: 'Rocket.Chat', icon: googleChatIcon, category: 'team', description: 'Customizable team chat', useCase: 'White-label solutions', integration: 'API-based' },
+  { name: 'Intercom', icon: googleChatIcon, category: 'customer', description: 'Customer messaging platform', useCase: 'Support ticket routing', integration: 'Bidirectional', isPopular: true },
+  { name: 'Zendesk Messaging', icon: googleChatIcon, category: 'customer', description: 'Customer support chat', useCase: 'Ticket creation, agent routing', integration: 'API-based' },
+  { name: 'Freshchat', icon: googleChatIcon, category: 'customer', description: 'Modern messaging software', useCase: 'Lead qualification, support', integration: 'Webhook' },
+  { name: 'LiveChat', icon: googleChatIcon, category: 'customer', description: 'Customer service platform', useCase: 'Website chat, visitor tracking', integration: 'Real-time' },
+  { name: 'Drift', icon: googleChatIcon, category: 'customer', description: 'Conversational marketing', useCase: 'Sales automation, lead capture', integration: 'Bidirectional' },
+  { name: 'HubSpot Conversations', icon: googleChatIcon, category: 'customer', description: 'CRM-integrated messaging', useCase: 'Contact management, sales pipeline', integration: 'API-based' },
+  { name: 'WhatsApp Business', icon: googleChatIcon, category: 'regional', description: 'Customer communication', useCase: 'Order updates, customer service', integration: 'API-based', isPopular: true },
+  { name: 'WeCom', icon: googleChatIcon, category: 'regional', description: 'Chinese enterprise messaging', useCase: 'Enterprise communication in China', integration: 'API-based' },
+  { name: 'LINE Works', icon: googleChatIcon, category: 'regional', description: 'Japanese business messaging', useCase: 'Business communication in Japan', integration: 'Webhook' },
+  { name: 'Telegram Business', icon: googleChatIcon, category: 'regional', description: 'Secure business messaging', useCase: 'Encrypted business communication', integration: 'API-based' },
+  { name: 'Gitter', icon: googleChatIcon, category: 'developer', description: 'Developer chat rooms', useCase: 'Code repository integration', integration: 'API-based' },
+  { name: 'Front', icon: googleChatIcon, category: 'customer', description: 'Shared inbox for teams', useCase: 'Email management, team collaboration', integration: 'Bidirectional' },
 ];
 
 const categoryConfig = {
