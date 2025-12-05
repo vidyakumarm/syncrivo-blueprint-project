@@ -140,21 +140,23 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 w-full">
+        {/* Centered Badge */}
+        <div 
+          className={`flex justify-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          style={{ transitionDelay: '50ms' }}
+        >
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100/80 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <Shield className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
+            <span className="text-xs font-medium text-slate-600 dark:text-slate-400">
+              Enterprise-Grade Security
+            </span>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           
-          {/* Left Side - Text Content */}
-          <div className={`space-y-7 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            {/* Trust badge */}
-            <div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700"
-              style={{ transitionDelay: '100ms' }}
-            >
-              <Shield className="w-4 h-4 text-slate-600 dark:text-slate-400" />
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                Enterprise-Grade Security
-              </span>
-            </div>
-
+          {/* Left Side - Text Content (Centered) */}
+          <div className={`space-y-6 text-center lg:text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {/* Headline - Enterprise typography */}
             <div className="space-y-5">
               <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-bold leading-[1.1] tracking-tight text-foreground">
@@ -164,13 +166,13 @@ export function HeroSection() {
                 </span>
               </h1>
               
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed font-light">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed font-light">
                 Sync conversations securely across platforms — reliable, compliant, and effortless. Trusted by enterprise teams worldwide.
               </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-1">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-1">
               <Button 
                 asChild 
                 size="lg" 
@@ -193,7 +195,7 @@ export function HeroSection() {
             </div>
 
             {/* Quick trust signals */}
-            <div className="flex flex-wrap items-center gap-6 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-6 pt-2">
               {[
                 'No credit card required',
                 '14-day free trial',
