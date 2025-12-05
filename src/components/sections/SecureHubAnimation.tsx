@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { Shield, Lock } from 'lucide-react';
 
-// Platform icons - only 8 visible
+// Platform icons - only 8 visible (unique platforms)
 import teamsIcon from '@/assets/brands/teams-official.svg';
 import slackIcon from '@/assets/brands/slack-official.svg';
 import discordIcon from '@/assets/brands/discord-official.png';
 import whatsappIcon from '@/assets/brands/whatsapp-official.svg';
 import telegramIcon from '@/assets/brands/telegram-official.svg';
 import zoomIcon from '@/assets/zoom-icon.png';
-import webexIcon from '@/assets/webex-icon.png';
-import googleMeetIcon from '@/assets/brands/google-meet.svg';
+import mattermostIcon from '@/assets/brands/mattermost-official.svg';
+import rocketchatIcon from '@/assets/brands/rocketchat-official.svg';
 
 interface Platform {
   id: string;
@@ -22,10 +22,10 @@ const platforms: Platform[] = [
   { id: 'slack', name: 'Slack', icon: slackIcon, angle: 0 },
   { id: 'teams', name: 'Teams', icon: teamsIcon, angle: 45 },
   { id: 'zoom', name: 'Zoom', icon: zoomIcon, angle: 90 },
-  { id: 'googlechat', name: 'Google Chat', icon: googleMeetIcon, angle: 135 },
+  { id: 'mattermost', name: 'Mattermost', icon: mattermostIcon, angle: 135 },
   { id: 'whatsapp', name: 'WhatsApp', icon: whatsappIcon, angle: 180 },
   { id: 'telegram', name: 'Telegram', icon: telegramIcon, angle: 225 },
-  { id: 'webex', name: 'Webex', icon: webexIcon, angle: 270 },
+  { id: 'rocketchat', name: 'Rocket.Chat', icon: rocketchatIcon, angle: 270 },
   { id: 'discord', name: 'Discord', icon: discordIcon, angle: 315 },
 ];
 
@@ -39,9 +39,30 @@ interface DataPacket {
 export function SecureHubAnimation() {
   const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null);
   const [packets, setPackets] = useState<DataPacket[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const packetIdRef = useRef(0);
   
   const hubRadius = 140; // Distance from center to platform icons
+
+  // Intersection Observer for entrance animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Generate data packets
   useEffect(() => {
@@ -103,9 +124,13 @@ export function SecureHubAnimation() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center py-8 sm:py-12">
+    <div ref={containerRef} className="w-full flex flex-col items-center py-8 sm:py-12">
       {/* Security badge */}
-      <div className="flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+      <div 
+        className={`flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+        }`}
+      >
         <Shield className="w-4 h-4 text-emerald-500" />
         <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
           Enterprise-Grade Encryption
@@ -176,7 +201,11 @@ export function SecureHubAnimation() {
         </svg>
 
         {/* Central SyncRivo Secure Hub */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+        <div 
+          className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-700 ${
+            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+          }`}
+        >
           {/* Outer pulsing ring */}
           <div className="absolute -inset-6 rounded-full border border-emerald-500/15 animate-pulse-slow" />
           <div className="absolute -inset-4 rounded-full border border-emerald-500/20 animate-pulse-slow" style={{ animationDelay: '1.5s' }} />
@@ -203,16 +232,20 @@ export function SecureHubAnimation() {
         </div>
 
         {/* Platform Icons (8 total, radial layout) */}
-        {platforms.map((platform) => {
+        {platforms.map((platform, index) => {
           const pos = getPlatformPosition(platform.angle);
           const isHovered = hoveredPlatform === platform.id;
+          const delay = index * 80; // Staggered entrance
           
           return (
             <div
               key={platform.id}
-              className="absolute left-1/2 top-1/2 z-10"
+              className={`absolute left-1/2 top-1/2 z-10 transition-all duration-500 ${
+                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+              }`}
               style={{
                 transform: `translate(-50%, -50%) translate(${pos.x}px, ${pos.y}px)`,
+                transitionDelay: isVisible ? `${delay}ms` : '0ms',
               }}
               onMouseEnter={() => setHoveredPlatform(platform.id)}
               onMouseLeave={() => setHoveredPlatform(null)}
@@ -264,13 +297,23 @@ export function SecureHubAnimation() {
       </div>
 
       {/* "+18 more platforms" badge */}
-      <div className="mt-6 flex items-center gap-2 px-4 py-2 rounded-full bg-muted/40 border border-border/50">
+      <div 
+        className={`mt-6 flex items-center gap-2 px-4 py-2 rounded-full bg-muted/40 border border-border/50 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}
+        style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}
+      >
         <span className="text-xs text-muted-foreground font-medium">+18 more platforms</span>
         <Shield className="w-3 h-3 text-emerald-500" />
       </div>
 
       {/* Trust indicators */}
-      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 text-[10px] sm:text-xs text-muted-foreground">
+      <div 
+        className={`flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 text-[10px] sm:text-xs text-muted-foreground transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}
+        style={{ transitionDelay: isVisible ? '750ms' : '0ms' }}
+      >
         <div className="flex items-center gap-1.5">
           <Lock className="w-3 h-3 text-emerald-500" />
           <span>End-to-End Encryption</span>
