@@ -42,15 +42,25 @@ export function HeroSection() {
   const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null);
   const [packets, setPackets] = useState<DataPacket[]>([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [hubPulse, setHubPulse] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const packetIdRef = useRef(0);
   
-  const hubRadius = 120;
+  const hubRadius = 140; // Increased from 120
 
   // Entrance animation
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Hub pulse every 3-4 seconds
+  useEffect(() => {
+    const pulseInterval = setInterval(() => {
+      setHubPulse(true);
+      setTimeout(() => setHubPulse(false), 600);
+    }, 3500);
+    return () => clearInterval(pulseInterval);
   }, []);
 
   // Generate data packets
@@ -112,34 +122,36 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-64px)] flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/[0.02] pt-16">
-      {/* Subtle background effects */}
+    <section className="relative min-h-[calc(100vh-64px)] flex items-center overflow-hidden pt-12">
+      {/* Premium radial gradient background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-primary/[0.03] rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-emerald-500/[0.02] rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-background to-accent/[0.02]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-primary/[0.08] via-primary/[0.03] to-transparent rounded-full blur-3xl translate-x-1/4 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-accent/[0.06] via-accent/[0.02] to-transparent rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-gradient-radial from-primary/[0.04] to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Left Side - Text Content */}
-          <div className={`space-y-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`space-y-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {/* Trust badge */}
             <div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 shadow-sm"
               style={{ transitionDelay: '100ms' }}
             >
-              <Shield className="w-4 h-4 text-emerald-500" />
-              <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
+              <Shield className="w-4 h-4 text-accent" />
+              <span className="text-sm font-medium text-accent">
                 Enterprise-Grade Security
               </span>
             </div>
 
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-foreground">
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] tracking-tight text-foreground">
                 Your Unified Messaging Hub for{' '}
-                <span className="bg-gradient-to-r from-primary via-primary/80 to-emerald-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
                   Teams, Slack & Google Chat
                 </span>
               </h1>
@@ -149,12 +161,12 @@ export function HeroSection() {
               </p>
             </div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons with enhanced shadows */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <Button 
                 asChild 
                 size="lg" 
-                className="group bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground font-semibold px-8 py-6 text-base shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 rounded-xl"
+                className="group bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground font-semibold px-8 py-6 text-base shadow-brand-lg hover:shadow-brand-xl hover:shadow-primary/40 transition-all duration-300 rounded-xl hover:scale-[1.02]"
               >
                 <Link to="/signup">
                   Try SyncRivo Free
@@ -165,53 +177,60 @@ export function HeroSection() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="group border-2 border-border hover:border-primary/30 hover:bg-primary/5 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl"
+                className="group border-2 border-border hover:border-primary/40 hover:bg-primary/5 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl shadow-sm hover:shadow-md hover:shadow-primary/10 hover:scale-[1.02]"
               >
                 <Play className="mr-2 h-4 w-4" />
                 Request a Demo
               </Button>
             </div>
 
-            {/* Quick trust signals */}
-            <div className="flex flex-wrap items-center gap-6 pt-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-500" />
-                <span>No credit card required</span>
+            {/* Quick trust signals - improved visibility */}
+            <div className="flex flex-wrap items-center gap-6 pt-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center">
+                  <CheckCircle className="w-3.5 h-3.5 text-accent" />
+                </div>
+                <span className="text-sm font-medium text-foreground/80">No credit card required</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-500" />
-                <span>14-day free trial</span>
+              <div className="flex items-center gap-2.5">
+                <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center">
+                  <CheckCircle className="w-3.5 h-3.5 text-accent" />
+                </div>
+                <span className="text-sm font-medium text-foreground/80">14-day free trial</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-500" />
-                <span>Setup in 5 minutes</span>
+              <div className="flex items-center gap-2.5">
+                <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center">
+                  <CheckCircle className="w-3.5 h-3.5 text-accent" />
+                </div>
+                <span className="text-sm font-medium text-foreground/80">Setup in 5 minutes</span>
               </div>
             </div>
           </div>
 
-          {/* Right Side - Secure Hub Animation */}
+          {/* Right Side - Secure Hub Animation - Increased size */}
           <div 
             ref={containerRef} 
-            className={`flex flex-col items-center lg:items-end transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`flex flex-col items-center justify-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: '200ms' }}
           >
-            {/* Animation Container */}
-            <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px]">
-              {/* Glow effect behind hub */}
+            {/* Animation Container - Increased size by ~20% */}
+            <div className="relative w-[360px] h-[360px] sm:w-[400px] sm:h-[400px]">
+              {/* Glow effect behind hub - enhanced */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+                <div className={`w-40 h-40 bg-primary/25 rounded-full blur-[60px] transition-all duration-500 ${hubPulse ? 'scale-125 opacity-80' : 'scale-100 opacity-60'}`} />
+                <div className="absolute w-28 h-28 bg-accent/20 rounded-full blur-[40px]" />
               </div>
 
               {/* SVG for connection lines and packets */}
               <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
                 <defs>
                   <linearGradient id="heroLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
-                    <stop offset="50%" stopColor="hsl(160, 60%, 50%)" stopOpacity="0.25" />
-                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
+                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.15" />
+                    <stop offset="50%" stopColor="hsl(var(--accent))" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.15" />
                   </linearGradient>
                   <filter id="heroPacketGlow">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
                     <feMerge>
                       <feMergeNode in="coloredBlur" />
                       <feMergeNode in="SourceGraphic" />
@@ -231,9 +250,9 @@ export function HeroSection() {
                       x2={`calc(50% + ${pos.x}px)`}
                       y2={`calc(50% + ${pos.y}px)`}
                       stroke="url(#heroLineGradient)"
-                      strokeWidth={isHovered ? 1.5 : 1}
-                      strokeDasharray="4 4"
-                      opacity={isHovered ? 0.5 : 0.25}
+                      strokeWidth={isHovered ? 2 : 1.5}
+                      strokeDasharray="6 4"
+                      opacity={isHovered ? 0.6 : 0.3}
                       className="transition-all duration-300"
                     />
                   );
@@ -247,16 +266,16 @@ export function HeroSection() {
                       <circle
                         cx={`calc(50% + ${pos.x}px)`}
                         cy={`calc(50% + ${pos.y}px)`}
-                        r="3"
-                        fill="hsl(160, 60%, 50%)"
-                        opacity={0.8}
+                        r="4"
+                        fill="hsl(var(--accent))"
+                        opacity={0.85}
                       />
                     </g>
                   );
                 })}
               </svg>
 
-              {/* Central Hub */}
+              {/* Central Hub - Glassmorphism effect */}
               <div 
                 className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-500 ${
                   isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
@@ -264,23 +283,30 @@ export function HeroSection() {
                 style={{ transitionDelay: '300ms' }}
               >
                 {/* Pulsing rings */}
-                <div className="absolute -inset-5 rounded-full border border-primary/10 animate-pulse" />
-                <div className="absolute -inset-3 rounded-full border border-emerald-500/15 animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className={`absolute -inset-6 rounded-full border border-primary/15 transition-all duration-500 ${hubPulse ? 'scale-110 opacity-100' : 'scale-100 opacity-50'}`} />
+                <div className={`absolute -inset-4 rounded-full border border-accent/20 transition-all duration-500 ${hubPulse ? 'scale-105 opacity-100' : 'scale-100 opacity-60'}`} style={{ animationDelay: '0.5s' }} />
                 
-                {/* Main hub */}
-                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-xl backdrop-blur-sm flex flex-col items-center justify-center">
-                  <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center shadow-md">
-                    <Lock className="w-2.5 h-2.5 text-white" />
+                {/* Main hub - Glassmorphism */}
+                <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-card/70 backdrop-blur-md border border-border/60 shadow-2xl flex flex-col items-center justify-center transition-all duration-500 ${hubPulse ? 'shadow-primary/30' : 'shadow-primary/20'}`}
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(var(--card) / 0.85) 0%, hsl(var(--card) / 0.7) 100%)',
+                    boxShadow: hubPulse 
+                      ? '0 0 40px hsl(var(--primary) / 0.35), 0 0 60px hsl(var(--accent) / 0.15), inset 0 0 20px hsl(var(--primary) / 0.1)'
+                      : '0 0 30px hsl(var(--primary) / 0.2), 0 0 40px hsl(var(--accent) / 0.1), inset 0 0 15px hsl(var(--primary) / 0.05)'
+                  }}
+                >
+                  <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/30">
+                    <Lock className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-primary font-bold text-base sm:text-lg tracking-tight">Sync</span>
+                  <span className="text-primary font-bold text-lg sm:text-xl tracking-tight">Sync</span>
                   <div className="flex items-center gap-0.5">
-                    <Shield className="w-2 h-2 text-emerald-500" />
-                    <span className="text-[6px] sm:text-[7px] text-emerald-500 font-semibold">SECURE</span>
+                    <Shield className="w-2.5 h-2.5 text-accent" />
+                    <span className="text-[7px] sm:text-[8px] text-accent font-semibold tracking-wide">SECURE</span>
                   </div>
                 </div>
               </div>
 
-              {/* Platform Icons */}
+              {/* Platform Icons - with hover lift */}
               {platforms.map((platform, index) => {
                 const pos = getPlatformPosition(platform.angle);
                 const isHovered = hoveredPlatform === platform.id;
@@ -301,19 +327,19 @@ export function HeroSection() {
                   >
                     <div 
                       className={`
-                        relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-card/80 backdrop-blur-sm border 
-                        shadow-sm flex items-center justify-center cursor-pointer
+                        relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-card/90 backdrop-blur-sm border 
+                        flex items-center justify-center cursor-pointer
                         transition-all duration-300 ease-out
                         ${isHovered 
-                          ? 'scale-110 shadow-md border-emerald-500/40 bg-card' 
-                          : 'border-border/40 hover:border-border/60'
+                          ? 'scale-110 -translate-y-1 shadow-lg shadow-primary/20 border-accent/50 bg-card' 
+                          : 'border-border/50 shadow-md shadow-primary/5 hover:border-border'
                         }
                       `}
                     >
                       <img 
                         src={platform.icon} 
                         alt={platform.name} 
-                        className="w-5 h-5 sm:w-6 sm:h-6 object-contain opacity-75"
+                        className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 drop-shadow-sm ${isHovered ? 'opacity-100' : 'opacity-80'}`}
                       />
                     </div>
                   </div>
@@ -321,46 +347,46 @@ export function HeroSection() {
               })}
             </div>
 
-            {/* +18 more platforms badge */}
+            {/* +18 more platforms badge - moved closer */}
             <div 
-              className={`mt-4 flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 transition-all duration-500 ${
+              className={`mt-2 flex items-center gap-2 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ transitionDelay: '700ms' }}
             >
-              <span className="text-xs text-muted-foreground font-medium">+18 more platforms</span>
-              <Shield className="w-3 h-3 text-emerald-500" />
+              <span className="text-sm text-muted-foreground font-medium">+18 more platforms</span>
+              <Shield className="w-3.5 h-3.5 text-accent" />
             </div>
           </div>
         </div>
 
         {/* Security Trust Indicators - Bottom */}
         <div 
-          className={`mt-8 lg:mt-12 flex flex-col items-center transition-all duration-700 ${
+          className={`mt-6 lg:mt-10 flex flex-col items-center transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
           style={{ transitionDelay: '800ms' }}
         >
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 px-6 py-4 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50">
-            <div className="flex items-center gap-2 text-sm">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                <Lock className="w-4 h-4 text-emerald-500" />
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 px-6 py-4 rounded-2xl bg-card/60 backdrop-blur-sm border border-border/50 shadow-lg shadow-primary/5">
+            <div className="flex items-center gap-3 text-sm">
+              <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center shadow-inner">
+                <Lock className="w-4.5 h-4.5 text-accent" />
               </div>
-              <span className="text-muted-foreground font-medium">End-to-End Encryption</span>
+              <span className="text-foreground/90 font-medium">End-to-End Encryption</span>
             </div>
-            <div className="hidden sm:block w-px h-6 bg-border" />
-            <div className="flex items-center gap-2 text-sm">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                <Shield className="w-4 h-4 text-emerald-500" />
+            <div className="hidden sm:block w-px h-6 bg-border/60" />
+            <div className="flex items-center gap-3 text-sm">
+              <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center shadow-inner">
+                <Shield className="w-4.5 h-4.5 text-accent" />
               </div>
-              <span className="text-muted-foreground font-medium">Zero-Trust Architecture</span>
+              <span className="text-foreground/90 font-medium">Zero-Trust Architecture</span>
             </div>
-            <div className="hidden sm:block w-px h-6 bg-border" />
-            <div className="flex items-center gap-2 text-sm">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                <CheckCircle className="w-4 h-4 text-emerald-500" />
+            <div className="hidden sm:block w-px h-6 bg-border/60" />
+            <div className="flex items-center gap-3 text-sm">
+              <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center shadow-inner">
+                <CheckCircle className="w-4.5 h-4.5 text-accent" />
               </div>
-              <span className="text-muted-foreground font-medium">SOC 2 Compliant</span>
+              <span className="text-foreground/90 font-medium">SOC 2 Compliant</span>
             </div>
           </div>
         </div>
