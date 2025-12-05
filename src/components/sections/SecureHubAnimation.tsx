@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { Shield, Lock } from 'lucide-react';
 
-// Platform icons - only 8 visible (unique platforms)
+// Platform icons - 8 unique official icons
 import teamsIcon from '@/assets/brands/teams-official.svg';
 import slackIcon from '@/assets/brands/slack-official.svg';
 import discordIcon from '@/assets/brands/discord-official.png';
 import whatsappIcon from '@/assets/brands/whatsapp-official.svg';
 import telegramIcon from '@/assets/brands/telegram-official.svg';
 import zoomIcon from '@/assets/zoom-icon.png';
-import mattermostIcon from '@/assets/brands/mattermost-official.svg';
-import rocketchatIcon from '@/assets/brands/rocketchat-official.svg';
+import webexIcon from '@/assets/webex-icon.png';
+import googleChatIcon from '@/assets/brands/google-meet.svg';
 
 interface Platform {
   id: string;
@@ -21,12 +21,12 @@ interface Platform {
 const platforms: Platform[] = [
   { id: 'slack', name: 'Slack', icon: slackIcon, angle: 0 },
   { id: 'teams', name: 'Teams', icon: teamsIcon, angle: 45 },
-  { id: 'zoom', name: 'Zoom', icon: zoomIcon, angle: 90 },
-  { id: 'mattermost', name: 'Mattermost', icon: mattermostIcon, angle: 135 },
+  { id: 'discord', name: 'Discord', icon: discordIcon, angle: 90 },
+  { id: 'googlechat', name: 'Google Chat', icon: googleChatIcon, angle: 135 },
   { id: 'whatsapp', name: 'WhatsApp', icon: whatsappIcon, angle: 180 },
   { id: 'telegram', name: 'Telegram', icon: telegramIcon, angle: 225 },
-  { id: 'rocketchat', name: 'Rocket.Chat', icon: rocketchatIcon, angle: 270 },
-  { id: 'discord', name: 'Discord', icon: discordIcon, angle: 315 },
+  { id: 'zoom', name: 'Zoom', icon: zoomIcon, angle: 270 },
+  { id: 'webex', name: 'Webex', icon: webexIcon, angle: 315 },
 ];
 
 interface DataPacket {
