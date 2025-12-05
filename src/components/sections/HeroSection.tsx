@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Play, Shield, Lock, CheckCircle } from 'lucide-react';
+import { ArrowRight, Play, Shield, Lock, CheckCircle, Zap } from 'lucide-react';
 
-// Platform icons - 7 unique official icons
+// Platform icons - 8 unique official icons
 import teamsIcon from '@/assets/brands/teams-official.svg';
 import slackIcon from '@/assets/brands/slack-official.svg';
 import discordIcon from '@/assets/brands/discord-logo.png';
+import whatsappIcon from '@/assets/brands/whatsapp-official.svg';
 import telegramIcon from '@/assets/brands/telegram-official.svg';
 import zoomIcon from '@/assets/zoom-icon.png';
 import webexIcon from '@/assets/webex-icon.png';
@@ -21,12 +22,13 @@ interface Platform {
 
 const platforms: Platform[] = [
   { id: 'slack', name: 'Slack', icon: slackIcon, angle: 0 },
-  { id: 'teams', name: 'Teams', icon: teamsIcon, angle: 51.4 },
-  { id: 'discord', name: 'Discord', icon: discordIcon, angle: 102.8 },
-  { id: 'googlechat', name: 'Google Chat', icon: googleChatIcon, angle: 154.3 },
-  { id: 'telegram', name: 'Telegram', icon: telegramIcon, angle: 205.7 },
-  { id: 'zoom', name: 'Zoom', icon: zoomIcon, angle: 257.1 },
-  { id: 'webex', name: 'Webex', icon: webexIcon, angle: 308.6 },
+  { id: 'teams', name: 'Teams', icon: teamsIcon, angle: 45 },
+  { id: 'discord', name: 'Discord', icon: discordIcon, angle: 90 },
+  { id: 'googlechat', name: 'Google Chat', icon: googleChatIcon, angle: 135 },
+  { id: 'whatsapp', name: 'WhatsApp', icon: whatsappIcon, angle: 180 },
+  { id: 'telegram', name: 'Telegram', icon: telegramIcon, angle: 225 },
+  { id: 'zoom', name: 'Zoom', icon: zoomIcon, angle: 270 },
+  { id: 'webex', name: 'Webex', icon: webexIcon, angle: 315 },
 ];
 
 interface DataPacket {
@@ -36,6 +38,15 @@ interface DataPacket {
   toHub: boolean;
 }
 
+// Trust logos (grayscale with hover color)
+const trustLogos = [
+  { name: 'Fortune 500', text: 'Fortune 500' },
+  { name: 'Enterprise', text: 'Enterprise Ready' },
+  { name: 'GDPR', text: 'GDPR Compliant' },
+  { name: 'ISO', text: 'ISO 27001' },
+  { name: 'SOC2', text: 'SOC 2 Type II' },
+];
+
 export function HeroSection() {
   const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null);
   const [packets, setPackets] = useState<DataPacket[]>([]);
@@ -44,7 +55,7 @@ export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const packetIdRef = useRef(0);
   
-  const hubRadius = 140; // Increased from 120
+  const hubRadius = 150;
 
   // Entrance animation
   useEffect(() => {
@@ -56,7 +67,7 @@ export function HeroSection() {
   useEffect(() => {
     const pulseInterval = setInterval(() => {
       setHubPulse(true);
-      setTimeout(() => setHubPulse(false), 600);
+      setTimeout(() => setHubPulse(false), 800);
     }, 3500);
     return () => clearInterval(pulseInterval);
   }, []);
@@ -74,12 +85,12 @@ export function HeroSection() {
           progress: 0,
           toHub,
         }];
-        return newPackets.slice(-3);
+        return newPackets.slice(-4);
       });
     };
 
-    const interval = setInterval(createPacket, 2000);
-    setTimeout(createPacket, 500);
+    const interval = setInterval(createPacket, 1800);
+    setTimeout(createPacket, 400);
 
     return () => clearInterval(interval);
   }, []);
@@ -89,12 +100,12 @@ export function HeroSection() {
     const animatePackets = () => {
       setPackets(prev => 
         prev
-          .map(p => ({ ...p, progress: p.progress + 1.2 }))
+          .map(p => ({ ...p, progress: p.progress + 1.5 }))
           .filter(p => p.progress <= 100)
       );
     };
 
-    const animationFrame = setInterval(animatePackets, 40);
+    const animationFrame = setInterval(animatePackets, 35);
     return () => clearInterval(animationFrame);
   }, []);
 
@@ -120,51 +131,50 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-64px)] flex items-center overflow-hidden pt-12">
-      {/* Premium radial gradient background */}
+    <section className="relative min-h-[calc(100vh-64px)] flex items-center overflow-hidden pt-8">
+      {/* Premium gradient background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-background to-accent/[0.02]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-primary/[0.08] via-primary/[0.03] to-transparent rounded-full blur-3xl translate-x-1/4 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-accent/[0.06] via-accent/[0.02] to-transparent rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-gradient-radial from-primary/[0.04] to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-background to-slate-50/80 dark:from-slate-950 dark:via-background dark:to-slate-950/80" />
+        <div className="absolute top-0 right-0 w-[900px] h-[900px] bg-gradient-radial from-primary/[0.06] via-primary/[0.02] to-transparent rounded-full blur-3xl translate-x-1/3 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-gradient-radial from-slate-400/[0.04] via-slate-400/[0.01] to-transparent rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
       </div>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           
           {/* Left Side - Text Content */}
-          <div className={`space-y-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`space-y-7 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {/* Trust badge */}
             <div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700"
               style={{ transitionDelay: '100ms' }}
             >
-              <Shield className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-accent">
+              <Shield className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                 Enterprise-Grade Security
               </span>
             </div>
 
-            {/* Headline */}
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] tracking-tight text-foreground">
+            {/* Headline - Enterprise typography */}
+            <div className="space-y-5">
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-bold leading-[1.1] tracking-tight text-foreground">
                 Your Unified Messaging Hub for{' '}
-                <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-500 dark:from-slate-300 dark:via-slate-400 dark:to-slate-500 bg-clip-text text-transparent">
                   Teams, Slack & Google Chat
                 </span>
               </h1>
               
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed">
-                Sync conversations securely across platforms — reliable, compliant, and effortless.
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed font-light">
+                Sync conversations securely across platforms — reliable, compliant, and effortless. Trusted by enterprise teams worldwide.
               </p>
             </div>
 
-            {/* CTA Buttons with enhanced shadows */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-1">
               <Button 
                 asChild 
                 size="lg" 
-                className="group bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground font-semibold px-8 py-6 text-base shadow-brand-lg hover:shadow-brand-xl hover:shadow-primary/40 transition-all duration-300 rounded-xl hover:scale-[1.02]"
+                className="group bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 text-white font-semibold px-8 py-6 text-base shadow-xl shadow-slate-900/20 dark:shadow-white/10 hover:shadow-2xl transition-all duration-300 rounded-xl hover:scale-[1.02]"
               >
                 <Link to="/signup">
                   Try SyncRivo Free
@@ -175,60 +185,53 @@ export function HeroSection() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="group border-2 border-border hover:border-primary/40 hover:bg-primary/5 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl shadow-sm hover:shadow-md hover:shadow-primary/10 hover:scale-[1.02]"
+                className="group border-2 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800/50 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl"
               >
                 <Play className="mr-2 h-4 w-4" />
                 Request a Demo
               </Button>
             </div>
 
-            {/* Quick trust signals - improved visibility */}
-            <div className="flex flex-wrap items-center gap-6 pt-3">
-              <div className="flex items-center gap-2.5">
-                <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-accent" />
+            {/* Quick trust signals */}
+            <div className="flex flex-wrap items-center gap-6 pt-2">
+              {[
+                'No credit card required',
+                '14-day free trial',
+                'Setup in 5 minutes'
+              ].map((text, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                  <span className="text-sm text-slate-600 dark:text-slate-400">{text}</span>
                 </div>
-                <span className="text-sm font-medium text-foreground/80">No credit card required</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-accent" />
-                </div>
-                <span className="text-sm font-medium text-foreground/80">14-day free trial</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-accent" />
-                </div>
-                <span className="text-sm font-medium text-foreground/80">Setup in 5 minutes</span>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Side - Secure Hub Animation - Increased size */}
+          {/* Right Side - Secure Hub Animation */}
           <div 
             ref={containerRef} 
             className={`flex flex-col items-center justify-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: '200ms' }}
           >
-            {/* Animation Container - Increased size by ~20% */}
-            <div className="relative w-[360px] h-[360px] sm:w-[400px] sm:h-[400px]">
-              {/* Glow effect behind hub - enhanced */}
+            {/* Animation Container */}
+            <div className="relative w-[380px] h-[380px] sm:w-[420px] sm:h-[420px]">
+              {/* Outer glow rings */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className={`w-40 h-40 bg-primary/25 rounded-full blur-[60px] transition-all duration-500 ${hubPulse ? 'scale-125 opacity-80' : 'scale-100 opacity-60'}`} />
-                <div className="absolute w-28 h-28 bg-accent/20 rounded-full blur-[40px]" />
+                <div className={`absolute w-64 h-64 rounded-full border border-slate-200/50 dark:border-slate-700/30 transition-all duration-700 ${hubPulse ? 'scale-110 opacity-100' : 'scale-100 opacity-60'}`} />
+                <div className={`absolute w-52 h-52 rounded-full border border-slate-300/40 dark:border-slate-600/20 transition-all duration-500 ${hubPulse ? 'scale-105 opacity-100' : 'scale-100 opacity-50'}`} />
+                <div className={`w-44 h-44 bg-gradient-radial from-primary/15 via-primary/5 to-transparent rounded-full blur-2xl transition-all duration-700 ${hubPulse ? 'scale-125 opacity-90' : 'scale-100 opacity-60'}`} />
               </div>
 
               {/* SVG for connection lines and packets */}
               <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
                 <defs>
                   <linearGradient id="heroLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.15" />
-                    <stop offset="50%" stopColor="hsl(var(--accent))" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.15" />
+                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
+                    <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
                   </linearGradient>
                   <filter id="heroPacketGlow">
-                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                     <feMerge>
                       <feMergeNode in="coloredBlur" />
                       <feMergeNode in="SourceGraphic" />
@@ -248,9 +251,9 @@ export function HeroSection() {
                       x2={`calc(50% + ${pos.x}px)`}
                       y2={`calc(50% + ${pos.y}px)`}
                       stroke="url(#heroLineGradient)"
-                      strokeWidth={isHovered ? 2 : 1.5}
-                      strokeDasharray="6 4"
-                      opacity={isHovered ? 0.6 : 0.3}
+                      strokeWidth={isHovered ? 2.5 : 1.5}
+                      strokeDasharray="4 6"
+                      opacity={isHovered ? 0.7 : 0.35}
                       className="transition-all duration-300"
                     />
                   );
@@ -264,51 +267,57 @@ export function HeroSection() {
                       <circle
                         cx={`calc(50% + ${pos.x}px)`}
                         cy={`calc(50% + ${pos.y}px)`}
-                        r="4"
-                        fill="hsl(var(--accent))"
-                        opacity={0.85}
+                        r="5"
+                        fill="hsl(var(--primary))"
+                        opacity={0.9}
+                      />
+                      <circle
+                        cx={`calc(50% + ${pos.x}px)`}
+                        cy={`calc(50% + ${pos.y}px)`}
+                        r="3"
+                        fill="white"
+                        opacity={0.6}
                       />
                     </g>
                   );
                 })}
               </svg>
 
-              {/* Central Hub - Glassmorphism effect */}
+              {/* Central Hub */}
               <div 
                 className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-500 ${
                   isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
                 }`}
                 style={{ transitionDelay: '300ms' }}
               >
-                {/* Pulsing rings */}
-                <div className={`absolute -inset-6 rounded-full border border-primary/15 transition-all duration-500 ${hubPulse ? 'scale-110 opacity-100' : 'scale-100 opacity-50'}`} />
-                <div className={`absolute -inset-4 rounded-full border border-accent/20 transition-all duration-500 ${hubPulse ? 'scale-105 opacity-100' : 'scale-100 opacity-60'}`} style={{ animationDelay: '0.5s' }} />
-                
-                {/* Main hub - Glassmorphism */}
-                <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-card/70 backdrop-blur-md border border-border/60 shadow-2xl flex flex-col items-center justify-center transition-all duration-500 ${hubPulse ? 'shadow-primary/30' : 'shadow-primary/20'}`}
+                {/* Main hub */}
+                <div 
+                  className={`relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 border border-slate-200/80 dark:border-slate-700/60 shadow-2xl flex flex-col items-center justify-center transition-all duration-500`}
                   style={{
-                    background: 'linear-gradient(135deg, hsl(var(--card) / 0.85) 0%, hsl(var(--card) / 0.7) 100%)',
                     boxShadow: hubPulse 
-                      ? '0 0 40px hsl(var(--primary) / 0.35), 0 0 60px hsl(var(--accent) / 0.15), inset 0 0 20px hsl(var(--primary) / 0.1)'
-                      : '0 0 30px hsl(var(--primary) / 0.2), 0 0 40px hsl(var(--accent) / 0.1), inset 0 0 15px hsl(var(--primary) / 0.05)'
+                      ? '0 0 50px hsl(var(--primary) / 0.25), 0 25px 50px -12px rgba(0,0,0,0.15)'
+                      : '0 0 30px hsl(var(--primary) / 0.12), 0 25px 50px -12px rgba(0,0,0,0.1)'
                   }}
                 >
-                  <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/30">
-                    <Lock className="w-3 h-3 text-white" />
+                  {/* Secure badge */}
+                  <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                    <Lock className="w-3.5 h-3.5 text-white" />
                   </div>
-                  <span className="text-primary font-bold text-lg sm:text-xl tracking-tight">Sync</span>
-                  <div className="flex items-center gap-0.5">
-                    <Shield className="w-2.5 h-2.5 text-accent" />
-                    <span className="text-[7px] sm:text-[8px] text-accent font-semibold tracking-wide">SECURE</span>
+                  
+                  {/* Logo */}
+                  <div className="flex flex-col items-center">
+                    <Zap className="w-7 h-7 text-primary mb-1" />
+                    <span className="text-foreground font-bold text-lg tracking-tight">SyncRivo</span>
+                    <span className="text-[9px] text-muted-foreground font-medium tracking-wider uppercase">Secure Hub</span>
                   </div>
                 </div>
               </div>
 
-              {/* Platform Icons - with hover lift */}
+              {/* Platform Icons */}
               {platforms.map((platform, index) => {
                 const pos = getPlatformPosition(platform.angle);
                 const isHovered = hoveredPlatform === platform.id;
-                const delay = 400 + index * 60;
+                const delay = 400 + index * 50;
                 
                 return (
                   <div
@@ -325,19 +334,19 @@ export function HeroSection() {
                   >
                     <div 
                       className={`
-                        relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-card/90 backdrop-blur-sm border 
+                        relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white dark:bg-slate-800 border 
                         flex items-center justify-center cursor-pointer
                         transition-all duration-300 ease-out
                         ${isHovered 
-                          ? 'scale-110 -translate-y-1 shadow-lg shadow-primary/20 border-accent/50 bg-card' 
-                          : 'border-border/50 shadow-md shadow-primary/5 hover:border-border'
+                          ? 'scale-115 -translate-y-1.5 shadow-xl border-primary/30 dark:border-primary/40' 
+                          : 'border-slate-200 dark:border-slate-700 shadow-md hover:shadow-lg'
                         }
                       `}
                     >
                       <img 
                         src={platform.icon} 
                         alt={platform.name} 
-                        className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 drop-shadow-sm ${isHovered ? 'opacity-100' : 'opacity-80'}`}
+                        className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 ${isHovered ? 'opacity-100 scale-110' : 'opacity-75'}`}
                       />
                     </div>
                   </div>
@@ -345,47 +354,67 @@ export function HeroSection() {
               })}
             </div>
 
-            {/* +18 more platforms badge - moved closer */}
+            {/* +18 more platforms badge */}
             <div 
-              className={`mt-2 flex items-center gap-2 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-500 ${
+              className={`mt-4 flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 transition-all duration-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ transitionDelay: '700ms' }}
             >
-              <span className="text-sm text-muted-foreground font-medium">+18 more platforms</span>
-              <Shield className="w-3.5 h-3.5 text-accent" />
+              {/* Mini icon cluster */}
+              <div className="flex -space-x-1.5">
+                {[0, 1, 2].map(i => (
+                  <div key={i} className="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-800 flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-slate-400 dark:bg-slate-500" />
+                  </div>
+                ))}
+              </div>
+              <span className="text-sm text-slate-600 dark:text-slate-400 font-medium">+18 more platforms</span>
             </div>
           </div>
         </div>
 
-        {/* Security Trust Indicators - Bottom */}
+        {/* Trust Logos Row */}
         <div 
-          className={`mt-6 lg:mt-10 flex flex-col items-center transition-all duration-700 ${
+          className={`mt-12 lg:mt-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          style={{ transitionDelay: '900ms' }}
+        >
+          <p className="text-center text-sm text-muted-foreground mb-6 font-medium">Trusted by security-conscious enterprises</p>
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+            {trustLogos.map((logo, i) => (
+              <div 
+                key={i}
+                className="group px-4 py-2 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800/50"
+              >
+                <span className="text-sm font-semibold text-slate-400 dark:text-slate-600 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300 tracking-wide">
+                  {logo.text}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Security Trust Indicators */}
+        <div 
+          className={`mt-8 flex flex-col items-center transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
-          style={{ transitionDelay: '800ms' }}
+          style={{ transitionDelay: '1000ms' }}
         >
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 px-6 py-4 rounded-2xl bg-card/60 backdrop-blur-sm border border-border/50 shadow-lg shadow-primary/5">
-            <div className="flex items-center gap-3 text-sm">
-              <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center shadow-inner">
-                <Lock className="w-4.5 h-4.5 text-accent" />
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 px-8 py-5 rounded-2xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60">
+            {[
+              { icon: Lock, text: 'End-to-End Encryption' },
+              { icon: Shield, text: 'Zero-Trust Architecture' },
+              { icon: CheckCircle, text: 'SOC 2 Compliant' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 text-sm">
+                <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                  <item.icon className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                </div>
+                <span className="text-slate-700 dark:text-slate-300 font-medium">{item.text}</span>
+                {i < 2 && <div className="hidden sm:block w-px h-5 bg-slate-200 dark:bg-slate-700 ml-4" />}
               </div>
-              <span className="text-foreground/90 font-medium">End-to-End Encryption</span>
-            </div>
-            <div className="hidden sm:block w-px h-6 bg-border/60" />
-            <div className="flex items-center gap-3 text-sm">
-              <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center shadow-inner">
-                <Shield className="w-4.5 h-4.5 text-accent" />
-              </div>
-              <span className="text-foreground/90 font-medium">Zero-Trust Architecture</span>
-            </div>
-            <div className="hidden sm:block w-px h-6 bg-border/60" />
-            <div className="flex items-center gap-3 text-sm">
-              <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center shadow-inner">
-                <CheckCircle className="w-4.5 h-4.5 text-accent" />
-              </div>
-              <span className="text-foreground/90 font-medium">SOC 2 Compliant</span>
-            </div>
+            ))}
           </div>
         </div>
       </div>
