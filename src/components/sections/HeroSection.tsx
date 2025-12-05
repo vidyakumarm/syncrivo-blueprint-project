@@ -156,11 +156,11 @@ export function HeroSection() {
             {/* Headline - Enterprise typography */}
             <div className="space-y-5">
               <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-bold leading-[1.1] tracking-tight text-foreground">
-                Unified Messaging Hub for{" "}
+                Connect{" "}
                 <span className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-500 dark:from-slate-300 dark:via-slate-400 dark:to-slate-500 bg-clip-text text-transparent">
-                  Teams, Slack & Google Chat
+                  Teams, Slack, Google Chat
                 </span>
-                {" "}and more
+                {" "}— and 20+ other platforms — into one secure, intelligent communication layer.
               </h1>
 
               <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed font-light">
