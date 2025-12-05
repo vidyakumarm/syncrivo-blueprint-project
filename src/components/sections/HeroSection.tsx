@@ -3,11 +3,10 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Play, Shield, Lock, CheckCircle, Zap } from 'lucide-react';
 
-// Platform icons - 8 unique official icons
+// Platform icons - 7 unique official icons (no WhatsApp)
 import teamsIcon from '@/assets/brands/teams-official.svg';
 import slackIcon from '@/assets/brands/slack-official.svg';
 import discordIcon from '@/assets/brands/discord-logo.png';
-import whatsappIcon from '@/assets/brands/whatsapp-official.svg';
 import telegramIcon from '@/assets/brands/telegram-official.svg';
 import zoomIcon from '@/assets/zoom-icon.png';
 import webexIcon from '@/assets/webex-icon.png';
@@ -22,13 +21,12 @@ interface Platform {
 
 const platforms: Platform[] = [
   { id: 'slack', name: 'Slack', icon: slackIcon, angle: 0 },
-  { id: 'teams', name: 'Teams', icon: teamsIcon, angle: 45 },
-  { id: 'discord', name: 'Discord', icon: discordIcon, angle: 90 },
-  { id: 'googlechat', name: 'Google Chat', icon: googleChatIcon, angle: 135 },
-  { id: 'whatsapp', name: 'WhatsApp', icon: whatsappIcon, angle: 180 },
-  { id: 'telegram', name: 'Telegram', icon: telegramIcon, angle: 225 },
-  { id: 'zoom', name: 'Zoom', icon: zoomIcon, angle: 270 },
-  { id: 'webex', name: 'Webex', icon: webexIcon, angle: 315 },
+  { id: 'teams', name: 'Teams', icon: teamsIcon, angle: 51.4 },
+  { id: 'discord', name: 'Discord', icon: discordIcon, angle: 102.8 },
+  { id: 'googlechat', name: 'Google Chat', icon: googleChatIcon, angle: 154.3 },
+  { id: 'telegram', name: 'Telegram', icon: telegramIcon, angle: 205.7 },
+  { id: 'zoom', name: 'Zoom', icon: zoomIcon, angle: 257.1 },
+  { id: 'webex', name: 'Webex', icon: webexIcon, angle: 308.6 },
 ];
 
 interface DataPacket {
