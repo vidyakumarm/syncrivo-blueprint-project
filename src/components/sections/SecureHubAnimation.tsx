@@ -4,7 +4,7 @@ import { Shield, Lock } from 'lucide-react';
 // Platform icons - 8 unique official icons
 import teamsIcon from '@/assets/brands/teams-official.svg';
 import slackIcon from '@/assets/brands/slack-official.svg';
-import discordIcon from '@/assets/brands/discord-official.png';
+import discordIcon from '@/assets/brands/discord-logo.png';
 import whatsappIcon from '@/assets/brands/whatsapp-official.svg';
 import telegramIcon from '@/assets/brands/telegram-official.svg';
 import zoomIcon from '@/assets/zoom-icon.png';
@@ -219,8 +219,7 @@ export function SecureHubAnimation() {
             
             {/* Logo */}
             <div className="text-center">
-              <span className="text-primary font-bold text-sm sm:text-base tracking-tight">Sync</span>
-              <span className="text-muted-foreground font-semibold text-[10px] sm:text-xs block -mt-0.5">Rivo</span>
+              <span className="text-primary font-bold text-lg sm:text-xl tracking-tight">Sync</span>
             </div>
             
             {/* Security indicator */}
@@ -252,7 +251,7 @@ export function SecureHubAnimation() {
             >
               <div 
                 className={`
-                  relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-card border 
+                  relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-card border 
                   shadow-sm flex items-center justify-center cursor-pointer
                   transition-all duration-300 ease-out
                   ${isHovered 
@@ -264,7 +263,7 @@ export function SecureHubAnimation() {
                 <img 
                   src={platform.icon} 
                   alt={platform.name} 
-                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain opacity-70"
+                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain"
                 />
                 
                 {/* Security indicator on hover */}
