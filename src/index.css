@@ -308,4 +308,36 @@ All colors MUST be HSL.
       transform: translateX(100%);
     }
   }
+
+  /* SyncHub Animation Keyframes */
+  @keyframes messageBubble {
+    0% {
+      transform: translate(-50%, -50%) translate(var(--start-x), var(--start-y));
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.9;
+    }
+    85% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: translate(-50%, -50%) translate(var(--end-x), var(--end-y));
+      opacity: 0;
+    }
+  }
+
+  /* Subtle pulse for central hub */
+  .animate-pulse-subtle {
+    animation: pulseSubtle 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseSubtle {
+    0%, 100% {
+      box-shadow: 0 0 30px hsl(239, 84%, 67%, 0.25), 0 0 60px hsl(270, 84%, 60%, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(239, 84%, 67%, 0.35), 0 0 80px hsl(270, 84%, 60%, 0.15);
+    }
+  }
 }
