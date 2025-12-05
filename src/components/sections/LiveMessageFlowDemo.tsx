@@ -4,20 +4,22 @@ import { ArrowRight, Shield, Play, Lock, CheckCircle2, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import teamsIcon from '@/assets/brands/teams-official.svg';
 import slackIcon from '@/assets/brands/slack-official.svg';
+import sergeyPhoto from '@/assets/profiles/sergey-kizunov.jpeg';
+import kumarPhoto from '@/assets/profiles/kumar-makala.jpg';
 
 interface Message {
   id: number;
   sender: string;
-  avatar: string;
+  photo: string;
   text: string;
   from: 'teams' | 'slack';
 }
 
 const conversations: Message[] = [
-  { id: 1, sender: 'Sergey Kizunov', avatar: 'SK', text: 'Team, can everyone review the Q4 proposal?', from: 'teams' },
-  { id: 2, sender: 'Kumar Makala', avatar: 'KM', text: 'On it! Will have feedback by EOD ✓', from: 'slack' },
-  { id: 3, sender: 'Sergey Kizunov', avatar: 'SK', text: 'Perfect. Let\'s sync at 3pm EST.', from: 'teams' },
-  { id: 4, sender: 'Kumar Makala', avatar: 'KM', text: 'Just shared the updated deck in Slack. Check the channel!', from: 'slack' },
+  { id: 1, sender: 'Sergey Kizunov', photo: sergeyPhoto, text: 'Team, can everyone review the Q4 proposal?', from: 'teams' },
+  { id: 2, sender: 'Kumar Makala', photo: kumarPhoto, text: 'On it! Will have feedback by EOD ✓', from: 'slack' },
+  { id: 3, sender: 'Sergey Kizunov', photo: sergeyPhoto, text: 'Perfect. Let\'s sync at 3pm EST.', from: 'teams' },
+  { id: 4, sender: 'Kumar Makala', photo: kumarPhoto, text: 'Just shared the updated deck in Slack. Check the channel!', from: 'slack' },
 ];
 
 const LiveMessageFlowDemo = () => {
@@ -380,11 +382,11 @@ const TeamsPanel = ({
         
         {(showTyping || showCurrentMessage) && (
           <div className="flex items-start gap-3 animate-fade-in">
-            <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 ${
-              message.from === 'teams' ? 'bg-gradient-to-br from-[#5558AF] to-[#7B83EB]' : 'bg-gradient-to-br from-[#4A154B] to-[#E01E5A]'
-            }`}>
-              {message.avatar}
-            </div>
+            <img 
+              src={message.photo} 
+              alt={message.sender}
+              className="w-9 h-9 rounded-full object-cover flex-shrink-0 ring-2 ring-slate-200 dark:ring-slate-700 shadow-md"
+            />
             
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1.5">
@@ -513,11 +515,11 @@ const SlackPanel = ({
         
         {(showTyping || showCurrentMessage) && (
           <div className="flex items-start gap-3 animate-fade-in">
-            <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 ${
-              message.from === 'slack' ? 'bg-gradient-to-br from-[#4A154B] to-[#E01E5A]' : 'bg-gradient-to-br from-[#5558AF] to-[#7B83EB]'
-            }`}>
-              {message.avatar}
-            </div>
+            <img 
+              src={message.photo} 
+              alt={message.sender}
+              className="w-9 h-9 rounded-full object-cover flex-shrink-0 ring-2 ring-slate-200 dark:ring-slate-700 shadow-md"
+            />
             
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1.5">
@@ -574,11 +576,11 @@ const MessageBubble = ({
   platform: 'teams' | 'slack';
 }) => (
   <div className="flex items-start gap-3">
-    <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 ${
-      message.from === 'teams' ? 'bg-gradient-to-br from-[#5558AF] to-[#7B83EB]' : 'bg-gradient-to-br from-[#4A154B] to-[#E01E5A]'
-    }`}>
-      {message.avatar}
-    </div>
+    <img 
+      src={message.photo} 
+      alt={message.sender}
+      className="w-9 h-9 rounded-full object-cover flex-shrink-0 ring-2 ring-slate-200 dark:ring-slate-700 shadow-md"
+    />
     <div className="flex-1">
       <div className="flex items-center gap-2 mb-1">
         <span className="text-sm font-semibold text-foreground">{message.sender}</span>
