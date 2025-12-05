@@ -131,7 +131,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-64px)] flex items-center overflow-hidden pt-8">
+    <section className="relative min-h-[calc(100vh-64px)] flex flex-col justify-center overflow-hidden pt-20 pb-8">
       {/* Premium gradient background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-background to-slate-50/80 dark:from-slate-950 dark:via-background dark:to-slate-950/80" />
@@ -139,15 +139,15 @@ export function HeroSection() {
         <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-gradient-radial from-slate-400/[0.04] via-slate-400/[0.01] to-transparent rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
       </div>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 w-full">
-        {/* Centered Badge */}
+      <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Centered Badge - with proper spacing */}
         <div 
-          className={`flex justify-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`flex justify-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           style={{ transitionDelay: '50ms' }}
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100/80 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
-            <Shield className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
-            <span className="text-xs font-medium text-slate-600 dark:text-slate-400">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <Shield className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+            <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
               Enterprise-Grade Security
             </span>
           </div>
