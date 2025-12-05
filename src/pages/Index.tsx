@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { SupportedPlatformsSection } from '@/components/sections/SupportedPlatformsSection';
+import LiveMessageFlowDemo from '@/components/sections/LiveMessageFlowDemo';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -92,6 +93,9 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
+        
+        {/* Live Message Flow Demo */}
+        <LiveMessageFlowDemo />
         
         {/* Enhanced Features Section */}
         <section className="py-24 bg-muted/20 relative overflow-hidden">
