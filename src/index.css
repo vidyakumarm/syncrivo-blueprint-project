@@ -10,56 +10,73 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* SyncRivo Brand Colors - Updated to premium palette */
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
+    /* SyncRivo Brand Colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-    --card: 222 47% 9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 222 47% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    /* Enhanced Primary Palette - #5A67FF (indigo glow) */
-    --primary: 237 100% 68%;
-    --primary-foreground: 210 40% 98%;
-    --primary-hover: 237 100% 75%;
-    --primary-light: 237 100% 15%;
+    /* Enhanced Primary Palette */
+    --primary-50: 239 84% 97%;
+    --primary-100: 239 84% 94%;
+    --primary-200: 239 84% 87%;
+    --primary-300: 239 84% 80%;
+    --primary-400: 239 84% 73%;
+    --primary: 239 84% 67%;
+    --primary-600: 239 84% 60%;
+    --primary-700: 239 84% 53%;
+    --primary-800: 239 84% 47%;
+    --primary-900: 239 84% 40%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 239 84% 60%;
+    --primary-light: 239 84% 95%;
 
-    /* Secondary: Dark Navy */
-    --secondary: 222 47% 15%;
-    --secondary-foreground: 210 40% 98%;
+    /* Secondary: Sophisticated Gray */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 222 47% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Enhanced Accent Palette - #00D4FF (aqua neon) */
-    --accent: 190 100% 50%;
-    --accent-foreground: 222 47% 7%;
-    --accent-light: 190 100% 15%;
+    /* Enhanced Accent Palette */
+    --accent-50: 142 76% 97%;
+    --accent-100: 142 76% 94%;
+    --accent-200: 142 76% 87%;
+    --accent-300: 142 76% 80%;
+    --accent-400: 142 76% 73%;
+    --accent: 142 76% 36%;
+    --accent-600: 142 76% 29%;
+    --accent-700: 142 76% 22%;
+    --accent-800: 142 76% 15%;
+    --accent-900: 142 76% 8%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 142 76% 95%;
 
     /* Success & Error States */
-    --success: 142 76% 45%;
-    --success-foreground: 210 40% 98%;
-    --success-light: 142 76% 15%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 95%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 222 47% 15%;
-    --input: 222 47% 15%;
-    --ring: 237 100% 68%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 239 84% 67%;
 
     /* Enhanced Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(237 100% 68%) 0%, hsl(190 100% 50%) 100%);
-    --gradient-primary-hover: linear-gradient(135deg, hsl(237 100% 75%) 0%, hsl(190 100% 55%) 100%);
-    --gradient-success: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(142 76% 45%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-300)));
+    --gradient-primary-hover: linear-gradient(135deg, hsl(var(--primary-600)), hsl(var(--primary-400)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-400)));
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(var(--background)) 0%, hsl(222 47% 9%) 100%);
-    --gradient-mesh: radial-gradient(at 40% 20%, hsla(237, 100%, 68%, 0.15) 0px, transparent 50%),
-                     radial-gradient(at 80% 0%, hsla(190, 100%, 50%, 0.15) 0px, transparent 50%),
-                     radial-gradient(at 0% 50%, hsla(237, 100%, 68%, 0.1) 0px, transparent 50%),
-                     radial-gradient(at 80% 100%, hsla(190, 100%, 50%, 0.1) 0px, transparent 50%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--background)) 0%, hsl(210 40% 98%) 100%);
+    --gradient-mesh: radial-gradient(circle at 20% 80%, hsl(var(--primary-200)) 0%, transparent 50%), 
+                     radial-gradient(circle at 80% 20%, hsl(var(--accent-200)) 0%, transparent 50%),
+                     radial-gradient(circle at 40% 40%, hsl(var(--primary-100)) 0%, transparent 50%);
 
     /* Logo specific colors */
     --logo-icon-bg: var(--gradient-primary);
