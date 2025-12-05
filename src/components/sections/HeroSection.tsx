@@ -6,7 +6,7 @@ import { ArrowRight, Play } from 'lucide-react';
 import teamsIcon from '@/assets/teams-icon.svg';
 import slackIcon from '@/assets/slack-icon.svg'; 
 import googleChatIcon from '@/assets/google-chat-icon.png';
-import { SyncHubAnimation } from './SyncHubAnimation';
+import { SecureHubAnimation } from './SecureHubAnimation';
 
 export function HeroSection() {
   return (
@@ -92,9 +92,9 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Sync Hub Animation */}
-          <div className="pt-12 animate-fade-in" style={{ animationDelay: '500ms' }}>
-            <SyncHubAnimation />
+          {/* Secure Hub Animation */}
+          <div className="pt-8 animate-fade-in" style={{ animationDelay: '500ms' }}>
+            <SecureHubAnimation />
           </div>
         </div>
       </div>
