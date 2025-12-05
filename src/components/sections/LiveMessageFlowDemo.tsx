@@ -14,9 +14,10 @@ interface Message {
 }
 
 const conversations: Message[] = [
-  { id: 1, sender: 'Alex Morgan', avatar: 'AM', text: 'Team, can everyone review the Q4 proposal?', from: 'teams' },
-  { id: 2, sender: 'Jordan Lee', avatar: 'JL', text: 'On it! Will have feedback by EOD ✓', from: 'slack' },
-  { id: 3, sender: 'Alex Morgan', avatar: 'AM', text: 'Perfect. Let\'s sync at 3pm EST.', from: 'teams' },
+  { id: 1, sender: 'Sergey Kizunov', avatar: 'SK', text: 'Team, can everyone review the Q4 proposal?', from: 'teams' },
+  { id: 2, sender: 'Kumar Makala', avatar: 'KM', text: 'On it! Will have feedback by EOD ✓', from: 'slack' },
+  { id: 3, sender: 'Sergey Kizunov', avatar: 'SK', text: 'Perfect. Let\'s sync at 3pm EST.', from: 'teams' },
+  { id: 4, sender: 'Kumar Makala', avatar: 'KM', text: 'Just shared the updated deck in Slack. Check the channel!', from: 'slack' },
 ];
 
 const LiveMessageFlowDemo = () => {
@@ -80,16 +81,16 @@ const LiveMessageFlowDemo = () => {
             <span className="text-slate-500 dark:text-slate-400">Instantly</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
-            Watch a real conversation flow securely from Microsoft Teams through SyncRivo to Slack — encrypted and instant.
+            Watch real conversations flow securely in both directions — Teams ↔ SyncRivo ↔ Slack — encrypted and instant.
           </p>
         </div>
 
-        {/* Step Progress Indicator */}
+        {/* Step Progress Indicator - Dynamic based on direction */}
         <div className="flex items-center justify-center gap-4 mb-12">
           {[
-            { step: 1, label: 'Send from Teams' },
+            { step: 1, label: isFromTeams ? 'Send from Teams' : 'Send from Slack' },
             { step: 2, label: 'Encrypt & Route' },
-            { step: 3, label: 'Deliver to Slack' },
+            { step: 3, label: isFromTeams ? 'Deliver to Slack' : 'Deliver to Teams' },
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-4">
               <div className="flex flex-col items-center">
@@ -134,10 +135,11 @@ const LiveMessageFlowDemo = () => {
             
             {/* Connection Line Left + SyncRivo Hub + Connection Line Right */}
             <div className="flex-1 flex items-center justify-center relative min-w-[200px] lg:min-w-[280px]">
-              {/* Left connection */}
+              {/* Left connection (Teams side) */}
               <div className="flex-1 relative h-0.5 bg-gradient-to-r from-[#5558AF]/20 to-primary/30 rounded-full">
+                {/* Forward flow: Teams → Hub */}
                 <div 
-                  className={`absolute top-1/2 -translate-y-1/2 transition-all duration-600 ease-out ${
+                  className={`absolute top-1/2 -translate-y-1/2 transition-all ease-out ${
                     isFromTeams && (phase === 3 || phase === 4) ? 'opacity-100' : 'opacity-0'
                   }`}
                   style={{
@@ -145,7 +147,21 @@ const LiveMessageFlowDemo = () => {
                     transition: 'left 0.6s ease-out, opacity 0.3s'
                   }}
                 >
-                  <div className="w-4 h-4 rounded-full bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/40">
+                  <div className="w-4 h-4 rounded-full bg-gradient-to-r from-[#5558AF] to-primary shadow-lg shadow-primary/40">
+                    <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-40" />
+                  </div>
+                </div>
+                {/* Reverse flow: Hub → Teams */}
+                <div 
+                  className={`absolute top-1/2 -translate-y-1/2 transition-all ease-out ${
+                    !isFromTeams && (phase === 5 || phase === 6) ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  style={{
+                    right: !isFromTeams && phase >= 6 ? '100%' : '0%',
+                    transition: 'right 0.6s ease-out, opacity 0.3s'
+                  }}
+                >
+                  <div className="w-4 h-4 rounded-full bg-gradient-to-r from-primary to-[#5558AF] shadow-lg shadow-primary/40">
                     <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-40" />
                   </div>
                 </div>
@@ -154,19 +170,33 @@ const LiveMessageFlowDemo = () => {
               {/* SyncRivo Hub */}
               <SyncRivoHub phase={phase} />
 
-              {/* Right connection */}
+              {/* Right connection (Slack side) */}
               <div className="flex-1 relative h-0.5 bg-gradient-to-r from-primary/30 to-[#4A154B]/20 rounded-full">
+                {/* Forward flow: Hub → Slack */}
                 <div 
-                  className={`absolute top-1/2 -translate-y-1/2 transition-all duration-600 ease-out ${
-                    isFromTeams && (phase === 5 || phase === 6) ? 'opacity-100' : 
-                    !isFromTeams && (phase === 3 || phase === 4) ? 'opacity-100' : 'opacity-0'
+                  className={`absolute top-1/2 -translate-y-1/2 transition-all ease-out ${
+                    isFromTeams && (phase === 5 || phase === 6) ? 'opacity-100' : 'opacity-0'
                   }`}
                   style={{
-                    left: (isFromTeams && phase >= 6) || (!isFromTeams && phase >= 4) ? '100%' : '0%',
+                    left: isFromTeams && phase >= 6 ? '100%' : '0%',
                     transition: 'left 0.6s ease-out, opacity 0.3s'
                   }}
                 >
-                  <div className="w-4 h-4 rounded-full bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/40">
+                  <div className="w-4 h-4 rounded-full bg-gradient-to-r from-primary to-[#4A154B] shadow-lg shadow-primary/40">
+                    <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-40" />
+                  </div>
+                </div>
+                {/* Reverse flow: Slack → Hub */}
+                <div 
+                  className={`absolute top-1/2 -translate-y-1/2 transition-all ease-out ${
+                    !isFromTeams && (phase === 3 || phase === 4) ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  style={{
+                    right: !isFromTeams && phase >= 4 ? '100%' : '0%',
+                    transition: 'right 0.6s ease-out, opacity 0.3s'
+                  }}
+                >
+                  <div className="w-4 h-4 rounded-full bg-gradient-to-r from-[#4A154B] to-primary shadow-lg shadow-primary/40">
                     <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-40" />
                   </div>
                 </div>
@@ -193,21 +223,53 @@ const LiveMessageFlowDemo = () => {
               currentIndex={currentMessage}
             />
             
+            {/* Top connection - Teams side */}
             <div className="relative w-0.5 h-12 bg-gradient-to-b from-[#5558AF]/30 to-primary/30 rounded-full">
+              {/* Forward flow down */}
               <div 
                 className={`absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary shadow-lg transition-all duration-500 ${
-                  phase >= 3 && phase <= 4 ? 'opacity-100' : 'opacity-0'
+                  isFromTeams && phase >= 3 && phase <= 4 ? 'opacity-100' : 'opacity-0'
                 }`}
+                style={{
+                  top: isFromTeams && phase === 4 ? '100%' : '0%',
+                  transition: 'top 0.5s ease-out, opacity 0.3s'
+                }}
+              />
+              {/* Reverse flow up */}
+              <div 
+                className={`absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary shadow-lg transition-all duration-500 ${
+                  !isFromTeams && phase >= 5 ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  bottom: !isFromTeams && phase >= 6 ? '100%' : '0%',
+                  transition: 'bottom 0.5s ease-out, opacity 0.3s'
+                }}
               />
             </div>
 
             <SyncRivoHub phase={phase} />
 
+            {/* Bottom connection - Slack side */}
             <div className="relative w-0.5 h-12 bg-gradient-to-b from-primary/30 to-[#4A154B]/30 rounded-full">
+              {/* Forward flow down */}
               <div 
                 className={`absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary shadow-lg transition-all duration-500 ${
-                  phase >= 5 ? 'opacity-100' : 'opacity-0'
+                  isFromTeams && phase >= 5 ? 'opacity-100' : 'opacity-0'
                 }`}
+                style={{
+                  top: isFromTeams && phase >= 6 ? '100%' : '0%',
+                  transition: 'top 0.5s ease-out, opacity 0.3s'
+                }}
+              />
+              {/* Reverse flow up */}
+              <div 
+                className={`absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary shadow-lg transition-all duration-500 ${
+                  !isFromTeams && phase >= 3 && phase <= 4 ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  bottom: !isFromTeams && phase >= 4 ? '100%' : '0%',
+                  transition: 'bottom 0.5s ease-out, opacity 0.3s'
+                }}
               />
             </div>
 
