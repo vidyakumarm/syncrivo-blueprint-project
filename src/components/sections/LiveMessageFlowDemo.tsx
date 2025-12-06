@@ -64,7 +64,7 @@ const LiveMessageFlowDemo = () => {
   };
 
   return (
-    <section className="py-28 lg:py-36 bg-gradient-to-b from-slate-50/50 via-background to-slate-50/30 dark:from-slate-950/50 dark:via-background dark:to-slate-950/30 relative overflow-hidden">
+    <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-b from-slate-50/50 via-background to-slate-50/30 dark:from-slate-950/50 dark:via-background dark:to-slate-950/30 relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
@@ -73,7 +73,7 @@ const LiveMessageFlowDemo = () => {
 
       <div className="relative max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
-        <div className="text-center mb-16 lg:mb-24">
+        <div className="text-center mb-10 lg:mb-14">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm font-medium mb-6">
             <Play className="w-3.5 h-3.5 text-slate-600 dark:text-slate-400" />
             <span className="text-slate-600 dark:text-slate-400">Live Demo</span>

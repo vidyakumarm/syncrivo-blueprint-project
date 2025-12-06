@@ -132,13 +132,13 @@ export function SupportedPlatformsSection() {
   const totalPlatforms = platformCategories.reduce((total, cat) => total + cat.platforms.length, 0);
 
   return (
-    <section className="py-28 lg:py-36 bg-gradient-to-br from-muted/30 to-accent/10 relative overflow-hidden">
+    <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-muted/30 to-accent/10 relative overflow-hidden">
       {/* Background enhancement */}
       <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
       
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="text-center mb-20 lg:mb-28">
+        <div className="text-center mb-12 lg:mb-16">
           <Badge variant="secondary" className="mb-6 px-5 py-2.5 text-sm font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
             <Globe className="w-4 h-4 mr-2" />
             {totalPlatforms}+ {t('platforms.supported_platforms', 'Supported Platforms')}
@@ -154,7 +154,7 @@ export function SupportedPlatformsSection() {
 
         {/* Category Tabs */}
         <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-          <div className="flex justify-center mb-16">
+          <div className="flex justify-center mb-10">
             <TabsList className="grid grid-cols-2 lg:grid-cols-4 gap-1 bg-card/50 backdrop-blur-sm p-2 rounded-xl shadow-brand-md">
               {platformCategories.map((category) => (
                 <TabsTrigger
@@ -178,16 +178,16 @@ export function SupportedPlatformsSection() {
           {platformCategories.map((category) => (
             <TabsContent key={category.id} value={category.id} className="space-y-10">
               {/* Category Description */}
-              <div className="text-center mb-14 animate-fade-in">
-                <div className={`w-16 h-16 lg:w-18 lg:h-18 bg-gradient-primary rounded-2xl mx-auto mb-8 flex items-center justify-center shadow-brand-lg`}>
+              <div className="text-center mb-10 animate-fade-in">
+                <div className={`w-14 h-14 lg:w-16 lg:h-16 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-brand-lg`}>
                   <category.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-5 tracking-tight">{category.title}</h3>
+                <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-4 tracking-tight">{category.title}</h3>
                 <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">{category.description}</p>
               </div>
 
               {/* Platforms Grid */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 lg:gap-8">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-6">
                 {category.platforms.map((platform, index) => (
                   <Card
                     key={platform.name}

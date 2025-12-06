@@ -34,9 +34,9 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-28 lg:py-36 bg-muted/30">
+    <section className="py-16 md:py-20 lg:py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="text-center mb-20 lg:mb-28">
+        <div className="text-center mb-12 lg:mb-16">
           <Badge variant="secondary" className="mb-6 px-5 py-2.5 text-sm font-medium bg-primary-light text-primary border-primary/20">
             <Star className="w-4 h-4 mr-2" />
             {t('home.testimonials_badge', 'Trusted by Industry Leaders')}
@@ -49,7 +49,7 @@ export function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
@@ -99,7 +99,7 @@ export function TestimonialsSection() {
         </div>
 
         {/* Trust metrics */}
-        <div className="mt-20 lg:mt-28 grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 text-center">
+        <div className="mt-12 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10 text-center">
           {[
             { metric: "50K+", label: "Messages Synced Daily" },
             { metric: "99.9%", label: "Uptime Guarantee" },
