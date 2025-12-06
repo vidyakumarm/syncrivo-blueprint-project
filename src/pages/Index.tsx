@@ -91,19 +91,19 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <main className="space-y-0">
+      <main>
         <HeroSection />
         
         {/* Live Message Flow Demo */}
         <LiveMessageFlowDemo />
         
         {/* Enhanced Features Section */}
-        <section className="py-28 lg:py-36 bg-muted/20 relative overflow-hidden">
+        <section className="py-16 md:py-20 lg:py-24 bg-muted/20 relative overflow-hidden">
           {/* Background enhancements */}
           <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
           
           <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-            <div className="text-center mb-20 lg:mb-28">
+            <div className="text-center mb-12 lg:mb-16">
               <Badge variant="secondary" className="mb-6 px-5 py-2.5 text-sm font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
                 <Workflow className="w-4 h-4 mr-2" />
                 {t('home.features_badge')}
@@ -117,7 +117,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
               {features.map((feature, index) => (
                 <Card 
                   key={index} 
@@ -156,9 +156,9 @@ const Index = () => {
         </section>
 
         {/* Enhanced Use Cases Section */}
-        <section className="py-28 lg:py-36">
+        <section className="py-16 md:py-20 lg:py-24">
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-            <div className="text-center mb-20 lg:mb-28">
+            <div className="text-center mb-12 lg:mb-16">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-8 leading-[1.1] tracking-tight">
                 {t('home.use_cases_title')}
               </h2>
@@ -167,7 +167,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
               {useCases.map((useCase, index) => (
                 <Card 
                   key={index} 
@@ -196,11 +196,11 @@ const Index = () => {
         </section>
 
         {/* Enhanced How It Works Section */}
-        <section className="py-28 lg:py-36 bg-gradient-to-br from-primary-light/30 to-accent-light/20 relative overflow-hidden">
+        <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-primary-light/30 to-accent-light/20 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-mesh opacity-25" />
           
           <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-            <div className="text-center mb-20 lg:mb-28">
+            <div className="text-center mb-12 lg:mb-16">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-8 leading-[1.1] tracking-tight">
                 {t('home.how_it_works')}
               </h2>
@@ -209,7 +209,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-16 lg:gap-20">
+            <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
               {[
                 { number: 1, title: t('home.connect_platforms'), desc: t('home.connect_platforms_desc') },
                 { number: 2, title: t('home.configure_sync'), desc: t('home.configure_sync_desc') },
