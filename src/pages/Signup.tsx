@@ -46,12 +46,12 @@ export default function Signup() {
     
     if (!email || !password) {
       console.log('🔑 [Signup] Validation failed - missing fields');
-      toast.error('Please fill in all required fields');
+      toast.error(t('signup.error_fill_fields', 'Please fill in all required fields'));
       return;
     }
 
     if (password.length < 6) {
-      toast.error('Password must be at least 6 characters long');
+      toast.error(t('signup.error_password_length', 'Password must be at least 6 characters long'));
       return;
     }
 
@@ -66,7 +66,7 @@ export default function Signup() {
           error: error.message
         });
         if (error.message.includes('User already registered')) {
-          toast.error('This email is already registered. Please sign in instead.');
+          toast.error(t('signup.error_already_registered', 'This email is already registered. Please sign in instead.'));
         } else {
           toast.error(error.message);
         }
@@ -75,7 +75,7 @@ export default function Signup() {
           timestamp: new Date().toISOString(),
           email
         });
-        toast.success('Account created successfully! Please check your email to verify your account.');
+        toast.success(t('signup.success_created', 'Account created successfully! Please check your email to verify your account.'));
         navigate('/login');
       }
     } catch (error) {
@@ -83,7 +83,7 @@ export default function Signup() {
         timestamp: new Date().toISOString(),
         error
       });
-      toast.error('An unexpected error occurred');
+      toast.error(t('signup.error_unexpected', 'An unexpected error occurred'));
     } finally {
       setLoading(false);
     }
@@ -102,11 +102,11 @@ export default function Signup() {
               <CardContent className="space-y-6">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="displayName">{t('signup.display_name', 'Display Name')} (Optional)</Label>
+                    <Label htmlFor="displayName">{t('signup.display_name', 'Display Name')} ({t('common.optional', 'Optional')})</Label>
                     <Input 
                       id="displayName" 
                       type="text" 
-                      placeholder="Your display name"
+                      placeholder={t('signup.display_name_placeholder', 'Your display name')}
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                     />
@@ -116,7 +116,7 @@ export default function Signup() {
                     <Input 
                       id="email" 
                       type="email" 
-                      placeholder="your@email.com"
+                      placeholder={t('signup.email_placeholder', 'your@email.com')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -127,7 +127,7 @@ export default function Signup() {
                     <Input 
                       id="password" 
                       type="password"
-                      placeholder="At least 6 characters"
+                      placeholder={t('signup.password_placeholder', 'At least 6 characters')}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required

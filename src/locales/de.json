@@ -25,7 +25,8 @@
     "back": "Zurück",
     "next": "Weiter",
     "previous": "Vorherige",
-    "close": "Schließen"
+    "close": "Schließen",
+    "optional": "Optional"
   },
   "nav": {
     "home": "Startseite",

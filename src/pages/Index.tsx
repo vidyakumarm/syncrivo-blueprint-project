@@ -110,7 +110,7 @@ const Index = () => {
               </Badge>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1] tracking-tight">
                 <span className="block text-foreground mb-3">{t('home.main_heading')}</span>
-                <span className="text-gradient-primary">Advanced Integration Capabilities</span>
+                <span className="text-gradient-primary">{t('home.features_heading_highlight', 'Advanced Integration Capabilities')}</span>
               </h2>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 {t('home.features_subtitle')}
