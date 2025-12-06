@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Sparkles, CheckCircle2, Calendar, Mail } from 'lucide-react';
 import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
+import { EnterpriseDemoModal } from './EnterpriseDemoModal';
 
 export function CTASection() {
   const { t } = useTranslationWithFallback();
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
 
   return (
     <section className="py-28 lg:py-36 relative overflow-hidden">
@@ -46,7 +49,7 @@ export function CTASection() {
           </div>
 
           {/* Enhanced CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 justify-center items-center mb-8">
             <Button 
               asChild 
               size="lg" 
@@ -61,21 +64,53 @@ export function CTASection() {
               </Link>
             </Button>
             
-            <Button 
-              variant="outline" 
-              size="lg" 
-              asChild
-              className="group border-2 border-primary/40 hover:bg-primary/5 backdrop-blur-sm font-semibold px-12 py-4 text-lg hover:shadow-brand-lg hover:border-primary/60 transition-all duration-300 rounded-full"
-            >
-              <Link to="/dashboard">
-                <span className="group-hover:text-primary transition-colors duration-300">
-                  {t('home.view_demo')}
+            {/* Premium Enterprise Demo Button */}
+            <div className="flex flex-col items-center gap-3">
+              <button
+                onClick={() => setDemoModalOpen(true)}
+                className="group relative px-10 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
+              >
+                {/* Animated gradient border */}
+                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-success p-[2px] transition-all duration-500 group-hover:from-success group-hover:via-primary group-hover:to-accent">
+                  <span className="flex h-full w-full items-center justify-center rounded-full bg-background transition-all duration-300 group-hover:bg-primary/5">
+                    <span className="sr-only">Button background</span>
+                  </span>
                 </span>
-              </Link>
-            </Button>
+                
+                {/* Button content */}
+                <span className="relative z-10 flex items-center gap-2.5 text-foreground group-hover:text-primary transition-colors duration-300">
+                  <Calendar className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
+                  <span>Book a Live Enterprise Demo</span>
+                </span>
+                
+                {/* Subtle glow on hover */}
+                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_30px_rgba(var(--primary-rgb),0.3)] pointer-events-none" />
+              </button>
+              
+              {/* Micro-trust text */}
+              <p className="text-xs text-muted-foreground/70 font-medium tracking-wide">
+                No credit card required · 1:1 guided session · 30–45 min
+              </p>
+            </div>
+          </div>
+
+          {/* Contact sales link */}
+          <div className="flex justify-center">
+            <Link 
+              to="/support" 
+              className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+            >
+              <Mail className="h-3.5 w-3.5" />
+              <span>Prefer email first?</span>
+              <span className="font-medium">Contact Sales</span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
         </div>
       </div>
+
+      {/* Enterprise Demo Modal */}
+      <EnterpriseDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </section>
   );
 }
