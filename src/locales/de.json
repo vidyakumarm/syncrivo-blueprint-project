@@ -59,16 +59,16 @@
     "hero_badge": "Messaging-Plattform-Funktionen",
     "hero_title": "Alles was Sie brauchen für",
     "hero_title_highlight": "Messaging-Plattform-Integration",
-    "hero_subtitle": "Von einfacher Nachrichtensynchronisation bis hin zu komplexen plattformübergreifenden Workflows bietet SyncRio alle Tools, die Sie benötigen, um Teams, Webex, Google Chat, Zoom, Slack und andere Messaging-Plattformen zu integrieren.",
+    "hero_subtitle": "Von einfacher Nachrichtensynchronisation bis hin zu komplexen plattformübergreifenden Workflows bietet SyncRivo alle Tools, die Sie benötigen, um Teams, Webex, Google Chat, Zoom, Slack und andere Messaging-Plattformen zu integrieren.",
     "hero_cta": "Plattformen Verbinden Starten",
     "built_for": "Entwickelt für Messaging-Plattform-Integration",
     "built_for_desc": "Jede Funktion ist darauf ausgelegt, die Integration von Messaging-Plattformen einfach, sicher und skalierbar zu gestalten.",
     "perfect_for": "Perfekt für jedes Kommunikationsszenario",
-    "perfect_for_desc": "Ob Sie Unternehmenskommunikation oder Remote-Teams verwalten, SyncRio passt sich Ihren Messaging-Integrationsbedürfnissen an.",
+    "perfect_for_desc": "Ob Sie Unternehmenskommunikation oder Remote-Teams verwalten, SyncRivo passt sich Ihren Messaging-Integrationsbedürfnissen an.",
     "stay_in_control": "Behalten Sie die Kontrolle über Ihre Messaging-Plattformen",
     "stay_in_control_desc": "Erhalten Sie vollständige Transparenz über Ihre Messaging-Plattform-Integrationen mit Echtzeit-Überwachung, detaillierten Analysen und proaktiven Benachrichtigungen für alle verbundenen Plattformen.",
     "ready_to_connect": "Bereit, Ihre Messaging-Plattformen zu verbinden?",
-    "ready_to_connect_desc": "Schließen Sie sich Tausenden von Teams an, die SyncRio vertrauen, um ihre Business-Kommunikationstools nahtlos zu integrieren.",
+    "ready_to_connect_desc": "Schließen Sie sich Tausenden von Teams an, die SyncRivo vertrauen, um ihre Business-Kommunikationstools nahtlos zu integrieren.",
     "universal_sync": "Universelle Nachrichtensynchronisation",
     "universal_sync_desc": "Verbinden Sie Teams, Webex, Google Chat, Zoom, Slack und mehr mit bidirektionaler Nachrichtensynchronisation.",
     "cross_platform_teams": "Plattformübergreifende Teams",
@@ -104,7 +104,7 @@
     "section_title": "Entwickelt für Messaging-Plattform-Integration",
     "section_subtitle": "Jede Funktion ist darauf ausgelegt, die Integration von Messaging-Plattformen einfach, sicher und skalierbar zu gestalten.",
     "use_cases_title": "Perfekt für jedes Kommunikationsszenario",
-    "use_cases_subtitle": "Ob Sie Unternehmenskommunikation oder Remote-Teams verwalten, SyncRio passt sich Ihren Messaging-Integrationsbedürfnissen an.",
+    "use_cases_subtitle": "Ob Sie Unternehmenskommunikation oder Remote-Teams verwalten, SyncRivo passt sich Ihren Messaging-Integrationsbedürfnissen an.",
     "monitoring_badge": "Echtzeit-Überwachung",
     "monitoring_title": "Behalten Sie die Kontrolle über Ihre Messaging-Plattformen",
     "monitoring_subtitle": "Erhalten Sie vollständige Transparenz über Ihre Messaging-Plattform-Integrationen mit Echtzeit-Überwachung, detaillierten Analysen und proaktiven Benachrichtigungen für alle verbundenen Plattformen.",
@@ -123,7 +123,7 @@
       "slack_syncing": "Synchronisiert"
     },
     "cta_title": "Bereit, Ihre Messaging-Plattformen zu verbinden?",
-    "cta_subtitle": "Schließen Sie sich Tausenden von Teams an, die SyncRio vertrauen, um ihre Business-Kommunikationstools nahtlos zu integrieren.",
+    "cta_subtitle": "Schließen Sie sich Tausenden von Teams an, die SyncRivo vertrauen, um ihre Business-Kommunikationstools nahtlos zu integrieren.",
     "start_trial": "Kostenlose Testversion Starten",
     "view_demo": "Live-Demo Anzeigen"
   },
@@ -138,7 +138,7 @@
     "project_coordination_desc": "Synchronisieren Sie Projekt-Updates und Benachrichtigungen automatisch über alle Team-Messaging-Kanäle."
   },
   "how_it_works": {
-    "title": "Wie SyncRio funktioniert",
+    "title": "Wie SyncRivo funktioniert",
     "subtitle": "Verbinden Sie Ihre Messaging-Plattformen in nur drei einfachen Schritten.",
     "step1_title": "Plattformen Verbinden",
     "step1_desc": "Fügen Sie Ihre Messaging-Plattformen wie Teams, Webex, Google Chat, Zoom und Slack mit sicherer OAuth-Authentifizierung hinzu.",
@@ -162,7 +162,7 @@
   },
   "support": {
     "title": "Wie können wir Ihnen helfen?",
-    "subtitle": "Erhalten Sie den Support, den Sie benötigen, um das Beste aus SyncRio herauszuholen. Unser Team ist hier, um Ihnen zum Erfolg zu verhelfen.",
+    "subtitle": "Erhalten Sie den Support, den Sie benötigen, um das Beste aus SyncRivo herauszuholen. Unser Team ist hier, um Ihnen zum Erfolg zu verhelfen.",
     "live_chat": "Live-Chat",
     "live_chat_desc": "Erhalten Sie sofortige Hilfe von unserem Support-Team",
     "email_support": "E-Mail-Support",
@@ -270,7 +270,7 @@
   },
   "docs": {
     "title": "Dokumentation",
-    "subtitle": "Alles, was Sie brauchen, um mit SyncRio zu beginnen.",
+    "subtitle": "Alles, was Sie brauchen, um mit SyncRivo zu beginnen.",
     "coming_soon": "Kommt Bald",
     "coming_soon_desc": "Unsere umfassende Dokumentation wird vorbereitet. Schauen Sie bald wieder für Anleitungen und Tutorials vorbei.",
     "version": "Dokumentation v2.0",
@@ -394,7 +394,7 @@
   },
   "signup": {
     "title": "Konto Erstellen", 
-    "subtitle": "Treten Sie SyncRio bei und beginnen Sie noch heute, Ihre Business-Tools zu verbinden.",
+    "subtitle": "Treten Sie SyncRivo bei und beginnen Sie noch heute, Ihre Business-Tools zu verbinden.",
     "display_name": "Anzeigename",
     "email": "E-Mail",
     "password": "Passwort",
@@ -403,7 +403,7 @@
     "sign_in": "Anmelden"
   },
   "dashboard": {
-    "title": "SyncRio Dashboard",
+    "title": "SyncRivo Dashboard",
     "subtitle": "Verbinden und synchronisieren Sie Nachrichten zwischen Teams, Webex, Google Chat, Zoom und anderen Messaging-Plattformen",
     "welcome": "Willkommen zu Ihrem Dashboard",
     "metrics": {
@@ -499,7 +499,7 @@
   "home": {
     "features_badge": "Leistungsstarke Funktionen",
     "features_title": "Alles was Sie für Messaging-Plattform-Integration brauchen",
-    "features_subtitle": "SyncRio bietet umfassende Tools, um alle Ihre Business-Messaging-Plattformen von einem zentralen Hub aus zu verbinden, zu synchronisieren und zu verwalten.",
+    "features_subtitle": "SyncRivo bietet umfassende Tools, um alle Ihre Business-Messaging-Plattformen von einem zentralen Hub aus zu verbinden, zu synchronisieren und zu verwalten.",
     "universal_sync": "Universelle Messaging-Synchronisation",
     "universal_sync_desc": "Verbinden Sie Teams, Webex, Google Chat, Zoom, Slack und mehr mit bidirektionaler Nachrichtensynchronisation.",
     "team_management": "Team-Management",
@@ -521,7 +521,7 @@
     "platform_metrics": "Plattform-Metriken",
     "usage_reports": "Nutzungsberichte",
     "use_cases_title": "Perfekt für jeden Business-Kommunikationsbedarf",
-    "use_cases_subtitle": "Ob Sie Unternehmenskommunikation oder Remote-Team-Zusammenarbeit verwalten, SyncRio passt sich Ihren spezifischen Messaging-Integrationsbedürfnissen an.",
+    "use_cases_subtitle": "Ob Sie Unternehmenskommunikation oder Remote-Team-Zusammenarbeit verwalten, SyncRivo passt sich Ihren spezifischen Messaging-Integrationsbedürfnissen an.",
     "enterprise_communication": "Unternehmenskommunikation",
     "enterprise_communication_desc": "Vereinheitlichen Sie die Nachrichtenübermittlung zwischen verschiedenen Abteilungen mit verschiedenen Plattformen.",
     "remote_collaboration": "Remote-Team-Zusammenarbeit",
@@ -530,7 +530,7 @@
     "customer_support_desc": "Integrieren Sie Kundensupport-Kanäle mit internen Kommunikationstools.",
     "project_management": "Projektmanagement",
     "project_management_desc": "Synchronisieren Sie Projekt-Updates und Benachrichtigungen über alle Team-Kommunikationskanäle.",
-    "how_it_works": "Wie SyncRio funktioniert",
+    "how_it_works": "Wie SyncRivo funktioniert",
     "how_it_works_subtitle": "Verbinden Sie Ihre Messaging-Plattformen und synchronisieren Sie in nur drei einfachen Schritten.",
     "connect_platforms": "Plattformen verbinden",
     "connect_platforms_desc": "Fügen Sie Ihre Messaging-Plattformen wie Teams, Webex, Google Chat, Zoom und Slack mit sicherer OAuth-Authentifizierung hinzu.",
@@ -539,7 +539,7 @@
     "start_syncing": "Synchronisation starten",
     "start_syncing_desc": "Nachrichten werden automatisch in Echtzeit über alle verbundenen Plattformen synchronisiert und halten Ihr Team überall verbunden.",
     "cta_title": "Bereit, Ihre Messaging-Plattformen zu vereinheitlichen?",
-    "cta_subtitle": "Schließen Sie sich Tausenden von Teams an, die SyncRio vertrauen, um ihre Business-Kommunikationstools nahtlos zu verbinden.",
+    "cta_subtitle": "Schließen Sie sich Tausenden von Teams an, die SyncRivo vertrauen, um ihre Business-Kommunikationstools nahtlos zu verbinden.",
     "start_free_trial": "Kostenlose Testversion starten",
     "view_demo": "Live-Demo ansehen",
     "platform_names": {

@@ -88,7 +88,7 @@
     "hero_badge": "メッセージングプラットフォーム機能",
     "hero_title": "必要なすべてを",
     "hero_title_highlight": "メッセージングプラットフォームに接続",
-    "hero_subtitle": "シンプルなメッセージ同期から複雑なクロスプラットフォームワークフローまで、SyncRioはTeams、Webex、Google Chat、Zoom、Slackなどのメッセージングプラットフォームを統合するために必要なすべてのツールを提供します。",
+    "hero_subtitle": "シンプルなメッセージ同期から複雑なクロスプラットフォームワークフローまで、SyncRivoはTeams、Webex、Google Chat、Zoom、Slackなどのメッセージングプラットフォームを統合するために必要なすべてのツールを提供します。",
     "hero_cta": "プラットフォーム接続を開始",
     "universal_sync": "ユニバーサルメッセージング同期",
     "universal_sync_desc": "Teams、Webex、Google Chat、Zoom、Slackなどを双方向メッセージ同期で接続。",
@@ -123,7 +123,7 @@
     "section_title": "メッセージングプラットフォーム統合のために構築",
     "section_subtitle": "すべての機能は、メッセージングプラットフォーム統合をシンプル、安全、スケーラブルにするように設計されています。",
     "use_cases_title": "あらゆるコミュニケーションシナリオに最適",
-    "use_cases_subtitle": "企業コミュニケーションやリモートチームの管理など、SyncRioはあなたのメッセージング統合ニーズに適応します。",
+    "use_cases_subtitle": "企業コミュニケーションやリモートチームの管理など、SyncRivoはあなたのメッセージング統合ニーズに適応します。",
     "monitoring_badge": "リアルタイム監視",
     "monitoring_title": "メッセージングプラットフォームを制御下に保つ",
     "monitoring_subtitle": "接続されたすべてのプラットフォームのリアルタイム監視、詳細な分析、プロアクティブなアラートでメッセージングプラットフォーム統合の完全な可視性を取得。",
@@ -142,7 +142,7 @@
       "slack_syncing": "同期中"
     },
     "cta_title": "メッセージングプラットフォームを接続する準備はできましたか？",
-    "cta_subtitle": "ビジネスコミュニケーションツールをシームレスに統合するためにSyncRioを信頼する何千ものチームに参加してください。",
+    "cta_subtitle": "ビジネスコミュニケーションツールをシームレスに統合するためにSyncRivoを信頼する何千ものチームに参加してください。",
     "start_trial": "無料トライアルを開始",
     "view_demo": "ライブデモを見る"
   },
@@ -342,7 +342,7 @@
     "sign_in": "サインイン"
   },
   "dashboard": {
-    "title": "SyncRio ダッシュボード",
+    "title": "SyncRivo ダッシュボード",
     "subtitle": "Teams、Webex、Google Chat、Zoom、その他のメッセージングプラットフォーム間でメッセージを接続・同期",
     "welcome": "ダッシュボードへようこそ",
     "metrics": {
@@ -448,7 +448,7 @@
   "home": {
     "features_badge": "強力な機能",
     "features_title": "メッセージングプラットフォーム統合に必要なすべて",
-    "features_subtitle": "SyncRioは、すべてのビジネスメッセージングプラットフォームを1つの中央ハブから接続、同期、管理するための包括的なツールを提供します。",
+    "features_subtitle": "SyncRivoは、すべてのビジネスメッセージングプラットフォームを1つの中央ハブから接続、同期、管理するための包括的なツールを提供します。",
     "universal_sync": "ユニバーサルメッセージング同期",
     "universal_sync_desc": "Teams、Webex、Google Chat、Zoom、Slackなどを双方向メッセージ同期で接続。",
     "team_management": "チーム管理",
@@ -470,7 +470,7 @@
     "platform_metrics": "プラットフォームメトリクス",
     "usage_reports": "使用状況レポート",
     "use_cases_title": "あらゆるビジネスコミュニケーションニーズに最適",
-    "use_cases_subtitle": "企業コミュニケーションやリモートチーム協作を管理する場合でも、SyncRioは特定のメッセージング統合ニーズに適応します。",
+    "use_cases_subtitle": "企業コミュニケーションやリモートチーム協作を管理する場合でも、SyncRivoは特定のメッセージング統合ニーズに適応します。",
     "enterprise_communication": "企業コミュニケーション",
     "enterprise_communication_desc": "さまざまなプラットフォームを使用する異なる部門間でメッセージングを統一。",
     "remote_collaboration": "リモートチーム協作",
@@ -479,7 +479,7 @@
     "customer_support_desc": "カスタマーサポートチャンネルを内部コミュニケーションツールと統合。",
     "project_management": "プロジェクト管理",
     "project_management_desc": "すべてのチームコミュニケーションチャンネルにプロジェクト更新と通知を同期。",
-    "how_it_works": "SyncRioの仕組み",
+    "how_it_works": "SyncRivoの仕組み",
     "how_it_works_subtitle": "わずか3つのシンプルなステップでメッセージングプラットフォームを接続し同期。",
     "connect_platforms": "プラットフォーム接続",
     "connect_platforms_desc": "安全なOAuth認証でTeams、Webex、Google Chat、Zoom、Slackなどのメッセージングプラットフォームを追加。",
@@ -488,7 +488,7 @@
     "start_syncing": "同期開始",
     "start_syncing_desc": "すべての接続されたプラットフォーム間でメッセージがリアルタイムで自動同期し、チームをどこでも接続し続ける。",
     "cta_title": "メッセージングプラットフォームを統一する準備はできましたか？",
-    "cta_subtitle": "SyncRioを信頼してビジネスコミュニケーションツールをシームレスに接続する数千のチームに参加。",
+    "cta_subtitle": "SyncRivoを信頼してビジネスコミュニケーションツールをシームレスに接続する数千のチームに参加。",
     "start_free_trial": "無料トライアル開始",
     "view_demo": "ライブデモを見る",
     "platform_names": {
