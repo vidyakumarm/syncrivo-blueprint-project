@@ -52,104 +52,236 @@ export const emailService = {
   }): Promise<EmailResult> {
     const { to, firstName, lastName, companyName, selectedDate, selectedTime, demoType } = params;
     
-    const subject = "🎉 Your SyncRivo Enterprise Demo Is Confirmed";
+    const subject = "Your SyncRivo Enterprise Demo Is Confirmed";
     
     const html = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      </head>
-      <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <div style="background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%); padding: 30px; border-radius: 12px 12px 0 0; text-align: center;">
-          <h1 style="color: white; margin: 0; font-size: 28px;">SyncRivo</h1>
-          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0;">Enterprise Demo Confirmation</p>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SyncRivo Demo Confirmation</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+</head>
+<body style="margin: 0; padding: 0; background-color: #E5E7EB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">
+  
+  <!-- Outer wrapper for centering -->
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #E5E7EB;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
         
-        <div style="background: #f8fafc; padding: 30px; border: 1px solid #e2e8f0; border-top: none;">
-          <h2 style="color: #1e293b; margin-top: 0;">Hi ${firstName},</h2>
+        <!-- Main container - 600px max width -->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; width: 100%; background-color: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
           
-          <p>Thank you for booking an enterprise demo with SyncRivo! We're excited to show you how we can transform your team's communication.</p>
+          <!-- Header with gradient - reduced height -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%); padding: 24px 32px; text-align: center;">
+              <h1 style="color: #FFFFFF; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px;">SyncRivo</h1>
+              <p style="color: rgba(255, 255, 255, 0.9); margin: 6px 0 0 0; font-size: 14px; font-weight: 500;">Enterprise Demo Confirmation</p>
+            </td>
+          </tr>
           
-          <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #3b82f6;">📅 Your Demo Details</h3>
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 8px 0; color: #64748b;">Name:</td>
-                <td style="padding: 8px 0; font-weight: 600;">${firstName} ${lastName}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; color: #64748b;">Company:</td>
-                <td style="padding: 8px 0; font-weight: 600;">${companyName}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; color: #64748b;">Date:</td>
-                <td style="padding: 8px 0; font-weight: 600;">${selectedDate}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; color: #64748b;">Time:</td>
-                <td style="padding: 8px 0; font-weight: 600;">${selectedTime}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; color: #64748b;">Demo Type:</td>
-                <td style="padding: 8px 0; font-weight: 600;">${demoType}</td>
-              </tr>
-            </table>
-          </div>
+          <!-- Main content area -->
+          <tr>
+            <td style="padding: 32px;">
+              
+              <!-- Greeting -->
+              <h2 style="color: #1E293B; margin: 0 0 16px 0; font-size: 22px; font-weight: 600; line-height: 1.4;">Hi ${firstName},</h2>
+              
+              <p style="color: #475569; margin: 0 0 24px 0; font-size: 15px; line-height: 1.6;">
+                Thank you for booking an enterprise demo with SyncRivo! We're excited to show you how we can transform your team's communication.
+              </p>
+              
+              <!-- Demo Details Card -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #F7F9FC; border-radius: 12px; margin-bottom: 24px;">
+                <tr>
+                  <td style="padding: 20px;">
+                    
+                    <!-- Card Header -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding-bottom: 16px; border-bottom: 1px solid #E2E8F0;">
+                          <span style="font-size: 18px; margin-right: 8px;">&#128197;</span>
+                          <span style="color: #3B82F6; font-size: 16px; font-weight: 600;">Your Demo Details</span>
+                        </td>
+                      </tr>
+                    </table>
+                    
+                    <!-- Details rows -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top: 12px;">
+                      <tr>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; width: 40%;">
+                          <span style="color: #64748B; font-size: 14px; line-height: 1.6;">Name</span>
+                        </td>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; text-align: right;">
+                          <span style="color: #1E293B; font-size: 14px; font-weight: 600; line-height: 1.6;">${firstName} ${lastName}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; width: 40%;">
+                          <span style="color: #64748B; font-size: 14px; line-height: 1.6;">Company</span>
+                        </td>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; text-align: right;">
+                          <span style="color: #1E293B; font-size: 14px; font-weight: 600; line-height: 1.6;">${companyName}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; width: 40%;">
+                          <span style="color: #64748B; font-size: 14px; line-height: 1.6;">Date</span>
+                        </td>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; text-align: right;">
+                          <span style="color: #1E293B; font-size: 14px; font-weight: 600; line-height: 1.6;">${selectedDate}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; width: 40%;">
+                          <span style="color: #64748B; font-size: 14px; line-height: 1.6;">Time</span>
+                        </td>
+                        <td style="padding: 12px 0; border-bottom: 1px solid #E2E8F0; text-align: right;">
+                          <span style="color: #1E293B; font-size: 14px; font-weight: 600; line-height: 1.6;">${selectedTime}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 12px 0; width: 40%;">
+                          <span style="color: #64748B; font-size: 14px; line-height: 1.6;">Demo Type</span>
+                        </td>
+                        <td style="padding: 12px 0; text-align: right;">
+                          <span style="color: #1E293B; font-size: 14px; font-weight: 600; line-height: 1.6;">${demoType}</span>
+                        </td>
+                      </tr>
+                    </table>
+                    
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- Meeting Link Section -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #E7F8EF; border-radius: 12px; margin-bottom: 24px;">
+                <tr>
+                  <td style="padding: 20px; text-align: center;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td align="center">
+                          <span style="font-size: 24px; display: block; margin-bottom: 8px;">&#128198;</span>
+                          <p style="color: #166534; margin: 0; font-size: 14px; font-weight: 600; line-height: 1.6;">
+                            Meeting Link Coming Soon
+                          </p>
+                          <p style="color: #15803D; margin: 6px 0 0 0; font-size: 13px; line-height: 1.6;">
+                            A calendar invite with the meeting link will be sent to you shortly.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- What to Expect Section -->
+              <h3 style="color: #1E293B; margin: 24px 0 16px 0; font-size: 16px; font-weight: 600; line-height: 1.4;">What to Expect</h3>
+              
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="padding: 6px 0;">
+                    <span style="color: #3B82F6; font-size: 14px; margin-right: 10px;">&#10003;</span>
+                    <span style="color: #475569; font-size: 14px; line-height: 1.6;">30-45 minute personalized session</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 0;">
+                    <span style="color: #3B82F6; font-size: 14px; margin-right: 10px;">&#10003;</span>
+                    <span style="color: #475569; font-size: 14px; line-height: 1.6;">Live walkthrough of SyncRivo's enterprise features</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 0;">
+                    <span style="color: #3B82F6; font-size: 14px; margin-right: 10px;">&#10003;</span>
+                    <span style="color: #475569; font-size: 14px; line-height: 1.6;">Q&A with our solutions team</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 0;">
+                    <span style="color: #3B82F6; font-size: 14px; margin-right: 10px;">&#10003;</span>
+                    <span style="color: #475569; font-size: 14px; line-height: 1.6;">Custom pricing discussion for your organization</span>
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- Reschedule note -->
+              <p style="color: #64748B; font-size: 13px; margin: 24px 0 0 0; line-height: 1.6;">
+                Need to reschedule? Simply reply to this email or contact us at 
+                <a href="mailto:support@syncrivo.com" style="color: #3B82F6; text-decoration: none; font-weight: 500;">support@syncrivo.com</a>
+              </p>
+              
+            </td>
+          </tr>
           
-          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 15px; margin: 20px 0;">
-            <p style="margin: 0; color: #166534;">
-              <strong>📎 Meeting Link:</strong><br>
-              A calendar invite with the meeting link will be sent to you shortly.
-            </p>
-          </div>
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 0 32px;">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="border-top: 1px solid #E2E8F0;"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 24px 32px 28px 32px; text-align: center;">
+              <p style="color: #64748B; margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;">
+                Questions? Contact us at <a href="mailto:support@syncrivo.com" style="color: #3B82F6; text-decoration: none;">support@syncrivo.com</a>
+              </p>
+              <p style="color: #94A3B8; margin: 0; font-size: 12px; line-height: 1.6;">
+                &copy; ${new Date().getFullYear()} SyncRivo by KXN Tech. All rights reserved.
+              </p>
+            </td>
+          </tr>
           
-          <h3 style="color: #1e293b;">What to Expect</h3>
-          <ul style="color: #475569;">
-            <li>30-45 minute personalized session</li>
-            <li>Live walkthrough of SyncRivo's enterprise features</li>
-            <li>Q&A with our solutions team</li>
-            <li>Custom pricing discussion for your organization</li>
-          </ul>
-          
-          <p style="color: #64748b; font-size: 14px; margin-top: 30px;">
-            Need to reschedule? Reply to this email or contact us at <a href="mailto:marketing@kxntech.com" style="color: #3b82f6;">marketing@kxntech.com</a>
-          </p>
-        </div>
+        </table>
+        <!-- End main container -->
         
-        <div style="background: #1e293b; padding: 20px; border-radius: 0 0 12px 12px; text-align: center;">
-          <p style="color: #94a3b8; margin: 0; font-size: 14px;">
-            © ${new Date().getFullYear()} SyncRivo by KXN Tech. All rights reserved.
-          </p>
-        </div>
-      </body>
-      </html>
+      </td>
+    </tr>
+  </table>
+  
+</body>
+</html>
     `;
 
-    const text = `
-Hi ${firstName},
+    const text = `Hi ${firstName},
 
-Thank you for booking an enterprise demo with SyncRivo!
+Thank you for booking an enterprise demo with SyncRivo! We're excited to show you how we can transform your team's communication.
 
-YOUR DEMO DETAILS:
-- Name: ${firstName} ${lastName}
-- Company: ${companyName}
-- Date: ${selectedDate}
-- Time: ${selectedTime}
-- Demo Type: ${demoType}
+YOUR DEMO DETAILS
+-----------------
+Name: ${firstName} ${lastName}
+Company: ${companyName}
+Date: ${selectedDate}
+Time: ${selectedTime}
+Demo Type: ${demoType}
 
+MEETING LINK
 A calendar invite with the meeting link will be sent to you shortly.
 
-What to Expect:
+WHAT TO EXPECT
 - 30-45 minute personalized session
 - Live walkthrough of SyncRivo's enterprise features
 - Q&A with our solutions team
 - Custom pricing discussion for your organization
 
-Need to reschedule? Reply to this email or contact us at marketing@kxntech.com
+Need to reschedule? Reply to this email or contact us at support@syncrivo.com
 
-© ${new Date().getFullYear()} SyncRivo by KXN Tech
+---
+Questions? Contact us at support@syncrivo.com
+(c) ${new Date().getFullYear()} SyncRivo by KXN Tech. All rights reserved.
     `;
 
     return this.send({ to, subject, html, text });
