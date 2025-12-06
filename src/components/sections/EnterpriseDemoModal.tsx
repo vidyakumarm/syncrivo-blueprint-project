@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/select';
 import { Calendar, Shield, Users, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
+import { emailService } from '@/lib/emailService';
 
 interface EnterpriseDemoModalProps {
   open: boolean;
@@ -96,15 +97,49 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Parse name into first/last
+    const nameParts = formData.name.trim().split(' ');
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
     
+    // Parse selected time slot for display
+    const selectedSlot = timeSlots.find(s => s.value === formData.timeSlot);
+    const slotParts = formData.timeSlot.split('-');
+    const selectedDate = slotParts.slice(0, 3).join('-'); // YYYY-MM-DD
+    const selectedTime = slotParts[3] || '';
+    
+    // Get demo type label
+    const demoTypeLabel = demoTypes.find(d => d.value === formData.demoType)?.label || formData.demoType;
+    
+    // Show immediate success feedback (don't block on email)
     toast.success('Demo Scheduled!', {
       description: 'Check your email for confirmation and calendar invite.',
     });
     
-    setIsSubmitting(false);
+    // Close modal immediately for better UX
     onOpenChange(false);
+    
+    // Send confirmation email asynchronously (non-blocking)
+    emailService.sendDemoConfirmation({
+      to: formData.email,
+      firstName,
+      lastName,
+      companyName: formData.company,
+      selectedDate: selectedSlot?.label.split(' · ')[0] || selectedDate,
+      selectedTime: selectedSlot?.label.split(' · ')[1] || selectedTime,
+      demoType: demoTypeLabel,
+    }).then(result => {
+      if (!result.success) {
+        console.error('Failed to send confirmation email:', result.error);
+        // Optionally notify admin of email failure
+        emailService.sendAdminAlert({
+          subject: 'Demo Booking Email Failed',
+          message: `Failed to send confirmation to ${formData.email}\nError: ${result.error}`,
+        });
+      }
+    });
+    
+    setIsSubmitting(false);
     setFormData({
       name: '',
       email: '',
