@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -6,7 +7,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { CookieProvider } from '@/contexts/CookieContext';
 import { Toaster } from '@/components/ui/toaster';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import i18n from './lib/i18n';
 
 // Pages
@@ -48,6 +49,19 @@ const queryClient = new QueryClient({
   },
 });
 
+// RTL direction handler component
+function DirectionHandler({ children }: { children: React.ReactNode }) {
+  const { i18n } = useTranslation();
+  
+  useEffect(() => {
+    const isRTL = i18n.language === 'ar';
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  return <>{children}</>;
+}
+
 function App() {
   return (
     <I18nextProvider i18n={i18n}>
@@ -55,9 +69,10 @@ function App() {
         <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
           <CookieProvider>
             <AuthProvider>
-              <Router>
-                <ScrollToTop />
-                <div className="min-h-screen bg-background">
+              <DirectionHandler>
+                <Router>
+                  <ScrollToTop />
+                  <div className="min-h-screen bg-background">
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/about" element={<About />} />
@@ -90,9 +105,10 @@ function App() {
                     <Route path="/docs/api" element={<DocsApi />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
-                </div>
-                <Toaster />
-              </Router>
+                  </div>
+                  <Toaster />
+                </Router>
+              </DirectionHandler>
             </AuthProvider>
           </CookieProvider>
         </ThemeProvider>
