@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Shield, Lock, CheckCircle, Zap, Building2 } from "lucide-react";
+import { ArrowRight, Shield, Lock, CheckCircle, Zap, Building2, Calendar } from "lucide-react";
+import { EnterpriseDemoModal } from "./EnterpriseDemoModal";
 
 // Platform icons
 import teamsIcon from "@/assets/brands/teams-official.svg";
@@ -66,6 +67,7 @@ export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [hubPulse, setHubPulse] = useState(false);
   const [orbitRotation, setOrbitRotation] = useState(0);
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const packetIdRef = useRef(0);
 
@@ -204,10 +206,11 @@ export function HeroSection() {
               <Button
                 variant="outline"
                 size="lg"
+                onClick={() => setDemoModalOpen(true)}
                 className="group border-2 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl"
               >
-                <Building2 className="mr-2 h-4 w-4" />
-                Book an Enterprise Demo
+                <Calendar className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+                Book a Live Enterprise Demo
               </Button>
             </div>
 
@@ -477,6 +480,9 @@ export function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Enterprise Demo Modal */}
+      <EnterpriseDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </section>
   );
 }
