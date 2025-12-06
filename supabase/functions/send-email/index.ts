@@ -13,12 +13,20 @@ interface EmailRequest {
   text?: string;
 }
 
-// Minify HTML to prevent quoted-printable encoding issues
-function minifyHtml(html: string): string {
+// Clean HTML to prevent quoted-printable =20 artifacts
+function cleanHtmlForEmail(html: string): string {
   return html
-    .replace(/\n\s*/g, '') // Remove newlines and leading whitespace
-    .replace(/>\s+</g, '><') // Remove whitespace between tags
-    .replace(/\s{2,}/g, ' ') // Collapse multiple spaces
+    // Remove all newlines and excessive whitespace that cause =20
+    .split('\n').map(line => line.trim()).join('')
+    // Remove whitespace between tags
+    .replace(/>\s+</g, '><')
+    // Collapse multiple spaces to single space
+    .replace(/\s{2,}/g, ' ')
+    // Ensure proper encoding of special characters
+    .replace(/&/g, '&amp;')
+    .replace(/&amp;amp;/g, '&amp;')
+    .replace(/&amp;#/g, '&#')
+    .replace(/&amp;nbsp;/g, '&nbsp;')
     .trim();
 }
 
@@ -58,7 +66,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log(`Attempting to send email to: ${to}, subject: ${subject}`);
     console.log(`SMTP Config - Host: ${smtpHost}, Port: ${smtpPort}, From: ${fromEmail}`);
 
-    // Create SMTP client
+    // Create SMTP client with proper encoding settings
     const client = new SMTPClient({
       connection: {
         hostname: smtpHost,
@@ -71,22 +79,19 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
 
-    // Minify HTML to prevent =20 artifacts from quoted-printable encoding
-    const cleanHtml = minifyHtml(html);
+    // Clean HTML to prevent =20 artifacts
+    const processedHtml = cleanHtmlForEmail(html);
     const plainText = text || html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 
-    // Send email with explicit headers
+    console.log("Sending email with cleaned HTML...");
+
+    // Send email - denomailer handles encoding internally
     await client.send({
       from: fromEmail,
       to: to,
       subject: subject,
       content: plainText,
-      html: cleanHtml,
-      headers: {
-        "Content-Type": "text/html; charset=UTF-8",
-        "Content-Transfer-Encoding": "base64",
-        "MIME-Version": "1.0",
-      },
+      html: processedHtml,
     });
 
     await client.close();
