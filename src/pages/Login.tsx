@@ -31,7 +31,7 @@ export default function Login() {
     e.preventDefault();
     
     if (!email || !password) {
-      toast.error('Please fill in all required fields');
+      toast.error(t('login.error_fill_fields', 'Please fill in all required fields'));
       return;
     }
 
@@ -42,16 +42,16 @@ export default function Login() {
       
       if (error) {
         if (error.message.includes('Invalid login credentials')) {
-          toast.error('Incorrect email or password. Please try again.');
+          toast.error(t('login.error_invalid_credentials', 'Incorrect email or password. Please try again.'));
         } else {
           toast.error(error.message);
         }
       } else {
-        toast.success('Welcome back!');
+        toast.success(t('login.success_welcome', 'Welcome back!'));
         navigate('/dashboard');
       }
     } catch (error) {
-      toast.error('An unexpected error occurred');
+      toast.error(t('login.error_unexpected', 'An unexpected error occurred'));
     } finally {
       setLoading(false);
     }
@@ -90,7 +90,7 @@ export default function Login() {
                       {t('login.title', 'Welcome Back')}
                     </CardTitle>
                     <p className="text-center text-muted-foreground text-sm">
-                      Sign in to continue to SyncRivo
+                      {t('login.subtitle', 'Sign in to continue to SyncRivo')}
                     </p>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -104,7 +104,7 @@ export default function Login() {
                           <Input 
                             id="email" 
                             type="email" 
-                            placeholder="your@email.com"
+                            placeholder={t('login.email_placeholder', 'your@email.com')}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -121,7 +121,7 @@ export default function Login() {
                             to="/forgot-password" 
                             className="text-xs text-primary hover:underline"
                           >
-                            Forgot password?
+                            {t('login.forgot_password', 'Forgot password?')}
                           </Link>
                         </div>
                         <div className="relative">
@@ -129,7 +129,7 @@ export default function Login() {
                           <Input 
                             id="password" 
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder={t('login.password_placeholder', 'Enter your password')}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -145,7 +145,7 @@ export default function Login() {
                         {loading ? (
                           <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Signing in...
+                            {t('login.signing_in', 'Signing in...')}
                           </>
                         ) : (
                           t('login.sign_in', 'Sign In')
@@ -158,7 +158,7 @@ export default function Login() {
                     <p className="text-center text-sm text-muted-foreground">
                       {t('login.no_account', "Don't have an account?")}{' '}
                       <Link to="/signup" className="text-primary font-medium hover:underline">
-                        {t('login.sign_up', 'Sign up')}
+                        {t('login.sign_up_link', 'Sign up')}
                       </Link>
                     </p>
                   </CardContent>

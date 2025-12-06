@@ -141,15 +141,14 @@ export function SupportedPlatformsSection() {
         <div className="text-center mb-20 lg:mb-28">
           <Badge variant="secondary" className="mb-6 px-5 py-2.5 text-sm font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
             <Globe className="w-4 h-4 mr-2" />
-            {totalPlatforms}+ Supported Platforms
+            {totalPlatforms}+ {t('platforms.supported_platforms', 'Supported Platforms')}
           </Badge>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1] tracking-tight">
-            <span className="block text-foreground mb-3">Connect Your Entire</span>
-            <span className="text-gradient-primary">Communication Ecosystem</span>
+            <span className="block text-foreground mb-3">{t('platforms.title_prefix', 'Connect Your Entire')}</span>
+            <span className="text-gradient-primary">{t('platforms.title_highlight', 'Communication Ecosystem')}</span>
           </h2>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            SyncRivo® integrates with all major messaging platforms and business applications. 
-            Choose your platforms, connect your workflows, and watch your productivity soar.
+            {t('platforms.description', 'SyncRivo® integrates with all major messaging platforms and business applications. Choose your platforms, connect your workflows, and watch your productivity soar.')}
           </p>
         </div>
 
@@ -236,7 +235,7 @@ export function SupportedPlatformsSection() {
                       <div className="pt-4 border-t border-border/30">
                         <Badge variant="secondary" className="text-xs bg-success/10 text-success border-success/20">
                           <CheckCircle2 className="w-3 h-3 mr-1" />
-                          Ready for Integration
+                          {t('platforms.ready_integration', 'Ready for Integration')}
                         </Badge>
                       </div>
                     </CardContent>
@@ -247,15 +246,15 @@ export function SupportedPlatformsSection() {
               {/* Category Summary */}
               <div className="text-center mt-12 p-8 bg-card/50 backdrop-blur-sm rounded-xl border border-border/30">
                 <p className="text-lg font-semibold text-foreground mb-2">
-                  {category.platforms.length} platforms in this category
+                  {category.platforms.length} {t('platforms.platforms_in_category', 'platforms in this category')}
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  Connect all your {category.title.toLowerCase()} tools for seamless workflow automation
+                  {t('platforms.connect_tools', 'Connect all your tools for seamless workflow automation')}
                 </p>
                 <Button 
                   className="group bg-gradient-primary hover:bg-gradient-primary-hover text-white font-semibold px-8 py-3 rounded-full shadow-brand-lg hover:shadow-brand-xl transform hover:scale-105 transition-all duration-300"
                 >
-                  Start Integration
+                  {t('platforms.start_integration', 'Start Integration')}
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </div>
@@ -265,9 +264,9 @@ export function SupportedPlatformsSection() {
 
         {/* Overall CTA */}
         <div className="text-center mt-20 p-12 bg-gradient-primary rounded-2xl text-white shadow-brand-2xl">
-          <h3 className="text-3xl font-bold mb-4">Ready to Connect Your Platforms?</h3>
+          <h3 className="text-3xl font-bold mb-4">{t('platforms.cta_title', 'Ready to Connect Your Platforms?')}</h3>
           <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-            Join thousands of teams already using SyncRivo® to streamline their communication workflows
+            {t('platforms.cta_subtitle', 'Join thousands of teams already using SyncRivo® to streamline their communication workflows')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -275,14 +274,14 @@ export function SupportedPlatformsSection() {
               size="lg"
               className="bg-white text-primary hover:bg-gray-50 font-bold px-8 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
-              View All Integrations
+              {t('platforms.view_integrations', 'View All Integrations')}
             </Button>
             <Button 
               variant="outline" 
               size="lg"
               className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-8 py-4 text-lg transition-all duration-300"
             >
-              Start Free Trial
+              {t('platforms.start_trial', 'Start Free Trial')}
             </Button>
           </div>
         </div>

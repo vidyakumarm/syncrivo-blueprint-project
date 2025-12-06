@@ -80,7 +80,7 @@ export function CTASection() {
                 {/* Button content */}
                 <span className="relative z-10 flex items-center gap-2.5 text-foreground group-hover:text-primary transition-colors duration-300">
                   <Calendar className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
-                  <span>Book a Live Enterprise Demo</span>
+                  <span>{t('home.cta_book_demo', 'Book a Live Enterprise Demo')}</span>
                 </span>
                 
                 {/* Subtle glow on hover */}
@@ -89,7 +89,7 @@ export function CTASection() {
               
               {/* Micro-trust text */}
               <p className="text-xs text-muted-foreground/70 font-medium tracking-wide">
-                No credit card required · 1:1 guided session · 30–45 min
+                {t('home.cta_demo_trust', 'No credit card required · 1:1 guided session · 30–45 min')}
               </p>
             </div>
           </div>
@@ -101,8 +101,8 @@ export function CTASection() {
               className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
             >
               <Mail className="h-3.5 w-3.5" />
-              <span>Prefer email first?</span>
-              <span className="font-medium">Contact Sales</span>
+              <span>{t('home.cta_prefer_email', 'Prefer email first?')}</span>
+              <span className="font-medium">{t('home.cta_contact_sales', 'Contact Sales')}</span>
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>

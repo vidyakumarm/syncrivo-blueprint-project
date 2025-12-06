@@ -25,7 +25,8 @@
     "back": "Voltar",
     "next": "Próximo",
     "previous": "Anterior",
-    "close": "Fechar"
+    "close": "Fechar",
+    "optional": "Opcional"
   },
   "nav": {
     "home": "Início",

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Shield, Lock, CheckCircle, Zap, Building2, Calendar } from "lucide-react";
+import { useTranslationWithFallback } from "@/hooks/useTranslationWithFallback";
 import { EnterpriseDemoModal } from "./EnterpriseDemoModal";
 
 // Platform icons
@@ -62,6 +63,7 @@ const customerLogos = [
 ];
 
 export function HeroSection() {
+  const { t } = useTranslationWithFallback();
   const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null);
   const [packets, setPackets] = useState<DataPacket[]>([]);
   const [isVisible, setIsVisible] = useState(false);
@@ -172,21 +174,21 @@ export function HeroSection() {
             {/* Enterprise Badge */}
             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30">
               <Building2 className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary">Enterprise Communication Platform</span>
+              <span className="text-sm font-semibold text-primary">{t('hero.enterprise_badge', 'Enterprise Communication Platform')}</span>
             </div>
 
             {/* Headline */}
             <div className="space-y-8">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold leading-[1.08] tracking-tight text-foreground">
-                The{" "}
+                {t('hero.headline_prefix', 'The')}{" "}
                 <span className="bg-gradient-to-r from-primary via-primary-600 to-accent bg-clip-text text-transparent">
-                  Universal Messaging Layer
+                  {t('hero.headline_highlight', 'Universal Messaging Layer')}
                 </span>
-                {" "}for Every Enterprise.
+                {" "}{t('hero.headline_suffix', 'for Every Enterprise.')}
               </h1>
 
               <p className="text-lg sm:text-xl lg:text-[1.4rem] text-muted-foreground max-w-xl leading-[1.65]">
-                Unify Teams, Slack, Google Chat, Zoom, and 20+ platforms into one secure, intelligent communication hub.
+                {t('hero.description', 'Unify Teams, Slack, Google Chat, Zoom, and 20+ platforms into one secure, intelligent communication hub.')}
               </p>
             </div>
 
@@ -198,7 +200,7 @@ export function HeroSection() {
                 className="group bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 text-white font-semibold px-8 py-6 text-base shadow-xl shadow-slate-900/20 dark:shadow-white/10 hover:shadow-2xl transition-all duration-300 rounded-xl hover:scale-[1.02]"
               >
                 <Link to="/signup">
-                  Try SyncRivo Free
+                  {t('hero.cta_try_free', 'Try SyncRivo Free')}
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
@@ -210,14 +212,14 @@ export function HeroSection() {
                 className="group border-2 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl"
               >
                 <Calendar className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                Book a Live Enterprise Demo
+                {t('hero.cta_book_demo', 'Book a Live Enterprise Demo')}
               </Button>
             </div>
 
             {/* Micro-trust line */}
             <div className="flex items-center gap-3 text-sm text-muted-foreground">
               <CheckCircle className="w-4 h-4 text-accent" />
-              <span>No credit card required. Setup in 2 minutes.</span>
+              <span>{t('hero.trust_line', 'No credit card required. Setup in 2 minutes.')}</span>
             </div>
 
             {/* Enterprise Trust Row */}
@@ -226,7 +228,7 @@ export function HeroSection() {
               style={{ transitionDelay: "400ms" }}
             >
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-5">
-                Trusted by enterprise teams worldwide
+                {t('hero.trusted_by', 'Trusted by enterprise teams worldwide')}
               </p>
               
               {/* Customer Logos */}
@@ -453,7 +455,7 @@ export function HeroSection() {
                   </div>
                 ))}
               </div>
-              <span className="text-sm text-slate-700 dark:text-slate-300 font-semibold">+18 more platforms</span>
+              <span className="text-sm text-slate-700 dark:text-slate-300 font-semibold">{t('hero.more_platforms', '+18 more platforms')}</span>
             </div>
           </div>
         </div>
@@ -465,9 +467,9 @@ export function HeroSection() {
         >
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 px-8 py-6 rounded-2xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 backdrop-blur-sm">
             {[
-              { icon: Lock, text: "End-to-End Encryption" },
-              { icon: Shield, text: "Zero-Trust Architecture" },
-              { icon: CheckCircle, text: "99.99% Uptime SLA" },
+              { icon: Lock, text: t('hero.security_encryption', 'End-to-End Encryption') },
+              { icon: Shield, text: t('hero.security_zero_trust', 'Zero-Trust Architecture') },
+              { icon: CheckCircle, text: t('hero.security_uptime', '99.99% Uptime SLA') },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 flex items-center justify-center shadow-sm">
