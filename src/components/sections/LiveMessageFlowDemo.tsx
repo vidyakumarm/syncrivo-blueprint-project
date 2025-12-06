@@ -64,25 +64,25 @@ const LiveMessageFlowDemo = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-b from-slate-50/50 via-background to-slate-50/30 dark:from-slate-950/50 dark:via-background dark:to-slate-950/30 relative overflow-hidden">
+    <section className="py-28 lg:py-36 bg-gradient-to-b from-slate-50/50 via-background to-slate-50/30 dark:from-slate-950/50 dark:via-background dark:to-slate-950/30 relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-slate-400/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
-        <div className="text-center mb-14 lg:mb-20">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm font-medium mb-5">
+        <div className="text-center mb-16 lg:mb-24">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm font-medium mb-6">
             <Play className="w-3.5 h-3.5 text-slate-600 dark:text-slate-400" />
             <span className="text-slate-600 dark:text-slate-400">Live Demo</span>
           </span>
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-5 tracking-tight">
+          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.1]">
             See How SyncRivo Syncs Messages{' '}
             <span className="text-slate-500 dark:text-slate-400">Instantly</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
+          <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Watch real conversations flow securely in both directions — Teams ↔ SyncRivo ↔ Slack — encrypted and instant.
           </p>
         </div>
@@ -286,7 +286,7 @@ const LiveMessageFlowDemo = () => {
         </div>
 
         {/* Message Counter */}
-        <div className="flex justify-center gap-2 mt-10">
+        <div className="flex justify-center gap-3 mt-14">
           {conversations.map((_, idx) => (
             <button 
               key={idx}
@@ -294,15 +294,15 @@ const LiveMessageFlowDemo = () => {
                 setCurrentMessage(idx);
                 setPhase(0);
               }}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                idx === currentMessage ? 'bg-slate-900 dark:bg-white w-8' : 'bg-slate-300 dark:bg-slate-600 w-2 hover:bg-slate-400'
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                idx === currentMessage ? 'bg-slate-900 dark:bg-white w-10' : 'bg-slate-300 dark:bg-slate-600 w-2.5 hover:bg-slate-400'
               }`}
             />
           ))}
         </div>
 
         {/* Play/Pause + CTA */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-14">
           <Button
             variant="outline"
             size="lg"

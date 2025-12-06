@@ -8,31 +8,31 @@ export function CTASection() {
   const { t } = useTranslationWithFallback();
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-28 lg:py-36 relative overflow-hidden">
       {/* Enhanced background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
       <div className="absolute inset-0 bg-gradient-mesh opacity-30" />
       
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="glass-card p-12 rounded-3xl border-2 border-primary/20 animate-fade-in">
+      <div className="relative max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+        <div className="glass-card p-12 lg:p-16 rounded-3xl border-2 border-primary/20 animate-fade-in">
           {/* Premium badge */}
-          <Badge variant="secondary" className="mb-8 px-6 py-3 text-base font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
-            <Sparkles className="w-5 h-5 mr-2 animate-pulse" />
+          <Badge variant="secondary" className="mb-6 px-5 py-2.5 text-sm font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
+            <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
             {t('home.cta_badge', 'Ready to Transform Your Communication?')}
           </Badge>
 
           {/* Enhanced headline */}
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
-            <span className="block text-foreground mb-2">{t('home.cta_title')}</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1] tracking-tight">
+            <span className="block text-foreground mb-3">{t('home.cta_title')}</span>
             <span className="text-gradient-primary">{t('home.cta_title_highlight', 'in Minutes, Not Hours')}</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-xl text-muted-foreground mb-14 max-w-2xl mx-auto leading-relaxed">
             {t('home.cta_subtitle')}
           </p>
 
           {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-6 mb-12 opacity-80">
+          <div className="flex flex-wrap justify-center items-center gap-8 mb-14 opacity-80">
             {[
               { icon: CheckCircle2, text: t('home.cta_feature_1', 'Free 14-day trial') },
               { icon: CheckCircle2, text: t('home.cta_feature_2', 'No credit card required') },
@@ -46,7 +46,7 @@ export function CTASection() {
           </div>
 
           {/* Enhanced CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 justify-center items-center">
             <Button 
               asChild 
               size="lg" 

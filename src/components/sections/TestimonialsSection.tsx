@@ -34,29 +34,29 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-24 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium bg-primary-light text-primary border-primary/20">
+    <section className="py-28 lg:py-36 bg-muted/30">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="text-center mb-20 lg:mb-28">
+          <Badge variant="secondary" className="mb-6 px-5 py-2.5 text-sm font-medium bg-primary-light text-primary border-primary/20">
             <Star className="w-4 h-4 mr-2" />
             {t('home.testimonials_badge', 'Trusted by Industry Leaders')}
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
             {t('home.testimonials_title', 'What Our Customers Say')}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t('home.testimonials_subtitle', 'Join thousands of teams who have transformed their communication with SyncRivo')}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
               className="group glass-card card-interactive animate-fade-in"
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              <CardContent className="p-8">
+              <CardContent className="p-8 lg:p-10">
                 {/* Rating stars */}
                 <div className="flex items-center mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -72,12 +72,12 @@ export function TestimonialsSection() {
                 <Quote className="h-8 w-8 text-primary/30 mb-4 group-hover:text-primary/50 transition-colors duration-300" />
 
                 {/* Testimonial content */}
-                <p className="text-muted-foreground mb-8 leading-relaxed group-hover:text-foreground transition-colors duration-300">
+                <p className="text-base lg:text-lg text-muted-foreground mb-10 leading-relaxed group-hover:text-foreground transition-colors duration-300">
                   "{testimonial.content}"
                 </p>
 
                 {/* Author info */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-5">
                   <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white font-bold shadow-brand-md group-hover:scale-110 transition-transform duration-300">
                     {testimonial.avatar}
                   </div>
@@ -99,7 +99,7 @@ export function TestimonialsSection() {
         </div>
 
         {/* Trust metrics */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="mt-20 lg:mt-28 grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 text-center">
           {[
             { metric: "50K+", label: "Messages Synced Daily" },
             { metric: "99.9%", label: "Uptime Guarantee" },
@@ -111,10 +111,10 @@ export function TestimonialsSection() {
               className="animate-fade-in"
               style={{ animationDelay: `${600 + index * 100}ms` }}
             >
-              <p className="text-2xl sm:text-3xl font-bold text-gradient-primary mb-2">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-3">
                 {stat.metric}
               </p>
-              <p className="text-sm text-muted-foreground font-medium">
+              <p className="text-sm lg:text-base text-muted-foreground font-medium">
                 {stat.label}
               </p>
             </div>
