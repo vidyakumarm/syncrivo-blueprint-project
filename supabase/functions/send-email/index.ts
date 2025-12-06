@@ -13,7 +13,7 @@ interface EmailRequest {
   text?: string;
 }
 
-// Clean HTML to prevent quoted-printable =20 artifacts
+// Clean HTML to prevent quoted-printable =20 artifacts and ensure proper rendering
 function cleanHtmlForEmail(html: string): string {
   return html
     // Remove all newlines and excessive whitespace that cause =20
@@ -22,11 +22,10 @@ function cleanHtmlForEmail(html: string): string {
     .replace(/>\s+</g, '><')
     // Collapse multiple spaces to single space
     .replace(/\s{2,}/g, ' ')
-    // Ensure proper encoding of special characters
-    .replace(/&/g, '&amp;')
-    .replace(/&amp;amp;/g, '&amp;')
-    .replace(/&amp;#/g, '&#')
-    .replace(/&amp;nbsp;/g, '&nbsp;')
+    // Remove any stray =20 artifacts that might have been introduced
+    .replace(/=20/g, ' ')
+    // Clean up any double spaces
+    .replace(/  +/g, ' ')
     .trim();
 }
 
