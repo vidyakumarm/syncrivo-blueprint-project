@@ -13,6 +13,15 @@ interface EmailRequest {
   text?: string;
 }
 
+// Minify HTML to prevent quoted-printable encoding issues
+function minifyHtml(html: string): string {
+  return html
+    .replace(/\n\s*/g, '') // Remove newlines and leading whitespace
+    .replace(/>\s+</g, '><') // Remove whitespace between tags
+    .replace(/\s{2,}/g, ' ') // Collapse multiple spaces
+    .trim();
+}
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -62,13 +71,22 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
 
-    // Send email
+    // Minify HTML to prevent =20 artifacts from quoted-printable encoding
+    const cleanHtml = minifyHtml(html);
+    const plainText = text || html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+
+    // Send email with explicit headers
     await client.send({
       from: fromEmail,
       to: to,
       subject: subject,
-      content: text || html.replace(/<[^>]*>/g, ''),
-      html: html,
+      content: plainText,
+      html: cleanHtml,
+      headers: {
+        "Content-Type": "text/html; charset=UTF-8",
+        "Content-Transfer-Encoding": "base64",
+        "MIME-Version": "1.0",
+      },
     });
 
     await client.close();
