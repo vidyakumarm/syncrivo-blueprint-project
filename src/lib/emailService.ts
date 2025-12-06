@@ -322,21 +322,21 @@ Questions? Contact us at support@syncrivo.com
   async sendPasswordReset(params: { to: string; resetLink: string }): Promise<EmailResult> {
     const { to, resetLink } = params;
     
-    const html = `
-      <!DOCTYPE html>
-      <html>
-      <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
-        <div style="max-width: 500px; margin: 0 auto;">
-          <h1 style="color: #3b82f6;">Reset Your Password</h1>
-          <p>You requested to reset your SyncRivo password. Click the button below to proceed:</p>
-          <a href="${resetLink}" style="display: inline-block; background: #3b82f6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin: 20px 0;">Reset Password</a>
-          <p style="color: #666; font-size: 14px;">If you didn't request this, please ignore this email.</p>
-        </div>
-      </body>
-      </html>
-    `;
+    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Reset Your Password</title></head><body style="margin: 0; padding: 0; background-color: #E5E7EB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #E5E7EB;"><tr><td align="center" style="padding: 40px 20px;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; width: 100%; background-color: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><tr><td style="background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%); padding: 24px 32px; text-align: center;"><h1 style="color: #FFFFFF; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px;">SyncRivo</h1><p style="color: rgba(255, 255, 255, 0.9); margin: 6px 0 0 0; font-size: 14px; font-weight: 500;">Password Reset Request</p></td></tr><tr><td style="padding: 32px;"><h2 style="color: #1E293B; margin: 0 0 16px 0; font-size: 22px; font-weight: 600; line-height: 1.4;">Reset Your Password</h2><p style="color: #475569; margin: 0 0 24px 0; font-size: 15px; line-height: 1.6;">You requested to reset your SyncRivo password. Click the button below to create a new password:</p><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td align="center" style="padding: 8px 0 24px 0;"><a href="${resetLink}" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); color: #FFFFFF; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-size: 15px; font-weight: 600; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);">Reset Password</a></td></tr></table><p style="color: #64748B; margin: 0 0 16px 0; font-size: 13px; line-height: 1.6;">This link will expire in 24 hours. If you didn't request this password reset, please ignore this email or contact support if you have concerns.</p><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #F7F9FC; border-radius: 8px; margin-top: 16px;"><tr><td style="padding: 16px;"><p style="color: #64748B; margin: 0; font-size: 12px; line-height: 1.6;"><strong style="color: #475569;">Can't click the button?</strong> Copy and paste this link into your browser:</p><p style="color: #3B82F6; margin: 8px 0 0 0; font-size: 12px; word-break: break-all;">${resetLink}</p></td></tr></table></td></tr><tr><td style="padding: 0 32px;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="border-top: 1px solid #E2E8F0;"></td></tr></table></td></tr><tr><td style="padding: 24px 32px 28px 32px; text-align: center;"><p style="color: #64748B; margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;">Questions? Contact us at <a href="mailto:support@syncrivo.com" style="color: #3B82F6; text-decoration: none;">support@syncrivo.com</a></p><p style="color: #94A3B8; margin: 0; font-size: 12px; line-height: 1.6;">&copy; ${new Date().getFullYear()} SyncRivo. All rights reserved.</p></td></tr></table></td></tr></table></body></html>`;
 
-    return this.send({ to, subject: "Reset Your SyncRivo Password", html });
+    const text = `Reset Your Password
+
+You requested to reset your SyncRivo password. Visit the link below to create a new password:
+
+${resetLink}
+
+This link will expire in 24 hours. If you didn't request this password reset, please ignore this email.
+
+---
+Questions? Contact us at support@syncrivo.com
+(c) ${new Date().getFullYear()} SyncRivo. All rights reserved.`;
+
+    return this.send({ to, subject: "Reset Your SyncRivo Password", html, text });
   },
 
   /**
@@ -345,26 +345,24 @@ Questions? Contact us at support@syncrivo.com
   async sendWelcome(params: { to: string; firstName: string }): Promise<EmailResult> {
     const { to, firstName } = params;
     
-    const html = `
-      <!DOCTYPE html>
-      <html>
-      <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
-        <div style="max-width: 500px; margin: 0 auto;">
-          <h1 style="color: #3b82f6;">Welcome to SyncRivo, ${firstName}! 🎉</h1>
-          <p>We're thrilled to have you on board. SyncRivo will help you unify all your team communications in one powerful platform.</p>
-          <h3>Getting Started:</h3>
-          <ul>
-            <li>Connect your first messaging platform</li>
-            <li>Invite your team members</li>
-            <li>Set up your notification preferences</li>
-          </ul>
-          <a href="https://syncrivo.com/dashboard" style="display: inline-block; background: #3b82f6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin: 20px 0;">Go to Dashboard</a>
-        </div>
-      </body>
-      </html>
-    `;
+    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Welcome to SyncRivo</title></head><body style="margin: 0; padding: 0; background-color: #E5E7EB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #E5E7EB;"><tr><td align="center" style="padding: 40px 20px;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; width: 100%; background-color: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><tr><td style="background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%); padding: 24px 32px; text-align: center;"><h1 style="color: #FFFFFF; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px;">SyncRivo</h1><p style="color: rgba(255, 255, 255, 0.9); margin: 6px 0 0 0; font-size: 14px; font-weight: 500;">Welcome Aboard!</p></td></tr><tr><td style="padding: 32px;"><h2 style="color: #1E293B; margin: 0 0 16px 0; font-size: 22px; font-weight: 600; line-height: 1.4;">Welcome to SyncRivo, ${firstName}!</h2><p style="color: #475569; margin: 0 0 24px 0; font-size: 15px; line-height: 1.6;">We're thrilled to have you on board. SyncRivo will help you unify all your team communications in one powerful platform.</p><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #F7F9FC; border-radius: 12px; margin-bottom: 24px;"><tr><td style="padding: 20px;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="padding-bottom: 16px; border-bottom: 1px solid #E2E8F0;"><span style="font-size: 18px; margin-right: 8px;">&#127881;</span><span style="color: #3B82F6; font-size: 16px; font-weight: 600;">Getting Started</span></td></tr></table><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top: 12px;"><tr><td style="padding: 10px 0;"><span style="color: #3B82F6; font-size: 14px; margin-right: 10px;">&#10003;</span><span style="color: #475569; font-size: 14px; line-height: 1.6;">Connect your first messaging platform</span></td></tr><tr><td style="padding: 10px 0;"><span style="color: #3B82F6; font-size: 14px; margin-right: 10px;">&#10003;</span><span style="color: #475569; font-size: 14px; line-height: 1.6;">Invite your team members</span></td></tr><tr><td style="padding: 10px 0;"><span style="color: #3B82F6; font-size: 14px; margin-right: 10px;">&#10003;</span><span style="color: #475569; font-size: 14px; line-height: 1.6;">Set up your notification preferences</span></td></tr></table></td></tr></table><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td align="center" style="padding: 8px 0;"><a href="https://syncrivo.com/dashboard" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); color: #FFFFFF; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-size: 15px; font-weight: 600; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);">Go to Dashboard</a></td></tr></table></td></tr><tr><td style="padding: 0 32px;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="border-top: 1px solid #E2E8F0;"></td></tr></table></td></tr><tr><td style="padding: 24px 32px 28px 32px; text-align: center;"><p style="color: #64748B; margin: 0 0 8px 0; font-size: 13px; line-height: 1.6;">Questions? Contact us at <a href="mailto:support@syncrivo.com" style="color: #3B82F6; text-decoration: none;">support@syncrivo.com</a></p><p style="color: #94A3B8; margin: 0; font-size: 12px; line-height: 1.6;">&copy; ${new Date().getFullYear()} SyncRivo. All rights reserved.</p></td></tr></table></td></tr></table></body></html>`;
 
-    return this.send({ to, subject: "Welcome to SyncRivo! 🚀", html });
+    const text = `Welcome to SyncRivo, ${firstName}!
+
+We're thrilled to have you on board. SyncRivo will help you unify all your team communications in one powerful platform.
+
+GETTING STARTED
+- Connect your first messaging platform
+- Invite your team members
+- Set up your notification preferences
+
+Visit your dashboard: https://syncrivo.com/dashboard
+
+---
+Questions? Contact us at support@syncrivo.com
+(c) ${new Date().getFullYear()} SyncRivo. All rights reserved.`;
+
+    return this.send({ to, subject: "Welcome to SyncRivo!", html, text });
   },
 
   /**
@@ -373,23 +371,16 @@ Questions? Contact us at support@syncrivo.com
   async sendAdminAlert(params: { subject: string; message: string }): Promise<EmailResult> {
     const adminEmail = "marketing@kxntech.com";
     
-    const html = `
-      <!DOCTYPE html>
-      <html>
-      <body style="font-family: monospace; padding: 20px; background: #1e293b; color: #e2e8f0;">
-        <div style="max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #f59e0b;">⚠️ SyncRivo Admin Alert</h2>
-          <div style="background: #334155; padding: 15px; border-radius: 8px;">
-            <pre style="white-space: pre-wrap;">${params.message}</pre>
-          </div>
-          <p style="color: #94a3b8; font-size: 12px; margin-top: 20px;">
-            Generated at: ${new Date().toISOString()}
-          </p>
-        </div>
-      </body>
-      </html>
-    `;
+    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>SyncRivo Admin Alert</title></head><body style="margin: 0; padding: 0; background-color: #1E293B; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #1E293B;"><tr><td align="center" style="padding: 40px 20px;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; width: 100%; background-color: #334155; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);"><tr><td style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); padding: 20px 32px; text-align: center;"><h1 style="color: #FFFFFF; margin: 0; font-size: 22px; font-weight: 700;">&#9888; SyncRivo Admin Alert</h1></td></tr><tr><td style="padding: 24px 32px;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #1E293B; border-radius: 8px;"><tr><td style="padding: 16px;"><pre style="color: #E2E8F0; margin: 0; font-family: 'Courier New', monospace; font-size: 13px; white-space: pre-wrap; word-break: break-word;">${params.message}</pre></td></tr></table><p style="color: #94A3B8; margin: 16px 0 0 0; font-size: 12px; line-height: 1.6;">Generated at: ${new Date().toISOString()}</p></td></tr><tr><td style="padding: 0 32px;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="border-top: 1px solid #475569;"></td></tr></table></td></tr><tr><td style="padding: 20px 32px; text-align: center;"><p style="color: #64748B; margin: 0; font-size: 12px; line-height: 1.6;">&copy; ${new Date().getFullYear()} SyncRivo. All rights reserved.</p></td></tr></table></td></tr></table></body></html>`;
 
-    return this.send({ to: adminEmail, subject: `[SyncRivo Alert] ${params.subject}`, html });
+    const text = `SYNCRIVO ADMIN ALERT
+
+${params.message}
+
+---
+Generated at: ${new Date().toISOString()}
+(c) ${new Date().getFullYear()} SyncRivo. All rights reserved.`;
+
+    return this.send({ to: adminEmail, subject: `[SyncRivo Alert] ${params.subject}`, html, text });
   },
 };
