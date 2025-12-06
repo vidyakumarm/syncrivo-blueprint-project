@@ -164,20 +164,47 @@ export const emailService = {
                 </tr>
               </table>
               
-              <!-- Meeting Link Section -->
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #E7F8EF; border-radius: 12px; margin-bottom: 24px;">
+              <!-- Join Your Meeting Section -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #F7F9FC; border-radius: 12px; margin-bottom: 24px; border: 1px solid #E2E8F0;">
                 <tr>
-                  <td style="padding: 20px; text-align: center;">
+                  <td style="padding: 20px;">
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                       <tr>
+                        <td style="padding-bottom: 16px; border-bottom: 1px solid #E2E8F0;">
+                          <span style="font-size: 18px; margin-right: 8px;">&#128247;</span>
+                          <span style="color: #3B82F6; font-size: 16px; font-weight: 600;">Join Your Meeting</span>
+                        </td>
+                      </tr>
+                    </table>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top: 16px;">
+                      <tr>
+                        <td align="center" style="padding-bottom: 20px;">
+                          <a href="https://teams.microsoft.com/meet/45971477084271?p=3Q75tBXdJEkCwZ1mEH" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); color: #FFFFFF; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-size: 15px; font-weight: 600; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);">Join the Meeting</a>
+                        </td>
+                      </tr>
+                    </table>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E2E8F0;">
+                      <tr>
+                        <td style="padding: 14px 16px; border-bottom: 1px solid #E2E8F0; width: 40%;">
+                          <span style="color: #64748B; font-size: 13px; line-height: 1.6;">Meeting ID</span>
+                        </td>
+                        <td style="padding: 14px 16px; border-bottom: 1px solid #E2E8F0; text-align: right;">
+                          <span style="color: #1E293B; font-size: 13px; font-weight: 600; font-family: 'Courier New', monospace; letter-spacing: 0.5px;">459 714 770 842 71</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 14px 16px; width: 40%;">
+                          <span style="color: #64748B; font-size: 13px; line-height: 1.6;">Passcode</span>
+                        </td>
+                        <td style="padding: 14px 16px; text-align: right;">
+                          <span style="color: #1E293B; font-size: 13px; font-weight: 600; font-family: 'Courier New', monospace; letter-spacing: 0.5px;">hv3GS3sv</span>
+                        </td>
+                      </tr>
+                    </table>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top: 14px;">
+                      <tr>
                         <td align="center">
-                          <span style="font-size: 24px; display: block; margin-bottom: 8px;">&#128198;</span>
-                          <p style="color: #166534; margin: 0; font-size: 14px; font-weight: 600; line-height: 1.6;">
-                            Meeting Link Coming Soon
-                          </p>
-                          <p style="color: #15803D; margin: 6px 0 0 0; font-size: 13px; line-height: 1.6;">
-                            A calendar invite with the meeting link will be sent to you shortly.
-                          </p>
+                          <p style="color: #64748B; margin: 0; font-size: 12px; line-height: 1.6;">Click the button above or use the Meeting ID and Passcode to join via Microsoft Teams.</p>
                         </td>
                       </tr>
                     </table>
@@ -268,8 +295,10 @@ Date: ${selectedDate}
 Time: ${selectedTime}
 Demo Type: ${demoType}
 
-MEETING LINK
-A calendar invite with the meeting link will be sent to you shortly.
+JOIN YOUR MEETING
+Link: https://teams.microsoft.com/meet/45971477084271?p=3Q75tBXdJEkCwZ1mEH
+Meeting ID: 459 714 770 842 71
+Passcode: hv3GS3sv
 
 WHAT TO EXPECT
 - 30-45 minute personalized session
