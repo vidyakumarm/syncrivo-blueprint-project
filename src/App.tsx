@@ -24,6 +24,8 @@ import Status from '@/pages/Status';
 import Security from '@/pages/Security';
 import Login from '@/pages/Login';
 import Signup from '@/pages/Signup';
+import ForgotPassword from '@/pages/ForgotPassword';
+import ResetPassword from '@/pages/ResetPassword';
 import Dashboard from '@/pages/Dashboard';
 import Privacy from '@/pages/Privacy';
 import Terms from '@/pages/Terms';
@@ -71,6 +73,8 @@ function App() {
                     <Route path="/security" element={<Security />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/dashboard/connections" element={<DashboardConnections />} />
                     <Route path="/dashboard/activity" element={<DashboardActivity />} />
