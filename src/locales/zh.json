@@ -88,7 +88,7 @@
     "hero_badge": "消息平台功能",
     "hero_title": "连接消息平台所需的",
     "hero_title_highlight": "一切功能",
-    "hero_subtitle": "从简单的消息同步到复杂的跨平台工作流，SyncRio提供集成Teams、Webex、Google Chat、Zoom、Slack和其他消息平台所需的所有工具。",
+    "hero_subtitle": "从简单的消息同步到复杂的跨平台工作流，SyncRivo提供集成Teams、Webex、Google Chat、Zoom、Slack和其他消息平台所需的所有工具。",
     "hero_cta": "开始连接平台",
     "universal_sync": "通用消息同步",
     "universal_sync_desc": "通过双向消息同步连接Teams、Webex、Google Chat、Zoom、Slack等平台。",
@@ -123,7 +123,7 @@
     "section_title": "为消息平台集成而构建",
     "section_subtitle": "每个功能都旨在使消息平台集成变得简单、安全和可扩展。",
     "use_cases_title": "适用于每种通信场景",
-    "use_cases_subtitle": "无论您是管理企业通信还是远程团队，SyncRio都能适应您的消息集成需求。",
+    "use_cases_subtitle": "无论您是管理企业通信还是远程团队，SyncRivo都能适应您的消息集成需求。",
     "monitoring_badge": "实时监控",
     "monitoring_title": "保持对消息平台的控制",
     "monitoring_subtitle": "通过实时监控、详细分析和对所有连接平台的主动警报，获得对消息平台集成的完整可见性。",
@@ -142,7 +142,7 @@
       "slack_syncing": "同步中"
     },
     "cta_title": "准备连接您的消息平台了吗？",
-    "cta_subtitle": "加入数千个信任SyncRio无缝集成其业务通信工具的团队。",
+    "cta_subtitle": "加入数千个信任SyncRivo无缝集成其业务通信工具的团队。",
     "start_trial": "开始免费试用",
     "view_demo": "查看实时演示"
   },
@@ -342,7 +342,7 @@
     "sign_in": "登录"
   },
   "dashboard": {
-    "title": "SyncRio 仪表板",
+    "title": "SyncRivo 仪表板",
     "subtitle": "连接并同步 Teams、Webex、Google Chat、Zoom 和其他消息平台之间的消息",
     "welcome": "欢迎来到您的仪表板",
     "metrics": {
@@ -448,7 +448,7 @@
   "home": {
     "features_badge": "强大功能",
     "features_title": "消息平台集成所需的一切",
-    "features_subtitle": "SyncRio提供全面的工具来连接、同步和管理所有来自一个中央枢纽的商业消息平台。",
+    "features_subtitle": "SyncRivo提供全面的工具来连接、同步和管理所有来自一个中央枢纽的商业消息平台。",
     "universal_sync": "通用消息同步",
     "universal_sync_desc": "连接Teams、Webex、Google Chat、Zoom、Slack等，实现双向消息同步。",
     "team_management": "团队管理",
@@ -470,7 +470,7 @@
     "platform_metrics": "平台指标",
     "usage_reports": "使用报告",
     "use_cases_title": "完美适用于每个商业通信需求",
-    "use_cases_subtitle": "无论您是管理企业通信还是远程团队协作，SyncRio都能适应您的特定消息集成需求。",
+    "use_cases_subtitle": "无论您是管理企业通信还是远程团队协作，SyncRivo都能适应您的特定消息集成需求。",
     "enterprise_communication": "企业通信",
     "enterprise_communication_desc": "使用各种平台统一不同部门之间的消息传递。",
     "remote_collaboration": "远程团队协作",
@@ -479,7 +479,7 @@
     "customer_support_desc": "将客户支持渠道与内部通信工具集成。",
     "project_management": "项目管理",
     "project_management_desc": "在所有团队通信渠道间同步项目更新和通知。",
-    "how_it_works": "SyncRio如何工作",
+    "how_it_works": "SyncRivo如何工作",
     "how_it_works_subtitle": "只需三个简单步骤即可连接并同步您的消息平台。",
     "connect_platforms": "连接平台",
     "connect_platforms_desc": "通过安全的OAuth认证添加您的消息平台，如Teams、Webex、Google Chat、Zoom和Slack。",
@@ -488,7 +488,7 @@
     "start_syncing": "开始同步",
     "start_syncing_desc": "消息在所有连接的平台间实时自动同步，让您的团队在任何地方都能保持连接。",
     "cta_title": "准备统一您的消息平台了吗？",
-    "cta_subtitle": "加入数千个信赖SyncRio无缝连接其商业通信工具的团队。",
+    "cta_subtitle": "加入数千个信赖SyncRivo无缝连接其商业通信工具的团队。",
     "start_free_trial": "开始免费试用",
     "view_demo": "查看实时演示",
     "platform_names": {

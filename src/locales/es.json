@@ -88,7 +88,7 @@
     "hero_badge": "Características de Plataforma de Mensajería",
     "hero_title": "Todo lo que necesitas para",
     "hero_title_highlight": "conectar plataformas de mensajería",
-    "hero_subtitle": "Desde la sincronización simple de mensajes hasta flujos de trabajo complejos entre plataformas, SyncRio proporciona todas las herramientas necesarias para integrar Teams, Webex, Google Chat, Zoom, Slack y otras plataformas de mensajería.",
+    "hero_subtitle": "Desde la sincronización simple de mensajes hasta flujos de trabajo complejos entre plataformas, SyncRivo proporciona todas las herramientas necesarias para integrar Teams, Webex, Google Chat, Zoom, Slack y otras plataformas de mensajería.",
     "hero_cta": "Comenzar a Conectar Plataformas",
     "universal_sync": "Sincronización de Mensajería Universal",
     "universal_sync_desc": "Conecta Teams, Webex, Google Chat, Zoom, Slack y más con sincronización de mensajes bidireccional.",
@@ -123,7 +123,7 @@
     "section_title": "Construido para integración de plataformas de mensajería",
     "section_subtitle": "Cada característica está diseñada para hacer que la integración de plataformas de mensajería sea simple, segura y escalable.",
     "use_cases_title": "Perfecto para cada escenario de comunicación",
-    "use_cases_subtitle": "Ya sea que gestiones comunicación empresarial o equipos remotos, SyncRio se adapta a tus necesidades de integración de mensajería.",
+    "use_cases_subtitle": "Ya sea que gestiones comunicación empresarial o equipos remotos, SyncRivo se adapta a tus necesidades de integración de mensajería.",
     "monitoring_badge": "Monitoreo en Tiempo Real",
     "monitoring_title": "Mantén el control de tus plataformas de mensajería",
     "monitoring_subtitle": "Obtén visibilidad completa de tus integraciones de plataformas de mensajería con monitoreo en tiempo real, análisis detallados y alertas proactivas para todas las plataformas conectadas.",
@@ -142,7 +142,7 @@
       "slack_syncing": "Sincronizando"
     },
     "cta_title": "¿Listo para conectar tus plataformas de mensajería?",
-    "cta_subtitle": "Únete a miles de equipos que confían en SyncRio para integrar sin problemas sus herramientas de comunicación empresarial.",
+    "cta_subtitle": "Únete a miles de equipos que confían en SyncRivo para integrar sin problemas sus herramientas de comunicación empresarial.",
     "start_trial": "Comenzar Prueba Gratuita",
     "view_demo": "Ver Demo en Vivo"
   },
@@ -344,7 +344,7 @@
     "sign_in": "Iniciar sesión"
   },
   "dashboard": {
-    "title": "Panel de Control SyncRio",
+    "title": "Panel de Control SyncRivo",
     "subtitle": "Conecta y sincroniza mensajes entre Teams, Webex, Google Chat, Zoom y otras plataformas de mensajería",
     "welcome": "Bienvenido a tu panel",
     "metrics": {
@@ -445,7 +445,7 @@
   "home": {
     "features_badge": "Características Poderosas",
     "features_title": "Todo lo que necesitas para la integración de plataformas de mensajería",
-    "features_subtitle": "SyncRio proporciona herramientas integrales para conectar, sincronizar y gestionar todas tus plataformas de mensajería empresarial desde un centro único.",
+    "features_subtitle": "SyncRivo proporciona herramientas integrales para conectar, sincronizar y gestionar todas tus plataformas de mensajería empresarial desde un centro único.",
     "universal_sync": "Sincronización Universal de Mensajería",
     "universal_sync_desc": "Conecta Teams, Webex, Google Chat, Zoom, Slack y más con sincronización bidireccional de mensajes.",
     "team_management": "Gestión de Equipos",
@@ -467,7 +467,7 @@
     "platform_metrics": "Métricas de plataforma",
     "usage_reports": "Reportes de uso",
     "use_cases_title": "Perfecto para cada necesidad de comunicación empresarial",
-    "use_cases_subtitle": "Ya sea que gestiones comunicación empresarial o colaboración de equipos remotos, SyncRio se adapta a tus necesidades específicas de integración de mensajería.",
+    "use_cases_subtitle": "Ya sea que gestiones comunicación empresarial o colaboración de equipos remotos, SyncRivo se adapta a tus necesidades específicas de integración de mensajería.",
     "enterprise_communication": "Comunicación Empresarial",
     "enterprise_communication_desc": "Unifica la mensajería entre diferentes departamentos usando varias plataformas.",
     "remote_collaboration": "Colaboración de Equipos Remotos",
@@ -476,7 +476,7 @@
     "customer_support_desc": "Integra canales de soporte al cliente con herramientas de comunicación interna.",
     "project_management": "Gestión de Proyectos",
     "project_management_desc": "Sincroniza actualizaciones de proyectos y notificaciones en todos los canales de comunicación del equipo.",
-    "how_it_works": "Cómo Funciona SyncRio",
+    "how_it_works": "Cómo Funciona SyncRivo",
     "how_it_works_subtitle": "Conecta y sincroniza tus plataformas de mensajería en solo tres simples pasos.",
     "connect_platforms": "Conectar Plataformas",
     "connect_platforms_desc": "Agrega tus plataformas de mensajería como Teams, Webex, Google Chat, Zoom y Slack con autenticación OAuth segura.",
@@ -485,7 +485,7 @@
     "start_syncing": "Comenzar a Sincronizar",
     "start_syncing_desc": "Los mensajes se sincronizan automáticamente en todas las plataformas conectadas en tiempo real, manteniendo a tu equipo conectado en todas partes.",
     "cta_title": "¿Listo para unificar tus plataformas de mensajería?",
-    "cta_subtitle": "Únete a miles de equipos que confían en SyncRio para conectar perfectamente sus herramientas de comunicación empresarial.",
+    "cta_subtitle": "Únete a miles de equipos que confían en SyncRivo para conectar perfectamente sus herramientas de comunicación empresarial.",
     "start_free_trial": "Comenzar Prueba Gratuita",
     "view_demo": "Ver Demo en Vivo",
     "platform_names": {
@@ -538,7 +538,7 @@
     "operational": "Operativo"
   },
   "dashboard": {
-    "title": "Panel de Control SyncRio",
+    "title": "Panel de Control SyncRivo",
     "subtitle": "Conecta y sincroniza mensajes entre Teams, Webex, Google Chat, Zoom y otras plataformas de mensajería",
     "welcome": "Bienvenido a tu Panel de Control",
     "metrics": {
