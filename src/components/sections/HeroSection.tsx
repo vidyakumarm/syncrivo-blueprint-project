@@ -152,7 +152,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-64px)] flex flex-col justify-center overflow-hidden py-12 lg:py-20">
+    <section className="relative min-h-[calc(100vh-64px)] flex flex-col justify-center overflow-hidden py-16 lg:py-24">
       {/* Premium gradient background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-background to-slate-100/50 dark:from-slate-950 dark:via-background dark:to-slate-900/50" />
@@ -160,22 +160,22 @@ export function HeroSection() {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-accent/[0.06] via-accent/[0.02] to-transparent rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 w-full">
         {/* Main Two-Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-24 items-center">
           {/* Left Side - Content */}
           <div
-            className={`space-y-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`space-y-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
           >
             {/* Enterprise Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30">
+            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30">
               <Building2 className="w-4 h-4 text-primary" />
               <span className="text-sm font-semibold text-primary">Enterprise Communication Platform</span>
             </div>
 
             {/* Headline */}
-            <div className="space-y-6">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold leading-[1.05] tracking-tight text-foreground">
+            <div className="space-y-8">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold leading-[1.08] tracking-tight text-foreground">
                 The{" "}
                 <span className="bg-gradient-to-r from-primary via-primary-600 to-accent bg-clip-text text-transparent">
                   Universal Messaging Layer
@@ -183,13 +183,13 @@ export function HeroSection() {
                 {" "}for Every Enterprise.
               </h1>
 
-              <p className="text-lg sm:text-xl lg:text-[1.35rem] text-muted-foreground max-w-xl leading-relaxed">
+              <p className="text-lg sm:text-xl lg:text-[1.4rem] text-muted-foreground max-w-xl leading-[1.65]">
                 Unify Teams, Slack, Google Chat, Zoom, and 20+ platforms into one secure, intelligent communication hub.
               </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row gap-5 pt-2">
               <Button
                 asChild
                 size="lg"
@@ -212,22 +212,22 @@ export function HeroSection() {
             </div>
 
             {/* Micro-trust line */}
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
               <CheckCircle className="w-4 h-4 text-accent" />
               <span>No credit card required. Setup in 2 minutes.</span>
             </div>
 
             {/* Enterprise Trust Row */}
             <div
-              className={`pt-6 border-t border-border/50 transition-all duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}
+              className={`pt-8 border-t border-border/50 transition-all duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}
               style={{ transitionDelay: "400ms" }}
             >
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-5">
                 Trusted by enterprise teams worldwide
               </p>
               
               {/* Customer Logos */}
-              <div className="flex flex-wrap items-center gap-6 mb-5">
+              <div className="flex flex-wrap items-center gap-5 mb-6">
                 {customerLogos.map((logo, i) => (
                   <div
                     key={i}
@@ -239,7 +239,7 @@ export function HeroSection() {
               </div>
 
               {/* Compliance Badges */}
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-4">
                 {complianceBadges.map((badge, i) => (
                   <div
                     key={i}

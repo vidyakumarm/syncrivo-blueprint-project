@@ -132,22 +132,22 @@ export function SupportedPlatformsSection() {
   const totalPlatforms = platformCategories.reduce((total, cat) => total + cat.platforms.length, 0);
 
   return (
-    <section className="py-24 bg-gradient-to-br from-muted/30 to-accent/10 relative overflow-hidden">
+    <section className="py-28 lg:py-36 bg-gradient-to-br from-muted/30 to-accent/10 relative overflow-hidden">
       {/* Background enhancement */}
       <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-8 px-6 py-3 text-base font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
-            <Globe className="w-5 h-5 mr-2" />
+        <div className="text-center mb-20 lg:mb-28">
+          <Badge variant="secondary" className="mb-6 px-5 py-2.5 text-sm font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
+            <Globe className="w-4 h-4 mr-2" />
             {totalPlatforms}+ Supported Platforms
           </Badge>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            <span className="block text-foreground mb-2">Connect Your Entire</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1] tracking-tight">
+            <span className="block text-foreground mb-3">Connect Your Entire</span>
             <span className="text-gradient-primary">Communication Ecosystem</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             SyncRivo® integrates with all major messaging platforms and business applications. 
             Choose your platforms, connect your workflows, and watch your productivity soar.
           </p>
@@ -155,7 +155,7 @@ export function SupportedPlatformsSection() {
 
         {/* Category Tabs */}
         <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-          <div className="flex justify-center mb-12">
+          <div className="flex justify-center mb-16">
             <TabsList className="grid grid-cols-2 lg:grid-cols-4 gap-1 bg-card/50 backdrop-blur-sm p-2 rounded-xl shadow-brand-md">
               {platformCategories.map((category) => (
                 <TabsTrigger
@@ -177,18 +177,18 @@ export function SupportedPlatformsSection() {
 
           {/* Category Content */}
           {platformCategories.map((category) => (
-            <TabsContent key={category.id} value={category.id} className="space-y-8">
+            <TabsContent key={category.id} value={category.id} className="space-y-10">
               {/* Category Description */}
-              <div className="text-center mb-12 animate-fade-in">
-                <div className={`w-16 h-16 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-brand-lg`}>
+              <div className="text-center mb-14 animate-fade-in">
+                <div className={`w-16 h-16 lg:w-18 lg:h-18 bg-gradient-primary rounded-2xl mx-auto mb-8 flex items-center justify-center shadow-brand-lg`}>
                   <category.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">{category.title}</h3>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{category.description}</p>
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-5 tracking-tight">{category.title}</h3>
+                <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">{category.description}</p>
               </div>
 
               {/* Platforms Grid */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 lg:gap-8">
                 {category.platforms.map((platform, index) => (
                   <Card
                     key={platform.name}
