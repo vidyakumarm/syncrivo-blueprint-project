@@ -118,27 +118,29 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[560px] p-0 gap-0 overflow-hidden bg-background border-border/50">
-        {/* Premium header with gradient */}
-        <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent px-8 pt-8 pb-6 border-b border-border/30">
-          <DialogHeader className="space-y-3">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
-                <Calendar className="h-5 w-5 text-primary" />
+      <DialogContent className="sm:max-w-[560px] max-h-[90vh] p-0 gap-0 overflow-hidden bg-background border-border/50 shadow-2xl">
+        {/* Scrollable container */}
+        <div className="max-h-[90vh] overflow-y-auto">
+          {/* Premium header with gradient */}
+          <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent px-6 sm:px-8 pt-6 sm:pt-8 pb-5 sm:pb-6 border-b border-border/30 sticky top-0 z-10 backdrop-blur-sm">
+            <DialogHeader className="space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
+                  <Calendar className="h-5 w-5 text-primary" />
+                </div>
+                <DialogTitle className="text-xl sm:text-2xl font-bold tracking-tight">
+                  Book Your Enterprise Demo
+                </DialogTitle>
               </div>
-              <DialogTitle className="text-2xl font-bold tracking-tight">
-                Book Your Enterprise Demo
-              </DialogTitle>
-            </div>
-            <DialogDescription className="text-base text-muted-foreground leading-relaxed">
-              Experience how <span className="font-semibold text-foreground">SyncRivo</span> enables 
-              seamless cross-platform messaging for enterprise teams — secure, instant, and effortless.
-            </DialogDescription>
-          </DialogHeader>
-        </div>
+              <DialogDescription className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                Experience how <span className="font-semibold text-foreground">SyncRivo</span> enables 
+                seamless cross-platform messaging for enterprise teams — secure, instant, and effortless.
+              </DialogDescription>
+            </DialogHeader>
+          </div>
 
-        {/* Form content */}
-        <form onSubmit={handleSubmit} className="px-8 py-6 space-y-6">
+          {/* Form content */}
+          <form onSubmit={handleSubmit} className="px-6 sm:px-8 py-5 sm:py-6 space-y-5 sm:space-y-6">
           {/* Demo type selection */}
           <div className="space-y-3">
             <Label className="text-sm font-semibold">What would you like to explore?</Label>
@@ -174,7 +176,7 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
           </div>
 
           {/* Contact info row */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-sm font-medium">Full Name</Label>
               <Input
@@ -201,7 +203,7 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
           </div>
 
           {/* Company details row */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="company" className="text-sm font-medium">Company</Label>
               <Input
@@ -297,11 +299,12 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
           </Button>
 
           {/* Trust text */}
-          <p className="text-center text-xs text-muted-foreground">
+          <p className="text-center text-xs text-muted-foreground pb-2">
             By booking, you agree to receive communication from SyncRivo. 
             We respect your privacy and never share your data.
           </p>
         </form>
+        </div>
       </DialogContent>
     </Dialog>
   );
