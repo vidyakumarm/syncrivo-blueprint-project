@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Shield, Lock, CheckCircle, Zap, Building2, Calendar } from "lucide-react";
+import { ArrowRight, Shield, Lock, CheckCircle, Zap, Building2, Calendar, LayoutDashboard } from "lucide-react";
 import { useTranslationWithFallback } from "@/hooks/useTranslationWithFallback";
+import { useAuth } from "@/contexts/AuthContext";
 import { EnterpriseDemoModal } from "./EnterpriseDemoModal";
 
 // Platform icons
@@ -64,6 +65,7 @@ const customerLogos = [
 
 export function HeroSection() {
   const { t } = useTranslationWithFallback();
+  const { user } = useAuth();
   const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null);
   const [packets, setPackets] = useState<DataPacket[]>([]);
   const [isVisible, setIsVisible] = useState(false);
@@ -194,26 +196,54 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 pt-2">
-              <Button
-                asChild
-                size="lg"
-                className="group bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 text-white font-semibold px-8 py-6 text-base shadow-xl shadow-slate-900/20 dark:shadow-white/10 hover:shadow-2xl transition-all duration-300 rounded-xl hover:scale-[1.02]"
-              >
-                <Link to="/signup">
-                  {t('hero.cta_try_free', 'Try SyncRivo Free')}
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
+              {user ? (
+                <>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="group bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 text-white font-semibold px-8 py-6 text-base shadow-xl shadow-slate-900/20 dark:shadow-white/10 hover:shadow-2xl transition-all duration-300 rounded-xl hover:scale-[1.02]"
+                  >
+                    <Link to="/dashboard">
+                      <LayoutDashboard className="mr-2 h-5 w-5" />
+                      {t('hero.cta_dashboard', 'Go to Dashboard')}
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    asChild
+                    className="group border-2 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl"
+                  >
+                    <Link to="/dashboard/connections">
+                      {t('hero.cta_connections', 'Manage Connections')}
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="group bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 text-white font-semibold px-8 py-6 text-base shadow-xl shadow-slate-900/20 dark:shadow-white/10 hover:shadow-2xl transition-all duration-300 rounded-xl hover:scale-[1.02]"
+                  >
+                    <Link to="/signup">
+                      {t('hero.cta_try_free', 'Try SyncRivo Free')}
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
 
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => setDemoModalOpen(true)}
-                className="group border-2 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl"
-              >
-                <Calendar className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                {t('hero.cta_book_demo', 'Book a Live Enterprise Demo')}
-              </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={() => setDemoModalOpen(true)}
+                    className="group border-2 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 font-semibold px-8 py-6 text-base transition-all duration-300 rounded-xl"
+                  >
+                    <Calendar className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+                    {t('hero.cta_book_demo', 'Book a Live Enterprise Demo')}
+                  </Button>
+                </>
+              )}
             </div>
 
             {/* Micro-trust line */}

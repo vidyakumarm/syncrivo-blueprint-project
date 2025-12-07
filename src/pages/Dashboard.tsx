@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { MetricCard } from '@/components/dashboard/MetricCard';
@@ -10,20 +9,15 @@ import { ActivityFeed } from '@/components/dashboard/ActivityFeed';
 import { useAuth } from '@/contexts/AuthContext';
 import { useConnections, useActivityLogs, useDashboardMetrics } from '@/hooks/useDashboardData';
 import { 
-  Activity, 
+  MessageSquare, 
+  Users, 
   Zap, 
-  CheckCircle2,
-  Clock,
-  MessageSquare,
-  Users,
-  TrendingUp,
-  Shield
+  CheckCircle2
 } from 'lucide-react';
 
 export default function Dashboard() {
   const { t } = useTranslationWithFallback();
-  const { user, loading } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const { connections } = useConnections();
   const { activities } = useActivityLogs();
   const { metrics } = useDashboardMetrics();
@@ -32,30 +26,9 @@ export default function Dashboard() {
   console.log('📊 [Dashboard] Component mounted', {
     timestamp: new Date().toISOString(),
     userId: user?.id || null,
-    loading,
     connectionsCount: connections?.length || 0,
     activitiesCount: activities?.length || 0
   });
-
-  // Temporarily allow access without authentication for development
-  // TODO: Re-enable authentication in production
-  // useEffect(() => {
-  //   if (!loading && !user) {
-  //     navigate('/login');
-  //   }
-  // }, [user, loading, navigate]);
-
-  // Show loading while checking auth
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-2 text-muted-foreground">{t('common.loading')}</p>
-        </div>
-      </div>
-    );
-  }
 
   // Calculate metrics from real data
   const totalConnections = connections.length;
