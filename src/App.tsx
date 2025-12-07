@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -8,6 +7,9 @@ import { CookieProvider } from '@/contexts/CookieContext';
 import { Toaster } from '@/components/ui/toaster';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
 import { I18nextProvider, useTranslation } from 'react-i18next';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
+import { AuthRedirect } from '@/components/auth/AuthRedirect';
 import i18n from './lib/i18n';
 
 // Pages
@@ -70,44 +72,89 @@ function App() {
           <CookieProvider>
             <AuthProvider>
               <DirectionHandler>
-                <Router>
-                  <ScrollToTop />
-                  <div className="min-h-screen bg-background">
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/features" element={<Features />} />
-                    <Route path="/integrations" element={<Integrations />} />
-                    <Route path="/pricing" element={<Pricing />} />
-                    <Route path="/docs" element={<Docs />} />
-                    <Route path="/support" element={<Support />} />
-                    <Route path="/community" element={<Community />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/careers" element={<Careers />} />
-                    <Route path="/status" element={<Status />} />
-                    <Route path="/security" element={<Security />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
-                    <Route path="/reset-password" element={<ResetPassword />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/dashboard/connections" element={<DashboardConnections />} />
-                    <Route path="/dashboard/activity" element={<DashboardActivity />} />
-                    <Route path="/dashboard/settings" element={<DashboardSettings />} />
-                    <Route path="/dashboard/settings/profile" element={<DashboardProfile />} />
-                    <Route path="/dashboard/settings/team" element={<DashboardTeam />} />
-                    <Route path="/dashboard/settings/security" element={<DashboardSecurity />} />
-                    <Route path="/privacy" element={<Privacy />} />
-                    <Route path="/legal/privacy" element={<Privacy />} />
-                    <Route path="/terms" element={<Terms />} />
-                    <Route path="/legal/terms" element={<Terms />} />
-                    <Route path="/integrations/:id" element={<IntegrationDetail />} />
-                    <Route path="/docs/api" element={<DocsApi />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                  </div>
-                  <Toaster />
-                </Router>
+                <ErrorBoundary>
+                  <Router>
+                    <ScrollToTop />
+                    <div className="min-h-screen bg-background">
+                      <Routes>
+                        {/* Public routes */}
+                        <Route path="/" element={<Index />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/features" element={<Features />} />
+                        <Route path="/integrations" element={<Integrations />} />
+                        <Route path="/pricing" element={<Pricing />} />
+                        <Route path="/docs" element={<Docs />} />
+                        <Route path="/support" element={<Support />} />
+                        <Route path="/community" element={<Community />} />
+                        <Route path="/blog" element={<Blog />} />
+                        <Route path="/careers" element={<Careers />} />
+                        <Route path="/status" element={<Status />} />
+                        <Route path="/security" element={<Security />} />
+                        <Route path="/privacy" element={<Privacy />} />
+                        <Route path="/legal/privacy" element={<Privacy />} />
+                        <Route path="/terms" element={<Terms />} />
+                        <Route path="/legal/terms" element={<Terms />} />
+                        <Route path="/integrations/:id" element={<IntegrationDetail />} />
+                        <Route path="/docs/api" element={<DocsApi />} />
+
+                        {/* Auth routes - redirect if already logged in */}
+                        <Route path="/login" element={
+                          <AuthRedirect>
+                            <Login />
+                          </AuthRedirect>
+                        } />
+                        <Route path="/signup" element={
+                          <AuthRedirect>
+                            <Signup />
+                          </AuthRedirect>
+                        } />
+                        <Route path="/forgot-password" element={<ForgotPassword />} />
+                        <Route path="/reset-password" element={<ResetPassword />} />
+
+                        {/* Protected dashboard routes */}
+                        <Route path="/dashboard" element={
+                          <ProtectedRoute>
+                            <Dashboard />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/dashboard/connections" element={
+                          <ProtectedRoute>
+                            <DashboardConnections />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/dashboard/activity" element={
+                          <ProtectedRoute>
+                            <DashboardActivity />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/dashboard/settings" element={
+                          <ProtectedRoute>
+                            <DashboardSettings />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/dashboard/settings/profile" element={
+                          <ProtectedRoute>
+                            <DashboardProfile />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/dashboard/settings/team" element={
+                          <ProtectedRoute>
+                            <DashboardTeam />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/dashboard/settings/security" element={
+                          <ProtectedRoute>
+                            <DashboardSecurity />
+                          </ProtectedRoute>
+                        } />
+
+                        {/* 404 */}
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                    </div>
+                    <Toaster />
+                  </Router>
+                </ErrorBoundary>
               </DirectionHandler>
             </AuthProvider>
           </CookieProvider>
