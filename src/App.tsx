@@ -112,6 +112,21 @@ function App() {
                         <Route path="/integrations/:id" element={<IntegrationDetail />} />
                         <Route path="/docs/api" element={<DocsApi />} />
 
+                        {/* Solution pages */}
+                        <Route path="/solutions" element={<Solutions />} />
+                        <Route path="/solutions/frontline-workforce" element={<FrontlineWorkforce />} />
+                        <Route path="/solutions/mergers-acquisitions" element={<MergersAcquisitions />} />
+                        <Route path="/solutions/multi-platform" element={<MultiPlatformCoexistence />} />
+                        <Route path="/solutions/vendor-flexibility" element={<VendorFlexibility />} />
+                        <Route path="/solutions/external-partners" element={<ExternalPartnerHub />} />
+                        <Route path="/solutions/customer-support" element={<CustomerSupport />} />
+                        <Route path="/solutions/regulated-industries" element={<RegulatedIndustries />} />
+                        <Route path="/solutions/incident-response" element={<IncidentResponse />} />
+                        <Route path="/solutions/inter-department" element={<InterDepartment />} />
+                        <Route path="/solutions/global-subsidiaries" element={<GlobalSubsidiaries />} />
+                        <Route path="/solutions/digital-transformation" element={<DigitalTransformation />} />
+                        <Route path="/solutions/developer-platform" element={<DeveloperPlatform />} />
+
                         {/* Auth routes - redirect if already logged in */}
                         <Route path="/login" element={
                           <AuthRedirect>

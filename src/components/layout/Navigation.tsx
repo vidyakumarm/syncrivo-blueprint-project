@@ -33,6 +33,20 @@ export function Navigation() {
   };
 
   const navItems = [
+    { 
+      label: t('nav.solutions', 'Solutions'), 
+      href: '/solutions',
+      children: [
+        { label: t('solutions.frontline.badge', 'Frontline Workforce'), href: '/solutions/frontline-workforce' },
+        { label: t('solutions.ma.badge', 'Mergers & Acquisitions'), href: '/solutions/mergers-acquisitions' },
+        { label: t('solutions.multiplatform.badge', 'Multi-Platform'), href: '/solutions/multi-platform' },
+        { label: t('solutions.vendor.badge', 'Vendor Flexibility'), href: '/solutions/vendor-flexibility' },
+        { label: t('solutions.partner.badge', 'External Partners'), href: '/solutions/external-partners' },
+        { label: t('solutions.regulated.badge', 'Regulated Industries'), href: '/solutions/regulated-industries' },
+        { label: t('solutions.developer.badge', 'Developer Platform'), href: '/solutions/developer-platform' },
+        { label: t('nav.all_solutions', 'View All Solutions'), href: '/solutions' },
+      ]
+    },
     { label: t('common.features'), href: '/features' },
     { label: t('common.integrations'), href: '/integrations' },
     { label: t('common.pricing'), href: '/pricing' },
