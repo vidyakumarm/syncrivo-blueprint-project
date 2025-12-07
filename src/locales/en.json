@@ -38,7 +38,9 @@
     "status": "Status",
     "security": "Security",
     "contact": "Contact",
-    "api": "API"
+    "api": "API",
+    "solutions": "Solutions",
+    "all_solutions": "View All Solutions"
   },
   "hero": {
     "badge": "Enterprise Integration Platform",

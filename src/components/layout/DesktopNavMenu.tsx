@@ -42,7 +42,7 @@ export function DesktopNavMenu({ navItems }: DesktopNavMenuProps) {
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-56 bg-background border border-border shadow-xl rounded-lg z-50 p-1">
+            <DropdownMenuContent align="start" className="w-64 bg-card border border-border shadow-xl rounded-lg z-50 p-1.5 max-h-[70vh] overflow-y-auto">
               {item.children.map((child) => (
                 <DropdownMenuItem key={child.href} asChild className="rounded-md">
                   <Link 
