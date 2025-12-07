@@ -42,6 +42,21 @@ import DashboardSecurity from '@/pages/DashboardSecurity';
 import DashboardSettings from '@/pages/DashboardSettings';
 import NotFound from '@/pages/NotFound';
 
+// Solution Pages
+import Solutions from '@/pages/Solutions';
+import FrontlineWorkforce from '@/pages/solutions/FrontlineWorkforce';
+import MergersAcquisitions from '@/pages/solutions/MergersAcquisitions';
+import MultiPlatformCoexistence from '@/pages/solutions/MultiPlatformCoexistence';
+import VendorFlexibility from '@/pages/solutions/VendorFlexibility';
+import ExternalPartnerHub from '@/pages/solutions/ExternalPartnerHub';
+import CustomerSupport from '@/pages/solutions/CustomerSupport';
+import RegulatedIndustries from '@/pages/solutions/RegulatedIndustries';
+import IncidentResponse from '@/pages/solutions/IncidentResponse';
+import InterDepartment from '@/pages/solutions/InterDepartment';
+import GlobalSubsidiaries from '@/pages/solutions/GlobalSubsidiaries';
+import DigitalTransformation from '@/pages/solutions/DigitalTransformation';
+import DeveloperPlatform from '@/pages/solutions/DeveloperPlatform';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
