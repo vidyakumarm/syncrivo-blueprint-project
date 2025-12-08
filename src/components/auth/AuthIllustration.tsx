@@ -55,9 +55,9 @@ export function AuthIllustration() {
     return (
         <div className="relative w-full aspect-square max-w-[320px] mx-auto flex items-center justify-center overflow-visible">
             {/* Floating Hub Wrapper - Contains entire animation group */}
-            <div className="animate-hub-float">
+            <div className="relative animate-hub-float">
                 {/* Ambient Glow that floats with slight offset */}
-                <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-gradient-radial from-primary/15 via-primary/5 to-transparent blur-3xl animate-glow-float transition-opacity duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`} />
+                <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-primary/10 blur-3xl animate-glow-float transition-opacity duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`} />
                 
                 {/* Background Glows */}
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}>
