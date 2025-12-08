@@ -18,6 +18,8 @@ import googleChatIcon from "@/assets/google-chat-icon.png"; // Use PNG for Chat 
 import signalIcon from "@/assets/brands/signal-official.svg";
 import mattermostIcon from "@/assets/brands/mattermost-official.svg";
 import rocketchatIcon from "@/assets/brands/rocketchat-official.svg";
+import whatsappIcon from "@/assets/brands/whatsapp-official.svg";
+import syncrivoHubIcon from "@/assets/brands/syncrivo-hub-official.png";
 
 interface Platform {
   id: string;
@@ -31,11 +33,11 @@ const platforms: Platform[] = [
   { id: "slack", name: "Slack", icon: slackIcon, angle: 0 },
   { id: "teams", name: "Teams", icon: teamsIcon, angle: 36 },
   { id: "googlechat", name: "Google Chat", icon: googleChatIcon, angle: 72 },
-  { id: "zoom", name: "Zoom", icon: zoomIcon, angle: 108 },
-  { id: "discord", name: "Discord", icon: discordIcon, angle: 144 },
+  { id: "whatsapp", name: "WhatsApp Business", icon: whatsappIcon, angle: 108 },
+  { id: "webex", name: "Cisco Webex", icon: webexIcon, angle: 144 },
   { id: "telegram", name: "Telegram", icon: telegramIcon, angle: 180 },
-  { id: "webex", name: "Webex", icon: webexIcon, angle: 216 },
-  { id: "signal", name: "Signal", icon: signalIcon, angle: 252 },
+  { id: "syncrivohub", name: "Arattai", icon: syncrivoHubIcon, angle: 216 },
+  { id: "zoom", name: "Zoom", icon: zoomIcon, angle: 252 },
   { id: "mattermost", name: "Mattermost", icon: mattermostIcon, angle: 288 },
   { id: "rocketchat", name: "Rocket.Chat", icon: rocketchatIcon, angle: 324 },
 ];
