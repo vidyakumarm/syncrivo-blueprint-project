@@ -497,3 +497,8 @@ All colors MUST be HSL.
 [dir="rtl"] .group-hover\:translate-x-1:hover {
   --tw-translate-x: -0.25rem;
 }
+
+/* Radial gradient utility for ambient glow */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, var(--tw-gradient-stops));
+}
