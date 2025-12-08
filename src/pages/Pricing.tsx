@@ -127,7 +127,7 @@ export default function Pricing() {
                 <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
                   {t('pricing.subtitle')} No hidden fees. Cancel anytime.
                 </p>
-                
+
                 {/* Billing Toggle */}
                 <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
                   <span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-foreground' : 'text-muted-foreground'}`}>
@@ -173,27 +173,25 @@ export default function Pricing() {
                   const PlanIcon = plan.icon;
                   const currentPrice = isYearly ? plan.price.yearly : plan.price.monthly;
                   const originalPrice = plan.originalPrice ? (isYearly ? plan.originalPrice.yearly : plan.originalPrice.monthly) : null;
-                  
+
                   return (
-                    <Card 
-                      key={index} 
-                      className={`relative overflow-hidden transition-all duration-300 group hover:shadow-lg ${
-                        plan.popular 
-                          ? 'border-primary shadow-lg scale-105 lg:scale-105 ring-1 ring-primary/20' 
+                    <Card
+                      key={index}
+                      className={`relative overflow-hidden transition-all duration-300 group hover:shadow-lg ${plan.popular
+                          ? 'border-primary shadow-lg scale-105 lg:scale-105 ring-1 ring-primary/20'
                           : 'hover:border-primary/30 hover:scale-105'
-                      }`}
+                        }`}
                     >
                       {plan.popular && (
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-primary" />
                       )}
-                      
+
                       {plan.badge && (
                         <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                          <Badge className={`text-xs font-medium ${
-                            plan.popular 
-                              ? 'bg-primary text-white border-primary' 
+                          <Badge className={`text-xs font-medium ${plan.popular
+                              ? 'bg-primary text-white border-primary'
                               : 'bg-secondary text-secondary-foreground border'
-                          }`}>
+                            }`}>
                             {plan.badge}
                           </Badge>
                         </div>
@@ -201,18 +199,16 @@ export default function Pricing() {
 
                       <CardHeader className="text-center pb-4 pt-6">
                         <div className="flex justify-center mb-4">
-                          <div className={`p-3 rounded-full transition-colors ${
-                            plan.popular ? 'bg-primary/10' : 'bg-muted'
-                          }`}>
-                            <PlanIcon className={`w-6 h-6 ${
-                              plan.popular ? 'text-primary' : 'text-muted-foreground'
-                            }`} />
+                          <div className={`p-3 rounded-full transition-colors ${plan.popular ? 'bg-primary/10' : 'bg-muted'
+                            }`}>
+                            <PlanIcon className={`w-6 h-6 ${plan.popular ? 'text-primary' : 'text-muted-foreground'
+                              }`} />
                           </div>
                         </div>
-                        
+
                         <CardTitle className="text-xl sm:text-2xl font-bold mb-2">{plan.name}</CardTitle>
                         <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{plan.targetAudience}</p>
-                        
+
                         <div className="mb-4">
                           <div className="flex items-center justify-center gap-2 mb-1">
                             {originalPrice && (
@@ -233,7 +229,7 @@ export default function Pricing() {
                             </p>
                           )}
                         </div>
-                        
+
                         <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
                       </CardHeader>
 
@@ -258,22 +254,21 @@ export default function Pricing() {
                             </li>
                           ))}
                         </ul>
-                        
-                        <Button 
-                          asChild 
+
+                        <Button
+                          asChild
                           size="lg"
-                          className={`w-full font-medium transition-all duration-200 ${
-                            plan.popular 
-                              ? 'bg-gradient-primary hover:shadow-md' 
+                          className={`w-full font-medium transition-all duration-200 ${plan.popular
+                              ? 'bg-gradient-primary hover:shadow-md'
                               : ''
-                          }`}
+                            }`}
                           variant={plan.ctaVariant}
                         >
                           <Link to={plan.name === t('pricing.enterprise') ? '/support' : '/signup'}>
                             {plan.ctaText}
                           </Link>
                         </Button>
-                        
+
                         {plan.name !== t('pricing.enterprise') && (
                           <p className="text-xs text-muted-foreground text-center mt-3">
                             No credit card required
@@ -304,7 +299,7 @@ export default function Pricing() {
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
                 <p className="text-muted-foreground">Everything you need to know about our pricing</p>
               </div>
-              
+
               <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 {faqs.map((faq, index) => (
                   <div key={index} className="space-y-3">

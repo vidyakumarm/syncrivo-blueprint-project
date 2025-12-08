@@ -1,14 +1,14 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
+import { User, Session, AuthError } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string, displayName?: string) => Promise<{ error: any }>;
-  signIn: (email: string, password: string) => Promise<{ error: any }>;
+  signUp: (email: string, password: string, displayName?: string) => Promise<{ error: AuthError | null }>;
+  signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>;
   signOut: () => Promise<void>;
 }
 
@@ -77,9 +77,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email,
       hasDisplayName: !!displayName
     });
-    
+
     const redirectUrl = `${window.location.origin}/`;
-    
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -90,13 +90,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       }
     });
-    
+
     console.log('🔐 [AuthProvider] Sign up result', {
       timestamp: new Date().toISOString(),
       success: !error,
       error: error?.message || null
     });
-    
+
     return { error };
   };
 
@@ -105,18 +105,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       timestamp: new Date().toISOString(),
       email
     });
-    
+
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password
     });
-    
+
     console.log('🔐 [AuthProvider] Sign in result', {
       timestamp: new Date().toISOString(),
       success: !error,
       error: error?.message || null
     });
-    
+
     return { error };
   };
 

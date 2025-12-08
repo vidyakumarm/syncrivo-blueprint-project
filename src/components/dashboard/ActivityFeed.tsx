@@ -4,13 +4,13 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  CheckCircle2, 
-  AlertCircle, 
-  Clock, 
-  ExternalLink, 
+import {
+  CheckCircle2,
+  AlertCircle,
+  Clock,
+  ExternalLink,
   Filter,
-  MoreVertical 
+  MoreVertical
 } from 'lucide-react';
 import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 import { cn } from '@/lib/utils';
@@ -33,7 +33,7 @@ export function ActivityFeed({ activities, className }: ActivityFeedProps) {
   const { t } = useTranslationWithFallback();
   const [filter, setFilter] = useState<'all' | 'success' | 'error' | 'pending'>('all');
 
-  const filteredActivities = activities.filter(activity => 
+  const filteredActivities = activities.filter(activity =>
     filter === 'all' || activity.status === filter
   );
 
@@ -80,7 +80,7 @@ export function ActivityFeed({ activities, className }: ActivityFeedProps) {
           </div>
         </div>
 
-        <Tabs value={filter} onValueChange={(value) => setFilter(value as any)} className="w-full">
+        <Tabs value={filter} onValueChange={(value) => setFilter(value as 'all' | 'success' | 'error' | 'pending')} className="w-full">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="all" className="text-xs">All</TabsTrigger>
             <TabsTrigger value="success" className="text-xs">Success</TabsTrigger>
@@ -106,7 +106,7 @@ export function ActivityFeed({ activities, className }: ActivityFeedProps) {
                   <div className="flex-shrink-0 mt-0.5">
                     {getStatusIcon(activity.status)}
                   </div>
-                  
+
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-start justify-between">
                       <p className="text-sm font-medium text-foreground leading-snug line-clamp-2">
@@ -120,7 +120,7 @@ export function ActivityFeed({ activities, className }: ActivityFeedProps) {
                         <ExternalLink className="h-3 w-3" />
                       </Button>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
                       <p className="text-xs text-muted-foreground">
                         {activity.time}
@@ -131,15 +131,15 @@ export function ActivityFeed({ activities, className }: ActivityFeedProps) {
                         </Badge>
                       )}
                     </div>
-                    
+
                     {activity.details && (
                       <p className="text-xs text-muted-foreground/80 line-clamp-1">
                         {activity.details}
                       </p>
                     )}
                   </div>
-                  
-                  <Badge 
+
+                  <Badge
                     className={cn(
                       "text-xs font-medium capitalize flex-shrink-0",
                       getStatusColor(activity.status)

@@ -41,13 +41,27 @@
     "api": "API"
   },
   "hero": {
+    "badge": "Nahtlose Messaging-Plattform-Integration",
+    "enterprise_badge": "Enterprise-Kommunikationsplattform",
+    "headline_prefix": "Die",
+    "headline_highlight": "Universelle Messaging-Schicht",
+    "headline_suffix": "für jedes Unternehmen.",
+    "description": "Vereinen Sie Teams, Slack, Google Chat, Zoom und 20+ Plattformen in einem sicheren, intelligenten Kommunikationszentrum.",
     "title": "Verbinden Sie Ihre",
     "title_highlight": "Messaging-Plattformen",
     "subtitle": "Nahtlose Integration von Teams, Webex, Google Chat, Zoom, Slack und anderen Business-Kommunikationstools. Synchronisieren Sie Nachrichten, Kanäle und Unterhaltungen plattformübergreifend in Echtzeit.",
     "cta_primary": "Plattformen Verbinden",
     "cta_secondary": "Unterstützte Plattformen",
-    "badge": "Nahtlose Messaging-Plattform-Integration",
-    "trusted_by": "Vertraut von 10.000+ Teams weltweit für Messaging-Plattform-Integration",
+    "cta_try_free": "SyncRivo kostenlos testen",
+    "cta_book_demo": "Live Enterprise-Demo buchen",
+    "cta_dashboard": "Zum Dashboard",
+    "cta_connections": "Verbindungen verwalten",
+    "trust_line": "Keine Kreditkarte erforderlich. Einrichtung in 2 Minuten.",
+    "trusted_by": "Vertraut von Enterprise-Teams weltweit",
+    "more_platforms": "+18 weitere Plattformen",
+    "security_encryption": "Ende-zu-Ende-Verschlüsselung",
+    "security_zero_trust": "Zero-Trust-Architektur",
+    "security_uptime": "99,99% SLA-Verfügbarkeit",
     "supported_platforms": "Unterstützte Messaging-Plattformen",
     "real_time_sync": "Echtzeit-Synchronisation",
     "real_time_sync_desc": "Nachrichten werden sofort auf allen verbundenen Plattformen synchronisiert",
@@ -236,7 +250,7 @@
     "coming_soon_desc": "Wir bauen erstaunliche Integrationen. Schauen Sie bald wieder für unseren Integrationsmarktplatz vorbei."
   },
   "pricing": {
-    "title": "Preise", 
+    "title": "Preise",
     "subtitle": "Wählen Sie den perfekten Plan für Ihre Business-Bedürfnisse.",
     "coming_soon": "Kommt Bald",
     "coming_soon_desc": "Wir arbeiten an unseren Preisplänen. Schauen Sie bald wieder für Details vorbei.",
@@ -266,7 +280,7 @@
   "about": {
     "title": "Über Uns",
     "subtitle": "Erfahren Sie mehr über unsere Mission, Business-Messaging-Integrationen zu vereinfachen.",
-    "coming_soon": "Kommt Bald", 
+    "coming_soon": "Kommt Bald",
     "coming_soon_desc": "Wir gestalten unsere Geschichte. Schauen Sie bald wieder vorbei, um mehr über uns zu erfahren."
   },
   "docs": {
@@ -394,7 +408,7 @@
     "sign_up": "Registrieren"
   },
   "signup": {
-    "title": "Konto Erstellen", 
+    "title": "Konto Erstellen",
     "subtitle": "Treten Sie SyncRivo bei und beginnen Sie noch heute, Ihre Business-Tools zu verbinden.",
     "display_name": "Anzeigename",
     "email": "E-Mail",

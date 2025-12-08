@@ -4,17 +4,18 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { SupportedPlatformsSection } from '@/components/sections/SupportedPlatformsSection';
-import LiveMessageFlowDemo from '@/components/sections/LiveMessageFlowDemo';
+import MultiScenarioMessageFlow from '@/components/sections/MultiScenarioMessageFlow';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
-import { 
-  MessageSquare, 
-  Users, 
-  Video, 
-  MessageCircle, 
+import {
+  MessageSquare,
+  Users,
+  Video,
+  MessageCircle,
   Phone,
   ArrowRight,
   CheckCircle2,
@@ -27,7 +28,7 @@ import {
 
 const Index = () => {
   const { t } = useTranslationWithFallback();
-  
+
   console.log('🏠 [HomePage] Component mounted', {
     timestamp: new Date().toISOString(),
     path: window.location.pathname,
@@ -93,15 +94,15 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
-        
-        {/* Live Message Flow Demo */}
-        <LiveMessageFlowDemo />
-        
+
+        {/* Multi-Scenario Message Flow Demo */}
+        <MultiScenarioMessageFlow />
+
         {/* Enhanced Features Section */}
         <section className="py-16 md:py-20 lg:py-24 bg-muted/20 relative overflow-hidden">
           {/* Background enhancements */}
           <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
-          
+
           <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div className="text-center mb-12 lg:mb-16">
               <Badge variant="secondary" className="mb-6 px-5 py-2.5 text-sm font-semibold bg-gradient-primary text-white border-0 shadow-brand-md hover:shadow-brand-lg hover:scale-105 transition-all duration-300">
@@ -119,8 +120,8 @@ const Index = () => {
 
             <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
               {features.map((feature, index) => (
-                <Card 
-                  key={index} 
+                <Card
+                  key={index}
                   className="group glass-card card-interactive animate-fade-in p-8 lg:p-10 border-2 border-border/30 hover:border-primary/30"
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
@@ -138,8 +139,8 @@ const Index = () => {
                   <CardContent className="pt-2">
                     <ul className="space-y-5">
                       {feature.benefits.map((benefit, i) => (
-                        <li 
-                          key={i} 
+                        <li
+                          key={i}
                           className="flex items-start text-base text-muted-foreground group-hover:text-foreground transition-all duration-300 animate-fade-in"
                           style={{ animationDelay: `${(index * 200) + (i * 100)}ms` }}
                         >
@@ -169,8 +170,8 @@ const Index = () => {
 
             <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
               {useCases.map((useCase, index) => (
-                <Card 
-                  key={index} 
+                <Card
+                  key={index}
                   className={`group glass-card card-interactive border-2 ${useCase.color} p-8 lg:p-10 animate-fade-in`}
                   style={{ animationDelay: `${index * 150}ms` }}
                 >
@@ -198,7 +199,7 @@ const Index = () => {
         {/* Enhanced How It Works Section */}
         <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-primary-light/30 to-accent-light/20 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-mesh opacity-25" />
-          
+
           <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div className="text-center mb-12 lg:mb-16">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-8 leading-[1.1] tracking-tight">
@@ -215,8 +216,8 @@ const Index = () => {
                 { number: 2, title: t('home.configure_sync'), desc: t('home.configure_sync_desc') },
                 { number: 3, title: t('home.start_syncing'), desc: t('home.start_syncing_desc') }
               ].map((step, index) => (
-                <div 
-                  key={step.number} 
+                <div
+                  key={step.number}
                   className="text-center group animate-fade-in"
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
@@ -230,7 +231,7 @@ const Index = () => {
                       <div className="hidden md:block absolute top-10 lg:top-12 left-1/2 w-full h-0.5 bg-gradient-to-r from-primary to-accent opacity-30 transform translate-x-10 -translate-y-0.5" />
                     )}
                   </div>
-                  
+
                   <h3 className="text-2xl lg:text-[1.65rem] font-bold text-foreground mb-6 group-hover:text-primary transition-colors duration-300 tracking-tight">
                     {step.title}
                   </h3>

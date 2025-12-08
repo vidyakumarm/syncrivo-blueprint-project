@@ -37,7 +37,7 @@
     "community": "Comunidad",
     "status": "Estado",
     "security": "Seguridad",
-    "contact": "Contacto", 
+    "contact": "Contacto",
     "api": "API"
   },
   "hero": {
@@ -66,7 +66,9 @@
     "enterprise_security": "Seguridad Empresarial",
     "enterprise_security_desc": "Cumple con SOC 2 y encriptación de nivel empresarial",
     "cross_platform": "Multiplataforma",
-    "cross_platform_desc": "Conecta cualquier plataforma de mensajería con APIs unificadas"
+    "cross_platform_desc": "Conecta cualquier plataforma de mensajería con APIs unificadas",
+    "cta_dashboard": "Ir al Panel",
+    "cta_connections": "Gestionar Conexiones"
   },
   "support": {
     "title": "¿Cómo podemos ayudarte?",
@@ -174,7 +176,7 @@
     "subtitle": "Elige el plan perfecto para las necesidades de tu negocio.",
     "most_popular": "Más Popular",
     "starter": "Inicial",
-    "professional": "Profesional",  
+    "professional": "Profesional",
     "enterprise": "Empresarial",
     "free": "Gratis",
     "custom": "Personalizado",
@@ -504,7 +506,7 @@
     "platform_names": {
       "microsoft_teams": "Microsoft Teams",
       "slack": "Slack",
-      "zoom": "Zoom", 
+      "zoom": "Zoom",
       "google_chat": "Google Chat",
       "cisco_webex": "Cisco Webex",
       "discord": "Discord"
@@ -514,7 +516,7 @@
     "most_popular": "Más Popular",
     "starter": "Inicial",
     "professional": "Profesional",
-    "enterprise": "Empresarial", 
+    "enterprise": "Empresarial",
     "free": "Gratis",
     "custom": "Personalizado",
     "per_month": "/mes",
@@ -557,7 +559,7 @@
     "metrics": {
       "messages_synced": "Mensajes Sincronizados",
       "active_platforms": "Plataformas Activas",
-      "successful_syncs": "Sincronizaciones Exitosas", 
+      "successful_syncs": "Sincronizaciones Exitosas",
       "connected_platforms": "Plataformas Conectadas"
     },
     "recent_activity": "Actividad Reciente de Plataformas",
@@ -566,7 +568,7 @@
     "sidebar": {
       "overview": "Resumen",
       "connections": "Conexiones",
-      "activity": "Actividad", 
+      "activity": "Actividad",
       "profile": "Perfil",
       "team": "Equipo",
       "security": "Seguridad"

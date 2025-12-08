@@ -135,11 +135,11 @@
     "coming_soon_desc": "We're working on bringing you amazing features. Check back soon for updates."
   },
   "pricing": {
-    "title": "Pricing", 
+    "title": "Pricing",
     "subtitle": "Choose the perfect plan for your business needs.",
     "most_popular": "Most Popular",
     "starter": "Starter",
-    "professional": "Professional",  
+    "professional": "Professional",
     "enterprise": "Enterprise",
     "free": "Free",
     "custom": "Custom",
@@ -312,7 +312,7 @@
       "title": "Browse by Category",
       "all": "All Posts",
       "product_updates": "API Updates",
-      "tutorials": "Integration Tutorials", 
+      "tutorials": "Integration Tutorials",
       "integrations": "Platform Integrations",
       "best_practices": "Best Practices",
       "company_news": "Company News"
@@ -345,7 +345,7 @@
       "post2": {
         "title": "The Ultimate Guide to Messaging Platform Integration",
         "excerpt": "A comprehensive guide to connecting your favorite messaging tools and creating a unified communication experience for your team.",
-        "category": "Tutorials", 
+        "category": "Tutorials",
         "read_time": "8 min read",
         "date": "Coming Soon"
       },
@@ -353,7 +353,7 @@
         "title": "Security Best Practices for Cross-Platform Messaging",
         "excerpt": "Ensure your team's conversations remain secure while enjoying seamless communication across different messaging platforms.",
         "category": "Security",
-        "read_time": "6 min read", 
+        "read_time": "6 min read",
         "date": "Coming Soon"
       }
     },
@@ -398,7 +398,7 @@
     "success_welcome": "Welcome back!"
   },
   "signup": {
-    "title": "Create Account", 
+    "title": "Create Account",
     "subtitle": "Join SyncRivo® and start connecting your business tools today.",
     "display_name": "Display Name",
     "display_name_placeholder": "Your display name",
@@ -505,14 +505,49 @@
     "from_last_month": "from last month"
   },
   "footer": {
-    "tagline": "Seamlessly connect and manage all your business integrations in one unified platform.",
+    "tagline": "SyncRivo is your secure hub to sync, route, and automate conversations across Teams, Slack, and more.",
+    "book_demo": "Book Live Enterprise Demo",
     "product": "Product",
+    "solutions": "Solutions",
     "company": "Company",
-    "legal": "Legal",
+    "resources": "Resources & Legal",
+    "home": "Home",
+    "features": "Features",
+    "pricing": "Pricing",
+    "frontline": "Frontline Workers",
+    "mergers": "Mergers & Acquisitions",
+    "coexistence": "Long-Term Coexistence",
+    "vendor_lockin": "Avoid Vendor Lock-In",
+    "about": "About",
+    "contact_sales": "Contact Sales",
+    "careers": "Careers",
+    "partners": "Partners",
+    "documentation": "Documentation",
+    "status": "API Status / System Status",
+    "security": "Security",
     "privacy_policy": "Privacy Policy",
     "terms_of_service": "Terms of Service",
-    "help_center": "Help Center",
+    "cookie_policy": "Cookie Policy",
+    "data_protection": "Data Protection",
+    "dpa": "DPA",
+    "sub_processors": "Sub-processors",
     "all_rights_reserved": "All rights reserved."
+  },
+  "cookie_policy": {
+    "title": "Cookie Policy",
+    "description": "How we use cookies and similar technologies to improve your experience."
+  },
+  "dpa": {
+    "title": "Data Processing Addendum",
+    "description": "Our commitment to data protection and GDPR compliance."
+  },
+  "sub_processors": {
+    "title": "Sub-processors",
+    "description": "List of third-party sub-processors we use to provide our services."
+  },
+  "contact_sales": {
+    "title": "Contact Sales",
+    "description": "Talk to our enterprise sales team about your specific needs."
   },
   "home": {
     "seo_title": "Enterprise Integration Platform | Connect Business Apps | SyncRivo",
@@ -575,7 +610,7 @@
     "view_demo": "Request Live Demo",
     "platform_names": {
       "microsoft_teams": "Microsoft Teams",
-      "slack": "Slack", 
+      "slack": "Slack",
       "zoom": "Zoom",
       "google_chat": "Google Chat",
       "cisco_webex": "Cisco Webex",
@@ -599,14 +634,14 @@
   "features": {
     "seo_title": "SyncRivo Features | Business Communication Integration & Cross-Platform Sync",
     "seo_description": "Explore SyncRivo's powerful communication features: cross-platform sync, unified messaging, team collaboration tools, and enterprise-grade security for modern businesses.",
-    "hero_badge": "Advanced Communication Features", 
+    "hero_badge": "Advanced Communication Features",
     "hero_title": "Powerful Communication Features for",
     "hero_title_highlight": "Modern Businesses",
     "hero_subtitle": "Transform your team collaboration with SyncRivo's comprehensive suite of business communication integration tools designed for seamless cross-platform connectivity.",
     "hero_cta": "Try SyncRivo Free",
     "universal_sync": "Cross-Platform Message Synchronization",
     "universal_sync_desc": "Seamlessly sync messages, files, and conversations across Slack, Teams, Webex, Zoom and other communication platforms in real-time.",
-    "cross_platform_teams": "Unified Team Management Across Platforms", 
+    "cross_platform_teams": "Unified Team Management Across Platforms",
     "cross_platform_teams_desc": "Manage users, permissions, and access across all connected communication platforms from one centralized dashboard.",
     "enterprise_security": "Enterprise-Grade Communication Security",
     "enterprise_security_desc": "SOC 2 certified platform with end-to-end encryption, comprehensive audit logging, and compliance standards for secure business communication.",
@@ -734,7 +769,7 @@
     "build_integration": "Build Your First Integration",
     "build_integration_desc": "Follow our quick start guide to create your first data sync in minutes.",
     "badge_popular": "Popular",
-    "badge_new": "New", 
+    "badge_new": "New",
     "badge_beta": "Beta",
     "sidebar": {
       "getting_started": "Getting Started",
@@ -770,7 +805,7 @@
     "security_subtitle": "Your data security and privacy are our top priorities. Learn about our security measures and policies.",
     "data_encryption": "Data Encryption",
     "data_encryption_desc": "All data is encrypted in transit and at rest using industry-standard encryption.",
-    "access_control": "Access Control", 
+    "access_control": "Access Control",
     "access_control_desc": "Strict access controls and authentication measures protect your account.",
     "privacy_first": "Privacy First",
     "privacy_first_desc": "We never share your data without your explicit consent.",

@@ -41,6 +41,12 @@ import DashboardTeam from '@/pages/DashboardTeam';
 import DashboardSecurity from '@/pages/DashboardSecurity';
 import DashboardSettings from '@/pages/DashboardSettings';
 import NotFound from '@/pages/NotFound';
+import CookiePolicy from '@/pages/CookiePolicy';
+import DPA from '@/pages/DPA';
+import SubProcessors from '@/pages/SubProcessors';
+import ContactSales from '@/pages/ContactSales';
+import DebugAnimations from '@/pages/DebugAnimations';
+
 
 // Solution Pages
 import Solutions from '@/pages/Solutions';
@@ -69,7 +75,7 @@ const queryClient = new QueryClient({
 // RTL direction handler component
 function DirectionHandler({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation();
-  
+
   useEffect(() => {
     const isRTL = i18n.language === 'ar';
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
@@ -111,6 +117,10 @@ function App() {
                         <Route path="/legal/terms" element={<Terms />} />
                         <Route path="/integrations/:id" element={<IntegrationDetail />} />
                         <Route path="/docs/api" element={<DocsApi />} />
+                        <Route path="/cookie-policy" element={<CookiePolicy />} />
+                        <Route path="/dpa" element={<DPA />} />
+                        <Route path="/sub-processors" element={<SubProcessors />} />
+                        <Route path="/contact-sales" element={<ContactSales />} />
 
                         {/* Solution pages */}
                         <Route path="/solutions" element={<Solutions />} />
@@ -126,6 +136,9 @@ function App() {
                         <Route path="/solutions/global-subsidiaries" element={<GlobalSubsidiaries />} />
                         <Route path="/solutions/digital-transformation" element={<DigitalTransformation />} />
                         <Route path="/solutions/developer-platform" element={<DeveloperPlatform />} />
+
+                        {/* Debug route */}
+                        <Route path="/debug/animations" element={<DebugAnimations />} />
 
                         {/* Auth routes - redirect if already logged in */}
                         <Route path="/login" element={

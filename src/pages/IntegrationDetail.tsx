@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { 
-  ArrowRight, 
-  Star, 
-  Users, 
-  Shield, 
-  Zap, 
-  CheckCircle, 
+import {
+  ArrowRight,
+  Star,
+  Users,
+  Shield,
+  Zap,
+  CheckCircle,
   ExternalLink,
   Play,
   FileText,
@@ -20,12 +20,34 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+interface UseCase {
+  title: string;
+  description: string;
+}
+
+interface Integration {
+  name: string;
+  description: string;
+  longDescription: string;
+  icon: string;
+  rating: number;
+  users: string;
+  category: string;
+  color: string;
+  features: string[];
+  useCases: UseCase[];
+  pricing: string;
+  setupTime: string;
+  apiVersion: string;
+  lastUpdated: string;
+}
+
 export default function IntegrationDetail() {
   const { id } = useParams();
   const { t } = useTranslation();
 
   // Mock data - in a real app, this would come from an API
-  const integrationData: { [key: string]: any } = {
+  const integrationData: Record<string, Integration> = {
     slack: {
       name: 'Slack',
       description: 'Team communication and collaboration platform',
@@ -140,7 +162,7 @@ export default function IntegrationDetail() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main className="pt-16">
         {/* Hero Section */}
         <section className="py-12 bg-gradient-to-br from-primary-light/30 to-accent-light/20">
@@ -215,9 +237,9 @@ export default function IntegrationDetail() {
                     <span className="text-muted-foreground">{t('integration_detail.last_updated')}</span>
                     <span className="font-medium">{integration.lastUpdated}</span>
                   </div>
-                  
+
                   <Separator />
-                  
+
                   <div className="space-y-2">
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Shield className="mr-2 h-4 w-4 text-success" />
@@ -265,7 +287,7 @@ export default function IntegrationDetail() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-foreground mb-8">{t('integration_detail.popular_use_cases')}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {integration.useCases.map((useCase: any, index: number) => (
+              {integration.useCases.map((useCase, index) => (
                 <Card key={index} className="hover:shadow-brand-md transition-all duration-300">
                   <CardHeader>
                     <CardTitle className="text-lg">{useCase.title}</CardTitle>
@@ -302,7 +324,7 @@ export default function IntegrationDetail() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );

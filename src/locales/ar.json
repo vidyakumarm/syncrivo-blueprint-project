@@ -66,7 +66,9 @@
     "enterprise_security": "أمان المؤسسات",
     "enterprise_security_desc": "متوافق مع SOC 2 مع تشفير على مستوى المؤسسات",
     "cross_platform": "متعدد المنصات",
-    "cross_platform_desc": "اربط أي منصة رسائل باستخدام واجهات برمجة التطبيقات الموحدة"
+    "cross_platform_desc": "اربط أي منصة رسائل باستخدام واجهات برمجة التطبيقات الموحدة",
+    "cta_dashboard": "الذهاب إلى لوحة التحكم",
+    "cta_connections": "إدارة الاتصالات"
   },
   "support": {
     "title": "كيف يمكننا مساعدتك؟",
@@ -174,7 +176,7 @@
     "subtitle": "اختر الخطة المثالية لاحتياجات عملك.",
     "most_popular": "الأكثر شعبية",
     "starter": "المبتدئ",
-    "professional": "المحترف",  
+    "professional": "المحترف",
     "enterprise": "المؤسسة",
     "free": "مجاني",
     "custom": "مخصص",

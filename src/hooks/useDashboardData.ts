@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import type { Json } from '@/integrations/supabase/types';
 
 export interface Connection {
   id: string;
@@ -31,7 +32,7 @@ export interface DashboardMetric {
   metric_type: string;
   value: number;
   timestamp: string;
-  metadata: any;
+  metadata: Json | null;
 }
 
 export interface UserPreferences {
@@ -117,19 +118,19 @@ export function useConnections() {
         timestamp: new Date().toISOString(),
         userId: user?.id
       });
-      
+
       const { data, error } = await supabase
         .from('connections')
         .select('*')
         .order('created_at', { ascending: false });
-      
+
       console.log('🔗 [useConnections] Fetch result', {
         timestamp: new Date().toISOString(),
         success: !error,
         connectionCount: data?.length || 0,
         error: error?.message || null
       });
-      
+
       if (!error && data) {
         // Use demo data if no real connections exist
         setConnections(data.length > 0 ? data as Connection[] : DEMO_CONNECTIONS);
@@ -163,11 +164,11 @@ export function useConnections() {
 
   const addConnection = async (connection: Omit<Connection, 'id' | 'created_at' | 'user_id'>) => {
     if (!user) return;
-    
+
     const { error } = await supabase
       .from('connections')
       .insert([{ ...connection, user_id: user.id }]);
-    
+
     return !error;
   };
 
@@ -176,7 +177,7 @@ export function useConnections() {
       .from('connections')
       .update(updates)
       .eq('id', id);
-    
+
     return !error;
   };
 
@@ -185,7 +186,7 @@ export function useConnections() {
       .from('connections')
       .delete()
       .eq('id', id);
-    
+
     return !error;
   };
 
@@ -312,7 +313,7 @@ export function useActivityLogs() {
         timestamp: new Date().toISOString(),
         userId: user?.id
       });
-      
+
       const { data, error } = await supabase
         .from('activity_logs')
         .select(`
@@ -321,14 +322,14 @@ export function useActivityLogs() {
         `)
         .order('created_at', { ascending: false })
         .limit(50);
-      
+
       console.log('📋 [useActivityLogs] Fetch result', {
         timestamp: new Date().toISOString(),
         success: !error,
         activityCount: data?.length || 0,
         error: error?.message || null
       });
-      
+
       if (!error && data) {
         // Use demo data if no real activities exist
         setActivities(data.length > 0 ? data as ActivityLog[] : DEMO_ACTIVITIES);
@@ -362,11 +363,11 @@ export function useActivityLogs() {
 
   const addActivity = async (activity: Omit<ActivityLog, 'id' | 'created_at' | 'user_id'>) => {
     if (!user) return;
-    
+
     const { error } = await supabase
       .from('activity_logs')
       .insert([{ ...activity, user_id: user.id }]);
-    
+
     return !error;
   };
 
@@ -400,7 +401,7 @@ export function useDashboardMetrics() {
         .from('dashboard_metrics')
         .select('*')
         .order('timestamp', { ascending: false });
-      
+
       if (!error && data) {
         // Use demo data if no real metrics exist
         setMetrics(data.length > 0 ? data : DEMO_METRICS);
@@ -434,11 +435,11 @@ export function useDashboardMetrics() {
 
   const addMetric = async (metric: Omit<DashboardMetric, 'id' | 'timestamp' | 'user_id'>) => {
     if (!user) return;
-    
+
     const { error } = await supabase
       .from('dashboard_metrics')
       .insert([{ ...metric, user_id: user.id }]);
-    
+
     return !error;
   };
 
@@ -455,12 +456,12 @@ export function useUserPreferences() {
     if (!user) return;
 
     const fetchPreferences = async () => {
-      let { data, error } = await supabase
+      const { data, error } = await supabase
         .from('user_preferences')
         .select('*')
         .eq('user_id', user.id)
         .single();
-      
+
       if (error && error.code === 'PGRST116') {
         // No preferences found, create default ones
         const defaultPrefs = {
@@ -471,13 +472,13 @@ export function useUserPreferences() {
           timezone: 'UTC',
           theme: 'system'
         };
-        
+
         const { data: newData, error: insertError } = await supabase
           .from('user_preferences')
           .insert([defaultPrefs])
           .select()
           .single();
-        
+
         if (!insertError && newData) {
           setPreferences(newData);
         }
@@ -511,12 +512,12 @@ export function useUserPreferences() {
 
   const updatePreferences = async (updates: Partial<UserPreferences>) => {
     if (!user || !preferences) return false;
-    
+
     const { error } = await supabase
       .from('user_preferences')
       .update(updates)
       .eq('user_id', user.id);
-    
+
     return !error;
   };
 

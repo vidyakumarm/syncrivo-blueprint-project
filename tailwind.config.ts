@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -169,6 +170,10 @@ export default {
 					'0%, 100%': { transform: 'translateY(0px)' },
 					'50%': { transform: 'translateY(-10px)' }
 				},
+				'float-gentle': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-8px)' }
+				},
 				'pulse-glow': {
 					'0%, 100%': { opacity: '1', transform: 'scale(1)' },
 					'50%': { opacity: '0.8', transform: 'scale(1.05)' }
@@ -181,6 +186,17 @@ export default {
 					'0%': { opacity: '0.5' },
 					'50%': { opacity: '1' },
 					'100%': { opacity: '0.5' }
+				},
+				'spin': {
+					from: { transform: 'rotate(0deg)' },
+					to: { transform: 'rotate(360deg)' }
+				},
+				'travel': {
+					'0%': { transform: 'translate(0, 0)', opacity: '0' },
+					'10%': { opacity: '0' },
+					'20%': { opacity: '1' },
+					'80%': { opacity: '1' },
+					'100%': { transform: 'translate(var(--tx), var(--ty))', opacity: '0' }
 				}
 			},
 			animation: {
@@ -193,11 +209,17 @@ export default {
 				'slide-in-right': 'slide-in-right 0.6s ease-out',
 				'glow': 'glow 2s ease-in-out infinite alternate',
 				'float': 'float 3s ease-in-out infinite',
+				'float-gentle': 'float-gentle 5s ease-in-out infinite',
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
 				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
-				'shimmer': 'shimmer 1.5s ease-in-out infinite'
+				'shimmer': 'shimmer 1.5s ease-in-out infinite',
+				'spin-slow': 'spin 20s linear infinite',
+				'spin-ultra-slow': 'spin 60s linear infinite',
+				'spin-slow-reverse': 'spin 20s linear infinite reverse',
+				'matrix-flow': 'flow 1.5s linear infinite',
+				'packet': 'travel 3s linear infinite'
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;

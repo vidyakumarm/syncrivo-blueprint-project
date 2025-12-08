@@ -15,7 +15,7 @@ export interface LogEntry {
   level: LogLevel;
   component: string;
   message: string;
-  data?: any;
+  data?: unknown;
   userId?: string;
   sessionId?: string;
 }
@@ -39,7 +39,7 @@ class Logger {
     level: LogLevel,
     component: string,
     message: string,
-    data?: any,
+    data?: unknown,
     userId?: string
   ): LogEntry {
     return {
@@ -68,22 +68,22 @@ class Logger {
     }
   }
 
-  debug(component: string, message: string, data?: any, userId?: string) {
+  debug(component: string, message: string, data?: unknown, userId?: string) {
     const entry = this.createLogEntry(LogLevel.DEBUG, component, message, data, userId);
     console.log(this.formatLog(entry), entry);
   }
 
-  info(component: string, message: string, data?: any, userId?: string) {
+  info(component: string, message: string, data?: unknown, userId?: string) {
     const entry = this.createLogEntry(LogLevel.INFO, component, message, data, userId);
     console.log(this.formatLog(entry), entry);
   }
 
-  warn(component: string, message: string, data?: any, userId?: string) {
+  warn(component: string, message: string, data?: unknown, userId?: string) {
     const entry = this.createLogEntry(LogLevel.WARN, component, message, data, userId);
     console.warn(this.formatLog(entry), entry);
   }
 
-  error(component: string, message: string, data?: any, userId?: string) {
+  error(component: string, message: string, data?: unknown, userId?: string) {
     const entry = this.createLogEntry(LogLevel.ERROR, component, message, data, userId);
     console.error(this.formatLog(entry), entry);
   }
@@ -98,20 +98,22 @@ class Logger {
   }
 
   // User interaction logging
-  userAction(component: string, action: string, data?: any, userId?: string) {
+  userAction(component: string, action: string, data?: unknown, userId?: string) {
     this.info('UserAction', `${action} in ${component}`, data, userId);
   }
 
   // API call logging
-  apiCall(endpoint: string, method: string, data?: any, userId?: string) {
+  apiCall(endpoint: string, method: string, data?: unknown, userId?: string) {
     this.info('ApiCall', `${method} ${endpoint}`, data, userId);
   }
 
   // Error handling
-  apiError(endpoint: string, method: string, error: any, userId?: string) {
+  apiError(endpoint: string, method: string, error: unknown, userId?: string) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorStack = error instanceof Error ? error.stack : undefined;
     this.error('ApiError', `${method} ${endpoint} failed`, {
-      error: error.message || error,
-      stack: error.stack
+      error: errorMessage,
+      stack: errorStack
     }, userId);
   }
 
@@ -128,14 +130,14 @@ class Logger {
 export const logger = new Logger();
 
 // Convenience exports for common logging patterns
-export const logPageView = (pageName: string, path: string, userId?: string) => 
+export const logPageView = (pageName: string, path: string, userId?: string) =>
   logger.pageView(pageName, path, userId);
 
-export const logUserAction = (component: string, action: string, data?: any, userId?: string) => 
+export const logUserAction = (component: string, action: string, data?: unknown, userId?: string) =>
   logger.userAction(component, action, data, userId);
 
-export const logApiCall = (endpoint: string, method: string, data?: any, userId?: string) => 
+export const logApiCall = (endpoint: string, method: string, data?: unknown, userId?: string) =>
   logger.apiCall(endpoint, method, data, userId);
 
-export const logError = (component: string, message: string, error?: any, userId?: string) => 
+export const logError = (component: string, message: string, error?: unknown, userId?: string) =>
   logger.error(component, message, error, userId);

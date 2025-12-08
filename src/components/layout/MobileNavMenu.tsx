@@ -22,7 +22,7 @@ interface MobileNavMenuProps {
 export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: MobileNavMenuProps) {
   const { t } = useTranslation();
   const location = useLocation();
-  
+
   const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + '/');
   const displayName = user?.user_metadata?.display_name || user?.email;
 
@@ -34,29 +34,28 @@ export function MobileNavMenu({ navItems, user, onSignOut, onLinkClick }: Mobile
   // Conditionally add dashboard link for authenticated users only
   const translatedNavItems = [
     ...(user ? [{ label: t('dashboard.title'), href: '/dashboard' }] : []),
-    ...navItems.flatMap(item => 
+    ...navItems.flatMap(item =>
       item.children ? item.children : [item]
     )
   ];
 
   return (
-    <div className="md:hidden border-t border-border">
+    <div className="lg:hidden border-t border-border">
       <div className="py-4 space-y-2">
         {translatedNavItems.map((item) => (
           <Link
             key={item.href}
             to={item.href}
-            className={`block px-3 py-2 text-sm rounded-md ${
-              isActive(item.href)
+            className={`block px-3 py-2 text-sm rounded-md ${isActive(item.href)
                 ? 'text-primary bg-primary-light'
                 : 'text-muted-foreground hover:text-foreground hover:bg-accent/10'
-            }`}
+              }`}
             onClick={onLinkClick}
           >
             {item.label}
           </Link>
         ))}
-        
+
         <div className="pt-4 border-t border-border space-y-2">
           {user ? (
             <>

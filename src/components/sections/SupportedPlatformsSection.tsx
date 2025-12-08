@@ -3,11 +3,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  Users, 
-  MessageSquare, 
-  Video, 
-  Phone, 
+import {
+  Users,
+  MessageSquare,
+  Video,
+  Phone,
   Globe,
   Building,
   Code,
@@ -58,7 +58,7 @@ interface PlatformCategory {
   id: string;
   title: string;
   description: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
   color: string;
   platforms: Platform[];
 }
@@ -135,7 +135,7 @@ export function SupportedPlatformsSection() {
     <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-muted/30 to-accent/10 relative overflow-hidden">
       {/* Background enhancement */}
       <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
-      
+
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
@@ -160,11 +160,10 @@ export function SupportedPlatformsSection() {
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
-                    selectedCategory === category.id
+                  className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${selectedCategory === category.id
                       ? 'bg-primary text-primary-foreground shadow-brand-md'
                       : 'hover:bg-muted/50'
-                  }`}
+                    }`}
                 >
                   <category.icon className="w-4 h-4" />
                   <span className="hidden sm:inline">{category.title.split(' ')[0]}</span>
@@ -196,23 +195,23 @@ export function SupportedPlatformsSection() {
                   >
                     <CardContent className="p-0 space-y-4">
                       {/* Platform Icon and Name */}
-                       <div className="flex items-center space-x-3 mb-4">
-                         <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md group-hover:shadow-lg border border-border/20">
-                           <img 
-                             src={platform.logoUrl} 
-                             alt={`${platform.name} logo`}
-                             className="w-8 h-8 object-contain"
-                             onError={(e) => {
-                               const img = e.currentTarget as HTMLImageElement;
-                               const fallback = img.nextElementSibling as HTMLElement;
-                               img.style.display = 'none';
-                               if (fallback) fallback.style.display = 'flex';
-                             }}
-                           />
-                           <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center text-sm font-bold text-white hidden">
-                             {platform.name.slice(0, 2).toUpperCase()}
-                           </div>
-                         </div>
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md group-hover:shadow-lg border border-border/20">
+                          <img
+                            src={platform.logoUrl}
+                            alt={`${platform.name} logo`}
+                            className="w-8 h-8 object-contain"
+                            onError={(e) => {
+                              const img = e.currentTarget as HTMLImageElement;
+                              const fallback = img.nextElementSibling as HTMLElement;
+                              img.style.display = 'none';
+                              if (fallback) fallback.style.display = 'flex';
+                            }}
+                          />
+                          <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center text-sm font-bold text-white hidden">
+                            {platform.name.slice(0, 2).toUpperCase()}
+                          </div>
+                        </div>
                         <div>
                           <h4 className="font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                             {platform.name}
@@ -251,7 +250,7 @@ export function SupportedPlatformsSection() {
                 <p className="text-muted-foreground mb-6">
                   {t('platforms.connect_tools', 'Connect all your tools for seamless workflow automation')}
                 </p>
-                <Button 
+                <Button
                   className="group bg-gradient-primary hover:bg-gradient-primary-hover text-white font-semibold px-8 py-3 rounded-full shadow-brand-lg hover:shadow-brand-xl transform hover:scale-105 transition-all duration-300"
                 >
                   {t('platforms.start_integration', 'Start Integration')}
@@ -269,15 +268,15 @@ export function SupportedPlatformsSection() {
             {t('platforms.cta_subtitle', 'Join thousands of teams already using SyncRivo® to streamline their communication workflows')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              variant="secondary" 
+            <Button
+              variant="secondary"
               size="lg"
               className="bg-white text-primary hover:bg-gray-50 font-bold px-8 py-4 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               {t('platforms.view_integrations', 'View All Integrations')}
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
               className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-8 py-4 text-lg transition-all duration-300"
             >

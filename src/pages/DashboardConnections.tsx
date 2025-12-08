@@ -1,387 +1,417 @@
 import { useState } from 'react';
-import { DashboardLayout } from '@/components/layout/DashboardLayout';
-import { useTranslation } from 'react-i18next';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useConnections } from '@/hooks/useDashboardData';
+import { Textarea } from '@/components/ui/textarea';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
-import { 
-  Plus, 
-  Search, 
-  Settings, 
-  Play, 
-  Pause,
-  Activity,
-  AlertCircle
-} from 'lucide-react';
+import { AlertCircle, CheckCircle2, Code, FileJson, Loader2, Sparkles, X } from 'lucide-react';
+import { EXAMPLE_TEMPLATES, TEMPLATE_LABELS } from '@/data/exampleTemplates';
 
-export default function DashboardConnections() {
-  const { t } = useTranslation();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
-  const [selectedConnection, setSelectedConnection] = useState<any>(null);
-  const [newConnection, setNewConnection] = useState({
-    name: '',
-    type: '',
-    icon: '🔗'
-  });
-  const { connections, loading, addConnection, updateConnection, deleteConnection } = useConnections();
+const DashboardConnections = () => {
+  const [jsonInput, setJsonInput] = useState('');
+  const [jsonError, setJsonError] = useState('');
+  const [backendError, setBackendError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isUpdateMode, setIsUpdateMode] = useState(false);
   const { toast } = useToast();
 
-  const filteredConnections = connections.filter(connection =>
-    connection.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    connection.type.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleJsonChange = (value: string) => {
+    setJsonInput(value);
+    setBackendError('');
+    setSuccessMessage('');
 
-  const toggleConnectionStatus = async (connectionId: string) => {
-    const connection = connections.find(conn => conn.id === connectionId);
-    if (!connection) return;
-    
-    const newStatus = connection.status === 'active' ? 'paused' : 'active';
-    const success = await updateConnection(connectionId, { status: newStatus });
-    
-    if (success) {
+    if (!value.trim()) {
+      setJsonError('');
+      setIsUpdateMode(false);
+      return;
+    }
+
+    // Only check JSON syntax
+    try {
+      const parsed = JSON.parse(value);
+      setJsonError('');
+      setIsUpdateMode(!!(parsed._id && parsed._id.$oid));
+    } catch (e) {
+      setJsonError('Invalid JSON syntax');
+      setIsUpdateMode(false);
+    }
+  };
+
+  const handleAutoFormat = () => {
+    try {
+      const parsed = JSON.parse(jsonInput);
+      const formatted = JSON.stringify(parsed, null, 2);
+      setJsonInput(formatted);
       toast({
-        title: "Connection updated",
-        description: `Connection ${newStatus === 'active' ? 'resumed' : 'paused'} successfully.`,
+        title: 'Formatted',
+        description: 'JSON has been auto-formatted',
       });
-    } else {
+    } catch (e) {
       toast({
-        title: "Error",
-        description: "Failed to update connection status.",
-        variant: "destructive",
+        title: 'Cannot Format',
+        description: 'Invalid JSON syntax',
+        variant: 'destructive',
       });
     }
   };
 
-  const handleSettingsClick = (connectionId: string) => {
-    const connection = connections.find(conn => conn.id === connectionId);
-    if (connection) {
-      setSelectedConnection(connection);
-      setSettingsDialogOpen(true);
-    }
-  };
-
-  const handleUpdateConnection = async () => {
-    if (!selectedConnection) return;
-    
-    const success = await updateConnection(selectedConnection.id, {
-      name: selectedConnection.name,
-      type: selectedConnection.type,
-      icon: selectedConnection.icon,
-      status: selectedConnection.status
+  const handleLoadTemplate = (templateKey: string) => {
+    const template = EXAMPLE_TEMPLATES[templateKey];
+    const prettyJson = JSON.stringify(template, null, 2);
+    setJsonInput(prettyJson);
+    handleJsonChange(prettyJson);
+    setSuccessMessage('');
+    setBackendError('');
+    toast({
+      title: 'Template Loaded',
+      description: `Loaded ${TEMPLATE_LABELS[templateKey]} template`,
     });
-    
-    if (success) {
-      toast({
-        title: "Connection updated",
-        description: "Connection settings updated successfully.",
-      });
-      setSettingsDialogOpen(false);
-      setSelectedConnection(null);
-    } else {
-      toast({
-        title: "Error",
-        description: "Failed to update connection.",
-        variant: "destructive",
-      });
-    }
   };
 
-  const handleNewConnection = async () => {
-    if (!newConnection.name || !newConnection.type) {
+  const handleCreate = async () => {
+    if (jsonError) {
       toast({
-        title: "Missing fields",
-        description: "Please fill in all required fields.",
-        variant: "destructive",
+        title: 'Invalid JSON',
+        description: 'Please fix JSON syntax before submitting',
+        variant: 'destructive',
       });
       return;
     }
-    
-    const success = await addConnection({
-      name: newConnection.name,
-      type: newConnection.type,
-      status: 'active',
-      last_sync: null,
-      sync_count: 0,
-      icon: newConnection.icon
-    });
-    
-    if (success) {
+
+    try {
+      setIsLoading(true);
+      setBackendError('');
+      setSuccessMessage('');
+
+      const payload = JSON.parse(jsonInput);
+      delete payload._id; // Remove _id for create
+
+      const response = await fetch(
+        'https://asia-south1-testing-474706.cloudfunctions.net/create-channel',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+          mode: 'cors',
+        }
+      );
+
+      const responseText = await response.text();
+
+      if (!response.ok) {
+        setBackendError(responseText || `HTTP ${response.status}: ${response.statusText}`);
+        return;
+      }
+
+      // Success
+      setSuccessMessage('Channel created successfully!');
+      setJsonInput('');
+      setJsonError('');
+
       toast({
-        title: "Connection created",
-        description: "New connection added successfully.",
+        title: 'Success!',
+        description: 'Channel created successfully',
       });
-      setNewConnection({ name: '', type: '', icon: '🔗' });
-      setIsDialogOpen(false);
-    } else {
+
+    } catch (error: any) {
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        setBackendError('CORS Error: Unable to connect to backend. The server needs to allow requests from this origin.');
+      } else {
+        setBackendError(error.message || 'Unknown error occurred');
+      }
+
+      console.error('[SyncRivo Connections] Error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleUpdate = async () => {
+    if (jsonError) {
       toast({
-        title: "Error",
-        description: "Failed to create connection.",
-        variant: "destructive",
+        title: 'Invalid JSON',
+        description: 'Please fix JSON syntax before submitting',
+        variant: 'destructive',
       });
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      setBackendError('');
+      setSuccessMessage('');
+
+      const payload = JSON.parse(jsonInput);
+
+      if (!payload._id || !payload._id.$oid) {
+        setBackendError('Missing _id.$oid for update operation');
+        return;
+      }
+
+      const response = await fetch(
+        'https://asia-south1-testing-474706.cloudfunctions.net/update-channel',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+          mode: 'cors',
+        }
+      );
+
+      const responseText = await response.text();
+
+      if (!response.ok) {
+        setBackendError(responseText || `HTTP ${response.status}: ${response.statusText}`);
+        return;
+      }
+
+      // Success
+      setSuccessMessage('Channel updated successfully!');
+
+      toast({
+        title: 'Success!',
+        description: 'Channel updated successfully',
+      });
+
+    } catch (error: any) {
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        setBackendError('CORS Error: Unable to connect to backend. The server needs to allow requests from this origin.');
+      } else {
+        setBackendError(error.message || 'Unknown error occurred');
+      }
+
+      console.error('[SyncRivo Connections] Error:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const connectionTypes = [
-    'Microsoft Teams',
-    'Webex Teams', 
-    'Google Chat',
-    'Zoom Chat',
-    'Slack',
-    'Discord',
-    'Mattermost',
-    'Telegram'
-  ];
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active': return 'bg-success text-success-foreground';
-      case 'paused': return 'bg-accent text-accent-foreground';
-      case 'error': return 'bg-destructive text-destructive-foreground';
-      default: return 'bg-secondary text-secondary-foreground';
-    }
+  const handleReset = () => {
+    setJsonInput('');
+    setJsonError('');
+    setBackendError('');
+    setSuccessMessage('');
+    setIsUpdateMode(false);
   };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'active': return <Activity className="h-3 w-3" />;
-      case 'paused': return <Pause className="h-3 w-3" />;
-      case 'error': return <AlertCircle className="h-3 w-3" />;
-      default: return null;
-    }
-  };
+  const isValid = !jsonError && jsonInput.trim().length > 0;
 
   return (
-    <DashboardLayout>
-      <div className="space-y-8">
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">{t('dashboard.connections.title')}</h1>
-            <p className="text-muted-foreground">{t('dashboard.connections.subtitle')}</p>
-          </div>
-          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-gradient-primary">
-                <Plus className="h-4 w-4 mr-2" />
-                Connect Platform
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Connect New Messaging Platform</DialogTitle>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="name">Platform Name</Label>
-                  <Input
-                    id="name"
-                    placeholder="e.g., Marketing Team Slack, Sales Webex"
-                    value={newConnection.name}
-                    onChange={(e) => setNewConnection(prev => ({ ...prev, name: e.target.value }))}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="type">Platform Type</Label>
-                  <Select value={newConnection.type} onValueChange={(value) => setNewConnection(prev => ({ ...prev, type: value }))}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select messaging platform" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {connectionTypes.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="icon">Icon (Emoji)</Label>
-                  <Input
-                    id="icon"
-                    placeholder="🔗"
-                    value={newConnection.icon}
-                    onChange={(e) => setNewConnection(prev => ({ ...prev, icon: e.target.value }))}
-                    maxLength={2}
-                  />
-                </div>
-              </div>
-              <div className="flex justify-end space-x-2">
-                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                  Cancel
-                </Button>
-                <Button 
-                  onClick={handleNewConnection}
-                  disabled={!newConnection.name || !newConnection.type}
-                  className="bg-gradient-primary"
-                >
-                  Connect Platform
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
-        </div>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12">
+      <div className="max-w-6xl mx-auto px-6">
+        <Card className="max-w-4xl mx-auto shadow-lg">
+          <CardHeader className="text-center pb-6">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Code className="w-6 h-6 text-primary" />
+              <CardTitle className="text-3xl font-bold">Connections</CardTitle>
+            </div>
+            <CardDescription className="text-base">
+              Create and manage cross-platform channels. No validation - send any JSON structure.
+            </CardDescription>
 
-        {/* Search and Filters */}
-        <div className="flex items-center space-x-4">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search messaging platforms..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-        </div>
-
-        {/* Connections Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredConnections.map((connection) => (
-            <Card key={connection.id} className="bg-gradient-card shadow-brand-sm hover:shadow-brand-md transition-all">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl">{connection.icon}</span>
-                    <div>
-                      <CardTitle className="text-lg">{connection.name}</CardTitle>
-                      <p className="text-sm text-muted-foreground">{connection.type}</p>
-                    </div>
-                  </div>
-                  <Badge className={`${getStatusColor(connection.status)} flex items-center space-x-1`}>
-                    {getStatusIcon(connection.status)}
-                    <span className="capitalize">{connection.status}</span>
-                  </Badge>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="space-y-3">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Last sync:</span>
-                    <span className="text-foreground">{connection.last_sync || 'Never'}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Total syncs:</span>
-                    <span className="text-foreground">{connection.sync_count.toLocaleString()}</span>
-                  </div>
-                  <div className="flex space-x-2 pt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1"
-                      onClick={() => toggleConnectionStatus(connection.id)}
-                    >
-                      {connection.status === 'active' ? (
-                        <>
-                          <Pause className="h-3 w-3 mr-1" />
-                          Pause
-                        </>
-                      ) : (
-                        <>
-                          <Play className="h-3 w-3 mr-1" />
-                          Resume
-                        </>
-                      )}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleSettingsClick(connection.id)}
-                    >
-                      <Settings className="h-3 w-3" />
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {filteredConnections.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">No messaging platforms found matching your search.</p>
-          </div>
-        )}
-
-        {/* Settings Dialog */}
-        <Dialog open={settingsDialogOpen} onOpenChange={setSettingsDialogOpen}>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Platform Settings</DialogTitle>
-            </DialogHeader>
-            {selectedConnection && (
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="settings-name">Platform Name</Label>
-                  <Input
-                    id="settings-name"
-                    value={selectedConnection.name}
-                    onChange={(e) => setSelectedConnection(prev => prev ? { ...prev, name: e.target.value } : null)}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="settings-type">Platform Type</Label>
-                  <Select value={selectedConnection.type} onValueChange={(value) => setSelectedConnection(prev => prev ? { ...prev, type: value } : null)}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {connectionTypes.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="settings-icon">Icon (Emoji)</Label>
-                  <Input
-                    id="settings-icon"
-                    value={selectedConnection.icon}
-                    onChange={(e) => setSelectedConnection(prev => prev ? { ...prev, icon: e.target.value } : null)}
-                    maxLength={2}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="settings-status">Status</Label>
-                  <Select 
-                    value={selectedConnection.status} 
-                    onValueChange={(value: 'active' | 'paused' | 'error') => 
-                      setSelectedConnection(prev => prev ? { ...prev, status: value } : null)
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="paused">Paused</SelectItem>
-                      <SelectItem value="error">Error</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+            {isUpdateMode && (
+              <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
+                <FileJson className="w-4 h-4" />
+                Update Mode (has _id)
               </div>
             )}
-            <div className="flex justify-end space-x-2">
-              <Button variant="outline" onClick={() => setSettingsDialogOpen(false)}>
-                Cancel
-              </Button>
-              <Button onClick={handleUpdateConnection} className="bg-gradient-primary">
-                Update Platform
-              </Button>
+          </CardHeader>
+
+          <CardContent className="space-y-6">
+            {/* Success Banner */}
+            {successMessage && (
+              <Alert className="border-green-200 bg-green-50 dark:bg-green-950 dark:border-green-800">
+                <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
+                <AlertDescription className="flex items-center justify-between">
+                  <span className="text-green-700 dark:text-green-300 font-medium">
+                    {successMessage}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSuccessMessage('')}
+                    className="h-6 w-6 p-0"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {/* Error Banner */}
+            {backendError && (
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1">
+                      <div className="font-semibold mb-2">Backend Error:</div>
+                      <pre className="text-xs whitespace-pre-wrap font-mono bg-red-50 dark:bg-red-950 p-3 rounded border border-red-200 dark:border-red-800">
+                        {backendError}
+                      </pre>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setBackendError('')}
+                      className="h-6 w-6 p-0 flex-shrink-0"
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {/* JSON Syntax Error */}
+            {jsonError && !backendError && (
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{jsonError}</AlertDescription>
+              </Alert>
+            )}
+
+            {/* JSON Editor */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-semibold text-foreground">
+                  JSON Payload
+                </label>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleAutoFormat}
+                  disabled={!jsonInput || isLoading}
+                >
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Auto-Format
+                </Button>
+              </div>
+              <Textarea
+                value={jsonInput}
+                onChange={(e) => handleJsonChange(e.target.value)}
+                placeholder='Paste any JSON here. Example:
+{
+  "channel_id": "AAQAWWyiEBo",
+  "name": "General",
+  "provider": "google",
+  "routes": {
+    "to": "teams"
+  }
+}'
+                className="font-mono text-sm min-h-[400px] resize-y"
+                spellCheck={false}
+              />
+              <p className="text-xs text-muted-foreground">
+                No validation applied. Backend will process any valid JSON structure.
+              </p>
             </div>
-          </DialogContent>
-        </Dialog>
+
+            {/* Example Templates */}
+            <div className="space-y-3">
+              <label className="text-sm font-semibold text-foreground">
+                Quick Start Templates
+              </label>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {Object.keys(EXAMPLE_TEMPLATES).map((key) => (
+                  <Button
+                    key={key}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleLoadTemplate(key)}
+                    disabled={isLoading}
+                    className="justify-start"
+                  >
+                    <FileJson className="w-4 h-4 mr-2" />
+                    {TEMPLATE_LABELS[key]}
+                  </Button>
+                ))}
+              </div>
+              <Alert className="border-amber-200 bg-amber-50 dark:bg-amber-950 dark:border-amber-800">
+                <AlertCircle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                <AlertDescription className="text-amber-700 dark:text-amber-300 text-xs">
+                  <strong>Templates contain placeholder values only.</strong> Replace all example IDs (channel_id, team_id, secrets, etc.) with your real values before creating a channel.
+                </AlertDescription>
+              </Alert>
+            </div>
+
+
+            {/* Action Buttons */}
+            <div className="flex items-center justify-end gap-3 pt-4">
+              <Button
+                variant="outline"
+                onClick={handleReset}
+                disabled={isLoading || !jsonInput}
+              >
+                Reset
+              </Button>
+
+              {isUpdateMode ? (
+                <Button
+                  onClick={handleUpdate}
+                  disabled={!isValid || isLoading}
+                  className="min-w-[140px]"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Updating...
+                    </>
+                  ) : (
+                    'Update Channel'
+                  )}
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleCreate}
+                  disabled={!isValid || isLoading}
+                  className="min-w-[140px]"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Creating...
+                    </>
+                  ) : (
+                    'Create Channel'
+                  )}
+                </Button>
+              )}
+            </div>
+
+            {/* Help Text */}
+            <div className="pt-4 border-t">
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                <strong>CORS Note:</strong> If you see "Failed to fetch" errors, the backend Cloud Function needs CORS headers configured.
+                Contact your backend team to enable CORS for this origin.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* API Info */}
+        <div className="max-w-4xl mx-auto mt-6">
+          <Card className="bg-slate-100 dark:bg-slate-900">
+            <CardContent className="p-4">
+              <div className="space-y-2">
+                <p className="text-xs font-semibold text-foreground">Backend Endpoints:</p>
+                <code className="block text-[10px] text-muted-foreground">POST https://asia-south1-testing-474706.cloudfunctions.net/create-channel</code>
+                <code className="block text-[10px] text-muted-foreground">POST https://asia-south1-testing-474706.cloudfunctions.net/update-channel</code>
+                <p className="text-xs text-muted-foreground pt-2">
+                  <strong>Backend Requirements:</strong> Endpoints must handle OPTIONS requests and return proper CORS headers.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </DashboardLayout>
+    </div>
   );
-}
+};
+
+export default DashboardConnections;
