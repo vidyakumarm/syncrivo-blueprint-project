@@ -174,6 +174,14 @@ export default {
 					'0%, 100%': { transform: 'translateY(0px)' },
 					'50%': { transform: 'translateY(-8px)' }
 				},
+				'hub-float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-8px)' }
+				},
+				'glow-float': {
+					'0%, 100%': { transform: 'translateY(2px) scale(1)', opacity: '0.4' },
+					'50%': { transform: 'translateY(-6px) scale(1.02)', opacity: '0.6' }
+				},
 				'pulse-glow': {
 					'0%, 100%': { opacity: '1', transform: 'scale(1)' },
 					'50%': { opacity: '0.8', transform: 'scale(1.05)' }
@@ -210,6 +218,8 @@ export default {
 				'glow': 'glow 2s ease-in-out infinite alternate',
 				'float': 'float 3s ease-in-out infinite',
 				'float-gentle': 'float-gentle 5s ease-in-out infinite',
+				'hub-float': 'hub-float 5s ease-in-out infinite',
+				'glow-float': 'glow-float 5s ease-in-out infinite',
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
 				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
 				'shimmer': 'shimmer 1.5s ease-in-out infinite',
