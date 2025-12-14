@@ -181,11 +181,11 @@ export function HeroSection() {
 
           {/* Right Side - Hub Animation */}
           <div
-            className={`flex flex-col items-center justify-center lg:items-end lg:pr-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`flex flex-col items-center justify-center lg:items-end lg:pr-8 transition-all duration-700 lg:-mt-16 xl:-mt-20 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionDelay: "200ms" }}
           >
             {/* Floating Hub Wrapper */}
-            <div className="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] flex items-center justify-center">
+            <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] lg:w-[580px] lg:h-[580px] flex items-center justify-center">
               {/* Defer animation to avoid blocking LCP */}
               <HeroLoopAnimation isVisible={isVisible} />
             </div>

@@ -45,11 +45,24 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
     const [mounted, setMounted] = useState(false);
     // console.log removed - was placed before variables were defined
 
+    const [hubRadius, setHubRadius] = useState(160);
+
     useEffect(() => {
         setMounted(true);
-    }, []);
+        const handleResize = () => {
+            if (window.innerWidth >= 1024) {
+                setHubRadius(220); // Enterprise breathing room
+            } else if (window.innerWidth >= 640) {
+                setHubRadius(180);
+            } else {
+                setHubRadius(135);
+            }
+        };
 
-    const hubRadius = 160;
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const getPlatformPosition = (angle: number) => {
         const radian = (angle * Math.PI) / 180;
@@ -63,7 +76,6 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
     const prefersReducedMotion =
         typeof window !== "undefined" &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // console.log removed
 
     // Render nothing until mounted on client to defer animation load
     if (!mounted) {
@@ -84,18 +96,18 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
     return (
         <div role="region" className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
             {/* Pointer events re-enabled for interactive elements inside */}
-            <div className="relative w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] lg:w-[440px] lg:h-[440px] pointer-events-auto">
-                {/* Outer glow rings */}
+            <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] lg:w-[580px] lg:h-[580px] pointer-events-auto">
+                {/* Outer glow rings - scaled up */}
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div
-                        className="absolute w-72 h-72 sm:w-80 sm:h-80 rounded-full border border-slate-200/40 dark:border-slate-700/30 animate-pulse-slow"
+                        className="absolute w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] lg:w-[480px] lg:h-[480px] rounded-full border border-slate-200/40 dark:border-slate-700/30 animate-pulse-slow"
                     />
                     <div
-                        className="absolute w-60 h-60 sm:w-68 sm:h-68 rounded-full border border-slate-300/30 dark:border-slate-600/20 animate-[pulse-slow_4s_ease-in-out_infinite_1s]"
+                        className="absolute w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] lg:w-[400px] lg:h-[400px] rounded-full border border-slate-300/30 dark:border-slate-600/20 animate-[pulse-slow_4s_ease-in-out_infinite_1s]"
                     />
                     {/* Radial glow */}
                     <div
-                        className="w-48 h-48 bg-gradient-radial from-primary/20 via-primary/5 to-transparent rounded-full blur-2xl animate-[pulse-glow_3s_ease-in-out_infinite]"
+                        className="w-48 h-48 lg:w-64 lg:h-64 bg-gradient-radial from-primary/20 via-primary/5 to-transparent rounded-full blur-2xl animate-[pulse-glow_3s_ease-in-out_infinite]"
                     />
                 </div>
 
