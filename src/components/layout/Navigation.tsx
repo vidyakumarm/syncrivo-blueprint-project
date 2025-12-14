@@ -33,8 +33,8 @@ export function Navigation() {
   };
 
   const navItems = [
-    { 
-      label: t('nav.solutions', 'Solutions'), 
+    {
+      label: t('nav.solutions', 'Solutions'),
       href: '/solutions',
       children: [
         { label: t('solutions.frontline.badge', 'Frontline Workforce'), href: '/solutions/frontline-workforce' },
@@ -50,8 +50,8 @@ export function Navigation() {
     { label: t('common.features'), href: '/features' },
     { label: t('common.integrations'), href: '/integrations' },
     { label: t('common.pricing'), href: '/pricing' },
-    { 
-      label: t('nav.resources'), 
+    {
+      label: t('nav.resources'),
       href: '/docs',
       children: [
         { label: t('common.documentation'), href: '/docs' },
@@ -62,59 +62,63 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo */}
-          <NavigationHeader />
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-[var(--header-height)]">
+            {/* Logo */}
+            <NavigationHeader />
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <DesktopNavMenu navItems={navItems} />
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              <DesktopNavMenu navItems={navItems} />
 
-            {/* Language Selector, Theme Toggle & Auth Buttons */}
-            <div className="flex items-center space-x-4 xl:space-x-6 pl-4 xl:pl-6 border-l border-border/30">
-              <LanguageSelector />
-              <ThemeToggle />
-              
-              {user ? (
-                <UserAccountMenu user={user} onSignOut={handleSignOut} />
-              ) : (
-                <AuthenticationButtons />
-              )}
+              {/* Language Selector, Theme Toggle & Auth Buttons */}
+              <div className="flex items-center space-x-4 xl:space-x-6 pl-4 xl:pl-6 border-l border-border/30">
+                <LanguageSelector />
+                <ThemeToggle />
+
+                {user ? (
+                  <UserAccountMenu user={user} onSignOut={handleSignOut} />
+                ) : (
+                  <AuthenticationButtons />
+                )}
+              </div>
+            </div>
+
+            {/* Mobile: Theme & Language before hamburger */}
+            <div className="flex items-center space-x-2 lg:hidden">
+              <div className="hidden sm:flex items-center space-x-2">
+                <LanguageSelector />
+                <ThemeToggle />
+              </div>
+
+              {/* Mobile menu button */}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-10 w-10 p-0"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle navigation menu"
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
             </div>
           </div>
 
-          {/* Mobile: Theme & Language before hamburger */}
-          <div className="flex items-center space-x-2 lg:hidden">
-            <div className="hidden sm:flex items-center space-x-2">
-              <LanguageSelector />
-              <ThemeToggle />
-            </div>
-            
-            {/* Mobile menu button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-10 w-10 p-0"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle navigation menu"
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <MobileNavMenu
+              navItems={navItems}
+              user={user}
+              onSignOut={handleSignOut}
+              onLinkClick={() => setMobileMenuOpen(false)}
+            />
+          )}
         </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <MobileNavMenu 
-            navItems={navItems} 
-            user={user} 
-            onSignOut={handleSignOut}
-            onLinkClick={() => setMobileMenuOpen(false)}
-          />
-        )}
-      </div>
-    </nav>
+      </nav>
+      {/* Layout Spacer to prevent content overlap with fixed header */}
+      <div style={{ height: 'var(--header-height)' }} className="w-full shrink-0" aria-hidden="true" />
+    </>
   );
 }

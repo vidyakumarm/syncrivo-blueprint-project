@@ -10,4 +10,10 @@ console.log('🚀 [Main] Application starting up', {
   rootElement: document.getElementById("root"),
 });
 
-createRoot(document.getElementById("root")!).render(<App />);
+import { HelmetProvider } from 'react-helmet-async';
+
+createRoot(document.getElementById("root")!).render(
+  <HelmetProvider>
+    <App />
+  </HelmetProvider>
+);

@@ -16,6 +16,7 @@ import i18n from './lib/i18n';
 import Index from '@/pages/Index';
 import About from '@/pages/About';
 import Features from '@/pages/Features';
+import MessagingAutomation from '@/pages/features/MessagingAutomation';
 import Integrations from '@/pages/Integrations';
 import Pricing from '@/pages/Pricing';
 import Docs from '@/pages/Docs';
@@ -63,6 +64,20 @@ import GlobalSubsidiaries from '@/pages/solutions/GlobalSubsidiaries';
 import DigitalTransformation from '@/pages/solutions/DigitalTransformation';
 import DeveloperPlatform from '@/pages/solutions/DeveloperPlatform';
 
+// Region Pages
+import USA from '@/pages/regions/USA';
+import UK from '@/pages/regions/UK';
+import Europe from '@/pages/regions/Europe';
+import MiddleEast from '@/pages/regions/MiddleEast';
+import APAC from '@/pages/regions/APAC';
+
+// Comparison Pages
+import ZapierAlternative from '@/pages/alternatives/Zapier';
+import MioAlternative from '@/pages/alternatives/Mio';
+import ThenaAlternative from '@/pages/alternatives/Thena';
+
+import BlogPostPage from '@/pages/BlogPostPage';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -102,6 +117,7 @@ function App() {
                         <Route path="/" element={<Index />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/features" element={<Features />} />
+                        <Route path="/features/messaging-automation" element={<MessagingAutomation />} />
                         <Route path="/integrations" element={<Integrations />} />
                         <Route path="/pricing" element={<Pricing />} />
                         <Route path="/docs" element={<Docs />} />
@@ -136,6 +152,23 @@ function App() {
                         <Route path="/solutions/global-subsidiaries" element={<GlobalSubsidiaries />} />
                         <Route path="/solutions/digital-transformation" element={<DigitalTransformation />} />
                         <Route path="/solutions/developer-platform" element={<DeveloperPlatform />} />
+
+                        {/* Region Routes */}
+                        <Route path="/usa" element={<USA />} />
+                        <Route path="/uk" element={<UK />} />
+                        <Route path="/europe" element={<Europe />} />
+                        <Route path="/middle-east" element={<MiddleEast />} />
+                        <Route path="/apac" element={<APAC />} />
+
+                        {/* Comparison Pages */}
+                        <Route path="/alternatives/zapier" element={<ZapierAlternative />} />
+                        <Route path="/alternatives/mio" element={<MioAlternative />} />
+                        <Route path="/alternatives/thena" element={<ThenaAlternative />} />
+
+                        {/* Blog Routes */}
+                        <Route path="/blog/:slug" element={<BlogPostPage />} />
+
+
 
                         {/* Debug route */}
                         <Route path="/debug/animations" element={<DebugAnimations />} />

@@ -134,6 +134,10 @@ export default {
 				'102': '1.02',
 			},
 			keyframes: {
+				'water-distortion': {
+					'0%, 100%': { transform: 'scale(1) skew(0deg)', opacity: '0.1' },
+					'50%': { transform: 'scale(1.05) skew(1deg)', opacity: '0.2' }
+				},
 				'accordion-down': {
 					from: { height: '0', opacity: '0' },
 					to: { height: 'var(--radix-accordion-content-height)', opacity: '1' }
@@ -227,7 +231,10 @@ export default {
 				'spin-ultra-slow': 'spin 60s linear infinite',
 				'spin-slow-reverse': 'spin 20s linear infinite reverse',
 				'matrix-flow': 'flow 1.5s linear infinite',
-				'packet': 'travel 3s linear infinite'
+				'packet': 'travel 3s linear infinite',
+				'anti-gravity': 'anti-gravity 5s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+				'ripple-effect': 'ripple 3s linear infinite',
+				'water-distortion': 'water-distortion 2s ease-in-out infinite'
 			}
 		}
 	},
