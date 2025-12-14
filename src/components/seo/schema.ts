@@ -4,7 +4,7 @@ export function organizationSchema() {
         "@type": "Organization",
         "name": "SyncRivo",
         "url": "https://syncrivo.ai",
-        "logo": "https://syncrivo.ai/logo.png", // Assuming a logo exists
+        "logo": "https://syncrivo.ai/logo.png",
         "sameAs": [
             "https://twitter.com/syncrivo",
             "https://linkedin.com/company/syncrivo",
@@ -41,12 +41,14 @@ export function softwareApplicationSchema() {
         "name": "SyncRivo",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Cloud, Web, SaaS",
-        "description": "SyncRivo automates cross-platform messaging between Slack, Microsoft Teams, and Google Workspace for global teams.",
+        "displayTech": "React, TypeScript, Node.js",
+        "description": "The universal messaging layer for enterprise. SyncRivo automates secure message routing between Slack, Microsoft Teams, and Google Chat for global collaboration.",
         "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD",
-            "url": "https://syncrivo.ai/pricing"
+            "url": "https://syncrivo.ai/pricing",
+            "availability": "https://schema.org/InStock"
         },
         "aggregateRating": {
             "@type": "AggregateRating",

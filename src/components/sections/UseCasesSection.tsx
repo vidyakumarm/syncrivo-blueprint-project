@@ -50,10 +50,10 @@ export function UseCasesSection() {
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
-                        {t('use_cases.title', 'Enterprise Communication Use Cases')}
+                        {t('use_cases.title', 'Scalable Use Cases for Global Teams')}
                     </h2>
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        {t('use_cases.subtitle', 'Solve complex messaging workflows without changing your tech stack.')}
+                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                        {t('use_cases.subtitle', 'Designed for the complexity of modern enterprise. Unify operations, support, and external partnerships without changing your tech stack.')}
                     </p>
                 </div>
 

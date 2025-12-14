@@ -1,4 +1,4 @@
-import { ArrowRight, Workflow, Settings, Activity } from 'lucide-react';
+import { ArrowRight, Workflow, Settings, Activity, Zap, Shield } from 'lucide-react';
 import { useTranslationWithFallback } from '@/hooks/useTranslationWithFallback';
 
 export function HowItWorksSection() {
@@ -30,8 +30,12 @@ export function HowItWorksSection() {
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 tracking-tight">
-                        {t('how_it_works.title', 'How SyncRivo Works')}
+                        {t('how_it_works.title', 'Intelligent Automation Workflow')}
                     </h2>
+                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        Configure advanced message routing logic using our visual or reliable JSON configuration.
+                        Support for <span className="text-foreground font-medium">boolean logic</span>, time windows, and team-based escalation.
+                    </p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">

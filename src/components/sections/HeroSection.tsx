@@ -67,16 +67,21 @@ export function HeroSection() {
             {/* Headline */}
             <div className="space-y-6">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold leading-[1.1] tracking-tight text-foreground -ml-[2px]">
-                <span className="block">{t('hero.headline_prefix', 'Automate')}</span>
+                <span className="block">{t('hero.headline_prefix', 'Enterprise')}</span>
                 <span className="bg-gradient-to-r from-primary via-primary-600 to-accent bg-clip-text text-transparent pb-2 block">
-                  {t('hero.headline_highlight', 'Cross-Platform Messaging')}
+                  {t('hero.headline_highlight', 'Messaging Integration')}
                 </span>
-                <span className="block">{t('hero.headline_suffix', 'for Global Teams')}</span>
+                <span className="block">{t('hero.headline_suffix', '& Automation Platform')}</span>
               </h1>
 
-              <p className="text-lg sm:text-lg lg:text-xl text-muted-foreground max-w-xl leading-relaxed">
-                {t('hero.description', 'SyncRivo connects Slack, Microsoft Teams, and Google Workspace to route messages, alerts, and updates automatically—so teams respond faster without manual copy-paste.')}
-              </p>
+              <div className="space-y-4">
+                <p className="text-lg sm:text-lg lg:text-xl text-muted-foreground max-w-xl leading-relaxed">
+                  {t('hero.description', 'SyncRivo connects Slack, Microsoft Teams, and Google Workspace to route messages, alerts, and updates automatically—so teams respond faster without manual copy-paste.')}
+                </p>
+                <p className="text-base text-muted-foreground/80 max-w-xl leading-relaxed hidden sm:block">
+                  Designed for scalable enterprise environments, providing <Link to="/security" className="text-primary hover:underline underline-offset-4">audit-ready security</Link> and robust <Link to="/features" className="text-primary hover:underline underline-offset-4">automation workflows</Link> for cross-functional teams.
+                </p>
+              </div>
             </div>
 
             {/* CTA Buttons */}

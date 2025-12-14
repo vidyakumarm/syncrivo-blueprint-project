@@ -12,7 +12,7 @@ export function FinalCTASection() {
         <section className="py-24 bg-background text-center">
             <div className="max-w-3xl mx-auto px-6">
                 <h2 className="text-4xl sm:text-5xl font-bold mb-10 tracking-tight text-foreground">
-                    {t('final_cta.title', 'Ready to unify communication across tools?')}
+                    {t('final_cta.title', 'Ready to unify your communication stack?')}
                 </h2>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-5">

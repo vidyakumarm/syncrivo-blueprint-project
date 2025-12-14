@@ -1,0 +1,145 @@
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Suspense, lazy, useEffect } from 'react';
+import { I18nextProvider, useTranslation } from 'react-i18next';
+import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
+
+// ... (existing imports)
+
+{/* Public Routes Wrapped in MainLayout */ }
+{/* <Route element={<MainLayout />}> */ }
+<Route element={<Outlet />}>
+
+  import {AuthRedirect} from '@/components/auth/AuthRedirect';
+  import {ProtectedRoute} from '@/components/auth/ProtectedRoute';
+  import {ErrorBoundary} from '@/components/ErrorBoundary';
+  import {ThemeProvider} from '@/components/theme-provider';
+  import {ScrollToTop} from '@/components/ui/scroll-to-top';
+  import {Toaster} from '@/components/ui/toaster';
+  import {MainLayout} from '@/components/layout/MainLayout';
+  import {AuthProvider} from '@/contexts/AuthContext';
+  import {CookieProvider} from '@/contexts/CookieContext';
+// Lazy Load Pages
+const Index = lazy(() => import('@/pages/Index'));
+const About = lazy(() => import('@/pages/About'));
+const Careers = lazy(() => import('@/pages/Careers'));
+const Community = lazy(() => import('@/pages/Community'));
+const ContactSales = lazy(() => import('@/pages/ContactSales'));
+const CookiePolicy = lazy(() => import('@/pages/CookiePolicy'));
+
+// Dashboard Pages
+const Dashboard = lazy(() => import('@/pages/Dashboard'));
+const DashboardActivity = lazy(() => import('@/pages/DashboardActivity'));
+const DashboardConnections = lazy(() => import('@/pages/DashboardConnections'));
+const DashboardProfile = lazy(() => import('@/pages/DashboardProfile'));
+const DashboardSecurity = lazy(() => import('@/pages/DashboardSecurity'));
+const DashboardSettings = lazy(() => import('@/pages/DashboardSettings'));
+const DashboardTeam = lazy(() => import('@/pages/DashboardTeam'));
+
+const DebugAnimations = lazy(() => import('@/pages/DebugAnimations'));
+const Docs = lazy(() => import('@/pages/Docs'));
+const DocsApi = lazy(() => import('@/pages/DocsApi'));
+const DPA = lazy(() => import('@/pages/DPA'));
+const Features = lazy(() => import('@/pages/Features'));
+const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'));
+const IntegrationDetail = lazy(() => import('@/pages/IntegrationDetail'));
+const Integrations = lazy(() => import('@/pages/Integrations'));
+const Login = lazy(() => import('@/pages/Login'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
+const Privacy = lazy(() => import('@/pages/Privacy'));
+const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
+const Security = lazy(() => import('@/pages/Security'));
+const Signup = lazy(() => import('@/pages/Signup'));
+const Status = lazy(() => import('@/pages/Status'));
+const SubProcessors = lazy(() => import('@/pages/SubProcessors'));
+const Support = lazy(() => import('@/pages/Support'));
+const Terms = lazy(() => import('@/pages/Terms'));
+
+// Solution Pages
+const Solutions = lazy(() => import('@/pages/Solutions'));
+const CustomerSupport = lazy(() => import('@/pages/solutions/CustomerSupport'));
+const DeveloperPlatform = lazy(() => import('@/pages/solutions/DeveloperPlatform'));
+const DigitalTransformation = lazy(() => import('@/pages/solutions/DigitalTransformation'));
+const ExternalPartnerHub = lazy(() => import('@/pages/solutions/ExternalPartnerHub'));
+const FrontlineWorkforce = lazy(() => import('@/pages/solutions/FrontlineWorkforce'));
+const GlobalSubsidiaries = lazy(() => import('@/pages/solutions/GlobalSubsidiaries'));
+const IncidentResponse = lazy(() => import('@/pages/solutions/IncidentResponse'));
+const InterDepartment = lazy(() => import('@/pages/solutions/InterDepartment'));
+const MergersAcquisitions = lazy(() => import('@/pages/solutions/MergersAcquisitions'));
+const MultiPlatformCoexistence = lazy(() => import('@/pages/solutions/MultiPlatformCoexistence'));
+const RegulatedIndustries = lazy(() => import('@/pages/solutions/RegulatedIndustries'));
+const VendorFlexibility = lazy(() => import('@/pages/solutions/VendorFlexibility'));
+
+  import i18n from './lib/i18n';
+
+// Lazy load region pages
+const UsaPage = lazy(() => import('@/pages/regions/Usa'));
+const UkPage = lazy(() => import('@/pages/regions/Uk'));
+const EuropePage = lazy(() => import('@/pages/regions/Europe'));
+const IndiaPage = lazy(() => import('@/pages/regions/India'));
+const MiddleEastPage = lazy(() => import('@/pages/regions/MiddleEast'));
+const ApacPage = lazy(() => import('@/pages/regions/Apac'));
+
+// Lazy load feature pages (Enterprise SEO)
+const MessagingAutomationPage = lazy(() => import('@/pages/features/MessagingAutomation'));
+const TeamsSlackPage = lazy(() => import('@/pages/features/TeamsSlack'));
+const GoogleWorkspacePage = lazy(() => import('@/pages/features/GoogleWorkspace'));
+const ZapierAlternativePage = lazy(() => import('@/pages/features/ZapierAlternative'));
+const ThenaCompetitorPage = lazy(() => import('@/pages/features/ThenaCompetitor'));
+
+// Lazy load Blog pages (Enterprise Content Engine)
+const BlogHome = lazy(() => import('@/pages/blog/BlogHome'));
+const BlogCategory = lazy(() => import('@/pages/blog/BlogCategory'));
+const BlogArticle = lazy(() => import('@/pages/blog/BlogArticle'));
+
+// Conversion Pages
+const PricingGlobal = lazy(() => import('@/pages/pricing/PricingGlobal'));
+const BookDemo = lazy(() => import('@/pages/BookDemo'));
+// Trust Pages
+const TrustHome = lazy(() => import('@/pages/trust/TrustHome'));
+const SecurityPage = lazy(() => import('@/pages/trust/Security'));
+const CompliancePage = lazy(() => import('@/pages/trust/Compliance'));
+const PrivacyPage = lazy(() => import('@/pages/trust/BasicPages').then(module => ({ default: module.Privacy })));
+const TermsPage = lazy(() => import('@/pages/trust/BasicPages').then(module => ({ default: module.Terms })));
+const CookiesPage = lazy(() => import('@/pages/trust/BasicPages').then(module => ({ default: module.Cookies })));
+const DpaPage = lazy(() => import('@/pages/trust/BasicPages').then(module => ({ default: module.Dpa })));
+const StatusPage = lazy(() => import('@/pages/trust/BasicPages').then(module => ({ default: module.Status })));
+const DisclosurePage = lazy(() => import('@/pages/trust/BasicPages').then(module => ({ default: module.ResponsibleDisclosure })));
+
+// AI Answer Engine Pages
+const AnswersHome = lazy(() => import('@/pages/answers/AnswersHome'));
+const AnswersCategory = lazy(() => import('@/pages/answers/AnswersCategory'));
+const AnswerPage = lazy(() => import('@/pages/answers/AnswerPage'));
+
+  const queryClient = new QueryClient({
+    // ... existing config
+
+    // ... existing queryClient config
+    defaultOptions: {
+    queries: {
+    staleTime: 5 * 60 * 1000,
+  retry: 1,
+    },
+  },
+});
+
+  // RTL direction handler component
+  function DirectionHandler({children}: {children: React.ReactNode }) {
+  const {i18n} = useTranslation();
+
+  useEffect(() => {
+    const isRTL = i18n.language === 'ar';
+  document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+  document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  return <>{children}</>;
+}
+
+  function App() {
+  return (
+  <div>Bare App</div>
+  );
+}
+
+  export default App;

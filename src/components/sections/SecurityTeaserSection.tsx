@@ -13,8 +13,8 @@ export function SecurityTeaserSection() {
                         <ShieldCheck className="w-8 h-8 text-emerald-400" />
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold mb-2">
-                            {t('security.teaser_title', 'Security-first by design')}
+                        <h2 className="text-2xl font-bold mb-2 tracking-tight">
+                            {t('security.teaser_title', 'Enterprise-Grade Security & Governance')}
                         </h2>
                         <p className="text-slate-300 max-w-md">
                             {t('security.teaser_desc', 'We adhere to the strictest enterprise security standards, ensuring your data is always protected.')}

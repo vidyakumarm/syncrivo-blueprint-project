@@ -37,9 +37,13 @@ const platforms: Platform[] = [
 ];
 
 export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
+    if (!isVisible) {
+        return null;
+    }
     const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null);
     const [isHubHovered, setIsHubHovered] = useState(false);
     const [mounted, setMounted] = useState(false);
+    // console.log removed - was placed before variables were defined
 
     useEffect(() => {
         setMounted(true);
@@ -59,16 +63,26 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
     const prefersReducedMotion =
         typeof window !== "undefined" &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // console.log removed
 
     // Render nothing until mounted on client to defer animation load
-    if (!mounted || prefersReducedMotion) {
-        if (prefersReducedMotion) return null; // Accessibility: reduced motion
-        // Return a static placeholder if needed, or null to wait for hydration
+    if (!mounted) {
+        // Wait for client-side hydration before showing any animation
         return null;
+    }
+    if (prefersReducedMotion) {
+        // Render a static placeholder hub for users who prefer reduced motion
+        return (
+            <div role="region" className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+                <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center bg-primary rounded-full">
+                    <Lock className="w-6 h-6 text-white" />
+                </div>
+            </div>
+        );
     }
 
     return (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+        <div role="region" className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
             {/* Pointer events re-enabled for interactive elements inside */}
             <div className="relative w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] lg:w-[440px] lg:h-[440px] pointer-events-auto">
                 {/* Outer glow rings */}

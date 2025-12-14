@@ -1,6 +1,6 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { breadcrumbSchema } from '@/components/seo/schema';
+import { SEO } from '@/components/seo/SEO';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 
@@ -27,14 +27,12 @@ export default function RegionPage({
 
     return (
         <div className="min-h-screen bg-background flex flex-col">
-            <Helmet>
-                <title>{headline} | SyncRivo</title>
-                <meta name="description" content={description} />
-                <link rel="canonical" href={url} />
-                <script type="application/ld+json">
-                    {JSON.stringify(breadcrumbs)}
-                </script>
-            </Helmet>
+            <SEO
+                title={`${headline} | SyncRivo`}
+                description={description}
+                canonical={url}
+                schemas={[breadcrumbs]}
+            />
 
             <Navigation />
 
