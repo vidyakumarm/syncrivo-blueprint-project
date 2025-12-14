@@ -5,6 +5,8 @@ import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { UseCasesSection } from '@/components/sections/UseCasesSection';
 import { SecurityTeaserSection } from '@/components/sections/SecurityTeaserSection';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
+import { SEO } from '@/components/seo/SEO';
+import { softwareApplicationSchema } from '@/components/seo/schema';
 
 const Index = () => {
   console.log('🏠 [HomePage] Component mounted', {
@@ -15,6 +17,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="SyncRivo | Cross-Platform Messaging Automation"
+        description="Unify Teams, Slack, and Google Workspace. The universal messaging layer for global enterprise teams to route alerts and automate communication."
+        schemas={[softwareApplicationSchema()]}
+      />
       <Navigation />
       <main>
         <HeroSection />

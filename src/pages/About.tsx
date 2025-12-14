@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import aboutHero from '@/assets/about-hero.jpg';
 import aboutValues from '@/assets/about-values.jpg';
 
+import { SEO } from '@/components/seo/SEO';
+
 export default function About() {
   const { t } = useTranslationWithFallback();
 
@@ -88,6 +90,11 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="About SyncRivo | Enterprise Messaging Reliability"
+        description="Learn about our mission to unify business communication. We build reliability, security, and message consistency for global enterprises."
+        canonical="https://syncrivo.ai/about"
+      />
       <Navigation />
 
       {/* Hero Section */}
@@ -117,6 +124,7 @@ export default function About() {
                   src={aboutHero}
                   alt="SyncRivo team collaboration"
                   className="w-full h-full object-cover"
+                  fetchPriority="high"
                 />
               </div>
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-xl animate-pulse-slow" />
@@ -179,6 +187,8 @@ export default function About() {
                     src={aboutValues}
                     alt="Company values"
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

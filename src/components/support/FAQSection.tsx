@@ -3,10 +3,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { 
-  ChevronDown, 
-  ChevronUp, 
-  Search, 
+import {
+  ChevronDown,
+  ChevronUp,
+  Search,
   HelpCircle,
   Zap,
   CreditCard,
@@ -15,7 +15,7 @@ import {
   Settings
 } from 'lucide-react';
 
-interface FAQItem {
+export interface FAQItem {
   id: string;
   question: string;
   answer: string;
@@ -23,69 +23,69 @@ interface FAQItem {
   popular: boolean;
 }
 
+export const faqs: FAQItem[] = [
+  {
+    id: '1',
+    question: 'How do I get started with SyncRivo?',
+    answer: 'Getting started is easy! First, create your free account and get your API key from the dashboard. Then install our SDK using npm install @syncrivo/sdk or use our REST API directly. Check out our Quick Start guide in the documentation for a step-by-step walkthrough.',
+    category: 'getting-started',
+    popular: true
+  },
+  {
+    id: '2',
+    question: 'What integrations are supported?',
+    answer: 'We support 50+ integrations including Slack, Google Drive, Notion, Airtable, Trello, Salesforce, HubSpot, and many more. You can also create custom integrations using webhooks or our REST API. New integrations are added regularly based on user requests.',
+    category: 'integrations',
+    popular: true
+  },
+  {
+    id: '3',
+    question: 'How much does SyncRivo cost?',
+    answer: 'We offer a free tier with 1,000 syncs per month, perfect for testing and small projects. Paid plans start at $29/month for 10,000 syncs. Enterprise plans are available for high-volume usage with custom pricing. Check our pricing page for full details.',
+    category: 'billing',
+    popular: true
+  },
+  {
+    id: '4',
+    question: 'Is my data secure?',
+    answer: 'Absolutely! We use enterprise-grade security including AES-256 encryption, SOC 2 compliance, and regular security audits. Data is encrypted both in transit and at rest. We never store your actual data - only the minimum metadata needed for synchronization.',
+    category: 'security',
+    popular: false
+  },
+  {
+    id: '5',
+    question: 'What are rate limits?',
+    answer: 'Rate limits prevent API abuse and ensure reliable service for all users. Free accounts have a limit of 100 requests per minute, while paid plans get higher limits. If you hit a rate limit, requests will be queued and processed automatically.',
+    category: 'technical',
+    popular: false
+  },
+  {
+    id: '6',
+    question: 'Can I cancel my subscription anytime?',
+    answer: 'Yes, you can cancel your subscription at any time from your account settings. Your plan will remain active until the end of your current billing period, and you\'ll retain access to all features until then.',
+    category: 'billing',
+    popular: false
+  },
+  {
+    id: '7',
+    question: 'How do I set up webhooks?',
+    answer: 'Webhooks allow real-time data synchronization. In your dashboard, go to Integrations > Create New > Webhook. Enter your endpoint URL, select the events you want to receive, and configure any authentication headers. We\'ll send a test request to verify the setup.',
+    category: 'technical',
+    popular: true
+  },
+  {
+    id: '8',
+    question: 'What happens if a sync fails?',
+    answer: 'Failed syncs are automatically retried up to 3 times with exponential backoff. If all retries fail, you\'ll receive an email notification and can view the error details in your dashboard. Most failures are temporary and resolve automatically.',
+    category: 'technical',
+    popular: false
+  }
+];
+
 export function FAQSection() {
   const [searchTerm, setSearchTerm] = useState('');
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
   const [selectedCategory, setSelectedCategory] = useState('all');
-
-  const faqs: FAQItem[] = [
-    {
-      id: '1',
-      question: 'How do I get started with SyncRivo?',
-      answer: 'Getting started is easy! First, create your free account and get your API key from the dashboard. Then install our SDK using npm install @syncrivo/sdk or use our REST API directly. Check out our Quick Start guide in the documentation for a step-by-step walkthrough.',
-      category: 'getting-started',
-      popular: true
-    },
-    {
-      id: '2',
-      question: 'What integrations are supported?',
-      answer: 'We support 50+ integrations including Slack, Google Drive, Notion, Airtable, Trello, Salesforce, HubSpot, and many more. You can also create custom integrations using webhooks or our REST API. New integrations are added regularly based on user requests.',
-      category: 'integrations',
-      popular: true
-    },
-    {
-      id: '3',
-      question: 'How much does SyncRivo cost?',
-      answer: 'We offer a free tier with 1,000 syncs per month, perfect for testing and small projects. Paid plans start at $29/month for 10,000 syncs. Enterprise plans are available for high-volume usage with custom pricing. Check our pricing page for full details.',
-      category: 'billing',
-      popular: true
-    },
-    {
-      id: '4',
-      question: 'Is my data secure?',
-      answer: 'Absolutely! We use enterprise-grade security including AES-256 encryption, SOC 2 compliance, and regular security audits. Data is encrypted both in transit and at rest. We never store your actual data - only the minimum metadata needed for synchronization.',
-      category: 'security',
-      popular: false
-    },
-    {
-      id: '5',
-      question: 'What are rate limits?',
-      answer: 'Rate limits prevent API abuse and ensure reliable service for all users. Free accounts have a limit of 100 requests per minute, while paid plans get higher limits. If you hit a rate limit, requests will be queued and processed automatically.',
-      category: 'technical',
-      popular: false
-    },
-    {
-      id: '6',
-      question: 'Can I cancel my subscription anytime?',
-      answer: 'Yes, you can cancel your subscription at any time from your account settings. Your plan will remain active until the end of your current billing period, and you\'ll retain access to all features until then.',
-      category: 'billing',
-      popular: false
-    },
-    {
-      id: '7',
-      question: 'How do I set up webhooks?',
-      answer: 'Webhooks allow real-time data synchronization. In your dashboard, go to Integrations > Create New > Webhook. Enter your endpoint URL, select the events you want to receive, and configure any authentication headers. We\'ll send a test request to verify the setup.',
-      category: 'technical',
-      popular: true
-    },
-    {
-      id: '8',
-      question: 'What happens if a sync fails?',
-      answer: 'Failed syncs are automatically retried up to 3 times with exponential backoff. If all retries fail, you\'ll receive an email notification and can view the error details in your dashboard. Most failures are temporary and resolve automatically.',
-      category: 'technical',
-      popular: false
-    }
-  ];
 
   const categories = [
     { id: 'all', label: 'All Topics', icon: <HelpCircle className="h-4 w-4" /> },
@@ -98,7 +98,7 @@ export function FAQSection() {
 
   const filteredFAQs = faqs.filter(faq => {
     const matchesSearch = faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
+      faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || faq.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -178,7 +178,7 @@ export function FAQSection() {
                   )}
                 </div>
               </button>
-              
+
               {openItems.has(faq.id) && (
                 <div className="px-6 pb-6 animate-fade-in">
                   <div className="pt-4 border-t border-border">

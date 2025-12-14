@@ -45,7 +45,7 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
         setMounted(true);
     }, []);
 
-    const hubRadius = 140;
+    const hubRadius = 160;
 
     const getPlatformPosition = (angle: number) => {
         const radian = (angle * Math.PI) / 180;

@@ -6,10 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
-import { 
-  MessageCircle, 
-  Mail, 
-  Phone, 
+import {
+  MessageCircle,
+  Mail,
+  Phone,
   Clock,
   Users,
   BookOpen,
@@ -19,9 +19,16 @@ import {
   Heart
 } from 'lucide-react';
 
+import { SEO } from '@/components/seo/SEO';
+import { faqSchema } from '@/components/seo/schema';
+import { faqs } from '@/components/support/FAQSection';
+
 export default function Support() {
   const { t } = useTranslation();
-  
+
+  // Transform FAQs for schema
+  const faqSchemaData = faqSchema(faqs.map(f => ({ q: f.question, a: f.answer })));
+
   const supportChannels = [
     {
       title: t('support.live_chat'),
@@ -51,6 +58,7 @@ export default function Support() {
       action: t('support.schedule_call')
     }
   ];
+
 
   const resources = [
     {
@@ -97,7 +105,7 @@ export default function Support() {
             <p className="text-xl opacity-90 mb-8">
               {t('support.subtitle')}
             </p>
-            
+
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
               {stats.map((stat, index) => (
@@ -146,7 +154,7 @@ export default function Support() {
                         {t('support.response_time_label')}: {channel.responseTime}
                       </div>
                     </div>
-                    <Button 
+                    <Button
                       className="w-full bg-gradient-primary"
                       onClick={() => {
                         if (channel.title === t('support.live_chat')) {
@@ -176,7 +184,7 @@ export default function Support() {
                 <p className="text-muted-foreground mb-8">
                   {t('support.contact_form_subtitle')}
                 </p>
-                
+
                 {/* Self-Service Resources */}
                 <div className="space-y-4">
                   <h3 className="font-semibold text-foreground">{t('support.self_service')}</h3>
@@ -203,7 +211,7 @@ export default function Support() {
                   </div>
                 </div>
               </div>
-              
+
               <ContactForm />
             </div>
           </div>

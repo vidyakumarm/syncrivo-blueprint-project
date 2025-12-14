@@ -36,12 +36,12 @@ export function HowItWorksSection() {
 
                 <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
                     {/* Connector Line (Desktop) */}
-                    <div className="hidden md:block absolute top-[2.25rem] left-[16%] right-[16%] h-0.5 bg-slate-200 dark:bg-slate-800 -z-10" />
+                    <div className="hidden md:block absolute top-[2.25rem] left-[16%] right-[16%] h-0.5 bg-slate-200 dark:bg-slate-800 -z-10" aria-hidden="true" />
 
                     {steps.map((step, index) => (
                         <div key={index} className="flex flex-col items-center text-center group">
                             <div className={`w-16 h-16 rounded-2xl ${step.color} flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform duration-300 ring-4 ring-white dark:ring-slate-950`}>
-                                <step.icon className="w-8 h-8" />
+                                <step.icon className="w-8 h-8" aria-hidden="true" />
                             </div>
                             <h3 className="text-xl font-bold text-foreground mb-3">{step.title}</h3>
                             <p className="text-muted-foreground leading-relaxed max-w-xs">

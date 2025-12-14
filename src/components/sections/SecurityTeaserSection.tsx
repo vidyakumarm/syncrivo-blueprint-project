@@ -26,7 +26,7 @@ export function SecurityTeaserSection() {
                     <Link to="/security" className="hover:text-emerald-400 transition-colors">
                         {t('security.link_security', 'Security Overview')}
                     </Link>
-                    <Link to="/privacy-policy" className="hover:text-emerald-400 transition-colors">
+                    <Link to="/privacy" className="hover:text-emerald-400 transition-colors">
                         {t('security.link_privacy', 'Privacy Policy')}
                     </Link>
                     <Link to="/terms" className="hover:text-emerald-400 transition-colors flex items-center gap-1">

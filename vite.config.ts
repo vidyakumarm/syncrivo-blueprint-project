@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     viteCompression({ algorithm: 'gzip', ext: '.gz' }),
-    mode === 'development' && componentTagger(),
+    // mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {

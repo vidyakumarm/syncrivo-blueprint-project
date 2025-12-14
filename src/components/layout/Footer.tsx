@@ -25,6 +25,7 @@ export function Footer() {
                 size="lg"
                 speed="slow"
                 className="transition-transform duration-300 group-hover:scale-110 text-primary"
+                aria-hidden="true"
               />
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-500 to-indigo-600">
                 SyncRivo<sup className="text-xs text-foreground">®</sup>

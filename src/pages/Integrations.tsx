@@ -224,7 +224,7 @@ export default function Integrations() {
 
   const filteredIntegrations = integrations.filter(integration => {
     const matchesSearch = integration.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         integration.description.toLowerCase().includes(searchQuery.toLowerCase());
+      integration.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || integration.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -234,7 +234,7 @@ export default function Integrations() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main className="pt-16">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-primary-light/50 to-accent-light/30">
@@ -244,14 +244,14 @@ export default function Integrations() {
                 <Zap className="w-4 h-4 mr-2" />
                 {t('integrations.hero_badge')}
               </Badge>
-              
+
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 {t('integrations.hero_title')}
                 <span className="block bg-gradient-hero bg-clip-text text-transparent">
                   {t('integrations.hero_title_highlight')}
                 </span>
               </h1>
-              
+
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
                 {t('integrations.hero_subtitle')}
               </p>
@@ -309,23 +309,24 @@ export default function Integrations() {
                   <Link to={`/integrations/${integration.id}`}>
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                         <div className="flex items-center space-x-3">
-                           <div className="w-10 h-10 rounded-lg overflow-hidden bg-white/50 flex items-center justify-center border border-border/20">
-                             <img 
-                               src={integration.logoUrl} 
-                               alt={`${integration.name} logo`}
-                               className="w-8 h-8 object-contain"
-                                onError={(e) => {
-                                  const img = e.currentTarget as HTMLImageElement;
-                                  const fallback = img.nextElementSibling as HTMLElement;
-                                  img.style.display = 'none';
-                                  if (fallback) fallback.style.display = 'flex';
-                                }}
-                             />
-                             <div className="w-8 h-8 rounded bg-muted flex items-center justify-center text-sm font-semibold text-muted-foreground hidden">
-                               {integration.name.slice(0, 2).toUpperCase()}
-                             </div>
-                           </div>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 rounded-lg overflow-hidden bg-white/50 flex items-center justify-center border border-border/20">
+                            <img
+                              src={integration.logoUrl}
+                              alt={`${integration.name} logo`}
+                              className="w-8 h-8 object-contain"
+                              loading="lazy"
+                              onError={(e) => {
+                                const img = e.currentTarget as HTMLImageElement;
+                                const fallback = img.nextElementSibling as HTMLElement;
+                                img.style.display = 'none';
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                            <div className="w-8 h-8 rounded bg-muted flex items-center justify-center text-sm font-semibold text-muted-foreground hidden">
+                              {integration.name.slice(0, 2).toUpperCase()}
+                            </div>
+                          </div>
                           <div>
                             <CardTitle className="text-lg group-hover:text-primary transition-colors">
                               {integration.name}
@@ -337,9 +338,9 @@ export default function Integrations() {
                                   {integration.rating}
                                 </span>
                               </div>
-                               <span className="text-xs text-muted-foreground">
-                                 {integration.users} {t('integrations.users_suffix')}
-                               </span>
+                              <span className="text-xs text-muted-foreground">
+                                {integration.users} {t('integrations.users_suffix')}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -373,23 +374,24 @@ export default function Integrations() {
                   <Link to={`/integrations/${integration.id}`}>
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                         <div className="flex items-center space-x-3">
-                           <div className="w-8 h-8 rounded overflow-hidden bg-white/50 flex items-center justify-center border border-border/20">
-                             <img 
-                               src={integration.logoUrl} 
-                               alt={`${integration.name} logo`}
-                               className="w-6 h-6 object-contain"
-                                onError={(e) => {
-                                  const img = e.currentTarget as HTMLImageElement;
-                                  const fallback = img.nextElementSibling as HTMLElement;
-                                  img.style.display = 'none';
-                                  if (fallback) fallback.style.display = 'flex';
-                                }}
-                             />
-                             <div className="w-6 h-6 rounded bg-muted flex items-center justify-center text-xs font-semibold text-muted-foreground hidden">
-                               {integration.name.slice(0, 2).toUpperCase()}
-                             </div>
-                           </div>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 rounded overflow-hidden bg-white/50 flex items-center justify-center border border-border/20">
+                            <img
+                              src={integration.logoUrl}
+                              alt={`${integration.name} logo`}
+                              className="w-6 h-6 object-contain"
+                              loading="lazy"
+                              onError={(e) => {
+                                const img = e.currentTarget as HTMLImageElement;
+                                const fallback = img.nextElementSibling as HTMLElement;
+                                img.style.display = 'none';
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                            <div className="w-6 h-6 rounded bg-muted flex items-center justify-center text-xs font-semibold text-muted-foreground hidden">
+                              {integration.name.slice(0, 2).toUpperCase()}
+                            </div>
+                          </div>
                           <div>
                             <CardTitle className="text-base group-hover:text-primary transition-colors">
                               {integration.name}
@@ -404,11 +406,11 @@ export default function Integrations() {
                               <span className="text-xs text-muted-foreground">
                                 {integration.users}
                               </span>
-                               {integration.popular && (
-                                 <Badge variant="secondary" className="text-xs px-2 py-0.5">
-                                   {t('integrations.popular_badge')}
-                                 </Badge>
-                               )}
+                              {integration.popular && (
+                                <Badge variant="secondary" className="text-xs px-2 py-0.5">
+                                  {t('integrations.popular_badge')}
+                                </Badge>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -428,8 +430,8 @@ export default function Integrations() {
             {filteredIntegrations.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-muted-foreground mb-4">{t('integrations.no_results')}</p>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => {
                     setSearchQuery('');
                     setSelectedCategory('all');
@@ -462,7 +464,7 @@ export default function Integrations() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
