@@ -181,7 +181,7 @@ export function HeroSection() {
 
           {/* Right Side - Hub Animation */}
           <div
-            className={`flex flex-col items-center justify-center lg:items-end lg:pr-8 transition-all duration-700 lg:-mt-16 xl:-mt-20 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className="flex flex-col items-center justify-center lg:items-end lg:pr-8 lg:-mt-16 xl:-mt-20 opacity-100 translate-y-0"
             style={{ transitionDelay: "200ms" }}
           >
             {/* Floating Hub Wrapper */}

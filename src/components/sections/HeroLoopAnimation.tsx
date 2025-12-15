@@ -37,9 +37,7 @@ const platforms: Platform[] = [
 ];
 
 export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
-    if (!isVisible) {
-        return null;
-    }
+
     const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null);
     const [isHubHovered, setIsHubHovered] = useState(false);
     const [mounted, setMounted] = useState(false);
@@ -50,16 +48,17 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
     useEffect(() => {
         setMounted(true);
         const handleResize = () => {
+            // Adjust radius based on screen size - matched to CSS width/height
             if (window.innerWidth >= 1024) {
-                setHubRadius(220); // Enterprise breathing room
+                setHubRadius(240);
             } else if (window.innerWidth >= 640) {
                 setHubRadius(180);
             } else {
-                setHubRadius(135);
+                setHubRadius(140);
             }
         };
 
-        handleResize();
+        handleResize(); // Initial call
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -72,25 +71,9 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
         };
     };
 
-    // Safe reduced motion check
-    const prefersReducedMotion =
-        typeof window !== "undefined" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    // Render nothing until mounted on client to defer animation load
+    // Render nothing until mounted on client to prevent hydration mismatch
     if (!mounted) {
-        // Wait for client-side hydration before showing any animation
-        return null;
-    }
-    if (prefersReducedMotion) {
-        // Render a static placeholder hub for users who prefer reduced motion
-        return (
-            <div role="region" className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-                <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center bg-primary rounded-full">
-                    <Lock className="w-6 h-6 text-white" />
-                </div>
-            </div>
-        );
+        return <div className="w-full h-full" />; // Return empty placeholder of same size
     }
 
     return (
@@ -213,10 +196,7 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
                                                 <div className="absolute inset-0 rounded-xl border-2 border-primary/40 bg-primary/5 animate-ripple-effect z-0" />
                                             )}
 
-                                            {/* Localized Water Distortion on Hover */}
-                                            {isHovered && (
-                                                <div className="absolute inset-[-4px] rounded-xl bg-primary/10 blur-[2px] animate-water-distortion z-0 pointer-events-none" />
-                                            )}
+
 
                                             <img
                                                 src={platform.icon}
@@ -257,10 +237,7 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
                         {/* Rotating technical mesh ring */}
                         <div className="absolute inset-[2px] rounded-full border border-dashed border-primary/30 animate-spin-ultra-slow" />
 
-                        {/* Water Ripple Effect - Multiple expanding rings */}
-                        <div className="absolute inset-0 rounded-full border-2 border-primary/40 animate-ripple-effect" />
-                        <div className="absolute inset-0 rounded-full border-2 border-primary/40 animate-ripple-effect" style={{ animationDelay: "1s" }} />
-                        <div className="absolute inset-0 rounded-full border-2 border-primary/40 animate-ripple-effect" style={{ animationDelay: "2s" }} />
+
 
                         {/* Inner glass core */}
                         {/* Inner glass core */}

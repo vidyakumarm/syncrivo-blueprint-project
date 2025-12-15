@@ -5,14 +5,26 @@ export type BlogCategory =
     | "Regional Insights"
     | "Engineering & Reliability";
 
+export type InsightType =
+    | "Thought Leadership"
+    | "Architecture"
+    | "Use Case"
+    | "Comparison"
+    | "Regional POV"
+    | "Engineering Culture";
+
 export type BlogPost = {
     slug: string;
     title: string;
     description: string;
     category: BlogCategory;
+    type?: InsightType; // New editorial classification
     publishedAt: string;
     readingTime: number;
     content: string; // Markdown content
+    image: string;
+    isFeatured?: boolean; // Editorial override for Hero section
+    priority?: number; // 1-10 scale for ranking (10 is highest)
 };
 
 export const posts: BlogPost[] = [
@@ -22,8 +34,12 @@ export const posts: BlogPost[] = [
         description:
             "How enterprises reduce delays and miscommunication by automating messaging between Teams and Slack.",
         category: "Communication Automation",
+        type: "Thought Leadership",
         publishedAt: "2025-01-10",
         readingTime: 6,
+        image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop",
+        isFeatured: true,
+        priority: 10,
         content: `
 ## The problem
 Global teams often operate across multiple messaging platforms. When your engineering team lives in Slack but your sales organization uses Microsoft Teams, critical information gets siloed. This leads to manual copy-pasting, missed alerts, and delayed responses.
@@ -49,8 +65,10 @@ Ready to unify your communication? [Book a demo](/contact-sales) today.
         description:
             "Manual cross-platform messaging creates latency, context loss, and compliance risks. Why automation is now a foundational requirement for distributed enterprises.",
         category: "Communication Automation",
+        type: "Architecture",
         publishedAt: "2025-01-15",
         readingTime: 8,
+        image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1600&auto=format&fit=crop",
         content: `
 In modern distributed architectures, communication latency is often treated as a human problem rather than a systems problem. However, when critical operational data—incidents, approvals, and compliance artifacts—must traverse air-gapped platforms like Slack, Microsoft Teams, and Google Chat, the resulting friction becomes measurable technical debt.
 
@@ -103,8 +121,10 @@ Messaging automation is not merely about convenience; it is about operational ri
         description:
             "From human relays to information silos: A technical analysis of why communication fails as organizations grow, and how automation restores system integrity.",
         category: "Communication Automation",
+        type: "Architecture",
         publishedAt: "2025-01-20",
         readingTime: 7,
+        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
         content: `
 In early-stage startups, communication tool fragmentation is a minor nuisance. If the engineering team uses Slack and the sales team uses Microsoft Teams, a quick DM or an email bridge is sufficient to maintain alignment. 
 
@@ -181,8 +201,10 @@ Scale exposes the cracks in manual workflows. What works for 50 people fails for
         description:
             "Why relying on humans to act as API layers between Slack, Teams, and Google Chat creates structural fragility in enterprise systems.",
         category: "Communication Automation",
+        type: "Architecture",
         publishedAt: "2025-01-25",
         readingTime: 6,
+        image: "https://images.unsplash.com/photo-1504384308090-c54be3855833?q=80&w=1600&auto=format&fit=crop",
         content: `
 In software architecture, we rigorously eliminate "magic numbers," flaky tests, and manual deployment steps. Yet, in enterprise communication architecture, many organizations tolerate a massive anti-pattern: **manual message forwarding**.
 
@@ -235,8 +257,10 @@ Eliminating manual forwarding is not just about saving a few seconds of copy-pas
         description:
             "Forcing a global organization onto a single messaging platform often creates more friction than it solves. Why interoperability beats standardization at scale.",
         category: "Communication Automation",
+        type: "Thought Leadership",
         publishedAt: "2025-01-30",
         readingTime: 9,
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop",
         content: `
 For CIOs and Enterprise Architects, the instinct to standardize is powerful. "One company, one tool" promises reduced license costs, simplified governance, and a unified culture.
 
@@ -289,8 +313,10 @@ The goal of enterprise architecture is to enable flow, not to enforce uniformity
         description:
             "A neutral comparison of how human judgment and automated routing perform at scale. Understanding the trade-offs in consistency, context, and latency.",
         category: "Communication Automation",
+        type: "Thought Leadership",
         publishedAt: "2025-02-05",
         readingTime: 6,
+        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop",
         content: `
 In any distributed system, accurate routing is the prerequisite for effective action. In the context of enterprise communication, this routing layer has historically been human: project managers, EAs, and "super-connectors" who mentally map which team owns which problem.
 
@@ -341,8 +367,10 @@ The most effective organizations do not choose one over the other; they assign t
         description:
             "Why shifting your mental model from 'message delivery' to 'workflow orchestration' is critical for scaling system reliability and reducing cognitive load.",
         category: "Communication Automation",
+        type: "Thought Leadership",
         publishedAt: "2025-02-10",
         readingTime: 7,
+        image: "https://images.unsplash.com/photo-1558494949-ef526bca4852?q=80&w=1600&auto=format&fit=crop",
         content: `
 In early-stage engineering cultures, communication is often treated as an ad-hoc activity: "I see a problem, so I send a message." This works when the team is small enough that "sending a message" implies "solving the problem."
 
@@ -401,8 +429,10 @@ Platforms like SyncRivo provide the architectural substrate for these flows, all
         description:
             "Why large enterprises rarely standardize on a single tool. A neutral look at how department needs, regional norms, and compliance drive multi-platform coexistence.",
         category: "Comparisons",
+        type: "Comparison",
         publishedAt: "2025-02-15",
         readingTime: 8,
+        image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1600&auto=format&fit=crop",
         content: `
 The debate over "Slack vs. Teams vs. Google Chat" often frames the discussion as a winner-takes-all contest. In the reality of the Fortune 500, however, the "winner" is almost always **coexistence**.
 
@@ -451,8 +481,10 @@ By treating these platforms as interoperable endpoints rather than competing wal
         description:
             "Why the promise of 'one tool to rule them all' often fails in the enterprise. Deconstructing the myths of consolidation vs. the reality of interoperability.",
         category: "Comparisons",
+        type: "Thought Leadership",
         publishedAt: "2025-02-20",
         readingTime: 8,
+        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop",
         content: `
 For many CIOs, the "Single Pane of Glass" is the ultimate strategic objective. The logic is appealingly simple: Fewer tools equal less complexity, lower costs, and better alignment.
 
@@ -510,8 +542,10 @@ Platforms like SyncRivo validate that the path to simplicity isn't about having 
         description:
             "How automated cross-platform messaging cuts coordination overhead, preserves context, and accelerates mean-time-to-resolution (MTTR) during high-pressure incidents.",
         category: "Use Cases",
+        type: "Use Case",
         publishedAt: "2025-02-25",
         readingTime: 7,
+        image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1600&auto=format&fit=crop",
         content: `
 During a P0 incident, every second of "coordination overhead" is a second of extended downtime. When engineering, support, and executive teams operate in different chat tools—Slack for devs, Teams for management—this overhead compounds rapidly.
 
@@ -573,8 +607,10 @@ Automated messaging enables "Observable Work." It allows stakeholders to self-se
         description:
             "How automated routing reduces decision fatigue and improves reliability for on-call teams operating across multiple time zones.",
         category: "Use Cases",
+        type: "Use Case",
         publishedAt: "2025-03-01",
         readingTime: 6,
+        image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1600&auto=format&fit=crop",
         content: `
 For distributed engineering teams, "Business Hours" is a legacy concept. Systems fail at 3 AM just as often as they do at 3 PM. The challenge is not just waking someone up—it's ensuring the *right* information reaches them without waking up everyone else.
 
@@ -634,8 +670,10 @@ Reliability is about more than uptime; it is about sustainability. By automating
         description:
             "How to bridge communication gaps immediately after an acquisition. A guide to operational continuity for teams using different tools.",
         category: "Use Cases",
+        type: "Use Case",
         publishedAt: "2025-03-05",
         readingTime: 7,
+        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop",
         content: `
 Day 1 of a merger is a celebration. Day 2 is an operational headache.
 While legal teams mark the deal as "closed," technical integration is often 12-18 months away. In this interim period—the "Integration Gap"—teams must collaborate across a hard boundary of disparate tools, identity providers, and security policies.
@@ -702,8 +740,10 @@ The goal of post-merger integration is ultimately unity—but unity takes time. 
         description:
             "How to maintain shared context and reduce coordination friction in remote-first organizations. Supporting async workflows without consistent interruptions.",
         category: "Use Cases",
+        type: "Use Case",
         publishedAt: "2025-03-10",
         readingTime: 7,
+        image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1600&auto=format&fit=crop",
         content: `
 In a co-located office, "alignment" happens by osmosis—overhearing conversations and tapping shoulders. In a distributed, remote-first product organization, osmosis is dead. Alignment must be engineered.
 
@@ -766,8 +806,10 @@ Distributed teams cannot function on manual glue work alone. By automating the f
         description:
             "How to keep leadership informed without overwhelming them. Using automated filters to deliver high-signal updates across fragmented tools.",
         category: "Use Cases",
+        type: "Use Case",
         publishedAt: "2025-03-15",
         readingTime: 6,
+        image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1600&auto=format&fit=crop",
         content: `
 For a VP of Engineering or a COO, the problem isn't a lack of information—it's an excess of it.
 When you manage a 500-person organization, you are bombarded by thousands of signals daily: Jira ticket updates, PagerDuty alerts, Slack messages, and email reports.
@@ -832,8 +874,10 @@ Executive visibility is about **confidence**. It is the confidence that if somet
         description:
             "A structural analysis of why US-based organizations adopt messaging automation earlier. How scale, M&A frequency, and operational velocity drive the need for interoperability.",
         category: "Regional Insights",
+        type: "Regional POV",
         publishedAt: "2025-03-20",
         readingTime: 7,
+        image: "https://images.unsplash.com/photo-1526304640152-d4619684e484?q=80&w=1600&auto=format&fit=crop",
         content: `
 When analyzing global adoption trends for enterprise technology, distinct patterns emerge. In the case of messaging automation and interoperability, US-based enterprises frequently act as early adopters.
 
@@ -882,8 +926,10 @@ Platforms like SyncRivo provide the infrastructure to handle this complexity, al
         description:
             "How extreme time-zone spans and partner-driven ecosystems shape communication in APAC. Why interoperability is a necessity for regional operations.",
         category: "Regional Insights",
+        type: "Regional POV",
         publishedAt: "2025-03-25",
         readingTime: 7,
+        image: "https://images.unsplash.com/photo-1579389083078-4e7018379f7e?q=80&w=1600&auto=format&fit=crop",
         content: `
 For global enterprises, the "Asia-Pacific" (APAC) region is frequently treated as a single entity. Operationally, however, it is a vast, fragmented landscape spanning over 6 key time zones—from Mumbai to Sydney—and dozens of distinct digital ecosystems.
 
@@ -933,8 +979,10 @@ Platforms like SyncRivo validate this approach by treating the region's tool div
         description:
             "Why global enterprises inevitably drift toward tool diversity. How automation acts as the unifying infrastructure that enables local autonomy with global coherence.",
         category: "Regional Insights",
+        type: "Regional POV",
         publishedAt: "2025-03-30",
         readingTime: 8,
+        image: "https://images.unsplash.com/photo-1563986768494-4dee46a38531?q=80&w=1600&auto=format&fit=crop",
         content: `
 For two decades, the holy grail of enterprise IT was "Standardization." The vision was clear: one global organization, one set of tools, one way of working.
 In 2025, for most Global 2000 companies, this vision has been superseded by a more complex reality: **Distributed Diversity**.
@@ -985,8 +1033,10 @@ By accepting this reality and building an automation layer to connect it, archit
         description:
             "Architecture patterns for reliable messaging at scale. How to handle idempotency, retries, and observability in distributed chat operations.",
         category: "Engineering & Reliability",
+        type: "Architecture",
         publishedAt: "2025-04-01",
         readingTime: 8,
+        image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=1600&auto=format&fit=crop",
         content: `
 When an API call fails, the client knows immediately. When a message fails to deliver in a distributed chat architecture, the silence can be worse than an error.
 For platform architects, designing messaging automation at enterprise scale means treating "chat" not as a simple webhook integration, but as a formal distributed system with strict reliability guarantees.
@@ -1035,8 +1085,10 @@ Platforms like SyncRivo implement these patterns as managed infrastructure, allo
         description:
             "Why predictability outperforms novelty in critical systems. An engineer's guide to choosing simple, boring reliability over flashy complexity.",
         category: "Engineering & Reliability",
+        type: "Engineering Culture",
         publishedAt: "2025-04-05",
         readingTime: 6,
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600&auto=format&fit=crop",
         content: `
 In the fast-moving world of software, "boring" is often used as a pejorative. We praise the cutting-edge, the novel, and the complex.
 But seasoned platform engineers know a secret: **Boring is a feature.**
@@ -1075,8 +1127,10 @@ Platforms like SyncRivo are built on this philosophy: providing a boring, reliab
         description:
             "Why 'all-or-nothing' delivery is a myth in distributed systems. Managing partial failures and state reconciliation in enterprise messaging.",
         category: "Engineering & Reliability",
+        type: "Architecture",
         publishedAt: "2025-04-10",
         readingTime: 8,
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop",
         content: `
 In a monolithic application, transactions are atomic: either the database commit happens, or it rolls back. In a distributed messaging system spanning Slack, Teams, and Jira, there is no such thing as a global transaction.
 
@@ -1121,8 +1175,10 @@ By accepting partial failures as a fast path and designing recovery loops that d
         description:
             "Why monitoring is not enough. Designing messaging systems with visibility as a foundational constraint for enterprise reliability.",
         category: "Engineering & Reliability",
+        type: "Architecture",
         publishedAt: "2025-04-15",
         readingTime: 7,
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
         content: `
 In traditional software, observability is often treated as an operational layer painted on top of a finished application. You build the app, then you add some logs and metrics.
 In messaging automation—where a single "transaction" might hop across three different SaaS platforms and four network boundaries—this approach is fatal.

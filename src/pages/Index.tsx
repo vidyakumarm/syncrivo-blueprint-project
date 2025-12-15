@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { ValuePropSection } from '@/components/sections/ValuePropSection';
+import { LiveSyncDemoSection } from '@/components/sections/LiveSyncDemoSection';
 import { UseCasesSection } from '@/components/sections/UseCasesSection';
 import { SecurityTeaserSection } from '@/components/sections/SecurityTeaserSection';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
@@ -28,6 +29,7 @@ const Index = () => {
         <HeroSection />
         <ValuePropSection />
         <HowItWorksSection />
+        <LiveSyncDemoSection />
         <UseCasesSection />
         <SecurityTeaserSection />
         <FinalCTASection />

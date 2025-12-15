@@ -50,6 +50,7 @@ export function Navigation() {
     { label: t('common.features'), href: '/features' },
     { label: t('common.integrations'), href: '/integrations' },
     { label: t('common.pricing'), href: '/pricing' },
+    { label: t('common.blog', 'Blog'), href: '/blog' },
     {
       label: t('nav.resources'),
       href: '/docs',

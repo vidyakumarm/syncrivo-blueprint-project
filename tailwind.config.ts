@@ -209,6 +209,14 @@ export default {
 					'20%': { opacity: '1' },
 					'80%': { opacity: '1' },
 					'100%': { transform: 'translate(var(--tx), var(--ty))', opacity: '0' }
+				},
+				'anti-gravity': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'ripple': {
+					'0%': { transform: 'scale(0.8)', opacity: '1' },
+					'100%': { transform: 'scale(2)', opacity: '0' }
 				}
 			},
 			animation: {
