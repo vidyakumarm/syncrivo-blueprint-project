@@ -5,7 +5,9 @@ WORKDIR /app
 
 # Cache dependencies
 COPY package.json package-lock.json ./
-RUN npm ci --legacy-peer-deps
+RUN npm config set fetch-retry-maxtimeout 120000 && \
+    npm config set fetch-retry-mintimeout 20000 && \
+    npm ci --legacy-peer-deps
 
 # Build arguments
 ARG VITE_SUPABASE_URL
