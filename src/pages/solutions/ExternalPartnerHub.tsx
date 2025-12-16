@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Users, Lock, Globe } from 'lucide-react';
+import heroImage from '@/assets/sol-partner-v2.png';
 
 export default function ExternalPartnerHub() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.partner.problem1.header', 'Guest Account Sprawl'),
@@ -65,24 +66,25 @@ export default function ExternalPartnerHub() {
         badge={t('solutions.partner.badge', 'Partner Messaging Hub')}
         headline={t('solutions.partner.headline', 'Secure External Partner Communication Hub')}
         subheadline={t('solutions.partner.subheadline', 'Connect with partners, vendors, and clients across platform boundaries. Enable seamless collaboration without exposing internal systems or creating guest account sprawl.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.partner.problems.title', 'External Collaboration Challenges')}
         subtitle={t('solutions.partner.problems.subtitle', 'Secure partner communication without compromising internal systems')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.partner.usecases.title', 'Partner Ecosystem Success')}
         subtitle={t('solutions.partner.usecases.subtitle', 'How enterprises manage external communication securely')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

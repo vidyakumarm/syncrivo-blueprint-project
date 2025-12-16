@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { RotatingWorldIcon } from '@/components/ui/rotating-world-icon';
 import { Linkedin, Twitter, Github } from 'lucide-react';
-// import { EnterpriseDemoModal } from '@/components/sections/EnterpriseDemoModal';
+import { EnterpriseDemoModal } from '@/components/sections/EnterpriseDemoModal';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -34,14 +34,7 @@ export function Footer() {
             <p className="text-muted-foreground max-w-sm text-base leading-relaxed">
               {t('footer.tagline')}
             </p>
-            <div className="pt-2">
-              <Button
-                onClick={() => setDemoModalOpen(true)}
-                className="font-semibold shadow-lg hover:shadow-primary/20 transition-all duration-300 btn-shine"
-              >
-                {t('footer.book_demo')}
-              </Button>
-            </div>
+
           </div>
 
           {/* Product Column */}
@@ -155,7 +148,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      {/* <EnterpriseDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} /> */}
+      <EnterpriseDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </footer >
   );
 }

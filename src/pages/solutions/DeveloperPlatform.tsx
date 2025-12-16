@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Code2, Bot, Webhook } from 'lucide-react';
+import heroImage from '@/assets/sol-multi-v2.png';
 
 export default function DeveloperPlatform() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.developer.problem1.header', 'Multi-Platform Bot Development'),
@@ -71,28 +72,29 @@ export default function DeveloperPlatform() {
         badge={t('solutions.developer.badge', 'Developer Platform')}
         headline={t('solutions.developer.headline', 'Unified API for Bots, Workflows & Automation')}
         subheadline={t('solutions.developer.subheadline', 'Build once, deploy everywhere. Create messaging bots, workflow automations, and enterprise integrations with a single API that works across Teams, Slack, and Google Chat.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.developer.problems.title', 'Developer Challenges')}
         subtitle={t('solutions.developer.problems.subtitle', 'Multi-platform messaging development is complex and expensive')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
-      <ArchitectureDiagram 
+
+      <ArchitectureDiagram
         title={t('solutions.developer.architecture.title', 'Developer-First Architecture')}
         subtitle={t('solutions.developer.architecture.subtitle', 'APIs and SDKs designed for developer productivity')}
       />
-      
+
       <UseCasesSection
         title={t('solutions.developer.usecases.title', 'Developer Success')}
         subtitle={t('solutions.developer.usecases.subtitle', 'How developers build cross-platform messaging applications')}
         useCases={useCases}
       />
-      
-      <SolutionCTA 
+
+      <SolutionCTA
         title={t('solutions.developer.cta.title', 'Ready to Build?')}
         subtitle={t('solutions.developer.cta.subtitle', 'Get API access and start building cross-platform messaging applications today.')}
       />

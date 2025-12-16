@@ -27,9 +27,9 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
+        <LiveSyncDemoSection />
         <ValuePropSection />
         <HowItWorksSection />
-        <LiveSyncDemoSection />
         <UseCasesSection />
         <SecurityTeaserSection />
         <FinalCTASection />

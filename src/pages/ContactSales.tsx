@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Footer } from '@/components/layout/Footer';
 import { Navigation } from '@/components/layout/Navigation';
+import { EnterpriseDemoModal } from '@/components/sections/EnterpriseDemoModal';
+import { Calendar, UserCheck, ShieldCheck } from 'lucide-react';
 
 export default function ContactSales() {
     const { t } = useTranslation();
+    const [demoModalOpen, setDemoModalOpen] = useState(false);
 
     return (
         <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -54,48 +56,51 @@ export default function ContactSales() {
                             </div>
                         </div>
 
-                        {/* Right Column: Form */}
+                        {/* Right Column: CTA Card */}
                         <Card className="border-border/50 shadow-lg backdrop-blur-sm bg-card/50">
-                            <CardHeader>
-                                <CardTitle>Get in Touch</CardTitle>
-                                <CardDescription>Fill out the form below and we'll get back to you shortly.</CardDescription>
+                            <CardHeader className="pb-4">
+                                <CardTitle className="text-2xl">Schedule a Live Demo</CardTitle>
+                                <CardDescription className="text-base">
+                                    See how SyncRivo can automate your cross-platform messaging workflows.
+                                </CardDescription>
                             </CardHeader>
-                            <CardContent>
-                                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <label htmlFor="name" className="text-sm font-medium">Name</label>
-                                            <Input id="name" placeholder="John Doe" required />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <label htmlFor="email" className="text-sm font-medium">Work Email</label>
-                                            <Input id="email" type="email" placeholder="john@company.com" required />
+                            <CardContent className="space-y-6">
+                                {/* Value Props in Card */}
+                                <div className="grid gap-4">
+                                    <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                                        <Calendar className="w-5 h-5 text-primary mt-0.5" />
+                                        <div>
+                                            <p className="font-medium text-sm">Flexible Scheduling</p>
+                                            <p className="text-xs text-muted-foreground">Choose a time that works for your team's timezone.</p>
                                         </div>
                                     </div>
-
-                                    <div className="space-y-2">
-                                        <label htmlFor="company" className="text-sm font-medium">Company</label>
-                                        <Input id="company" placeholder="Acme Inc." required />
+                                    <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                                        <UserCheck className="w-5 h-5 text-primary mt-0.5" />
+                                        <div>
+                                            <p className="font-medium text-sm">Tailored Walkthrough</p>
+                                            <p className="text-xs text-muted-foreground">We focus on your specific integration requirements.</p>
+                                        </div>
                                     </div>
-
-                                    <div className="space-y-2">
-                                        <label htmlFor="message" className="text-sm font-medium">Message</label>
-                                        <Textarea
-                                            id="message"
-                                            placeholder="Tell us about your integration needs..."
-                                            className="min-h-[120px]"
-                                            required
-                                        />
+                                    <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                                        <ShieldCheck className="w-5 h-5 text-primary mt-0.5" />
+                                        <div>
+                                            <p className="font-medium text-sm">Security Deep Dive</p>
+                                            <p className="text-xs text-muted-foreground">Learn about our enterprise-grade compliance & security.</p>
+                                        </div>
                                     </div>
+                                </div>
 
-                                    <Button type="submit" className="w-full text-lg py-6 btn-shine">
-                                        {t('footer.book_demo')}
-                                    </Button>
+                                <Button
+                                    size="lg"
+                                    className="w-full text-lg py-6 btn-shine shadow-lg hover:shadow-primary/20 transition-all"
+                                    onClick={() => setDemoModalOpen(true)}
+                                >
+                                    {t('footer.book_demo')}
+                                </Button>
 
-                                    <p className="text-xs text-center text-muted-foreground mt-4">
-                                        By submitting this form, you agree to our <a href="/terms" className="underline hover:text-primary">Terms</a> and <a href="/privacy" className="underline hover:text-primary">Privacy Policy</a>.
-                                    </p>
-                                </form>
+                                <p className="text-xs text-center text-muted-foreground">
+                                    No credit card required • SOC2 Type II Certified
+                                </p>
                             </CardContent>
                         </Card>
 
@@ -103,6 +108,7 @@ export default function ContactSales() {
                 </div>
             </main>
 
+            <EnterpriseDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
             <Footer />
         </div>
     );

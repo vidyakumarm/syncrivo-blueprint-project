@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Layers, RefreshCw, GitBranch } from 'lucide-react';
+import heroImage from '@/assets/sol-multi-v2.png';
 
 export default function MultiPlatformCoexistence() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.multiplatform.problem1.header', 'Organic Multi-Platform Growth'),
@@ -65,24 +66,25 @@ export default function MultiPlatformCoexistence() {
         badge={t('solutions.multiplatform.badge', 'Hybrid Messaging')}
         headline={t('solutions.multiplatform.headline', 'Multi-Platform Coexistence Without Compromise')}
         subheadline={t('solutions.multiplatform.subheadline', 'Stop forcing platform standardization. Enable seamless collaboration across Teams, Slack, and Google Chat while respecting team preferences and existing workflows.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.multiplatform.problems.title', 'Platform Diversity Challenges')}
         subtitle={t('solutions.multiplatform.problems.subtitle', 'Real enterprises run multiple platforms—make them work together')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.multiplatform.usecases.title', 'Hybrid Success Stories')}
         subtitle={t('solutions.multiplatform.usecases.subtitle', 'How organizations embrace multi-platform reality')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

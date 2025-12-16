@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Globe, Building2, Layers } from 'lucide-react';
+import heroImage from '@/assets/sol-partner-v2.png';
 
 export default function GlobalSubsidiaries() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.global.problem1.header', 'Subsidiary Platform Autonomy'),
@@ -71,24 +72,25 @@ export default function GlobalSubsidiaries() {
         badge={t('solutions.global.badge', 'Global Organizations')}
         headline={t('solutions.global.headline', 'Global Subsidiary & Multi-Brand Messaging')}
         subheadline={t('solutions.global.subheadline', 'Connect headquarters with global subsidiaries and brand portfolios. Respect local platform autonomy while enabling seamless corporate coordination.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.global.problems.title', 'Global Coordination Challenges')}
         subtitle={t('solutions.global.problems.subtitle', 'Multi-entity organizations need flexibility with unified communication')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.global.usecases.title', 'Global Success')}
         subtitle={t('solutions.global.usecases.subtitle', 'How global organizations maintain unity with autonomy')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

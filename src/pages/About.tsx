@@ -6,8 +6,8 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Lightbulb, Shield, Users, Zap, TrendingUp, MessageSquare, Globe, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import aboutHero from '@/assets/about-hero.jpg';
-import aboutValues from '@/assets/about-values.jpg';
+import aboutHero from '@/assets/about-hero-v2.png';
+import aboutValues from '@/assets/about-values-v2.png';
 
 import { SEO } from '@/components/seo/SEO';
 

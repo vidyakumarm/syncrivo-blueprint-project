@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Building2, Network, Users } from 'lucide-react';
+import heroImage from '@/assets/sol-multi-v2.png';
 
 export default function InterDepartment() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.interdept.problem1.header', 'Department Platform Silos'),
@@ -71,24 +72,25 @@ export default function InterDepartment() {
         badge={t('solutions.interdept.badge', 'Inter-Department')}
         headline={t('solutions.interdept.headline', 'Break Down Department Silos')}
         subheadline={t('solutions.interdept.subheadline', 'HR, Finance, IT, Sales—each department can use their preferred platform while maintaining seamless cross-functional collaboration on projects that matter.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.interdept.problems.title', 'Cross-Department Challenges')}
         subtitle={t('solutions.interdept.problems.subtitle', 'Platform differences shouldn\'t create organizational silos')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.interdept.usecases.title', 'Cross-Functional Success')}
         subtitle={t('solutions.interdept.usecases.subtitle', 'How departments collaborate without platform barriers')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );
