@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { RotatingWorldIcon } from '@/components/ui/rotating-world-icon';
 import { Linkedin, Twitter, Github } from 'lucide-react';
-// import { EnterpriseDemoModal } from '@/components/sections/EnterpriseDemoModal';
+import { EnterpriseDemoModal } from '@/components/sections/EnterpriseDemoModal';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ export function Footer() {
   return (
     <footer className="bg-card/50 backdrop-blur-lg border-t border-border mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 gap-8 lg:gap-8">
 
           {/* Brand Section - Takes 2 columns on LG */}
           <div className="col-span-1 lg:col-span-2 space-y-6">
@@ -25,6 +25,7 @@ export function Footer() {
                 size="lg"
                 speed="slow"
                 className="transition-transform duration-300 group-hover:scale-110 text-primary"
+                aria-hidden="true"
               />
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-500 to-indigo-600">
                 SyncRivo<sup className="text-xs text-foreground">®</sup>
@@ -33,14 +34,7 @@ export function Footer() {
             <p className="text-muted-foreground max-w-sm text-base leading-relaxed">
               {t('footer.tagline')}
             </p>
-            <div className="pt-2">
-              <Button
-                onClick={() => setDemoModalOpen(true)}
-                className="font-semibold shadow-lg hover:shadow-primary/20 transition-all duration-300 btn-shine"
-              >
-                {t('footer.book_demo')}
-              </Button>
-            </div>
+
           </div>
 
           {/* Product Column */}
@@ -58,6 +52,18 @@ export function Footer() {
                   {t('footer.book_demo')}
                 </button>
               </li>
+            </ul>
+          </div>
+
+          {/* Regions Column */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground tracking-tight">Regions</h3>
+            <ul className="space-y-3">
+              <li><Link to="/usa" className="text-sm text-muted-foreground hover:text-primary transition-colors">USA</Link></li>
+              <li><Link to="/uk" className="text-sm text-muted-foreground hover:text-primary transition-colors">United Kingdom</Link></li>
+              <li><Link to="/europe" className="text-sm text-muted-foreground hover:text-primary transition-colors">Europe</Link></li>
+              <li><Link to="/middle-east" className="text-sm text-muted-foreground hover:text-primary transition-colors">Middle East</Link></li>
+              <li><Link to="/apac" className="text-sm text-muted-foreground hover:text-primary transition-colors">APAC</Link></li>
             </ul>
           </div>
 
@@ -142,7 +148,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      {/* <EnterpriseDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} /> */}
-    </footer>
+      <EnterpriseDemoModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
+    </footer >
   );
 }

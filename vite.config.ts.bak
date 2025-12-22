@@ -1,0 +1,56 @@
+import react from '@vitejs/plugin-react-swc';
+// import { componentTagger } from 'lovable-tagger';
+import path from 'path';
+import { defineConfig } from 'vite';
+import viteCompression from 'vite-plugin-compression';
+
+import { visualizer } from 'rollup-plugin-visualizer';
+
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => ({
+  server: {
+    host: '::',
+    port: 8080,
+    historyApiFallback: true,
+  },
+  // Configure for production build
+  build: {
+    target: 'esnext',
+    minify: false,
+    cssCodeSplit: true,
+    sourcemap: false,
+    chunkSizeWarningLimit: 1000,
+    // rollupOptions: {
+    //   output: {
+    //     manualChunks: {
+    //       'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+    //       'ui-vendor': [
+    //         '@radix-ui/react-dialog',
+    //         '@radix-ui/react-slot',
+    //         'lucide-react',
+    //         'class-variance-authority',
+    //         'clsx',
+    //         'tailwind-merge',
+    //       ],
+    //       'animation-vendor': ['framer-motion'],
+    //     },
+    //   },
+    // },
+  },
+  plugins: [
+    react(),
+    // viteCompression({ algorithm: 'gzip', ext: '.gz' }),
+    // mode === 'development' && componentTagger(),
+    // List of plugins commented out for debugging
+    // visualizer({
+    //   filename: 'stats.html',
+    //   gzipSize: true,
+    //   brotliSize: true,
+    // }),
+  ].filter(Boolean),
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+}));

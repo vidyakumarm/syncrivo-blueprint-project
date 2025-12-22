@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, FileSearch, Building } from 'lucide-react';
+import heroImage from '@/assets/sol-ma-v2.png';
 
 export default function RegulatedIndustries() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.regulated.problem1.header', 'Regulatory Compliance Requirements'),
@@ -71,24 +72,25 @@ export default function RegulatedIndustries() {
         badge={t('solutions.regulated.badge', 'Regulated Industries')}
         headline={t('solutions.regulated.headline', 'Enterprise Messaging for Regulated Industries')}
         subheadline={t('solutions.regulated.subheadline', 'Banking, Insurance, Pharma, Government—meet the most stringent compliance requirements while enabling modern multi-platform collaboration.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.regulated.problems.title', 'Compliance Challenges')}
         subtitle={t('solutions.regulated.problems.subtitle', 'Regulated industries face unique communication requirements')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.regulated.usecases.title', 'Industry Compliance')}
         subtitle={t('solutions.regulated.usecases.subtitle', 'How regulated organizations maintain compliance across platforms')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

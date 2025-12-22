@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Unlock, DollarSign, Scale } from 'lucide-react';
+import heroImage from '@/assets/sol-vendor-v2.png';
 
 export default function VendorFlexibility() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.vendor.problem1.header', 'Single-Vendor Lock-In Risk'),
@@ -65,24 +66,25 @@ export default function VendorFlexibility() {
         badge={t('solutions.vendor.badge', 'Vendor Flexibility')}
         headline={t('solutions.vendor.headline', 'Escape Vendor Lock-In. Optimize License Costs.')}
         subheadline={t('solutions.vendor.subheadline', 'Reduce dependency on any single platform vendor. Mix and match Teams, Slack, and Google Chat to optimize costs, increase resilience, and maintain negotiating leverage.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.vendor.problems.title', 'Vendor Dependency Risks')}
         subtitle={t('solutions.vendor.problems.subtitle', 'Single-vendor strategies create business risks and cost inefficiencies')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.vendor.usecases.title', 'Strategic Flexibility')}
         subtitle={t('solutions.vendor.usecases.subtitle', 'How enterprises maintain vendor optionality')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

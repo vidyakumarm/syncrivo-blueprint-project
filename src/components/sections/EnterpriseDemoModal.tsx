@@ -18,20 +18,12 @@ import {
 } from '@/components/ui/select';
 import { Calendar } from '@/components/ui/calendar';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@/components/ui/command';
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import {
   Shield,
   Users,
@@ -42,7 +34,8 @@ import {
   Clock,
   AlertCircle,
   ChevronsUpDown,
-  Check
+  Check,
+  Info
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
@@ -75,12 +68,6 @@ const PLATFORMS_OPTIONS = [
   { value: 'others', label: 'Other' },
 ];
 
-const DEMO_TYPES = [
-  { value: 'live_demo', label: 'Live Product Demo', icon: Zap, description: 'See SyncRivo in action' },
-  { value: 'security_walkthrough', label: 'Security Walkthrough', icon: Shield, description: 'Enterprise compliance deep-dive' },
-  { value: 'poc_discussion', label: 'POC Discussion', icon: Users, description: 'Plan a proof-of-concept' },
-];
-
 const AGENDA_ITEMS = [
   { id: 'overview', label: 'Product Overview' },
   { id: 'security', label: 'Security & Compliance' },
@@ -103,6 +90,20 @@ const COMMON_TIMEZONES = [
   "Asia/Singapore",
   "Asia/Tokyo",
   "Australia/Sydney"
+];
+
+const PERSONAL_EMAIL_DOMAINS = [
+  'gmail.com',
+  'yahoo.com',
+  'outlook.com',
+  'hotmail.com',
+  'icloud.com',
+  'aol.com',
+  'protonmail.com',
+  'live.com',
+  'me.com',
+  'msn.com',
+  'comcast.net'
 ];
 
 const getBrowserTimezone = () => {
@@ -129,18 +130,84 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
     sourceCustom: '',
     destinationCustom: '',
     agendaChecklist: [] as string[],
-    demoType: 'live_demo', // Default to live demo
+    demoType: 'live_demo',
     timeSlot: '',
     timezone: getBrowserTimezone(),
   });
 
-  // Default date should NOT auto-select today, user must pick manually
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
   const [isSlotsLoading, setIsSlotsLoading] = useState(false);
-
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const availableTimezones = useMemo(() => {
+    const tz = getBrowserTimezone();
+    const zones = new Set([...COMMON_TIMEZONES, tz]);
+    return Array.from(zones).sort((a, b) =>
+      a === 'UTC' ? -1 : b === 'UTC' ? 1 : a.localeCompare(b)
+    );
+  }, []);
+
+  // Validation Logic
+  const validationErrors = useMemo(() => {
+    const newErrors: Record<string, string> = {};
+
+    // Name: Min 2 words, no single chars
+    if (!formData.name.trim()) {
+      newErrors.name = 'Please enter your full name';
+    } else {
+      const parts = formData.name.trim().split(/\s+/);
+      if (parts.length < 2) {
+        newErrors.name = 'Please enter your full name (First & Last)';
+      } else if (formData.name.length < 3) {
+        newErrors.name = 'Name is too short';
+      }
+    }
+
+    // Email: Check Personal Domains + Format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      newErrors.email = 'Enter a valid work email (name@company.com)';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Invalid email format';
+    } else {
+      const domain = formData.email.split('@')[1]?.toLowerCase();
+      if (domain && PERSONAL_EMAIL_DOMAINS.includes(domain)) {
+        newErrors.email = 'Personal email domains are not supported';
+      }
+    }
+
+    // Company: Min 2 chars
+    if (!formData.company.trim()) {
+      newErrors.company = 'Company name is required';
+    } else if (formData.company.trim().length < 2) {
+      newErrors.company = 'Company name must be at least 2 characters';
+    }
+
+    if (!formData.companySize) newErrors.companySize = 'Required';
+
+    // Platforms
+    if (!formData.sourcePlatform) newErrors.sourcePlatform = 'Required';
+    if (!formData.destinationPlatform) newErrors.destinationPlatform = 'Required';
+
+    if (formData.sourcePlatform === 'others' && !formData.sourceCustom.trim()) newErrors.sourceCustom = 'Required';
+    if (formData.destinationPlatform === 'others' && !formData.destinationCustom.trim()) newErrors.destinationCustom = 'Required';
+
+    if (formData.sourcePlatform && formData.destinationPlatform &&
+      formData.sourcePlatform !== 'others' &&
+      formData.sourcePlatform === formData.destinationPlatform) {
+      newErrors.integrationCheck = 'Source and Destination cannot be the same';
+    }
+
+    // Date & Time
+    if (!selectedDate) newErrors.date = 'Required';
+    if (!formData.timeSlot) newErrors.timeSlot = 'Required';
+
+    return newErrors;
+  }, [formData, selectedDate]);
+
+  const isValid = Object.keys(validationErrors).length === 0;
 
   // Logic to fetch/generate slots
   useEffect(() => {
@@ -152,10 +219,9 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
     setIsSlotsLoading(true);
     setFormData(prev => ({ ...prev, timeSlot: '' }));
 
-    // Simulate API network latency
     const timer = setTimeout(() => {
       const slots: TimeSlot[] = [];
-      const targetHours = [9, 9.5, 10, 10.5, 11, 11.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17]; // 30 min slots
+      const targetHours = [9, 9.5, 10, 10.5, 11, 11.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17];
 
       targetHours.forEach(hour => {
         const d = new Date(selectedDate);
@@ -171,58 +237,25 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
 
       setAvailableSlots(slots);
       setIsSlotsLoading(false);
-    }, 400); // reduced latency for "immediately" feel
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [selectedDate, formData.timezone]);
 
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.name.trim()) newErrors.name = 'Required';
-
-    // Relaxed email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      newErrors.email = 'Required';
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Invalid email';
-    }
-
-    if (!formData.company.trim()) newErrors.company = 'Required';
-
-    // Integration
-    if (!formData.sourcePlatform) newErrors.sourcePlatform = 'Required';
-    if (!formData.destinationPlatform) newErrors.destinationPlatform = 'Required';
-
-    if (formData.sourcePlatform === 'others' && !formData.sourceCustom.trim()) newErrors.sourceCustom = 'Required';
-    if (formData.destinationPlatform === 'others' && !formData.destinationCustom.trim()) newErrors.destinationCustom = 'Required';
-
-    if (formData.sourcePlatform && formData.destinationPlatform &&
-      formData.sourcePlatform !== 'others' &&
-      formData.sourcePlatform === formData.destinationPlatform) {
-      newErrors.integrationCheck = 'Same';
-    }
-
-    if (!selectedDate) newErrors.date = 'Required';
-    if (!formData.timeSlot) newErrors.timeSlot = 'Required';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
   };
-
-  const isFormValid = useMemo(() => {
-    // Basic check for enabling button (UX requirement)
-    const hasBasic = formData.name && formData.email && formData.company && formData.sourcePlatform && formData.destinationPlatform;
-    const hasTime = selectedDate && formData.timeSlot;
-    return hasBasic && hasTime;
-  }, [formData, selectedDate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      toast.error('Please fill in all required fields.');
+    // Mark all as touched to show errors
+    const allFields = Object.keys(formData);
+    const allTouched = allFields.reduce((acc, curr) => ({ ...acc, [curr]: true }), {});
+    setTouched(allTouched);
+
+    if (!isValid) {
+      toast.error('Please complete all required fields correctly.');
       return;
     }
 
@@ -301,11 +334,9 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
 </html>
       `;
 
-      console.log('--- SENDING EMAIL PAYLOAD ---');
       const { error } = await supabase.functions.invoke('send-email', {
         body: {
           to: formData.email,
-          // Updated Subject
           subject: `Your SyncRivo Enterprise Demo is Confirmed ✔️`,
           html: emailHtml,
         },
@@ -319,7 +350,6 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
     } catch (error) {
       console.error('Booking failed:', error);
       setStatus('error');
-      // Fallback message via toast if email fails
       toast.error('Could not send confirmation email, but your slot is reserved.');
     }
   };
@@ -362,12 +392,10 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
               <div>
                 <DialogTitle className="text-xl font-medium">Book Enterprise Demo</DialogTitle>
                 <DialogDescription className="text-sm text-muted-foreground mt-1">
-                  Configure your session. Let's get your integration running.
+                  Configure your demo session. See how secure cross-platform integrations work in real time.
                 </DialogDescription>
               </div>
-              <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)} className="text-muted-foreground">
-                <X className="w-5 h-5" />
-              </Button>
+
             </div>
 
             {/* Content */}
@@ -381,7 +409,7 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
                 <div className="flex flex-col sm:flex-row gap-6">
                   {/* Source */}
                   <div className="flex-1 space-y-2">
-                    <Label className="text-sm">Source Platform</Label>
+                    <Label className="text-sm">Source Platform <span className="text-red-500">*</span></Label>
                     <Select
                       value={formData.sourcePlatform}
                       onValueChange={(val) => setFormData(e => ({ ...e, sourcePlatform: val }))}
@@ -407,7 +435,7 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
 
                   {/* Destination */}
                   <div className="flex-1 space-y-2">
-                    <Label className="text-sm">Destination Platform</Label>
+                    <Label className="text-sm">Destination Platform <span className="text-red-500">*</span></Label>
                     <Select
                       value={formData.destinationPlatform}
                       onValueChange={(val) => setFormData(e => ({ ...e, destinationPlatform: val }))}
@@ -433,43 +461,84 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
                     )}
                   </div>
                 </div>
-                {errors.integrationCheck && <p className="text-xs text-red-500 mt-2">Source and Destination cannot be the same.</p>}
+                {validationErrors.integrationCheck && <p className="text-xs text-red-500 mt-2 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {validationErrors.integrationCheck}</p>}
               </div >
 
               {/* SECTION 2: Contact Details */}
-              < div className="mb-8" >
+              <div className="mb-8">
                 <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 block">
                   Contact Details
                 </Label>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Full Name */}
                   <div className="space-y-2">
-                    <Label className="text-sm">Full Name</Label>
+                    <Label className="text-sm" htmlFor="name">Full Name <span className="text-red-500">*</span></Label>
                     <Input
+                      id="name"
                       placeholder="John Doe"
-                      className={cn("h-10", errors.name && "border-red-500")}
+                      className={cn("h-10", touched.name && validationErrors.name && "border-red-500 ring-offset-2 focus-visible:ring-red-500")}
                       value={formData.name}
                       onChange={e => setFormData(p => ({ ...p, name: e.target.value }))}
+                      onBlur={() => handleBlur('name')}
+                      aria-describedby="name-error"
                     />
+                    {touched.name && validationErrors.name && (
+                      <p id="name-error" className="text-xs text-red-500 flex items-center gap-1.5 animate-in slide-in-from-top-1">
+                        <AlertCircle className="w-3.5 h-3.5" />
+                        {validationErrors.name}
+                      </p>
+                    )}
                   </div>
+
+                  {/* Work Email */}
                   <div className="space-y-2">
-                    <Label className="text-sm">Work Email</Label>
+                    <Label className="text-sm" htmlFor="email">Work Email <span className="text-red-500">*</span></Label>
                     <Input
-                      placeholder="john@company.com"
+                      id="email"
+                      placeholder="name@company.com"
                       type="email"
-                      className={cn("h-10", errors.email && "border-red-500")}
+                      className={cn("h-10", touched.email && validationErrors.email && "border-red-500 ring-offset-2 focus-visible:ring-red-500")}
                       value={formData.email}
                       onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
+                      onBlur={() => handleBlur('email')}
+                      aria-describedby="email-helper email-error"
                     />
+                    {!validationErrors.email ? (
+                      <p id="email-helper" className="text-xs text-muted-foreground">
+                        Use your work email (e.g. name@company.com)
+                      </p>
+                    ) : (
+                      touched.email && (
+                        <p id="email-error" className="text-xs text-red-500 flex items-center gap-1.5 animate-in slide-in-from-top-1">
+                          <AlertCircle className="w-3.5 h-3.5" />
+                          {validationErrors.email}
+                        </p>
+                      )
+                    )}
                   </div>
+
+                  {/* Company & Size */}
                   <div className="space-y-2">
-                    <Label className="text-sm">Company & Size</Label>
+                    <Label className="text-sm" htmlFor="company">Company & Size <span className="text-red-500">*</span></Label>
                     <div className="flex gap-2">
-                      <Input
-                        placeholder="Acme Inc"
-                        className={cn("h-10 flex-[2]", errors.company && "border-red-500")}
-                        value={formData.company}
-                        onChange={e => setFormData(p => ({ ...p, company: e.target.value }))}
-                      />
+                      <div className="flex-[2] space-y-2">
+                        <Input
+                          id="company"
+                          placeholder="Acme Inc"
+                          className={cn("h-10", touched.company && validationErrors.company && "border-red-500 ring-offset-2 focus-visible:ring-red-500")}
+                          value={formData.company}
+                          onChange={e => setFormData(p => ({ ...p, company: e.target.value }))}
+                          onBlur={() => handleBlur('company')}
+                          aria-describedby={touched.company && validationErrors.company ? "company-error" : undefined}
+                        />
+                        {touched.company && validationErrors.company && (
+                          <p id="company-error" className="text-xs text-red-500 flex items-center gap-1.5 absolute">
+                            <AlertCircle className="w-3.5 h-3.5" />
+                            {validationErrors.company}
+                          </p>
+                        )}
+                      </div>
+
                       <Select value={formData.companySize} onValueChange={v => setFormData(p => ({ ...p, companySize: v }))}>
                         <SelectTrigger className="h-10 flex-1 min-w-[90px]">
                           <SelectValue placeholder="Size" />
@@ -481,13 +550,13 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
                     </div>
                   </div>
                 </div>
-              </div >
+              </div>
 
               {/* SECTION 3: Date & Time */}
-              < div className="mb-8" >
+              <div className="mb-8">
                 <div className="flex justify-between items-end mb-4">
                   <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                    Date & Time
+                    Date & Time <span className="text-red-500">*</span>
                   </Label>
                   <div className="w-[180px]">
                     <Select value={formData.timezone} onValueChange={v => setFormData(p => ({ ...p, timezone: v }))}>
@@ -496,7 +565,7 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
                         <SelectValue className="truncate" />
                       </SelectTrigger>
                       <SelectContent align="end">
-                        {COMMON_TIMEZONES.map(tz => <SelectItem key={tz} value={tz}>{tz}</SelectItem>)}
+                        {availableTimezones.map(tz => <SelectItem key={tz} value={tz}>{tz}</SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
@@ -568,12 +637,12 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
                     </div>
                   </div>
                 </div>
-              </div >
+              </div>
 
               {/* SECTION 4: Topics */}
-              < div className="mb-2" >
+              <div className="mb-2">
                 <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 block">
-                  Topics to Cover
+                  Topics to Cover <span className="text-xs normal-case text-muted-foreground/70">(Optional)</span>
                 </Label>
                 <div className="flex flex-wrap gap-3">
                   {AGENDA_ITEMS.map(item => (
@@ -593,30 +662,43 @@ export function EnterpriseDemoModal({ open, onOpenChange }: EnterpriseDemoModalP
                     </button>
                   ))}
                 </div>
-              </div >
+              </div>
 
             </div >
 
             {/* SECTION 5: Footer */}
-            < div className="p-6 border-t bg-background flex justify-end gap-3 sticky bottom-0 z-20" >
+            <div className="p-6 border-t bg-background flex justify-end gap-3 sticky bottom-0 z-20">
               <Button variant="ghost" onClick={() => onOpenChange(false)}>
                 Cancel
               </Button>
-              <Button
-                onClick={handleSubmit}
-                disabled={status === 'submitting' || !isFormValid}
-                className={cn(
-                  "bg-emerald-600 hover:bg-emerald-700 text-white min-w-[150px]",
-                  (!isFormValid) && "opacity-50 cursor-not-allowed"
-                )}
-              >
-                {status === 'submitting' ? 'Confirming...' : 'Confirm Booking'}
-              </Button>
-            </div >
+
+              <TooltipProvider>
+                <Tooltip delayDuration={0}>
+                  <TooltipTrigger asChild>
+                    <span tabIndex={-1}>
+                      <Button
+                        onClick={handleSubmit}
+                        disabled={status === 'submitting' || !isValid}
+                        className={cn(
+                          "bg-emerald-600 hover:bg-emerald-700 text-white min-w-[150px]",
+                          (!isValid) && "opacity-50 cursor-not-allowed"
+                        )}
+                      >
+                        {status === 'submitting' ? 'Confirming...' : 'Confirm Booking'}
+                      </Button>
+                    </span>
+                  </TooltipTrigger>
+                  {!isValid && (
+                    <TooltipContent>
+                      <p>Complete all required fields to continue</p>
+                    </TooltipContent>
+                  )}
+                </Tooltip>
+              </TooltipProvider>
+            </div>
           </>
-        )
-        }
-      </DialogContent >
-    </Dialog >
+        )}
+      </DialogContent>
+    </Dialog>
   );
 }

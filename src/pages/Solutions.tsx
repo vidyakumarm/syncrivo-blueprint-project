@@ -5,18 +5,102 @@ import { SolutionPageLayout, fadeInUp, staggerContainer } from '@/components/sol
 import { Users, Building2, Layers, Unlock, Globe, Headphones, ShieldCheck, AlertTriangle, Network, Rocket, Code2, ArrowRight } from 'lucide-react';
 
 const solutions = [
-  { path: '/solutions/frontline-workforce', icon: Users, key: 'frontline', color: 'primary' },
-  { path: '/solutions/mergers-acquisitions', icon: Building2, key: 'ma', color: 'accent' },
-  { path: '/solutions/multi-platform', icon: Layers, key: 'multiplatform', color: 'primary' },
-  { path: '/solutions/vendor-flexibility', icon: Unlock, key: 'vendor', color: 'accent' },
-  { path: '/solutions/external-partners', icon: Globe, key: 'partner', color: 'primary' },
-  { path: '/solutions/customer-support', icon: Headphones, key: 'support', color: 'accent' },
-  { path: '/solutions/regulated-industries', icon: ShieldCheck, key: 'regulated', color: 'primary' },
-  { path: '/solutions/incident-response', icon: AlertTriangle, key: 'incident', color: 'accent' },
-  { path: '/solutions/inter-department', icon: Network, key: 'interdept', color: 'primary' },
-  { path: '/solutions/global-subsidiaries', icon: Globe, key: 'global', color: 'accent' },
-  { path: '/solutions/digital-transformation', icon: Rocket, key: 'digital', color: 'primary' },
-  { path: '/solutions/developer-platform', icon: Code2, key: 'developer', color: 'accent' },
+  {
+    path: '/solutions/frontline-workforce',
+    icon: Users,
+    key: 'frontline',
+    color: 'primary',
+    title: 'Frontline Workforce',
+    description: 'Unite Your Entire Workforce on Any Platform. Bridge the communication gap between HQ and frontline workers.'
+  },
+  {
+    path: '/solutions/mergers-acquisitions',
+    icon: Building2,
+    key: 'ma',
+    color: 'accent',
+    title: 'M&A Day-1 Bridge',
+    description: 'Day-1 Ready Messaging for Mergers & Acquisitions. Enable instant cross-platform collaboration the moment the deal closes.'
+  },
+  {
+    path: '/solutions/multi-platform',
+    icon: Layers,
+    key: 'multiplatform',
+    color: 'primary',
+    title: 'Hybrid Messaging',
+    description: 'Multi-Platform Coexistence Without Compromise. Enable seamless collaboration across Teams, Slack, and Google Chat.'
+  },
+  {
+    path: '/solutions/vendor-flexibility',
+    icon: Unlock,
+    key: 'vendor',
+    color: 'accent',
+    title: 'Vendor Flexibility',
+    description: 'Escape Vendor Lock-In. Optimize License Costs. Reduce dependency on any single platform vendor.'
+  },
+  {
+    path: '/solutions/external-partners',
+    icon: Globe,
+    key: 'partner',
+    color: 'primary',
+    title: 'Partner Messaging Hub',
+    description: 'Secure External Partner Communication Hub. Connect with partners, vendors, and clients without exposing internal systems.'
+  },
+  {
+    path: '/solutions/customer-support',
+    icon: Headphones,
+    key: 'support',
+    color: 'accent',
+    title: 'Unified Support',
+    description: 'Unified Customer Support & Ticketing Integration. Aggregate support conversations from all platforms into unified workflows.'
+  },
+  {
+    path: '/solutions/regulated-industries',
+    icon: ShieldCheck,
+    key: 'regulated',
+    color: 'primary',
+    title: 'Regulated Industries',
+    description: 'Enterprise Messaging for Regulated Industries. Meet stringent compliance requirements while enabling modern collaboration.'
+  },
+  {
+    path: '/solutions/incident-response',
+    icon: AlertTriangle,
+    key: 'incident',
+    color: 'accent',
+    title: 'Incident Response',
+    description: 'Incident Response & War Room Synchronization. Unite SRE, DevOps, Security, and Leadership in real-time incident channels.'
+  },
+  {
+    path: '/solutions/inter-department',
+    icon: Network,
+    key: 'interdept',
+    color: 'primary',
+    title: 'Inter-Department',
+    description: 'Break Down Department Silos. Enable seamless cross-functional collaboration on projects that matter.'
+  },
+  {
+    path: '/solutions/global-subsidiaries',
+    icon: Globe,
+    key: 'global',
+    color: 'accent',
+    title: 'Global Organizations',
+    description: 'Global Subsidiary & Multi-Brand Messaging. Respect local platform autonomy while enabling seamless corporate coordination.'
+  },
+  {
+    path: '/solutions/digital-transformation',
+    icon: Rocket,
+    key: 'digital',
+    color: 'primary',
+    title: 'Digital Transformation',
+    description: 'Enterprise Digital Transformation Messaging Layer. Deploy automations, AI assistants, and modern workflows across all platforms.'
+  },
+  {
+    path: '/solutions/developer-platform',
+    icon: Code2,
+    key: 'developer',
+    color: 'accent',
+    title: 'Developer Platform',
+    description: 'Unified API for Bots, Workflows & Automation. Build once, deploy everywhere with a single API.'
+  },
 ];
 
 export default function Solutions() {
@@ -46,10 +130,10 @@ export default function Solutions() {
                     <solution.icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {t(`solutions.${solution.key}.badge`, solution.key)}
+                    {t(`solutions.${solution.key}.badge`, solution.title)}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    {t(`solutions.${solution.key}.subheadline`, '').slice(0, 120)}...
+                    {t(`solutions.${solution.key}.subheadline`, solution.description).slice(0, 120)}...
                   </p>
                   <span className="inline-flex items-center text-sm font-medium text-primary">
                     {t('solutions.index.learn_more', 'Learn more')}

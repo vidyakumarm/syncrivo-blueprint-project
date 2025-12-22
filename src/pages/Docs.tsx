@@ -4,16 +4,17 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
-import { 
-  Zap, 
-  Book, 
-  Code, 
+import {
+  Zap,
+  Book,
+  Code,
   ArrowRight,
   CheckCircle2,
   Clock,
   Users,
   Star
 } from 'lucide-react';
+import { SEO } from '@/components/seo/SEO';
 
 export default function Docs() {
   const { t } = useTranslation();
@@ -74,6 +75,10 @@ console.log('Integration created:', integration.id);`;
 
   return (
     <DocsLayout>
+      <SEO
+        title="Developer Documentation & API Reference | SyncRivo"
+        description="Integrate SyncRivo with your apps. Complete SDK documentation, API reference, and quickstart guides for Slack, Teams, and Google Workspace integrations."
+      />
       <div className="space-y-12">
         {/* Hero Section */}
         <div className="text-center space-y-6">
@@ -126,7 +131,7 @@ console.log('Integration created:', integration.id);`;
             <p className="text-muted-foreground mb-6">
               {t('docs.quick_start_desc')}
             </p>
-            <CodeBlock 
+            <CodeBlock
               code={quickStartCode}
               language="javascript"
               title={t('docs.create_integration')}
@@ -191,7 +196,7 @@ console.log('Integration created:', integration.id);`;
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm">
                   2
@@ -203,7 +208,7 @@ console.log('Integration created:', integration.id);`;
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm">
                   3

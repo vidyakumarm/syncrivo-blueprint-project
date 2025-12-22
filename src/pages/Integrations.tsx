@@ -103,7 +103,7 @@ export default function Integrations() {
       rating: 4.7,
       users: '28k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Intercom logo
+      logoUrl: '/src/assets/brands/intercom-official.svg',
       color: 'bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/30 dark:border-blue-800'
     },
     {
@@ -114,7 +114,7 @@ export default function Integrations() {
       rating: 4.4,
       users: '12k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Zendesk logo
+      logoUrl: '/src/assets/brands/zendesk-official.svg',
       color: 'bg-teal-50 border-teal-200 text-teal-600 dark:bg-teal-950/30 dark:border-teal-800'
     },
     {
@@ -125,7 +125,7 @@ export default function Integrations() {
       rating: 4.5,
       users: '18k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Freshchat logo
+      logoUrl: '/src/assets/brands/freshchat-official.svg',
       color: 'bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/30 dark:border-blue-800'
     },
     // CRM & Sales Platforms
@@ -137,7 +137,7 @@ export default function Integrations() {
       rating: 4.8,
       users: '25k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Salesforce logo
+      logoUrl: '/src/assets/brands/salesforce-official.svg',
       color: 'bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/30 dark:border-blue-800'
     },
     {
@@ -148,7 +148,7 @@ export default function Integrations() {
       rating: 4.6,
       users: '20k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual HubSpot logo
+      logoUrl: '/src/assets/brands/hubspot-official.svg',
       color: 'bg-orange-50 border-orange-200 text-orange-600 dark:bg-orange-950/30 dark:border-orange-800'
     },
     // Regional Platforms
@@ -160,7 +160,7 @@ export default function Integrations() {
       rating: 4.6,
       users: '35k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual WhatsApp logo
+      logoUrl: '/src/assets/brands/whatsapp-official.svg',
       color: 'bg-green-50 border-green-200 text-green-600 dark:bg-green-950/30 dark:border-green-800'
     },
     {
@@ -171,7 +171,7 @@ export default function Integrations() {
       rating: 4.5,
       users: '22k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Telegram logo
+      logoUrl: '/src/assets/brands/telegram-official.svg',
       color: 'bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/30 dark:border-blue-800'
     },
     // Productivity Platforms
@@ -183,7 +183,7 @@ export default function Integrations() {
       rating: 4.7,
       users: '18k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Notion logo
+      logoUrl: '/src/assets/brands/notion-official.svg',
       color: 'bg-gray-50 border-gray-200 text-gray-600 dark:bg-gray-950/30 dark:border-gray-800'
     },
     {
@@ -194,7 +194,7 @@ export default function Integrations() {
       rating: 4.6,
       users: '35k+',
       popular: true,
-      logoUrl: '/src/assets/brands/google-meet.svg',
+      logoUrl: '/src/assets/brands/google-official.svg',
       color: 'bg-red-50 border-red-200 text-red-600 dark:bg-red-950/30 dark:border-red-800'
     },
     // Finance & E-commerce
@@ -206,7 +206,7 @@ export default function Integrations() {
       rating: 4.9,
       users: '40k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Stripe logo
+      logoUrl: '/src/assets/brands/stripe-official.svg',
       color: 'bg-indigo-50 border-indigo-200 text-indigo-600 dark:bg-indigo-950/30 dark:border-indigo-800'
     },
     {
@@ -217,14 +217,14 @@ export default function Integrations() {
       rating: 4.7,
       users: '30k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Shopify logo
+      logoUrl: '/src/assets/brands/shopify-official.svg',
       color: 'bg-green-50 border-green-200 text-green-600 dark:bg-green-950/30 dark:border-green-800'
     }
   ];
 
   const filteredIntegrations = integrations.filter(integration => {
     const matchesSearch = integration.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         integration.description.toLowerCase().includes(searchQuery.toLowerCase());
+      integration.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || integration.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -234,7 +234,7 @@ export default function Integrations() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main className="pt-16">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-primary-light/50 to-accent-light/30">
@@ -244,14 +244,14 @@ export default function Integrations() {
                 <Zap className="w-4 h-4 mr-2" />
                 {t('integrations.hero_badge')}
               </Badge>
-              
+
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 {t('integrations.hero_title')}
                 <span className="block bg-gradient-hero bg-clip-text text-transparent">
                   {t('integrations.hero_title_highlight')}
                 </span>
               </h1>
-              
+
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
                 {t('integrations.hero_subtitle')}
               </p>
@@ -309,23 +309,24 @@ export default function Integrations() {
                   <Link to={`/integrations/${integration.id}`}>
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                         <div className="flex items-center space-x-3">
-                           <div className="w-10 h-10 rounded-lg overflow-hidden bg-white/50 flex items-center justify-center border border-border/20">
-                             <img 
-                               src={integration.logoUrl} 
-                               alt={`${integration.name} logo`}
-                               className="w-8 h-8 object-contain"
-                                onError={(e) => {
-                                  const img = e.currentTarget as HTMLImageElement;
-                                  const fallback = img.nextElementSibling as HTMLElement;
-                                  img.style.display = 'none';
-                                  if (fallback) fallback.style.display = 'flex';
-                                }}
-                             />
-                             <div className="w-8 h-8 rounded bg-muted flex items-center justify-center text-sm font-semibold text-muted-foreground hidden">
-                               {integration.name.slice(0, 2).toUpperCase()}
-                             </div>
-                           </div>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 rounded-lg overflow-hidden bg-white/50 flex items-center justify-center border border-border/20">
+                            <img
+                              src={integration.logoUrl}
+                              alt={`${integration.name} logo`}
+                              className="w-8 h-8 object-contain"
+                              loading="lazy"
+                              onError={(e) => {
+                                const img = e.currentTarget as HTMLImageElement;
+                                const fallback = img.nextElementSibling as HTMLElement;
+                                img.style.display = 'none';
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                            <div className="w-8 h-8 rounded bg-muted flex items-center justify-center text-sm font-semibold text-muted-foreground hidden">
+                              {integration.name.slice(0, 2).toUpperCase()}
+                            </div>
+                          </div>
                           <div>
                             <CardTitle className="text-lg group-hover:text-primary transition-colors">
                               {integration.name}
@@ -337,9 +338,9 @@ export default function Integrations() {
                                   {integration.rating}
                                 </span>
                               </div>
-                               <span className="text-xs text-muted-foreground">
-                                 {integration.users} {t('integrations.users_suffix')}
-                               </span>
+                              <span className="text-xs text-muted-foreground">
+                                {integration.users} {t('integrations.users_suffix')}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -373,23 +374,24 @@ export default function Integrations() {
                   <Link to={`/integrations/${integration.id}`}>
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                         <div className="flex items-center space-x-3">
-                           <div className="w-8 h-8 rounded overflow-hidden bg-white/50 flex items-center justify-center border border-border/20">
-                             <img 
-                               src={integration.logoUrl} 
-                               alt={`${integration.name} logo`}
-                               className="w-6 h-6 object-contain"
-                                onError={(e) => {
-                                  const img = e.currentTarget as HTMLImageElement;
-                                  const fallback = img.nextElementSibling as HTMLElement;
-                                  img.style.display = 'none';
-                                  if (fallback) fallback.style.display = 'flex';
-                                }}
-                             />
-                             <div className="w-6 h-6 rounded bg-muted flex items-center justify-center text-xs font-semibold text-muted-foreground hidden">
-                               {integration.name.slice(0, 2).toUpperCase()}
-                             </div>
-                           </div>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 rounded overflow-hidden bg-white/50 flex items-center justify-center border border-border/20">
+                            <img
+                              src={integration.logoUrl}
+                              alt={`${integration.name} logo`}
+                              className="w-6 h-6 object-contain"
+                              loading="lazy"
+                              onError={(e) => {
+                                const img = e.currentTarget as HTMLImageElement;
+                                const fallback = img.nextElementSibling as HTMLElement;
+                                img.style.display = 'none';
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                            <div className="w-6 h-6 rounded bg-muted flex items-center justify-center text-xs font-semibold text-muted-foreground hidden">
+                              {integration.name.slice(0, 2).toUpperCase()}
+                            </div>
+                          </div>
                           <div>
                             <CardTitle className="text-base group-hover:text-primary transition-colors">
                               {integration.name}
@@ -404,11 +406,11 @@ export default function Integrations() {
                               <span className="text-xs text-muted-foreground">
                                 {integration.users}
                               </span>
-                               {integration.popular && (
-                                 <Badge variant="secondary" className="text-xs px-2 py-0.5">
-                                   {t('integrations.popular_badge')}
-                                 </Badge>
-                               )}
+                              {integration.popular && (
+                                <Badge variant="secondary" className="text-xs px-2 py-0.5">
+                                  {t('integrations.popular_badge')}
+                                </Badge>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -428,8 +430,8 @@ export default function Integrations() {
             {filteredIntegrations.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-muted-foreground mb-4">{t('integrations.no_results')}</p>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => {
                     setSearchQuery('');
                     setSelectedCategory('all');
@@ -462,7 +464,7 @@ export default function Integrations() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );

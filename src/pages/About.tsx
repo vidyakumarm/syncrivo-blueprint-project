@@ -6,8 +6,10 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Lightbulb, Shield, Users, Zap, TrendingUp, MessageSquare, Globe, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import aboutHero from '@/assets/about-hero.jpg';
-import aboutValues from '@/assets/about-values.jpg';
+import aboutHero from '@/assets/about-hero-v2.png';
+import aboutValues from '@/assets/about-values-v2.png';
+
+import { SEO } from '@/components/seo/SEO';
 
 export default function About() {
   const { t } = useTranslationWithFallback();
@@ -88,10 +90,15 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="About SyncRivo | Enterprise Messaging Reliability"
+        description="Learn about our mission to unify business communication. We build reliability, security, and message consistency for global enterprises."
+        canonical="https://syncrivo.ai/about"
+      />
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 overflow-hidden">
+      <section className="relative pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -113,10 +120,11 @@ export default function About() {
             </div>
             <div className="relative">
               <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-border/50">
-                <img 
-                  src={aboutHero} 
+                <img
+                  src={aboutHero}
                   alt="SyncRivo team collaboration"
                   className="w-full h-full object-cover"
+                  fetchPriority="high"
                 />
               </div>
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-xl animate-pulse-slow" />
@@ -158,7 +166,7 @@ export default function About() {
                 {t('about.story.subtitle')}
               </p>
             </div>
-            
+
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <p className="text-lg text-muted-foreground leading-relaxed">
@@ -175,10 +183,12 @@ export default function About() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-2xl overflow-hidden shadow-xl border border-border/50">
-                  <img 
-                    src={aboutValues} 
+                  <img
+                    src={aboutValues}
                     alt="Company values"
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -198,7 +208,7 @@ export default function About() {
               {t('about.values.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => {
               const Icon = value.icon;
@@ -233,12 +243,12 @@ export default function About() {
               {t('about.timeline.subtitle')}
             </p>
           </div>
-          
+
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Timeline line */}
               <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-primary via-accent to-primary opacity-20" />
-              
+
               <div className="space-y-8">
                 {timeline.map((item, index) => (
                   <div key={index} className="relative flex items-center space-x-8">
@@ -246,7 +256,7 @@ export default function About() {
                     <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg">
                       <Clock className="w-6 h-6 text-white" />
                     </div>
-                    
+
                     {/* Content */}
                     <div className="flex-1 bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                       <div className="flex items-center space-x-4 mb-3">

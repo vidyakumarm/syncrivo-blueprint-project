@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Building2, Clock, Zap } from 'lucide-react';
+import heroImage from '@/assets/sol-ma-v2.png';
 
 export default function MergersAcquisitions() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.ma.problem1.header', 'Day-1 Communication Chaos'),
@@ -65,24 +66,25 @@ export default function MergersAcquisitions() {
         badge={t('solutions.ma.badge', 'M&A Day-1 Bridge')}
         headline={t('solutions.ma.headline', 'Day-1 Ready Messaging for Mergers & Acquisitions')}
         subheadline={t('solutions.ma.subheadline', 'Enable instant cross-platform collaboration the moment the deal closes. No migration projects, no disruption, no waiting 18 months for unified communications.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.ma.problems.title', 'M&A Communication Challenges')}
         subtitle={t('solutions.ma.problems.subtitle', 'Traditional integration approaches fail the modern enterprise')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.ma.usecases.title', 'Accelerate Integration')}
         subtitle={t('solutions.ma.usecases.subtitle', 'How leading organizations bridge communication during transactions')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );
