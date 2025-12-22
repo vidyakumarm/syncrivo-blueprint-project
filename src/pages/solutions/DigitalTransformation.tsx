@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Rocket, Layers, Zap } from 'lucide-react';
+import heroImage from '@/assets/sol-ma-v2.png';
 
 export default function DigitalTransformation() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.digital.problem1.header', 'Digital Transformation Bottleneck'),
@@ -71,24 +72,25 @@ export default function DigitalTransformation() {
         badge={t('solutions.digital.badge', 'Digital Transformation')}
         headline={t('solutions.digital.headline', 'Enterprise Digital Transformation Messaging Layer')}
         subheadline={t('solutions.digital.subheadline', 'Enable your digital transformation with a modern, AI-ready messaging infrastructure. Deploy automations, AI assistants, and modern workflows across all platforms.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.digital.problems.title', 'Transformation Challenges')}
         subtitle={t('solutions.digital.problems.subtitle', 'Legacy messaging infrastructure blocks modern enterprise evolution')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.digital.usecases.title', 'Transformation Success')}
         subtitle={t('solutions.digital.usecases.subtitle', 'How enterprises modernize their communication layer')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

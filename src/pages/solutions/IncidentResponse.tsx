@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, Users, Clock } from 'lucide-react';
+import heroImage from '@/assets/sol-partner-v2.png';
 
 export default function IncidentResponse() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.incident.problem1.header', 'Cross-Team Incident Communication'),
@@ -71,24 +72,25 @@ export default function IncidentResponse() {
         badge={t('solutions.incident.badge', 'Incident Response')}
         headline={t('solutions.incident.headline', 'Incident Response & War Room Synchronization')}
         subheadline={t('solutions.incident.subheadline', 'When every minute counts, platform barriers shouldn\'t slow you down. Unite SRE, DevOps, Security, and Leadership in real-time incident channels across all platforms.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.incident.problems.title', 'Incident Communication Challenges')}
         subtitle={t('solutions.incident.problems.subtitle', 'Critical incidents require instant cross-platform coordination')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.incident.usecases.title', 'Incident Excellence')}
         subtitle={t('solutions.incident.usecases.subtitle', 'How elite operations teams respond faster')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

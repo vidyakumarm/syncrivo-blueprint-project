@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Users, MessageSquare, Shield } from 'lucide-react';
+import heroImage from '@/assets/sol-frontline-v2.png';
 
 export default function FrontlineWorkforce() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.frontline.problem1.header', 'Disconnected Deskless Workers'),
@@ -71,24 +72,25 @@ export default function FrontlineWorkforce() {
         badge={t('solutions.frontline.badge', 'Frontline Workforce')}
         headline={t('solutions.frontline.headline', 'Unite Your Entire Workforce on Any Platform')}
         subheadline={t('solutions.frontline.subheadline', 'Bridge the communication gap between HQ and frontline workers. Deliver critical updates, enable real-time collaboration, and maintain compliance—regardless of which app your teams use.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.frontline.problems.title', 'Frontline Communication Challenges')}
         subtitle={t('solutions.frontline.problems.subtitle', 'Modern enterprises face unique challenges connecting desk and deskless workers')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.frontline.usecases.title', 'Real-World Impact')}
         subtitle={t('solutions.frontline.usecases.subtitle', 'See how enterprises connect their entire workforce with Syncrivo')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

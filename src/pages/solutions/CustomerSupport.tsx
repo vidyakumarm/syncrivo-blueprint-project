@@ -7,10 +7,11 @@ import { UseCasesSection } from '@/components/solutions/UseCasesSection';
 import { SolutionCTA } from '@/components/solutions/SolutionCTA';
 import { useTranslation } from 'react-i18next';
 import { Headphones, Ticket, BarChart3 } from 'lucide-react';
+import heroImage from '@/assets/sol-frontline-v2.png';
 
 export default function CustomerSupport() {
   const { t } = useTranslation();
-  
+
   const problemBlocks = [
     {
       header: t('solutions.support.problem1.header', 'Fragmented Support Channels'),
@@ -65,24 +66,25 @@ export default function CustomerSupport() {
         badge={t('solutions.support.badge', 'Unified Support')}
         headline={t('solutions.support.headline', 'Unified Customer Support & Ticketing Integration')}
         subheadline={t('solutions.support.subheadline', 'Meet customers where they are. Aggregate support conversations from Teams, Slack, and Google Chat into unified workflows with full ticketing system integration.')}
+        heroImage={heroImage}
       />
-      
+
       <ProblemSolutionSection
         title={t('solutions.support.problems.title', 'Support Channel Challenges')}
         subtitle={t('solutions.support.problems.subtitle', 'Modern support requires multi-platform presence with unified operations')}
         blocks={problemBlocks}
       />
-      
+
       <AdvantageStrip />
-      
+
       <ArchitectureDiagram />
-      
+
       <UseCasesSection
         title={t('solutions.support.usecases.title', 'Support Excellence')}
         subtitle={t('solutions.support.usecases.subtitle', 'How support teams deliver consistent experiences across platforms')}
         useCases={useCases}
       />
-      
+
       <SolutionCTA />
     </SolutionPageLayout>
   );

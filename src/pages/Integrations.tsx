@@ -103,7 +103,7 @@ export default function Integrations() {
       rating: 4.7,
       users: '28k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Intercom logo
+      logoUrl: '/src/assets/brands/intercom-official.svg',
       color: 'bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/30 dark:border-blue-800'
     },
     {
@@ -114,7 +114,7 @@ export default function Integrations() {
       rating: 4.4,
       users: '12k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Zendesk logo
+      logoUrl: '/src/assets/brands/zendesk-official.svg',
       color: 'bg-teal-50 border-teal-200 text-teal-600 dark:bg-teal-950/30 dark:border-teal-800'
     },
     {
@@ -125,7 +125,7 @@ export default function Integrations() {
       rating: 4.5,
       users: '18k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Freshchat logo
+      logoUrl: '/src/assets/brands/freshchat-official.svg',
       color: 'bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/30 dark:border-blue-800'
     },
     // CRM & Sales Platforms
@@ -137,7 +137,7 @@ export default function Integrations() {
       rating: 4.8,
       users: '25k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Salesforce logo
+      logoUrl: '/src/assets/brands/salesforce-official.svg',
       color: 'bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/30 dark:border-blue-800'
     },
     {
@@ -148,7 +148,7 @@ export default function Integrations() {
       rating: 4.6,
       users: '20k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual HubSpot logo
+      logoUrl: '/src/assets/brands/hubspot-official.svg',
       color: 'bg-orange-50 border-orange-200 text-orange-600 dark:bg-orange-950/30 dark:border-orange-800'
     },
     // Regional Platforms
@@ -160,7 +160,7 @@ export default function Integrations() {
       rating: 4.6,
       users: '35k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual WhatsApp logo
+      logoUrl: '/src/assets/brands/whatsapp-official.svg',
       color: 'bg-green-50 border-green-200 text-green-600 dark:bg-green-950/30 dark:border-green-800'
     },
     {
@@ -171,7 +171,7 @@ export default function Integrations() {
       rating: 4.5,
       users: '22k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Telegram logo
+      logoUrl: '/src/assets/brands/telegram-official.svg',
       color: 'bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/30 dark:border-blue-800'
     },
     // Productivity Platforms
@@ -183,7 +183,7 @@ export default function Integrations() {
       rating: 4.7,
       users: '18k+',
       popular: false,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Notion logo
+      logoUrl: '/src/assets/brands/notion-official.svg',
       color: 'bg-gray-50 border-gray-200 text-gray-600 dark:bg-gray-950/30 dark:border-gray-800'
     },
     {
@@ -194,7 +194,7 @@ export default function Integrations() {
       rating: 4.6,
       users: '35k+',
       popular: true,
-      logoUrl: '/src/assets/brands/google-meet.svg',
+      logoUrl: '/src/assets/brands/google-official.svg',
       color: 'bg-red-50 border-red-200 text-red-600 dark:bg-red-950/30 dark:border-red-800'
     },
     // Finance & E-commerce
@@ -206,7 +206,7 @@ export default function Integrations() {
       rating: 4.9,
       users: '40k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Stripe logo
+      logoUrl: '/src/assets/brands/stripe-official.svg',
       color: 'bg-indigo-50 border-indigo-200 text-indigo-600 dark:bg-indigo-950/30 dark:border-indigo-800'
     },
     {
@@ -217,7 +217,7 @@ export default function Integrations() {
       rating: 4.7,
       users: '30k+',
       popular: true,
-      logoUrl: '/src/assets/discord-icon.png', // Placeholder - would use actual Shopify logo
+      logoUrl: '/src/assets/brands/shopify-official.svg',
       color: 'bg-green-50 border-green-200 text-green-600 dark:bg-green-950/30 dark:border-green-800'
     }
   ];

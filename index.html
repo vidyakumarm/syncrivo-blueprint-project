@@ -45,6 +45,33 @@
   <meta name="twitter:description"
     content="Unify your business communication with SyncRivo®. Seamlessly integrate Slack, Microsoft Teams, Webex, Zoom and more for enhanced team collaboration." />
   <meta name="twitter:image" content="https://syncrivo.ai/twitter-card.jpg" />
+  <script>
+    (function () {
+      var storageKey = "vite-ui-theme";
+      try {
+        var theme = localStorage.getItem(storageKey);
+        var supportDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var element = document.documentElement;
+
+        if (!theme) {
+          // If no theme is stored, force dark mode and persist it
+          theme = "dark";
+          localStorage.setItem(storageKey, "dark");
+        }
+
+        element.classList.remove("light", "dark");
+
+        if (theme === "system") {
+          var systemTheme = supportDarkMode ? "dark" : "light";
+          element.classList.add(systemTheme);
+        } else {
+          element.classList.add(theme);
+        }
+      } catch (e) {
+        console.error("Theme initialization failed:", e);
+      }
+    })();
+  </script>
 </head>
 
 <body>

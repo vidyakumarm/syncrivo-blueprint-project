@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Lock, Layers } from "lucide-react";
 import { useTranslationWithFallback } from "@/hooks/useTranslationWithFallback";
+import { RippleIcon } from "@/components/ui/RippleIcon";
 
 // Platform icons - Using official high-quality assets
 import teamsIcon from "@/assets/brands/teams-official.svg";
@@ -180,37 +181,52 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
                                             animationDuration: `${4 + (index % 3)}s`
                                         }}
                                     >
-                                        <div
+                                        <RippleIcon
                                             className={`
                     relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-white dark:bg-slate-800 border
-                    flex items-center justify-center cursor-pointer
-                    transition-all duration-300 ease-out
+                    flex items-center justify-center
+                    transition-all duration-300 ease-out group
                     ${isHovered
-                                                    ? "scale-125 -translate-y-1 shadow-xl border-primary/40 dark:border-primary/50 z-30"
+                                                    ? "scale-[1.03] -translate-y-0.5 shadow-brand-lg border-primary/30 dark:border-primary/40 z-30"
                                                     : "border-slate-200 dark:border-slate-700 shadow-md hover:shadow-lg"
                                                 }
                   `}
+                                            ariaLabel={`${platform.name} integration`}
                                         >
                                             {/* Hub Hover Ripple Reaction */}
                                             {isHubHovered && (
                                                 <div className="absolute inset-0 rounded-xl border-2 border-primary/40 bg-primary/5 animate-ripple-effect z-0" />
                                             )}
 
+                                            {/* Incoming Packet Glow - Synchronized with packet travel */}
+                                            <div
+                                                className="absolute inset-0 rounded-xl animate-receive-glow z-0"
+                                                style={{
+                                                    animationDelay: `${(index * 0.8) % 3}s`,
+                                                    animationDuration: "3s"
+                                                }}
+                                            />
 
+                                            {/* Hover Water Ripple Effect */}
+                                            {isHovered && (
+                                                <div className="absolute inset-0 rounded-xl bg-primary/20 animate-water-distortion z-0" />
+                                            )}
 
                                             <img
                                                 src={platform.icon}
                                                 alt={platform.name}
-                                                className={`w-5 h-5 sm:w-6 sm:h-6 object-contain transition-all duration-300 ${isHovered ? "opacity-100 scale-110" : "opacity-70"}`}
+                                                className={`${platform.id === 'googlechat' ? "w-7 h-7 sm:w-8 sm:h-8" : "w-5 h-5 sm:w-6 sm:h-6"} object-contain transition-all duration-300 relative z-20 ${isHovered ? "opacity-100 scale-110" : "opacity-70"}`}
                                             />
 
                                             {/* Tooltip */}
                                             {isHovered && (
-                                                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded bg-slate-900 dark:bg-slate-700 text-white text-xs font-medium whitespace-nowrap z-50">
+                                                <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 px-2.5 py-1.5 rounded-lg bg-slate-900/95 dark:bg-slate-800/95 border border-slate-700/50 backdrop-blur-md text-white text-[10px] font-medium whitespace-nowrap z-50 shadow-xl animate-in fade-in slide-in-from-top-1 duration-200">
                                                     {platform.name}
+                                                    {/* Little arrow */}
+                                                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900/95 rotate-45 border-l border-t border-slate-700/50"></div>
                                                 </div>
                                             )}
-                                        </div>
+                                        </RippleIcon>
                                     </div>
                                 </div>
                             </div>
@@ -224,53 +240,54 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
                         }`}
                     style={{ transitionDelay: "300ms" }}
                 >
-                    {/* Main hub with premium glassmorphism and depth */}
-                    <div
-                        className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center cursor-pointer"
-                        onMouseEnter={() => setIsHubHovered(true)}
-                        onMouseLeave={() => setIsHubHovered(false)}
-                    >
+                    {/* Floating Wrapper for the entire Hub */}
+                    <div className="animate-anti-gravity">
+                        {/* Main hub with premium glassmorphism and depth */}
+                        <RippleIcon
+                            className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center cursor-pointer group"
+                            onMouseEnter={() => setIsHubHovered(true)}
+                            onMouseLeave={() => setIsHubHovered(false)}
+                            ariaLabel="SyncRivo Secure Hub"
+                        >
 
-                        {/* Outer breathing glow ring */}
-                        <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl animate-pulse-slow" />
+                            {/* Outer breathing glow ring */}
+                            <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl animate-pulse-slow group-hover:bg-primary/30 transition-colors" />
 
-                        {/* Rotating technical mesh ring */}
-                        <div className="absolute inset-[2px] rounded-full border border-dashed border-primary/30 animate-spin-ultra-slow" />
+                            {/* Rotating technical mesh ring */}
+                            <div className="absolute inset-[2px] rounded-full border border-dashed border-primary/30 animate-spin-ultra-slow" />
 
+                            {/* Inner glass core */}
+                            <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white/90 to-white/50 dark:from-slate-900/90 dark:to-slate-800/50 backdrop-blur-xl border border-white/40 dark:border-slate-700/50 shadow-2xl flex flex-col items-center justify-center z-10">
 
+                                {/* SVG Definitions for Icon Gradient */}
+                                <svg width="0" height="0" className="absolute">
+                                    <defs>
+                                        <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="hsl(var(--primary))" />
+                                            <stop offset="100%" stopColor="hsl(var(--accent))" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
 
-                        {/* Inner glass core */}
-                        {/* Inner glass core */}
-                        <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white/90 to-white/50 dark:from-slate-900/90 dark:to-slate-800/50 backdrop-blur-xl border border-white/40 dark:border-slate-700/50 shadow-2xl flex flex-col items-center justify-center z-10 animate-float">
-
-                            {/* SVG Definitions for Icon Gradient */}
-                            <svg width="0" height="0" className="absolute">
-                                <defs>
-                                    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="hsl(var(--primary))" />
-                                        <stop offset="100%" stopColor="hsl(var(--accent))" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-
-                            {/* Security badge integrated into rim */}
-                            <div className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/40 border-2 border-white dark:border-slate-800 z-20 animate-bounce-subtle">
-                                <Lock className="w-3.5 h-3.5 text-white" />
-                            </div>
-
-                            {/* Logo Content */}
-                            <div className="flex flex-col items-center relative z-10">
-                                <div className="relative mb-1">
-                                    <div className="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse-glow" />
-                                    {/* Replaced Zap with Layers for "Universal Messaging Layer" semantics */}
-                                    <Layers className="w-10 h-10 text-primary relative z-10 drop-shadow-sm" style={{ stroke: "url(#iconGradient)" }} />
+                                {/* Security badge integrated into rim */}
+                                <div className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/40 border-2 border-white dark:border-slate-800 z-20 animate-bounce-subtle">
+                                    <Lock className="w-3.5 h-3.5 text-white" />
                                 </div>
-                                <span className="text-foreground font-bold text-lg sm:text-xl tracking-tight leading-none">SyncRivo</span>
-                                <span className="text-[10px] text-muted-foreground font-semibold tracking-[0.2em] uppercase mt-1">
-                                    SECURE
-                                </span>
+
+                                {/* Logo Content */}
+                                <div className="flex flex-col items-center relative z-10">
+                                    <div className="relative mb-1">
+                                        <div className="absolute inset-0 bg-primary/20 blur-lg rounded-full animate-pulse-glow" />
+                                        {/* Replaced Zap with Layers for "Universal Messaging Layer" semantics */}
+                                        <Layers className="w-10 h-10 text-primary relative z-10 drop-shadow-sm" style={{ stroke: "url(#iconGradient)" }} />
+                                    </div>
+                                    <span className="text-foreground font-bold text-lg sm:text-xl tracking-tight leading-none">SyncRivo</span>
+                                    <span className="text-[10px] text-muted-foreground font-semibold tracking-[0.2em] uppercase mt-1">
+                                        SECURE
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+                        </RippleIcon>
                     </div>
                 </div>
 
@@ -278,3 +295,4 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
         </div>
     );
 }
+
