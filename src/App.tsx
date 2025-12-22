@@ -15,6 +15,9 @@ import i18n from './lib/i18n';
 // Critical Route (Eager Load)
 import Index from '@/pages/Index';
 
+// Debug route
+const AuthDebug = lazy(() => import('@/pages/AuthDebug'));
+
 // Lazy Loaded Routes
 const About = lazy(() => import('@/pages/About'));
 const Features = lazy(() => import('@/pages/Features'));
@@ -179,6 +182,7 @@ function App() {
 
                           {/* Debug route */}
                           <Route path="/debug/animations" element={<DebugAnimations />} />
+                          <Route path="/auth-debug" element={<AuthDebug />} />
 
                           {/* Auth routes - redirect if already logged in */}
                           <Route path="/login" element={
