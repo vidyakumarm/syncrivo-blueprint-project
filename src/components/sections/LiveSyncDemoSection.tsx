@@ -1,22 +1,34 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Lock, Shield, Check, FileText, Activity,
-    Hash, Bell, Monitor,
-    AlertCircle, RefreshCw, Zap
+    Lock, Shield, Check, FileText, Activity
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
+
+// Assets
+import googleChatIcon from "@/assets/brands/google-chat-update.png";
+import teamsIcon from "@/assets/brands/teams-official.svg";
+import slackIcon from "@/assets/brands/slack-official.svg";
+import zoomIcon from "@/assets/zoom-icon.png";
+import webexIcon from "@/assets/webex-icon.png";
+
+// Profile Photos
+import alicePhoto from "@/assets/profiles/alice-sre.jpg";
+import bobPhoto from "@/assets/profiles/bob-oncall.jpg";
+import kumarPhoto from "@/assets/profiles/kumar-makala.jpg";
+import leoPhoto from "@/assets/profiles/leo-marketing.jpg";
+import priyaPhoto from "@/assets/profiles/priya-pm.jpg";
+import sergeyPhoto from "@/assets/profiles/sergey-kizunov.jpeg";
 
 // --- Types & Configuration ---
 
-type Platform = "slack" | "teams";
+type Platform = "google-chat" | "teams" | "slack" | "zoom" | "webex";
 
 interface Message {
     id: string;
     sender: string;
     role?: string;
-    avatar?: string;
+    avatarUrl?: string; // Using string | undefined
     text: React.ReactNode;
     timestamp: string;
     type: "user" | "system" | "engine";
@@ -28,154 +40,347 @@ interface Message {
         secure?: boolean;
     };
     reactions?: string[];
+    personId?: string;
+    personName?: string;
+    platformType?: Platform;
 }
 
-const ENGINE_COLOR = "#10b981"; // Emerald-500
-const SECURE_BLUE = "#6366f1"; // Indigo-500
+interface Scenario {
+    id: number;
+    source: {
+        platform: Platform;
+        person: { name: string; role: string; avatar: string };
+    };
+    dest: {
+        platform: Platform;
+        person: { name: string; role: string; avatar: string };
+    };
+    conversation: {
+        msg1: { text: string; attachment?: Message['attachment'] };
+        msg2: { text: string; attachment?: Message['attachment'] };
+    };
+    simultaneous?: boolean;
+}
+
+const SCENARIOS: Scenario[] = [
+    {
+        id: 1,
+        source: { platform: 'zoom', person: { name: 'Sergey Kizunov', role: 'Product Owner', avatar: sergeyPhoto } },
+        dest: { platform: 'teams', person: { name: 'Kumar Makala', role: 'DevOps Lead', avatar: kumarPhoto } },
+        conversation: {
+            msg1: { text: "Can we finalize the sprint scope today?" },
+            msg2: { text: "Yes ✅ I’ll share the updated backlog shortly." }
+        }
+    },
+    {
+        id: 2,
+        source: { platform: 'google-chat', person: { name: 'Priya Nair', role: 'Product Lead', avatar: priyaPhoto } },
+        dest: { platform: 'zoom', person: { name: 'Daniel Wong', role: 'Sales Director', avatar: leoPhoto } },
+        conversation: {
+            msg1: { text: "Hey Daniel 👋 The product demo deck is ready.", attachment: { name: "Product_Demo_v3.pdf", size: "4.2 MB", type: "application/pdf" } },
+            msg2: { text: "Perfect 👍 I’ll review before the client call." }
+        }
+    },
+    {
+        id: 3,
+        source: { platform: 'google-chat', person: { name: 'Kumar Makala', role: 'DevOps Lead', avatar: kumarPhoto } },
+        dest: { platform: 'slack', person: { name: 'Sarah Collins', role: 'CTO', avatar: alicePhoto } },
+        conversation: {
+            msg1: { text: "Morning Sarah! 🚀 Deployment is live on prod." },
+            msg2: { text: "Awesome work 🎉 Monitoring dashboards look green." }
+        }
+    },
+    {
+        id: 4,
+        source: { platform: 'google-chat', person: { name: 'Ravi Patel', role: 'SRE', avatar: bobPhoto } },
+        dest: { platform: 'webex', person: { name: 'Priya Nair', role: 'Product Lead', avatar: priyaPhoto } },
+        conversation: {
+            msg1: { text: "Please find the incident RCA attached.", attachment: { name: "RCA_Incident_0421.docx", size: "1.1 MB", type: "application/docx" } },
+            msg2: { text: "Got it 👍 Thanks for the quick turnaround." }
+        }
+    },
+    {
+        id: 5,
+        source: { platform: 'teams', person: { name: 'Sarah Collins', role: 'CTO', avatar: alicePhoto } },
+        dest: { platform: 'slack', person: { name: 'Ravi Patel', role: 'SRE', avatar: bobPhoto } },
+        conversation: {
+            msg1: { text: "Infra cost optimization report is ready 💡", attachment: { name: "Cloud_Cost_Analysis.xlsx", size: "8.5 MB", type: "application/xlsx" } },
+            msg2: { text: "Nice 👌 Let’s review this in tomorrow’s standup." }
+        },
+        simultaneous: true
+    },
+    {
+        id: 6,
+        source: { platform: 'slack', person: { name: 'Daniel Wong', role: 'Sales Director', avatar: leoPhoto } },
+        dest: { platform: 'webex', person: { name: 'Sergey Kizunov', role: 'Product Owner', avatar: sergeyPhoto } },
+        conversation: {
+            msg1: { text: "Client approved the proposal 🎉" },
+            msg2: { text: "Great news! Let’s kick off onboarding 🚀" }
+        }
+    }
+];
+
+const SECURITY_MESSAGES = [
+    "Secure direct message",
+    "End-to-end encrypted",
+    "Identity verified",
+    "Context sealed",
+    "Zero data persistence"
+];
+
+// --- Helpers ---
+
+// Generate a random delay between min and max (inclusive)
+const randomDelay = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
+
+// Calculate typing duration based on text length
+// Short message: ~0.8-1.2s -> roughly 30-50 chars? No, short is like "Hey".
+// Let's say base 600ms + 60ms per character, capped at 3500ms.
+const calculateTypingDuration = (text: string) => {
+    const base = 800; // Base reaction time
+    const perChar = 60;
+    const duration = base + (text.length * perChar);
+    // Clamp between 1000ms and 3500ms
+    const clamped = Math.max(1000, Math.min(3500, duration));
+    // Add jitter
+    return clamped + randomDelay(-200, 200);
+};
+
+// Wait function
+const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 // --- Components ---
 
-const SecureBadge = () => (
-    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 select-none">
-        <Lock className="w-2.5 h-2.5" />
-        <span>E2EE Active</span>
-    </div>
-);
-
 const EngineSystemMessage = ({ text }: { text: string }) => (
     <motion.div
-        initial={{ opacity: 0, y: 5 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center gap-3 px-4 py-2 mx-auto my-4 w-fit max-w-[90%] bg-indigo-500/5 border border-indigo-500/20 rounded-md shadow-sm backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="flex items-center gap-1.5 mx-auto my-3 w-fit px-3 py-1 rounded-full bg-indigo-500/5 border border-indigo-500/10"
     >
-        <div className="shrink-0 w-6 h-6 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
-            <Shield className="w-3 h-3 text-indigo-400" />
-        </div>
-        <span className="text-[11px] font-mono text-indigo-300 tracking-tight">
-            <span className="font-bold text-indigo-200">SyncRivo Secure Engine:</span> {text}
+        <Shield className="w-2.5 h-2.5 text-indigo-400" />
+        <span className="text-[10px] font-medium text-indigo-300/90 tracking-wide">
+            SyncRivo Security: {text}
         </span>
     </motion.div>
 );
 
 const Attachment = ({ name, size, type }: { name: string, size: string, type: string }) => (
-    <div className="group relative mt-2 flex items-center gap-3 p-2.5 rounded border bg-card/50 border-border/50 hover:bg-card hover:border-border transition-colors w-[240px]">
-        <div className="shrink-0 w-8 h-8 rounded bg-red-500/10 flex items-center justify-center border border-red-500/10">
-            <FileText className="w-4 h-4 text-red-500" />
+    <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }} // Appears slightly after text
+        className="group relative mt-2 flex items-center gap-3 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/15 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 w-[260px] cursor-pointer overflow-hidden"
+    >
+        {/* Subtle shimmer effect on appearance */}
+        <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: "200%" }}
+            transition={{ duration: 1.5, delay: 0.6, ease: "easeInOut" }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12"
+        />
+
+        <div className="shrink-0 w-9 h-9 rounded bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
+            <FileText className="w-4 h-4 text-indigo-400" />
         </div>
         <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-                <p className="text-xs font-medium text-foreground truncate">{name}</p>
-                <Lock className="w-2.5 h-2.5 text-emerald-500" />
+                <p className="text-[13px] font-medium text-slate-200 truncate">{name}</p>
+                <Lock className="w-3 h-3 text-emerald-500/90 drop-shadow-[0_0_5px_rgba(16,185,129,0.4)]" />
             </div>
-            <p className="text-[10px] text-muted-foreground">{size} • {type}</p>
+            <p className="text-[11px] text-slate-500 font-medium">{size} • {type}</p>
         </div>
-
-        {/* Enterprise Tooltip */}
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900 border border-slate-700 text-white text-[10px] rounded shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20">
-            Encrypted & synced by SyncRivo Secure Engine
+        <div className="absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900/95 backdrop-blur-md border border-slate-700 text-slate-200 text-[10px] font-medium rounded-md shadow-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none whitespace-nowrap z-20">
+            Encrypted & synced via SyncRivo
             <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 border-r border-b border-slate-700 rotate-45"></div>
         </div>
-    </div>
+    </motion.div>
 );
+
+const PlatformConfig: Record<Platform, { name: string; icon: string; headerBg: string; headerBorder: string }> = {
+    'google-chat': { name: 'Google Chat', icon: googleChatIcon, headerBg: 'bg-[#202124]', headerBorder: 'border-[#3c4043]' },
+    'teams': { name: 'Microsoft Teams', icon: teamsIcon, headerBg: 'bg-[#464775]', headerBorder: 'border-[#5b5fc7]' },
+    'slack': { name: 'Slack', icon: slackIcon, headerBg: 'bg-[#4A154B]', headerBorder: 'border-[#611f69]' },
+    'zoom': { name: 'Zoom', icon: zoomIcon, headerBg: 'bg-[#0b5cff]', headerBorder: 'border-[#387dff]' },
+    'webex': { name: 'Webex', icon: webexIcon, headerBg: 'bg-[#005073]', headerBorder: 'border-[#007aa3]' },
+};
 
 const ChatInterface = ({
     platform,
     messages,
-    title,
-    channel,
-    typingUser
+    personName,
+    personRole,
+    personAvatar,
+    typingUser,
+    typingPlatform,
+    securityText
 }: {
     platform: Platform,
     messages: Message[],
-    title: string,
-    channel: string,
-    typingUser?: string
+    personName: string,
+    personRole: string,
+    personAvatar?: string,
+    typingUser?: string,
+    typingPlatform?: Platform,
+    securityText: string
 }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const config = PlatformConfig[platform];
 
+    // Auto-scroll
     useEffect(() => {
         if (scrollRef.current) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+            // Smooth scroll to bottom
+            scrollRef.current.scrollTo({
+                top: scrollRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
         }
     }, [messages, typingUser]);
 
-    const isSlack = platform === "slack";
+    const avatar = personAvatar || alicePhoto;
 
     return (
-        <div className="flex flex-col h-[520px] w-full bg-[#1e2124] border border-white/5 rounded-xl overflow-hidden shadow-2xl relative font-sans">
-            {/* Header */}
-            <div className={`h-12 px-4 flex items-center justify-between shrink-0 border-b ${isSlack ? 'bg-[#350d36] border-[#4a154b]' : 'bg-[#464775] border-[#5b5fc7]'}`}>
+        <div className="flex flex-col h-[580px] w-full bg-[#1e2124] border border-white/5 rounded-xl overflow-hidden shadow-2xl relative font-sans">
+            {/* 1. Platform Header */}
+            <div className={`h-[54px] px-5 flex items-center justify-between shrink-0 border-b ${config.headerBg} ${config.headerBorder} transition-colors duration-500 z-20`}>
                 <div className="flex items-center gap-3">
-                    <div className="font-bold text-white text-sm flex items-center gap-2">
-                        {isSlack ? <Hash className="w-4 h-4 opacity-70" /> : <div className="w-5 h-5 rounded-sm bg-white/10 flex items-center justify-center text-[10px] font-bold">T</div>}
-                        {title}
-                    </div>
-                    {isSlack && <div className="hidden sm:block w-px h-4 bg-white/20"></div>}
-                    {isSlack && <span className="hidden sm:block text-xs text-white/70 truncate max-w-[100px]">{channel}</span>}
+                    <img src={config.icon} alt={config.name} className="w-5 h-5 object-contain opacity-95" />
+                    <span className="text-[13px] font-semibold text-white/95 tracking-wide">{config.name}</span>
                 </div>
-                <div className="flex items-center gap-3">
-                    <SecureBadge />
-                    <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)] animate-pulse"></div>
+                {/* Secondary Security Indicator */}
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-black/20 border border-white/5">
+                    <Lock className="w-2.5 h-2.5 text-emerald-400" />
+                    <span className="text-[10px] text-white/90 font-medium tracking-tight">E2EE</span>
                 </div>
             </div>
 
-            {/* Messages */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-5 bg-[#1A1D21] scroll-smooth">
-                {messages.map((msg) => (
+            {/* 2. Persistent Participant Header */}
+            <div className="h-[68px] px-5 flex items-center gap-4 bg-[#2f3136] border-b border-white/5 z-10 shrink-0">
+                <div className="relative">
+                    <img src={avatar} alt={personName} className="w-10 h-10 rounded-full object-cover border border-white/10 shadow-sm" />
                     <motion.div
-                        key={msg.id}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="w-full"
-                    >
-                        {msg.type === "engine" ? (
-                            <EngineSystemMessage text={msg.text as string} />
-                        ) : (
-                            <div className="flex gap-3 group">
-                                <div className="shrink-0 w-9 h-9 rounded bg-indigo-500 flex items-center justify-center text-xs font-bold text-white shadow-sm border border-white/10">
-                                    {msg.avatar}
-                                    {msg.status === "sending" && <div className="absolute inset-0 bg-black/40 rounded animate-pulse" />}
-                                    <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#1A1D21] rounded-full"></div>
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-sm font-bold text-slate-200">{msg.sender}</span>
-                                        {msg.role && (
-                                            <span className="px-1.5 py-px rounded text-[9px] font-medium bg-slate-800 text-slate-400 border border-slate-700 uppercase tracking-wide">
-                                                {msg.role}
-                                            </span>
-                                        )}
-                                        <span className="text-[10px] text-slate-500">{msg.timestamp}</span>
-                                    </div>
-                                    <div className="mt-0.5 text-[13px] leading-relaxed text-slate-300">
-                                        {msg.text}
-                                    </div>
-                                    {msg.attachment && (
-                                        <Attachment
-                                            name={msg.attachment.name}
-                                            size={msg.attachment.size}
-                                            type={msg.attachment.type}
-                                        />
-                                    )}
-                                </div>
-                            </div>
-                        )}
-                    </motion.div>
-                ))}
-
-                {typingUser && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3 items-end">
-                        <div className="text-[10px] text-slate-500 italic ml-12 pb-1">
-                            {typingUser} is typing...
-                        </div>
-                    </motion.div>
-                )}
+                        animate={{ scale: [1, 1.15, 1], opacity: [0.8, 1, 0.8] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-[2.5px] border-[#2f3136]"
+                    />
+                </div>
+                <div>
+                    <div className="text-[14px] font-bold text-white leading-tight">{personName}</div>
+                    <div className="flex items-center gap-2 mt-0.5">
+                        <span className="text-[11px] text-slate-400 font-medium">{personRole}</span>
+                        <span className="text-[10px] text-emerald-500/90 font-medium flex items-center gap-1">
+                            ● Active Now
+                        </span>
+                    </div>
+                </div>
             </div>
 
-            {/* Input Placeholder */}
-            <div className="p-3 bg-[#222529] border-t border-white/5 shrink-0">
-                <div className="h-9 rounded border border-white/10 bg-[#1A1D21] flex items-center px-3 text-xs text-slate-600 select-none">
-                    Message {isSlack ? channel : 'Project Team'}...
+            {/* 3. Messages Area */}
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-6 bg-[#25272b] scroll-smooth relative">
+
+                {/* Secure Empty State */}
+                <AnimatePresence>
+                    {messages.length <= 1 && (!messages.some(m => m.type === 'user')) && !typingUser && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 pointer-events-none"
+                        >
+                            <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
+                                <Lock className="w-6 h-6 text-slate-500" />
+                            </div>
+                            <h3 className="text-sm font-semibold text-slate-300 mb-1">Encrypted Conversation</h3>
+                            <p className="text-xs text-slate-500 max-w-[220px] leading-relaxed">
+                                Messages between you and <span className="text-slate-400 font-medium">{personName}</span> are securely synced via SyncRivo.
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                <AnimatePresence mode="popLayout" initial={false}>
+                    {messages.map((msg) => (
+                        <motion.div
+                            key={msg.id}
+                            initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            className="w-full"
+                        >
+                            {msg.type === "engine" ? (
+                                <EngineSystemMessage text={msg.text as string} />
+                            ) : (
+                                <div className="flex gap-3 relative group pl-1">
+                                    {/* Inline Avatar */}
+                                    <div className="shrink-0 pt-0.5">
+                                        <img src={msg.avatarUrl} alt={msg.sender} className="w-8 h-8 rounded-full object-cover shadow-sm ring-1 ring-white/5" />
+                                    </div>
+
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-baseline gap-2 mb-1">
+                                            <span className="text-[13px] font-bold text-slate-200">{msg.sender}</span>
+                                            <span className="text-[10px] text-slate-500">{msg.timestamp}</span>
+                                        </div>
+
+                                        <div className="inline-block relative max-w-[85%]">
+                                            <div className="text-[14px] leading-relaxed text-slate-200 bg-[#36393f] px-4 py-2.5 rounded-2xl rounded-tl-sm shadow-sm border border-white/5">
+                                                {msg.text}
+                                            </div>
+                                            {msg.attachment && (
+                                                <Attachment name={msg.attachment.name} size={msg.attachment.size} type={msg.attachment.type} />
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
+
+                {/* 4. Realistic Typing Indicator */}
+                <AnimatePresence>
+                    {typingUser && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 5 }}
+                            className="flex gap-3 pl-1 mb-2 mt-2"
+                        >
+                            <img src={avatar} alt="Typing" className="w-8 h-8 rounded-full object-cover opacity-80" />
+                            <div className="flex flex-col justify-center">
+                                <div className="flex items-center gap-1 h-[34px] px-3.5 rounded-2xl rounded-tl-sm bg-[#36393f] border border-white/5 w-fit">
+                                    {[0, 0.2, 0.4].map((delay, i) => (
+                                        <motion.div
+                                            key={i}
+                                            animate={{
+                                                y: [0, -4, 0],
+                                                opacity: [0.4, 1, 0.4]
+                                            }}
+                                            transition={{
+                                                duration: 1.2,
+                                                repeat: Infinity,
+                                                delay: delay,
+                                                ease: "easeInOut"
+                                            }}
+                                            className="w-1.5 h-1.5 bg-slate-400 rounded-full"
+                                        />
+                                    ))}
+                                </div>
+                                <span className="text-[10px] text-slate-500 mt-1 ml-1 font-medium animate-pulse">
+                                    {typingUser.split(' ')[0]} is typing{typingPlatform ? ` via ${PlatformConfig[typingPlatform].name}` : '...'}
+                                </span>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+
+            {/* 5. Input Field */}
+            <div className="p-4 bg-[#2f3136] border-t border-white/5 shrink-0 z-20">
+                <div className="h-11 rounded-lg border border-white/10 bg-[#202225] flex items-center px-4 text-sm text-slate-500 select-none shadow-inner cursor-not-allowed">
+                    Message {personName}...
                 </div>
             </div>
         </div>
@@ -184,39 +389,103 @@ const ChatInterface = ({
 
 const SecureEngineCore = ({ active }: { active: boolean }) => {
     return (
-        <div className="relative w-24 h-24 lg:w-32 lg:h-32 flex items-center justify-center">
-            {/* Core Glow */}
-            <div className={`absolute inset-0 bg-indigo-500/20 rounded-full blur-2xl transition-all duration-700 ${active ? 'opacity-100 scale-125' : 'opacity-30 scale-100'}`} />
-
-            {/* Orbit Rings */}
-            <div className="absolute inset-0 border border-indigo-500/30 rounded-full animate-[spin_8s_linear_infinite]" />
-            <div className="absolute inset-2 border border-dashed border-emerald-500/30 rounded-full animate-[spin_12s_linear_infinite_reverse]" />
-
-            {/* Central Module */}
-            <div className="relative z-10 w-16 h-16 rounded-xl bg-[#0B0D0F] border border-indigo-500/50 shadow-[0_0_30px_rgba(99,102,241,0.3)] flex items-center justify-center backdrop-blur-xl">
-                <Shield className={`w-8 h-8 transition-colors duration-500 ${active ? 'text-indigo-400' : 'text-slate-600'}`} />
-
-                {/* Lock Animation */}
-                <AnimatePresence>
-                    {active && (
+        <div className="relative flex items-center justify-center w-36 h-36">
+            {/* Ambient Background Glow */}
+            <motion.div
+                animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.05, 1] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl"
+            />
+            <AnimatePresence>
+                {active && (
+                    <>
+                        {/* Ethereal Rings */}
                         <motion.div
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            className="absolute -top-2 -right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg border-2 border-[#0B0D0F]"
-                        >
-                            <Lock className="w-3 h-3 text-white" />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
+                            initial={{ scale: 0.8, opacity: 0, borderColor: "rgba(99, 102, 241, 0)" }}
+                            animate={{ scale: 2.2, opacity: [0, 0.5, 0], borderColor: "rgba(99, 102, 241, 0.3)" }}
+                            transition={{ duration: 2, ease: "easeOut", repeat: Infinity }}
+                            className="absolute inset-0 rounded-full border border-indigo-400"
+                        />
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1.8, opacity: [0, 0.4, 0] }}
+                            transition={{ duration: 2, delay: 0.5, ease: "easeOut", repeat: Infinity }}
+                            className="absolute inset-0 rounded-full border border-emerald-400/30"
+                        />
+                    </>
+                )}
+            </AnimatePresence>
 
-            {/* Status Label */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <div className={`text-[10px] font-mono font-bold tracking-widest uppercase transition-colors duration-500 ${active ? 'text-emerald-400' : 'text-slate-600'}`}>
-                    {active ? 'PROCESSING' : 'STANDBY'}
+            {/* Core Shield */}
+            <div className="relative z-10 drop-shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                <div className="relative w-20 h-24">
+                    <svg viewBox="0 0 24 24" className="w-full h-full overflow-visible">
+                        <defs>
+                            <linearGradient id="shieldGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#1e293b" stopOpacity="0.95" />
+                                <stop offset="100%" stopColor="#0f172a" stopOpacity="0.98" />
+                            </linearGradient>
+                            <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <motion.path
+                            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                            fill="url(#shieldGradient)"
+                            stroke={active ? "#818cf8" : "#334155"}
+                            strokeWidth="1.5"
+                            initial={false}
+                            animate={{ stroke: active ? "#818cf8" : "#334155", filter: active ? "url(#neonGlow)" : "none" }}
+                            transition={{ duration: 0.5 }}
+                        />
+                    </svg>
+
+                    {/* Inner Icons */}
+                    <div className="absolute inset-0 flex items-center justify-center pb-1">
+                        <svg width="28" height="38" viewBox="0 0 24 32" className="overflow-visible">
+                            <motion.path
+                                d="M7 14V7a5 5 0 0 1 10 0v7"
+                                fill="none"
+                                stroke={active ? "#818cf8" : "#64748b"}
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                initial={{ y: 0 }}
+                                animate={{ y: active ? -4 : 0 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                            />
+                            <motion.path
+                                d="M6 14h12c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V16c0-1.1.9-2 2-2z"
+                                fill={active ? "#0f172a" : "#1e293b"}
+                                stroke={active ? "#34d399" : "#475569"}
+                                strokeWidth="2"
+                            />
+                            {active && (
+                                <motion.circle
+                                    cx="12" cy="21" r="2.5"
+                                    fill="#34d399"
+                                    animate={{ opacity: [0.4, 1, 0.4] }}
+                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                />
+                            )}
+                        </svg>
+                    </div>
                 </div>
             </div>
+
+            {/* Connecting Beam */}
+            {active && (
+                <motion.div
+                    initial={{ opacity: 0, scaleX: 0 }}
+                    animate={{ opacity: [0, 0.8, 0], scaleX: [0.2, 1.2, 0.2] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute h-[2px] w-20 bg-gradient-to-r from-transparent via-indigo-400 to-transparent blur-[1px] z-20 rounded-full"
+                    style={{ top: "50%", marginTop: "-1px" }}
+                />
+            )}
         </div>
     );
 };
@@ -227,6 +496,8 @@ export function LiveSyncDemoSection() {
     const { t } = useTranslation();
 
     // State
+    const [scenarioIndex, setScenarioIndex] = useState(0);
+    const [scenarioVisible, setScenarioVisible] = useState(true);
     const [messagesLeft, setMessagesLeft] = useState<Message[]>([]);
     const [messagesRight, setMessagesRight] = useState<Message[]>([]);
     const [typingLeft, setTypingLeft] = useState<string | undefined>();
@@ -234,100 +505,274 @@ export function LiveSyncDemoSection() {
     const [engineActive, setEngineActive] = useState(false);
     const [packetLeftToRight, setPacketLeftToRight] = useState(false);
     const [packetRightToLeft, setPacketRightToLeft] = useState(false);
+    const [securityText, setSecurityText] = useState(SECURITY_MESSAGES[0]);
 
-    // Scenario Orchestration
+    // Async control ref
+    const mountedRef = useRef(true);
+
     useEffect(() => {
-        let mounted = true;
-        const timeouts: NodeJS.Timeout[] = [];
+        mountedRef.current = true;
 
-        const schedule = (fn: () => void, delay: number) => {
-            const id = setTimeout(() => { if (mounted) fn(); }, delay);
-            timeouts.push(id);
-        };
+        let localIndex = 0; // Local tracking for the loop
 
-        const runScenario = () => {
-            // Clear State
-            setMessagesLeft([]);
-            setMessagesRight([]);
+        const loop = async () => {
+            while (mountedRef.current) {
+                // Update State to show current scenario
+                setScenarioIndex(localIndex);
+                const currentScenario = SCENARIOS[localIndex];
 
-            // Initial System Check
-            schedule(() => {
-                const sysMsg: Message = { id: 'sys-boot', type: 'engine', sender: 'System', text: 'Secure sync established. Context locked.', timestamp: '10:41 AM' };
-                setMessagesLeft([sysMsg]);
-                setMessagesRight([sysMsg]);
-            }, 500);
-
-            // Step 1: Sarah types on Left (Slack)
-            schedule(() => setTypingLeft("Sarah Chen"), 1500);
-
-            // Step 2: Sarah sends message
-            schedule(() => {
+                // --- RESET STATE ---
+                setMessagesLeft([]);
+                setMessagesRight([]);
                 setTypingLeft(undefined);
-                setMessagesLeft(prev => [...prev, {
-                    id: 'msg-1', type: 'user', sender: 'Sarah Chen', role: 'SRE Lead', avatar: 'SC',
-                    text: (<span>Incident detected on <code className="bg-white/10 px-1 rounded text-rose-300">payment-gateway</code>. 500 errors spiking.</span>),
-                    timestamp: '10:42 AM'
-                }]);
-                setEngineActive(true);
-                setPacketLeftToRight(true);
-            }, 3500);
-
-            // Step 3: Engine Processes & Syncs
-            schedule(() => {
+                setTypingRight(undefined);
                 setEngineActive(false);
                 setPacketLeftToRight(false);
-                setMessagesRight(prev => [...prev, {
-                    id: 'msg-1-sync', type: 'user', sender: 'Sarah Chen', role: 'SRE Lead', avatar: 'SC',
-                    text: (<span>Incident detected on <code className="bg-white/10 px-1 rounded text-rose-300">payment-gateway</code>. 500 errors spiking.</span>),
-                    timestamp: '10:42 AM'
-                }]);
-                // Engine Confirmation on Right
-                setMessagesRight(prev => [...prev, { id: 'sys-sync-1', type: 'engine', sender: 'System', text: 'Cross-platform delivery verified. Zero copy.', timestamp: '10:42 AM' }]);
-            }, 4500);
-
-            // Step 4: Alex types on Right (Teams)
-            schedule(() => setTypingRight("Alex Rivera"), 6500);
-
-            // Step 5: Alex Replies with Attachment
-            schedule(() => {
-                setTypingRight(undefined);
-                setMessagesRight(prev => [...prev, {
-                    id: 'msg-2', type: 'user', sender: 'Alex Rivera', role: 'DevOps', avatar: 'AR',
-                    text: "I see the logs. It's the new rate limiter. Rolling back now.",
-                    timestamp: '10:43 AM',
-                    attachment: { name: 'latency-graph.png', size: '2.4 MB', type: 'image/png' }
-                }]);
-                setEngineActive(true);
-                setPacketRightToLeft(true);
-            }, 9500);
-
-            // Step 6: Sync Back
-            schedule(() => {
-                setEngineActive(false);
                 setPacketRightToLeft(false);
-                setMessagesLeft(prev => [...prev, {
-                    id: 'msg-2-sync', type: 'user', sender: 'Alex Rivera', role: 'DevOps', avatar: 'AR',
-                    text: "I see the logs. It's the new rate limiter. Rolling back now.",
-                    timestamp: '10:43 AM',
-                    attachment: { name: 'latency-graph.png', size: '2.4 MB', type: 'image/png' }
-                }]);
-            }, 10500);
+                setSecurityText(SECURITY_MESSAGES[localIndex % SECURITY_MESSAGES.length]);
+                setScenarioVisible(true);
 
-            // Loop
-            schedule(runScenario, 16000);
+                // --- START SEQUENCE ---
+
+                // 1. Initial Pause (Enter/Fade In)
+                await wait(800);
+                if (!mountedRef.current) break;
+
+                // 2. System Connect Message
+                const sysMsg: Message = { id: 'sys-boot', type: 'engine', sender: 'System', text: 'Secure person-to-person sync established. Identity verified.', timestamp: 'Now' };
+                setMessagesLeft([sysMsg]);
+                setMessagesRight([sysMsg]);
+
+                await wait(1000);
+                if (!mountedRef.current) break;
+
+                if (currentScenario.simultaneous) {
+                    // --- SIMULTANEOUS FLOW (Overlapping Activity) ---
+
+                    const tDuration1 = calculateTypingDuration(currentScenario.conversation.msg1.text);
+                    const tDuration2 = calculateTypingDuration(currentScenario.conversation.msg2.text);
+
+                    // Random delay between 500ms and 1500ms for overlap start
+                    const overlapDelay = randomDelay(500, 1500);
+
+                    // 1. Left User starts typing
+                    setTypingLeft(currentScenario.source.person.name);
+
+                    // 2. Wait for overlap delay
+                    await wait(overlapDelay);
+                    if (!mountedRef.current) break;
+
+                    // 3. Right User starts typing (Both are now typing)
+                    setTypingRight(currentScenario.dest.person.name);
+
+                    // 4. Wait for remainder of Left User's typing
+                    const remainingA = Math.max(0, tDuration1 - overlapDelay);
+                    if (remainingA > 0) await wait(remainingA);
+                    if (!mountedRef.current) break;
+
+                    // 5. Left User Sends
+                    setTypingLeft(undefined);
+                    setMessagesLeft(prev => [...prev, {
+                        id: `msg-1-${localIndex}`,
+                        type: 'user',
+                        sender: currentScenario.source.person.name,
+                        role: currentScenario.source.person.role,
+                        avatarUrl: currentScenario.source.person.avatar,
+                        text: currentScenario.conversation.msg1.text,
+                        timestamp: 'Now',
+                        attachment: currentScenario.conversation.msg1.attachment,
+                        personName: currentScenario.source.person.name
+                    }]);
+
+                    // 6. Sync/Network Delay
+                    setEngineActive(true);
+                    setPacketLeftToRight(true);
+                    const syncTime = randomDelay(800, 1200);
+                    await wait(syncTime);
+                    if (!mountedRef.current) break;
+
+                    // 7. Right User Receives (Sync) - BUT KEEPS TYPING
+                    setEngineActive(false);
+                    setPacketLeftToRight(false);
+                    setMessagesRight(prev => [...prev, {
+                        id: `msg-1-sync-${localIndex}`,
+                        type: 'user',
+                        sender: currentScenario.source.person.name,
+                        role: currentScenario.source.person.role,
+                        avatarUrl: currentScenario.source.person.avatar,
+                        text: currentScenario.conversation.msg1.text,
+                        timestamp: 'Now',
+                        attachment: currentScenario.conversation.msg1.attachment,
+                        personName: currentScenario.source.person.name
+                    }]);
+
+                    // 8. Wait for remainder of Right User's typing
+                    // Right started typing at t = overlapDelay
+                    // Current time is t = tDuration1 + syncTime
+                    // Right needs to finish at t = overlapDelay + tDuration2
+                    // Remaining wait = (overlapDelay + tDuration2) - (tDuration1 + syncTime)
+
+                    const timeElapsed = tDuration1 + syncTime;
+                    const rightFinishTime = overlapDelay + tDuration2;
+                    const remainingB = Math.max(0, rightFinishTime - timeElapsed);
+
+                    if (remainingB > 0) await wait(remainingB);
+                    if (!mountedRef.current) break;
+
+                    // 9. Right User Sends
+                    setTypingRight(undefined);
+                    setMessagesRight(prev => [...prev, {
+                        id: `msg-2-${localIndex}`,
+                        type: 'user',
+                        sender: currentScenario.dest.person.name,
+                        role: currentScenario.dest.person.role,
+                        avatarUrl: currentScenario.dest.person.avatar,
+                        text: currentScenario.conversation.msg2.text,
+                        timestamp: 'Now',
+                        attachment: currentScenario.conversation.msg2.attachment,
+                        personName: currentScenario.dest.person.name
+                    }]);
+
+                    // 10. Sync Back (Network Delay)
+                    setEngineActive(true);
+                    setPacketRightToLeft(true);
+                    await wait(randomDelay(800, 1200));
+                    if (!mountedRef.current) break;
+
+                    // 11. Left User Receives
+                    setEngineActive(false);
+                    setPacketRightToLeft(false);
+                    setMessagesLeft(prev => [...prev, {
+                        id: `msg-2-sync-${localIndex}`,
+                        type: 'user',
+                        sender: currentScenario.dest.person.name,
+                        role: currentScenario.dest.person.role,
+                        avatarUrl: currentScenario.dest.person.avatar,
+                        text: currentScenario.conversation.msg2.text,
+                        timestamp: 'Now',
+                        attachment: currentScenario.conversation.msg2.attachment,
+                        personName: currentScenario.dest.person.name
+                    }]);
+
+                } else {
+                    // --- STANDARD SEQUENTIAL FLOW ---
+
+                    // 3. Left User Types
+                    setTypingLeft(currentScenario.source.person.name);
+                    const typingDuration1 = calculateTypingDuration(currentScenario.conversation.msg1.text);
+                    await wait(typingDuration1);
+                    if (!mountedRef.current) break;
+
+                    // 4. Left User Stops Typing & Sends
+                    setTypingLeft(undefined);
+                    setMessagesLeft(prev => [...prev, {
+                        id: `msg-1-${localIndex}`,
+                        type: 'user',
+                        sender: currentScenario.source.person.name,
+                        role: currentScenario.source.person.role,
+                        avatarUrl: currentScenario.source.person.avatar,
+                        text: currentScenario.conversation.msg1.text,
+                        timestamp: 'Now',
+                        attachment: currentScenario.conversation.msg1.attachment,
+                        personName: currentScenario.source.person.name
+                    }]);
+
+                    // 5. Sync/Network Delay
+                    setEngineActive(true);
+                    setPacketLeftToRight(true);
+                    await wait(randomDelay(800, 1200)); // Network travel time
+                    if (!mountedRef.current) break;
+
+                    // 6. Right User Receives (Sync)
+                    setEngineActive(false);
+                    setPacketLeftToRight(false);
+                    setMessagesRight(prev => [...prev, {
+                        id: `msg-1-sync-${localIndex}`,
+                        type: 'user',
+                        sender: currentScenario.source.person.name,
+                        role: currentScenario.source.person.role,
+                        avatarUrl: currentScenario.source.person.avatar,
+                        text: currentScenario.conversation.msg1.text,
+                        timestamp: 'Now',
+                        attachment: currentScenario.conversation.msg1.attachment,
+                        personName: currentScenario.source.person.name
+                    }]);
+
+                    // 7. Reading Pause (Human Processing)
+                    await wait(randomDelay(1500, 2500));
+                    if (!mountedRef.current) break;
+
+                    // --- RIGHT USER REPLYING MSG 2 ---
+
+                    // 8. Right User Types
+                    setTypingRight(currentScenario.dest.person.name);
+                    const typingDuration2 = calculateTypingDuration(currentScenario.conversation.msg2.text);
+                    await wait(typingDuration2);
+                    if (!mountedRef.current) break;
+
+                    // 9. Right User Stops Typing & Sends
+                    setTypingRight(undefined);
+                    setMessagesRight(prev => [...prev, {
+                        id: `msg-2-${localIndex}`,
+                        type: 'user',
+                        sender: currentScenario.dest.person.name,
+                        role: currentScenario.dest.person.role,
+                        avatarUrl: currentScenario.dest.person.avatar,
+                        text: currentScenario.conversation.msg2.text,
+                        timestamp: 'Now',
+                        attachment: currentScenario.conversation.msg2.attachment,
+                        personName: currentScenario.dest.person.name
+                    }]);
+
+                    // 10. Sync Back (Network Delay)
+                    setEngineActive(true);
+                    setPacketRightToLeft(true);
+                    await wait(randomDelay(800, 1200));
+                    if (!mountedRef.current) break;
+
+                    // 11. Left User Receives
+                    setEngineActive(false);
+                    setPacketRightToLeft(false);
+                    setMessagesLeft(prev => [...prev, {
+                        id: `msg-2-sync-${localIndex}`,
+                        type: 'user',
+                        sender: currentScenario.dest.person.name,
+                        role: currentScenario.dest.person.role,
+                        avatarUrl: currentScenario.dest.person.avatar,
+                        text: currentScenario.conversation.msg2.text,
+                        timestamp: 'Now',
+                        attachment: currentScenario.conversation.msg2.attachment,
+                        personName: currentScenario.dest.person.name
+                    }]);
+                }
+
+                // 12. Final Linger before switch
+                await wait(2500);
+                if (!mountedRef.current) break;
+
+                // 13. Exit Scenario
+                setScenarioVisible(false);
+                await wait(500); // Wait for exit animation
+                if (!mountedRef.current) break;
+
+                // 14. Increment & Loop
+                localIndex = (localIndex + 1) % SCENARIOS.length;
+                // Slight pause before next starts to let UI clear
+                await wait(200);
+            }
         };
 
-        runScenario();
+        loop();
 
         return () => {
-            mounted = false;
-            timeouts.forEach(clearTimeout);
+            mountedRef.current = false;
         };
-    }, []);
+    }, []); // Run once on mount
+
+    const currentScenario = SCENARIOS[scenarioIndex];
 
     return (
         <section className="relative py-20 lg:py-32 bg-[#0B0D0F] overflow-hidden">
-            {/* Background Gradients */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-950/20 via-[#0B0D0F] to-[#0B0D0F]" />
 
             <div className="container relative z-10 px-4 mx-auto max-w-7xl">
@@ -346,7 +791,7 @@ export function LiveSyncDemoSection() {
                         transition={{ delay: 0.1 }}
                         className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6"
                     >
-                        Enterprise-Grade <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">Secure Sync</span>
+                        Enterprise-Grade <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">Person-to-Person Sync</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
@@ -355,90 +800,83 @@ export function LiveSyncDemoSection() {
                         className="max-w-2xl mx-auto text-lg text-slate-400 leading-relaxed"
                     >
                         Real-time cross-platform sync powered by the <span className="text-white font-semibold">SyncRivo Secure Engine</span>.
-                        Experience encryption, context integrity, and zero manual copying in action.
+                        Experience secure individual messaging with encryption and zero persistence.
                     </motion.p>
                 </div>
 
-                {/* Demo Stage */}
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 items-center">
-
-                    {/* Left: Source (Slack) */}
-                    <div className="relative z-10">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-xl blur-lg opacity-50" />
-                        <div className="text-xs font-mono text-slate-500 mb-2 flex justify-between px-2">
-                            <span>SOURCE: ENGINEERING (SLACK)</span>
-                            <span className="text-emerald-500 flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> ONLINE</span>
-                        </div>
-                        <ChatInterface
-                            platform="slack"
-                            title="#prod-incidents"
-                            channel="#prod-incidents"
-                            messages={messagesLeft}
-                            typingUser={typingLeft}
-                        />
-                    </div>
-
-                    {/* Center: Secure Engine */}
-                    <div className="relative py-8 lg:py-0 flex flex-col items-center justify-center min-h-[200px]">
-                        {/* Horizontal Connection Lines (Desktop) */}
-                        <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent hidden lg:block" />
-
-                        {/* Packet Animations */}
-                        <AnimatePresence>
-                            {packetLeftToRight && (
-                                <motion.div
-                                    initial={{ left: '0%', opacity: 0 }}
-                                    animate={{ left: '100%', opacity: [0, 1, 1, 0] }}
-                                    transition={{ duration: 1, ease: 'easeInOut' }}
-                                    className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.8)] z-20 hidden lg:block"
-                                />
-                            )}
-                            {packetRightToLeft && (
-                                <motion.div
-                                    initial={{ right: '0%', opacity: 0 }}
-                                    animate={{ right: '100%', opacity: [0, 1, 1, 0] }}
-                                    transition={{ duration: 1, ease: 'easeInOut' }}
-                                    className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.8)] z-20 hidden lg:block"
-                                />
-                            )}
-                        </AnimatePresence>
-
-                        <SecureEngineCore active={engineActive} />
-
-                        <div className="mt-8 text-center space-y-2">
-                            <h3 className="text-sm font-bold text-white tracking-wide uppercase">SyncRivo Secure Engine</h3>
-                            <div className="flex flex-col gap-1 items-center">
-                                <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10">
-                                    <Shield className="w-3 h-3" /> Context Integrity Guaranteed
+                {/* Scenario Container with Slide Transition */}
+                <div className="min-h-[550px]">
+                    <AnimatePresence mode="wait">
+                        {scenarioVisible && (
+                            <motion.div
+                                key={currentScenario.id}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -25, scale: 0.98 }}
+                                transition={{ duration: 0.5, ease: "easeInOut" }}
+                                className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 items-center"
+                            >
+                                {/* Left Platform */}
+                                <div className="relative z-10">
+                                    <ChatInterface
+                                        platform={currentScenario.source.platform}
+                                        personName={currentScenario.source.person.name}
+                                        personRole={currentScenario.source.person.role}
+                                        personAvatar={currentScenario.source.person.avatar}
+                                        messages={messagesLeft}
+                                        typingUser={typingRight} // Corrected: Left sees Right typing
+                                        typingPlatform={currentScenario.dest.platform}
+                                        securityText={securityText}
+                                    />
                                 </div>
-                                <div className="flex items-center gap-1.5 text-[10px] text-indigo-400 bg-indigo-500/5 px-2 py-0.5 rounded border border-indigo-500/10">
-                                    <Lock className="w-3 h-3" /> Keys Managed by Customer
+
+                                {/* Engine */}
+                                <div className="relative py-8 lg:py-0 flex flex-col items-center justify-center min-h-[200px]">
+                                    <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent hidden lg:block" />
+
+                                    <AnimatePresence>
+                                        {packetLeftToRight && (
+                                            <motion.div
+                                                initial={{ left: '10%', opacity: 0, scaleX: 0.5 }}
+                                                animate={{ left: '90%', opacity: [0, 1, 1, 0], scaleX: 1 }}
+                                                transition={{ duration: 1, ease: 'easeInOut' }}
+                                                className="absolute top-1/2 -translate-y-1/2 w-24 h-1.5 bg-gradient-to-r from-transparent via-emerald-400 to-transparent blur-md z-20 hidden lg:block"
+                                            />
+                                        )}
+                                        {packetRightToLeft && (
+                                            <motion.div
+                                                initial={{ right: '10%', opacity: 0, scaleX: 0.5 }}
+                                                animate={{ right: '90%', opacity: [0, 1, 1, 0], scaleX: 1 }}
+                                                transition={{ duration: 1, ease: 'easeInOut' }}
+                                                className="absolute top-1/2 -translate-y-1/2 w-24 h-1.5 bg-gradient-to-r from-transparent via-indigo-400 to-transparent blur-md z-20 hidden lg:block"
+                                            />
+                                        )}
+                                    </AnimatePresence>
+
+                                    <SecureEngineCore active={engineActive} />
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    {/* Right: Destination (Teams) */}
-                    <div className="relative z-10">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-xl blur-lg opacity-50" />
-                        <div className="text-xs font-mono text-slate-500 mb-2 flex justify-between px-2">
-                            <span>DESTINATION: MANAGEMENT (TEAMS)</span>
-                            <span className="text-emerald-500 flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> ONLINE</span>
-                        </div>
-                        <ChatInterface
-                            platform="teams"
-                            title="Priorities / Incidents"
-                            channel="General"
-                            messages={messagesRight}
-                            typingUser={typingRight}
-                        />
-                    </div>
-
+                                {/* Right Platform */}
+                                <div className="relative z-10">
+                                    <ChatInterface
+                                        platform={currentScenario.dest.platform}
+                                        personName={currentScenario.dest.person.name}
+                                        personRole={currentScenario.dest.person.role}
+                                        personAvatar={currentScenario.dest.person.avatar}
+                                        messages={messagesRight}
+                                        typingUser={typingLeft} // Corrected: Right sees Left typing
+                                        typingPlatform={currentScenario.source.platform}
+                                        securityText={securityText}
+                                    />
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
 
                 {/* Footer Trust Seals */}
                 <div className="mt-20 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                    {['SOC2 Type II Certified', 'ISO 27001 Ready', 'GDPR Compliant', 'Zero Data Retention'].map((seal) => (
+                    {['SOC2 Type II Certified', 'ISO 27001 Ready', 'GDPR Compliant', 'Key Management'].map((seal) => (
                         <div key={seal} className="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-widest">
                             <Check className="w-4 h-4 text-emerald-500" /> {seal}
                         </div>

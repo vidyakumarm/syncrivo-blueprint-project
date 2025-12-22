@@ -27,8 +27,8 @@ export function RippleIcon({ children, className, onClick, onMouseEnter, onMouse
 
     const addRipple = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         const now = Date.now();
-        // Allow new ripple every 400ms to allow the previous one to breathe
-        if (now - lastRippleTime.current < 400 && lastRippleTime.current !== 0) return;
+        // Allow new ripple every 200ms (faster for snappier feel)
+        if (now - lastRippleTime.current < 200 && lastRippleTime.current !== 0) return;
 
         if (containerRef.current) {
             const rect = containerRef.current.getBoundingClientRect();
@@ -85,7 +85,7 @@ export function RippleIcon({ children, className, onClick, onMouseEnter, onMouse
     );
 }
 
-const RippleEffect = ({ x, y }: { x: number; y: number }) => {
+export const RippleEffect = ({ x, y }: { x: number; y: number }) => {
     return (
         <>
             {/* Wave 1: Main Expansion */}
@@ -100,7 +100,7 @@ const RippleEffect = ({ x, y }: { x: number; y: number }) => {
                 }}
                 exit={{ opacity: 0 }}
                 transition={{
-                    duration: 0.7,
+                    duration: 0.4,
                     ease: "easeOut"
                 }}
                 className="absolute rounded-full pointer-events-none z-0"
@@ -122,9 +122,9 @@ const RippleEffect = ({ x, y }: { x: number; y: number }) => {
                     y: y - 45
                 }}
                 transition={{
-                    duration: 0.8,
+                    duration: 0.5,
                     ease: "easeOut",
-                    delay: 0.1
+                    delay: 0.05
                 }}
                 className="absolute rounded-full pointer-events-none z-0 border border-indigo-400/20"
             />

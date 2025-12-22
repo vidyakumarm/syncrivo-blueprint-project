@@ -10,6 +10,7 @@ import { DesktopNavMenu } from './DesktopNavMenu';
 import { UserAccountMenu } from './UserAccountMenu';
 import { AuthenticationButtons } from './AuthenticationButtons';
 import { MobileNavMenu } from './MobileNavMenu';
+import { AnimatePresence } from 'framer-motion';
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -91,14 +92,13 @@ export function Navigation() {
             <div className="flex items-center space-x-2 lg:hidden">
               <div className="hidden sm:flex items-center space-x-2">
                 <LanguageSelector />
-                <ThemeToggle />
               </div>
 
               {/* Mobile menu button */}
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-10 w-10 p-0"
+                className="h-10 w-10 p-0 text-foreground z-50 hover:bg-accent"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle navigation menu"
                 aria-expanded={mobileMenuOpen}
@@ -109,14 +109,16 @@ export function Navigation() {
           </div>
 
           {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <MobileNavMenu
-              navItems={navItems}
-              user={user}
-              onSignOut={handleSignOut}
-              onLinkClick={() => setMobileMenuOpen(false)}
-            />
-          )}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <MobileNavMenu
+                navItems={navItems}
+                user={user}
+                onSignOut={handleSignOut}
+                onLinkClick={() => setMobileMenuOpen(false)}
+              />
+            )}
+          </AnimatePresence>
         </div>
       </nav>
       {/* Layout Spacer to prevent content overlap with fixed header */}

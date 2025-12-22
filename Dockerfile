@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Avoid npm network flakiness
 RUN npm config set fetch-retry-maxtimeout 120000 && \
-    npm config set fetch-retry-mintimeout 20000
+  npm config set fetch-retry-mintimeout 20000
 
 # Install dependencies (cached layer)
 COPY package.json package-lock.json ./
@@ -48,8 +48,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Ensure writable dirs for non-root execution
-RUN mkdir -p /tmp/nginx && \
-    chown -R nginx:nginx /tmp /usr/share/nginx/html
+RUN mkdir -p /var/cache/nginx /var/log/nginx /var/run && \
+  chown -R nginx:nginx /var/cache/nginx /var/log/nginx /var/run /etc/nginx/conf.d /tmp /usr/share/nginx/html
 
 # Run as non-root (Cloud Run best practice)
 USER nginx

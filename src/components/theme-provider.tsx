@@ -15,7 +15,7 @@ type ThemeProviderState = {
 };
 
 const initialState: ThemeProviderState = {
-  theme: 'system',
+  theme: 'dark',
   setTheme: () => null,
 };
 
@@ -23,7 +23,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'system',
+  defaultTheme = 'dark',
   storageKey = 'vite-ui-theme',
   ...props
 }: ThemeProviderProps) {
@@ -33,39 +33,60 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement;
-    
-    console.log('🎨 [ThemeProvider] Applying theme', {
-      timestamp: new Date().toISOString(),
-      theme,
-      currentClasses: root.className
-    });
 
-    root.classList.remove('light', 'dark');
+    // Function to handle theme application with mobile enforcement
+    const applyTheme = () => {
+      // Check for mobile viewport (standard breakpoint is usually 768px for tablets/mobile)
+      // Since user said "mobile users", sticking to a safe mobile breakpoint like 768px seems reasonable.
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
-        ? 'dark'
-        : 'light';
+      // Always remove both first to ensure clean state
+      root.classList.remove('light', 'dark');
 
-      console.log('🎨 [ThemeProvider] System theme detected', { systemTheme });
-      root.classList.add(systemTheme);
-      
-      // Listen for system theme changes
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = (e: MediaQueryListEvent) => {
+      if (isMobile) {
+        console.log('🎨 [ThemeProvider] Enforcing Dark Mode for Mobile');
+        root.classList.add('dark');
+        return;
+      }
+
+      if (theme === 'system') {
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+          .matches
+          ? 'dark'
+          : 'light';
+
+        console.log('🎨 [ThemeProvider] System theme detected', { systemTheme });
+        root.classList.add(systemTheme);
+      } else {
+        console.log('🎨 [ThemeProvider] Applying manual theme', { theme });
+        root.classList.add(theme);
+      }
+    };
+
+    applyTheme();
+
+    // Listen for resize events to handle switching between mobile/desktop if window is resized
+    const handleResize = () => applyTheme();
+    window.addEventListener('resize', handleResize);
+
+    // Listen for system theme changes (only matters if not mobile and theme is system)
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleSystemChange = (e: MediaQueryListEvent) => {
+      // Only apply if NOT mobile. If mobile, we ignore system preferences and stick to dark.
+      if (window.matchMedia('(max-width: 768px)').matches) return;
+
+      if (theme === 'system') {
         const newSystemTheme = e.matches ? 'dark' : 'light';
-        console.log('🎨 [ThemeProvider] System theme changed', { newSystemTheme });
         root.classList.remove('light', 'dark');
         root.classList.add(newSystemTheme);
-      };
-      
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
-    }
+      }
+    };
+    mediaQuery.addEventListener('change', handleSystemChange);
 
-    console.log('🎨 [ThemeProvider] Applying manual theme', { theme });
-    root.classList.add(theme);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      mediaQuery.removeEventListener('change', handleSystemChange);
+    };
   }, [theme]);
 
   const value = {
