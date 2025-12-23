@@ -68,7 +68,13 @@
     "cross_platform": "متعدد المنصات",
     "cross_platform_desc": "اربط أي منصة رسائل باستخدام واجهات برمجة التطبيقات الموحدة",
     "cta_dashboard": "الذهاب إلى لوحة التحكم",
-    "cta_connections": "إدارة الاتصالات"
+    "cta_connections": "إدارة الاتصالات",
+    "compliance_badges": {
+      "soc2": "SOC 2 Type II معتمد",
+      "iso27001": "ISO 27001 معتمد",
+      "gdpr": "متوافق مع GDPR",
+      "hipaa": "جاهز لـ HIPAA"
+    }
   },
   "support": {
     "title": "كيف يمكننا مساعدتك؟",
@@ -169,7 +175,13 @@
     "customer_support_hub": "مركز دعم العملاء",
     "customer_support_hub_desc": "ادمج قنوات دعم العملاء مع أدوات التواصل الداخلية.",
     "project_coordination": "تنسيق المشروع",
-    "project_coordination_desc": "زامن تحديثات المشروع والإشعارات عبر جميع قنوات التواصل للفريق."
+    "project_coordination_desc": "زامن تحديثات المشروع والإشعارات عبر جميع قنوات التواصل للفريق.",
+    "title": "Scalable Use Cases",
+    "subtitle": "Designed for modern enterprise.",
+    "incident_title": "Incident & Alerts",
+    "collab_title": "Cross-Company Collaboration",
+    "ops_title": "IT & Operations Automation",
+    "support_title": "Customer Support Escalations"
   },
   "pricing": {
     "title": "التسعير",
@@ -335,7 +347,12 @@
     "title": "الأمان",
     "subtitle": "تعرف على التزامنا بالحفاظ على أمان وحماية بياناتك.",
     "coming_soon": "قريباً",
-    "coming_soon_desc": "توثيق الأمان الخاص بنا قيد الإعداد. تحقق مرة أخرى قريباً للحصول على معلومات الأمان التفصيلية."
+    "coming_soon_desc": "توثيق الأمان الخاص بنا قيد الإعداد. تحقق مرة أخرى قريباً للحصول على معلومات الأمان التفصيلية.",
+    "teaser_title": "Enterprise-Grade Security",
+    "teaser_desc": "Strictest security standards.",
+    "link_security": "Security Overview",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Terms of Service"
   },
   "login": {
     "title": "مرحباً بعودتك",
@@ -556,5 +573,64 @@
     "cta_subtitle": "انضم إلى آلاف الفرق التي تستخدم SyncRivo بالفعل لتبسيط سير عمل اتصالاتها",
     "view_integrations": "عرض جميع التكاملات",
     "start_trial": "بدء التجربة المجانية"
+  },
+  "value_prop": {
+    "title": "طبقة المراسلة العالمية للمؤسسات",
+    "subtitle": "التواصل المجزأ يبطئ الفرق العالمية. توحد SyncRivo مكدسك دون ترحيل قسري."
+  },
+  "how_it_works": {
+    "title": "سير عمل الأتمتة الذكي",
+    "step1_title": "ربط أدواتك",
+    "step2_title": "تحديد القواعد",
+    "step3_title": "المراقبة والتحسين"
+  },
+  "final_cta": {
+    "title": "هل أنت مستعد لتوحيد مكدس الاتصالات الخاص بك؟",
+    "book_demo": "حجز عرض تجريبي",
+    "talk_sales": "اتصل بالمبيعات"
+  },
+  "demo": {
+    "ui": {
+      "live_production_sync": "مزامنة حية",
+      "enterprise_grade": "مستوى المؤسسة",
+      "person_to_person_sync": "مزامنة P2P",
+      "subtitle": "شاهد SyncRivo يقوم بتوجيه الرسائل بأمان.",
+      "active_now": "نشط الآن",
+      "is_typing": "يكتب",
+      "via": "عبر",
+      "encrypted_synced": "مشفر ومتزامن",
+      "input_placeholder": "رسالة إلى {{name}}...",
+      "encrypted_conversation": "محادثة مشفرة",
+      "system_connect_message": "تم إنشاء اتصال آمن."
+    },
+    "scenarios": {
+      "1": {
+        "msg1": "هل يمكننا إنهاء نطاق السباق اليوم؟",
+        "msg2": "نعم ✅ سأشارك الأعمال المتراكمة المحدثة قريبًا."
+      },
+      "2": {
+        "msg1": "Hey Daniel 👋 The product demo deck is ready.",
+        "msg2": "Perfect 👍 I'll review before the client call."
+      },
+      "3": {
+        "msg1": "Morning Sarah! 🚀 Deployment is live on prod.",
+        "msg2": "Awesome work 🎉 Monitoring dashboards look green."
+      },
+      "4": {
+        "msg1": "Please find the incident RCA attached.",
+        "msg2": "Got it 👍 Thanks for the quick turnaround."
+      },
+      "5": {
+        "msg1": "Infra cost optimization report is ready 💡",
+        "msg2": "Nice 👌 Let's review this in tomorrow's standup."
+      },
+      "6": {
+        "msg1": "Client approved the proposal 🎉",
+        "msg2": "Great news! Let's kick off onboarding 🚀"
+      }
+    },
+    "roles": {
+      "product_owner": "مالك المنتج"
+    }
   }
 }

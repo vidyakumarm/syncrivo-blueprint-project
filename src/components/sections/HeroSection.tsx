@@ -12,12 +12,7 @@ import { HeroLoopAnimation } from "./HeroLoopAnimation";
 
 
 // Compliance badges
-const complianceBadges = [
-  { label: "SOC2", tooltip: "SOC 2 Type II Certified" },
-  { label: "ISO 27001", tooltip: "ISO 27001 Certified" },
-  { label: "GDPR", tooltip: "GDPR Compliant" },
-  { label: "HIPAA", tooltip: "HIPAA Ready" },
-];
+
 
 // Placeholder customer logos
 const customerLogos = [
@@ -165,7 +160,12 @@ export function HeroSection() {
 
               {/* Compliance Badges */}
               <div className="flex flex-wrap items-center gap-3">
-                {complianceBadges.map((badge, i) => (
+                {[
+                  { label: "SOC2", tooltip: t('hero.compliance_badges.soc2', "SOC 2 Type II Certified") },
+                  { label: "ISO 27001", tooltip: t('hero.compliance_badges.iso27001', "ISO 27001 Certified") },
+                  { label: "GDPR", tooltip: t('hero.compliance_badges.gdpr', "GDPR Compliant") },
+                  { label: "HIPAA", tooltip: t('hero.compliance_badges.hipaa', "HIPAA Ready") },
+                ].map((badge, i) => (
                   <div
                     key={i}
                     className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-accent/5 dark:bg-accent/10 border border-accent/10 dark:border-accent/20"

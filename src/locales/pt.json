@@ -68,7 +68,13 @@
     "enterprise_security": "Segurança Empresarial",
     "enterprise_security_desc": "Compatível com SOC 2 com criptografia de nível empresarial",
     "cross_platform": "Multiplataforma",
-    "cross_platform_desc": "Conecte qualquer plataforma de mensagem com APIs unificadas"
+    "cross_platform_desc": "Conecte qualquer plataforma de mensagem com APIs unificadas",
+    "compliance_badges": {
+      "soc2": "Certificado SOC 2 Tipo II",
+      "iso27001": "Certificado ISO 27001",
+      "gdpr": "Compatível com GDPR",
+      "hipaa": "Pronto para HIPAA"
+    }
   },
   "support": {
     "title": "Como podemos ajudá-lo?",
@@ -169,7 +175,13 @@
     "customer_support_hub": "Hub de Suporte ao Cliente",
     "customer_support_hub_desc": "Integre canais de suporte ao cliente com ferramentas de comunicação interna.",
     "project_coordination": "Coordenação de Projeto",
-    "project_coordination_desc": "Sincronize atualizações e notificações de projeto em todos os canais de comunicação da equipe."
+    "project_coordination_desc": "Sincronize atualizações e notificações de projeto em todos os canais de comunicação da equipe.",
+    "title": "Scalable Use Cases",
+    "subtitle": "Designed for modern enterprise.",
+    "incident_title": "Incident & Alerts",
+    "collab_title": "Cross-Company Collaboration",
+    "ops_title": "IT & Operations Automation",
+    "support_title": "Customer Support Escalations"
   },
   "pricing": {
     "title": "Preços",
@@ -335,7 +347,12 @@
     "title": "Segurança",
     "subtitle": "Saiba sobre nosso compromisso em manter seus dados seguros e protegidos.",
     "coming_soon": "Em Breve",
-    "coming_soon_desc": "Nossa documentação de segurança está sendo preparada. Volte em breve para informações detalhadas de segurança."
+    "coming_soon_desc": "Nossa documentação de segurança está sendo preparada. Volte em breve para informações detalhadas de segurança.",
+    "teaser_title": "Enterprise-Grade Security",
+    "teaser_desc": "Strictest security standards.",
+    "link_security": "Security Overview",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Terms of Service"
   },
   "login": {
     "title": "Entrar",
@@ -513,6 +530,65 @@
       "google_chat": "Google Chat",
       "cisco_webex": "Cisco Webex",
       "discord": "Discord"
+    }
+  },
+  "value_prop": {
+    "title": "A camada de mensagens universal",
+    "subtitle": "Comunicação fragmentada retarda equipes. SyncRivo unifica sua pilha sem migração forçada."
+  },
+  "how_it_works": {
+    "title": "Fluxo de trabalho de automação inteligente",
+    "step1_title": "Conecte suas ferramentas",
+    "step2_title": "Defina regras",
+    "step3_title": "Monitore e melhore"
+  },
+  "final_cta": {
+    "title": "Pronto para unificar sua comunicação?",
+    "book_demo": "Agendar demo",
+    "talk_sales": "Falar com vendas"
+  },
+  "demo": {
+    "ui": {
+      "live_production_sync": "Sincronização ao vivo",
+      "enterprise_grade": "Grau Empresarial",
+      "person_to_person_sync": "Sincronização P2P",
+      "subtitle": "Veja o SyncRivo rotear mensagens com segurança.",
+      "active_now": "Ativo agora",
+      "is_typing": "está digitando",
+      "via": "via",
+      "encrypted_synced": "Criptografado e sincronizado",
+      "input_placeholder": "Mensagem para {{name}}...",
+      "encrypted_conversation": "Conversa Criptografada",
+      "system_connect_message": "Conexão segura estabelecida."
+    },
+    "scenarios": {
+      "1": {
+        "msg1": "Podemos finalizar o escopo do sprint hoje?",
+        "msg2": "Sim ✅ Vou compartilhar o backlog atualizado."
+      },
+      "2": {
+        "msg1": "Hey Daniel 👋 The product demo deck is ready.",
+        "msg2": "Perfect 👍 I'll review before the client call."
+      },
+      "3": {
+        "msg1": "Morning Sarah! 🚀 Deployment is live on prod.",
+        "msg2": "Awesome work 🎉 Monitoring dashboards look green."
+      },
+      "4": {
+        "msg1": "Please find the incident RCA attached.",
+        "msg2": "Got it 👍 Thanks for the quick turnaround."
+      },
+      "5": {
+        "msg1": "Infra cost optimization report is ready 💡",
+        "msg2": "Nice 👌 Let's review this in tomorrow's standup."
+      },
+      "6": {
+        "msg1": "Client approved the proposal 🎉",
+        "msg2": "Great news! Let's kick off onboarding 🚀"
+      }
+    },
+    "roles": {
+      "product_owner": "Product Owner"
     }
   }
 }

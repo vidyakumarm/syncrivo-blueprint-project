@@ -43,6 +43,12 @@
     "all_solutions": "View All Solutions"
   },
   "hero": {
+    "compliance_badges": {
+      "soc2": "SOC 2 Type II Certified",
+      "iso27001": "ISO 27001 Certified",
+      "gdpr": "GDPR Compliant",
+      "hipaa": "HIPAA Ready"
+    },
     "badge": "Enterprise Integration Platform",
     "enterprise_badge": "Enterprise Communication Platform",
     "headline_prefix": "The",
@@ -377,7 +383,12 @@
     "title": "Security",
     "subtitle": "Learn about our commitment to keeping your data safe and secure.",
     "coming_soon": "Coming Soon",
-    "coming_soon_desc": "Our security documentation is being prepared. Check back soon for detailed security information."
+    "coming_soon_desc": "Our security documentation is being prepared. Check back soon for detailed security information.",
+    "teaser_title": "Enterprise-Grade Security & Governance",
+    "teaser_desc": "We adhere to the strictest enterprise security standards, ensuring your data is always protected.",
+    "link_security": "Security Overview",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Terms of Service"
   },
   "login": {
     "title": "Welcome Back",
@@ -615,7 +626,31 @@
       "google_chat": "Google Chat",
       "cisco_webex": "Cisco Webex",
       "discord": "Discord"
+    },
+    "compliance_badges": {
+      "soc2": "SOC 2 Type II Certified",
+      "iso27001": "ISO 27001 Certified",
+      "gdpr": "GDPR Compliant",
+      "hipaa": "HIPAA Ready"
     }
+  },
+  "how_it_works": {
+    "title": "Intelligent Automation Workflow",
+    "step1_title": "Connect your tools",
+    "step1_desc": "Slack, Teams, Google Workspace, Zoom, Webex",
+    "step2_title": "Define routing rules",
+    "step2_desc": "Channel mapping, keywords, priorities, teams, time windows",
+    "step3_title": "Monitor and improve",
+    "step3_desc": "Visibility, logs, retries, and workflow outcomes"
+  },
+  "value_prop": {
+    "title": "The Universal Messaging Layer for Enterprise",
+    "subtitle": "Fragmented communication slows down global teams. SyncRivo unifies your stack without forcing migration."
+  },
+  "final_cta": {
+    "title": "Ready to unify your communication stack?",
+    "book_demo": "Book a Demo",
+    "talk_sales": "Talk to Sales"
   },
   "platforms": {
     "supported_platforms": "Supported Platforms",
@@ -703,7 +738,21 @@
     "customer_support_hub": "Customer Support Hub",
     "customer_support_hub_desc": "Integrate customer support channels with internal communication tools.",
     "project_coordination": "Project Coordination",
-    "project_coordination_desc": "Sync project updates and notifications across all team communication channels."
+    "project_coordination_desc": "Sync project updates and notifications across all team communication channels.",
+    "title": "Scalable Use Cases for Global Teams",
+    "subtitle": "Designed for the complexity of modern enterprise. Unify operations, support, and external partnerships without changing your tech stack.",
+    "incident_title": "Incident & Alerts",
+    "incident_b1": "Route P1/P2 alerts into the right channel automatically",
+    "incident_b2": "Reduce MTTA by keeping responders in their primary tool",
+    "collab_title": "Cross-Company Collaboration",
+    "collab_b1": "Bridge communication when partners use different platforms",
+    "collab_b2": "Keep context without forwarding chaos",
+    "ops_title": "IT & Operations Automation",
+    "ops_b1": "Automate approval notifications, outages, changes",
+    "ops_b2": "Keep updates consistent across tools",
+    "support_title": "Customer Support Escalations",
+    "support_b1": "Escalate critical messages to the right team instantly",
+    "support_b2": "Reduce missed handoffs"
   },
   "careers": {
     "hero_title": "Join the Future of",
@@ -798,6 +847,64 @@
       "contact_support": "Contact Support",
       "community_forum": "Community Forum",
       "code_examples": "Code Examples"
+    }
+  },
+  "demo": {
+    "ui": {
+      "live_production_sync": "Live Production Sync",
+      "enterprise_grade": "Enterprise-Grade",
+      "person_to_person_sync": "Person-to-Person Sync",
+      "subtitle": "Watch SyncRivo instantly route secure messages between different platforms while maintaining identity, context, and security protocols.",
+      "security_shield": "SyncRivo Security",
+      "security_messages": {
+        "secure_dm": "Secure direct message",
+        "e2e_encrypted": "End-to-end encrypted",
+        "identity_verified": "Identity verified",
+        "context_sealed": "Context sealed",
+        "zero_persistence": "Zero data persistence"
+      },
+      "active_now": "Active Now",
+      "is_typing": "is typing",
+      "via": "via",
+      "encrypted_synced": "Encrypted & synced via SyncRivo",
+      "input_placeholder": "Message {{name}}...",
+      "encrypted_conversation": "Encrypted Conversation",
+      "encrypted_conversation_desc": "Messages between you and <1>{{name}}</1> are securely synced via SyncRivo.",
+      "system_connect_message": "Secure person-to-person sync established. Identity verified."
+    },
+    "scenarios": {
+      "1": {
+        "msg1": "Can we finalize the sprint scope today?",
+        "msg2": "Yes ✅ I'll share the updated backlog shortly."
+      },
+      "2": {
+        "msg1": "Hey Daniel 👋 The product demo deck is ready.",
+        "msg2": "Perfect 👍 I'll review before the client call."
+      },
+      "3": {
+        "msg1": "Morning Sarah! 🚀 Deployment is live on prod.",
+        "msg2": "Awesome work 🎉 Monitoring dashboards look green."
+      },
+      "4": {
+        "msg1": "Please find the incident RCA attached.",
+        "msg2": "Got it 👍 Thanks for the quick turnaround."
+      },
+      "5": {
+        "msg1": "Infra cost optimization report is ready 💡",
+        "msg2": "Nice 👌 Let's review this in tomorrow's standup."
+      },
+      "6": {
+        "msg1": "Client approved the proposal 🎉",
+        "msg2": "Great news! Let's kick off onboarding 🚀"
+      }
+    },
+    "roles": {
+      "product_owner": "Product Owner",
+      "devops_lead": "DevOps Lead",
+      "product_lead": "Product Lead",
+      "sales_director": "Sales Director",
+      "cto": "CTO",
+      "sre": "SRE"
     }
   },
   "security": {

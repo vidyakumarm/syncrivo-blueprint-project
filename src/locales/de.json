@@ -68,7 +68,13 @@
     "enterprise_security": "Unternehmenssicherheit",
     "enterprise_security_desc": "SOC 2-konform mit Verschlüsselung auf Unternehmensniveau",
     "cross_platform": "Plattformübergreifend",
-    "cross_platform_desc": "Verbinden Sie jede Messaging-Plattform mit einheitlichen APIs"
+    "cross_platform_desc": "Verbinden Sie jede Messaging-Plattform mit einheitlichen APIs",
+    "compliance_badges": {
+      "soc2": "SOC 2 Typ II Zertifiziert",
+      "iso27001": "ISO 27001 Zertifiziert",
+      "gdpr": "DSGVO Konform",
+      "hipaa": "HIPAA Bereit"
+    }
   },
   "features": {
     "hero_badge": "Messaging-Plattform-Funktionen",
@@ -150,7 +156,13 @@
     "customer_support_hub": "Kundensupport-Hub",
     "customer_support_hub_desc": "Integrieren Sie Kundensupport-Kanäle mit internen Messaging-Plattformen für nahtlose Kommunikation.",
     "project_coordination": "Projektkoordination",
-    "project_coordination_desc": "Synchronisieren Sie Projekt-Updates und Benachrichtigungen automatisch über alle Team-Messaging-Kanäle."
+    "project_coordination_desc": "Synchronisieren Sie Projekt-Updates und Benachrichtigungen automatisch über alle Team-Messaging-Kanäle.",
+    "title": "Scalable Use Cases",
+    "subtitle": "Designed for modern enterprise.",
+    "incident_title": "Incident & Alerts",
+    "collab_title": "Cross-Company Collaboration",
+    "ops_title": "IT & Operations Automation",
+    "support_title": "Customer Support Escalations"
   },
   "how_it_works": {
     "title": "Wie SyncRivo funktioniert",
@@ -396,7 +408,12 @@
     "responsible_disclosure": "Verantwortungsvolle Offenlegung",
     "responsible_disclosure_desc": "Wir haben ein verantwortungsvolles Offenlegungsprogramm für Sicherheitsforscher.",
     "compliance": "Compliance",
-    "compliance_desc": "Wir halten uns an Branchenstandards und Vorschriften zum Schutz Ihrer Daten."
+    "compliance_desc": "Wir halten uns an Branchenstandards und Vorschriften zum Schutz Ihrer Daten.",
+    "teaser_title": "Enterprise-Grade Security",
+    "teaser_desc": "Strictest security standards.",
+    "link_security": "Security Overview",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Terms of Service"
   },
   "login": {
     "title": "Anmelden",
@@ -581,5 +598,60 @@
     "view_live_demo": "Live-Demo Anzeigen",
     "start_connecting": "Plattformen Verbinden Starten",
     "view_supported": "Unterstützte Plattformen Anzeigen"
+  },
+  "value_prop": {
+    "title": "Die universelle Messaging-Ebene für Unternehmen",
+    "subtitle": "Fragmentierte Kommunikation bremst globale Teams. SyncRivo vereinheitlicht Ihren Stack ohne Zwangsmigration."
+  },
+  "final_cta": {
+    "title": "Bereit, Ihren Kommunikations-Stack zu vereinheitlichen?",
+    "book_demo": "Demo buchen",
+    "talk_sales": "Vertrieb kontaktieren"
+  },
+  "demo": {
+    "ui": {
+      "live_production_sync": "Live-Synchronisation",
+      "enterprise_grade": "Enterprise-Klasse",
+      "person_to_person_sync": "P2P-Synchronisation",
+      "subtitle": "Beobachten Sie SyncRivo in Aktion.",
+      "active_now": "Jetzt aktiv",
+      "is_typing": "schreibt",
+      "via": "via",
+      "encrypted_synced": "Verschlüsselt & synchronisiert",
+      "input_placeholder": "Nachricht an {{name}}...",
+      "encrypted_conversation": "Verschlüsselte Unterhaltung",
+      "system_connect_message": "Sichere Verbindung hergestellt."
+    },
+    "scenarios": {
+      "1": {
+        "msg1": "Können wir den Sprint-Umfang heute finalisieren?",
+        "msg2": "Ja ✅ Ich teile gleich das Update."
+      },
+      "2": {
+        "msg1": "Hey Daniel 👋 The product demo deck is ready.",
+        "msg2": "Perfect 👍 I'll review before the client call."
+      },
+      "3": {
+        "msg1": "Morning Sarah! 🚀 Deployment is live on prod.",
+        "msg2": "Awesome work 🎉 Monitoring dashboards look green."
+      },
+      "4": {
+        "msg1": "Please find the incident RCA attached.",
+        "msg2": "Got it 👍 Thanks for the quick turnaround."
+      },
+      "5": {
+        "msg1": "Infra cost optimization report is ready 💡",
+        "msg2": "Nice 👌 Let's review this in tomorrow's standup."
+      },
+      "6": {
+        "msg1": "Client approved the proposal 🎉",
+        "msg2": "Great news! Let's kick off onboarding 🚀"
+      }
+    },
+    "roles": {
+      "product_owner": "Product Owner",
+      "devops_lead": "DevOps Lead",
+      "cto": "CTO"
+    }
   }
 }

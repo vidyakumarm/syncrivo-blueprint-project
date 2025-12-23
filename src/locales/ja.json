@@ -68,7 +68,13 @@
     "enterprise_security": "エンタープライズセキュリティ",
     "enterprise_security_desc": "エンタープライズ級暗号化でSOC 2準拠",
     "cross_platform": "クロスプラットフォーム",
-    "cross_platform_desc": "統一APIで任意のメッセージングプラットフォームを接続"
+    "cross_platform_desc": "統一APIで任意のメッセージングプラットフォームを接続",
+    "compliance_badges": {
+      "soc2": "SOC 2 Type II 認定",
+      "iso27001": "ISO 27001 認定",
+      "gdpr": "GDPR 準拠",
+      "hipaa": "HIPAA 対応"
+    }
   },
   "support": {
     "title": "どのようにお手伝いできますか？",
@@ -169,7 +175,21 @@
     "customer_support_hub": "カスタマーサポートハブ",
     "customer_support_hub_desc": "カスタマーサポートチャンネルを内部コミュニケーションツールと統合。",
     "project_coordination": "プロジェクト調整",
-    "project_coordination_desc": "すべてのチームコミュニケーションチャンネルにプロジェクト更新と通知を同期。"
+    "project_coordination_desc": "すべてのチームコミュニケーションチャンネルにプロジェクト更新と通知を同期。",
+    "title": "グローバルチームのためのスケーラブルなユースケース",
+    "subtitle": "現代企業の複雑さに対応。技術スタックを変更することなく、運用、サポート、外部パートナーシップを統合します。",
+    "incident_title": "インシデントとアラート",
+    "incident_b1": "P1/P2アラートを適切なチャネルに自動ルーティング",
+    "incident_b2": "レスポンダーを主要ツールに留めることでMTTAを削減",
+    "collab_title": "企業間コラボレーション",
+    "collab_b1": "異なるプラットフォームを使用するパートナー間の通信をブリッジ",
+    "collab_b2": "コンテキストを維持しながら混乱を回避",
+    "ops_title": "ITおよび運用自動化",
+    "ops_b1": "承認通知、停止、変更を自動化",
+    "ops_b2": "ツール間で更新を一貫させる",
+    "support_title": "カスタマーサポートのエスカレーション",
+    "support_b1": "重要なメッセージを適切なチームに即座にエスカレーション",
+    "support_b2": "ハンドオフのミスを削減"
   },
   "pricing": {
     "title": "価格",
@@ -335,7 +355,12 @@
     "title": "セキュリティ",
     "subtitle": "あなたのデータを安全かつセキュアに保つ私たちのコミットメントについて学びましょう。",
     "coming_soon": "近日公開",
-    "coming_soon_desc": "セキュリティドキュメントを準備中です。詳細なセキュリティ情報を近日中にご確認ください。"
+    "coming_soon_desc": "セキュリティドキュメントを準備中です。詳細なセキュリティ情報を近日中にご確認ください。",
+    "teaser_title": "エンタープライズグレードのセキュリティとガバナンス",
+    "teaser_desc": "最も厳格なエンタープライズセキュリティ基準に準拠し、データを常に保護します。",
+    "link_security": "セキュリティ概要",
+    "link_privacy": "プライバシーポリシー",
+    "link_terms": "利用規約"
   },
   "login": {
     "title": "サインイン",
@@ -525,5 +550,81 @@
     "cta_demo_trust": "クレジットカード不要 · 1:1ガイドセッション · 30-45分",
     "cta_prefer_email": "まずはメールで？",
     "cta_contact_sales": "営業に連絡"
+  },
+  "value_prop": {
+    "title": "企業のためのユニバーサル・メッセージング・レイヤー",
+    "subtitle": "断片化したコミュニケーションは、グローバルチームのスピードを落とします。SyncRivoは移行を強制することなく、スタックを統合します。"
+  },
+  "how_it_works": {
+    "title": "インテリジェントな自動化ワークフロー",
+    "step1_title": "ツールを接続",
+    "step1_desc": "Slack, Teams, Google Workspace, Zoom, Webex",
+    "step2_title": "ルーティングルールの定義",
+    "step2_desc": "チャネルマッピング、キーワード、優先順位、チーム、時間枠",
+    "step3_title": "監視と改善",
+    "step3_desc": "可視化、ログ、再試行、ワークフローの結果"
+  },
+  "final_cta": {
+    "title": "コミュニケーションスタックを統合する準備はできましたか？",
+    "book_demo": "デモを予約",
+    "talk_sales": "営業に問い合わせる"
+  },
+  "demo": {
+    "ui": {
+      "live_production_sync": "ライブプロダクション同期",
+      "enterprise_grade": "エンタープライズグレード",
+      "person_to_person_sync": "P2P同期",
+      "subtitle": "SyncRivoがID、コンテキスト、セキュリティプロトコルを維持しながら、異なるプラットフォーム間で安全なメッセージを瞬時にルーティングする様子をご覧ください。",
+      "security_shield": "SyncRivoセキュリティ",
+      "security_messages": {
+        "secure_dm": "安全なダイレクトメッセージ",
+        "e2e_encrypted": "エンドツーエンド暗号化",
+        "identity_verified": "本人確認済み",
+        "context_sealed": "コンテキスト保護",
+        "zero_persistence": "データ永続性ゼロ"
+      },
+      "active_now": "アクティブ",
+      "is_typing": "入力中",
+      "via": "経由",
+      "encrypted_synced": "SyncRivo経由で暗号化＆同期",
+      "input_placeholder": "{{name}} にメッセージ...",
+      "encrypted_conversation": "暗号化された会話",
+      "encrypted_conversation_desc": "あなたと <1>{{name}}</1> の間のメッセージはSyncRivo経由で安全に同期されます。",
+      "system_connect_message": "安全なP2P同期が確立されました。本人確認済み。"
+    },
+    "scenarios": {
+      "1": {
+        "msg1": "今日中にスプリントの範囲を確定できますか？",
+        "msg2": "はい ✅ すぐに更新されたバックログを共有します。"
+      },
+      "2": {
+        "msg1": "ダニエル 👋 製品デモの資料が準備できました。",
+        "msg2": "完璧です 👍 クライアントコールの前に確認します。"
+      },
+      "3": {
+        "msg1": "おはようサラ！ 🚀 本番環境へのデプロイが完了しました。",
+        "msg2": "素晴らしい 🎉 監視ダッシュボードも正常です。"
+      },
+      "4": {
+        "msg1": "インシデントのRCAを添付しました。",
+        "msg2": "了解 👍 早急な対応ありがとうございます。"
+      },
+      "5": {
+        "msg1": "インフラコスト最適化レポートの準備ができました 💡",
+        "msg2": "いいですね 👌 明日のスタンドアップで確認しましょう。"
+      },
+      "6": {
+        "msg1": "クライアントが提案を承認しました 🎉",
+        "msg2": "素晴らしいニュースです！ オンボーディングを開始しましょう 🚀"
+      }
+    },
+    "roles": {
+      "product_owner": "プロダクトオーナー",
+      "devops_lead": "DevOpsリード",
+      "product_lead": "プロダクトリード",
+      "sales_director": "セールスディレクター",
+      "cto": "CTO",
+      "sre": "SRE"
+    }
   }
 }

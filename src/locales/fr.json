@@ -68,7 +68,13 @@
     "enterprise_security": "Sécurité d'Entreprise",
     "enterprise_security_desc": "Conforme SOC 2 avec chiffrement de niveau entreprise",
     "cross_platform": "Multi-Plateforme",
-    "cross_platform_desc": "Connectez n'importe quelle plateforme de messagerie avec des APIs unifiées"
+    "cross_platform_desc": "Connectez n'importe quelle plateforme de messagerie avec des APIs unifiées",
+    "compliance_badges": {
+      "soc2": "Certifié SOC 2 Type II",
+      "iso27001": "Certifié ISO 27001",
+      "gdpr": "Conforme RGPD",
+      "hipaa": "Prêt pour HIPAA"
+    }
   },
   "support": {
     "title": "Comment pouvons-nous vous aider ?",
@@ -169,7 +175,13 @@
     "customer_support_hub": "Centre de Support Client",
     "customer_support_hub_desc": "Intégrez les canaux de support client avec les outils de communication interne.",
     "project_coordination": "Coordination de Projet",
-    "project_coordination_desc": "Synchronisez les mises à jour et notifications de projet sur tous les canaux de communication d'équipe."
+    "project_coordination_desc": "Synchronisez les mises à jour et notifications de projet sur tous les canaux de communication d'équipe.",
+    "title": "Scalable Use Cases",
+    "subtitle": "Designed for modern enterprise.",
+    "incident_title": "Incident & Alerts",
+    "collab_title": "Cross-Company Collaboration",
+    "ops_title": "IT & Operations Automation",
+    "support_title": "Customer Support Escalations"
   },
   "pricing": {
     "title": "Tarifs",
@@ -328,16 +340,26 @@
     "contact_email": "Contactez-nous à careers@company.com"
   },
   "status": {
-    "title": "Statut du Système",
-    "subtitle": "Statut en temps réel et surveillance de la disponibilité pour tous nos services.",
-    "coming_soon": "Bientôt Disponible",
-    "coming_soon_desc": "Notre page de statut est en préparation. Revenez bientôt pour la surveillance système en temps réel."
+    "status_title": "État du Système",
+    "status_subtitle": "État actuel de nos services et infrastructure",
+    "api_services": "Services API",
+    "api_services_desc": "Tous les endpoints API fonctionnent normalement",
+    "dashboard_service": "Tableau de Bord",
+    "dashboard_service_desc": "Le tableau de bord utilisateur fonctionne correctement",
+    "data_processing": "Traitement des Données",
+    "data_processing_desc": "Tous les services de traitement des données fonctionnent parfaitement",
+    "operational": "Opérationnel"
   },
   "security": {
     "title": "Sécurité",
     "subtitle": "Apprenez-en plus sur notre engagement à garder vos données sûres et sécurisées.",
     "coming_soon": "Bientôt Disponible",
-    "coming_soon_desc": "Notre documentation de sécurité est en préparation. Revenez bientôt pour des informations détaillées sur la sécurité."
+    "coming_soon_desc": "Notre documentation de sécurité est en préparation. Revenez bientôt pour des informations détaillées sur la sécurité.",
+    "teaser_title": "Enterprise-Grade Security",
+    "teaser_desc": "Strictest security standards.",
+    "link_security": "Security Overview",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Terms of Service"
   },
   "login": {
     "title": "Connexion",
@@ -361,18 +383,18 @@
   "dashboard": {
     "title": "Tableau de Bord SyncRivo",
     "subtitle": "Connectez et synchronisez les messages entre Teams, Webex, Google Chat, Zoom et autres plateformes de messagerie",
-    "welcome": "Bienvenue sur votre tableau de bord",
+    "welcome": "Bienvenue sur votre Tableau de Bord",
     "metrics": {
       "messages_synced": "Messages Synchronisés",
       "active_platforms": "Plateformes Actives",
       "successful_syncs": "Synchronisations Réussies",
       "connected_platforms": "Plateformes Connectées"
     },
-    "recent_activity": "Activité Récente de la Plateforme",
-    "no_activity": "Aucune activité récente.",
+    "recent_activity": "Activité Récente des Plateformes",
+    "no_activity": "Aucune activité récente pour le moment.",
     "start_connecting": "Commencez par connecter des plateformes de messagerie !",
     "sidebar": {
-      "overview": "Vue d'ensemble",
+      "overview": "Aperçu",
       "connections": "Connexions",
       "activity": "Activité",
       "profile": "Profil",
@@ -384,68 +406,12 @@
       "subtitle": "Connectez Teams, Webex, Google Chat, Zoom et autres plateformes de messagerie"
     },
     "activity": {
-      "title": "Activité de la Plateforme",
-      "subtitle": "Surveillez l'activité de synchronisation des messages sur toutes les plateformes connectées",
-      "refresh": "Actualiser",
-      "refreshing": "Actualisation...",
-      "export": "Exporter",
-      "search_placeholder": "Rechercher les activités de plateforme...",
-      "status_filter": {
-        "placeholder": "Statut",
-        "all": "Tous les Statuts",
-        "success": "Succès",
-        "error": "Erreur",
-        "pending": "En attente"
-      },
-      "status": {
-        "success": "Succès",
-        "error": "Erreur",
-        "pending": "En attente",
-        "unknown": "Inconnu"
-      },
-      "recent_activities": "Activités Récentes de Plateforme",
-      "unknown": "Inconnu",
-      "no_details": "Aucun détail disponible",
-      "duration": "Durée",
-      "records": "Enregistrements",
-      "na": "N/A",
-      "no_activities": "Aucune activité de plateforme trouvée correspondant à vos filtres.",
-      "csv": {
-        "timestamp": "Horodatage",
-        "integration": "Intégration",
-        "action": "Action",
-        "status": "Statut",
-        "duration": "Durée",
-        "records_processed": "Enregistrements Traités",
-        "details": "Détails"
-      }
-    },
-    "profile": {
-      "title": "Paramètres de Profil",
-      "subtitle": "Gérez les paramètres de votre compte",
-      "personal_info": "Informations Personnelles",
-      "coming_soon": "Paramètres de profil bientôt disponibles"
-    },
-    "team": {
-      "title": "Paramètres d'Équipe",
-      "subtitle": "Gérez les membres de votre équipe et les permissions",
-      "members": "Membres de l'Équipe",
-      "coming_soon": "Gestion d'équipe bientôt disponible"
-    },
-    "security": {
-      "title": "Paramètres de Sécurité",
-      "subtitle": "Gérez la sécurité de votre compte",
-      "password": "Mot de passe et Authentification",
-      "coming_soon": "Paramètres de sécurité bientôt disponibles"
+      "title": "Activité des Plateformes",
+      "subtitle": "Surveillez l'activité de synchronisation des messages sur toutes les plateformes connectées"
     },
     "settings": {
       "subtitle": "Gérez votre compte et vos préférences"
-    },
-    "realtime_chart_title": "Activité de Synchronisation de Messages en Temps Réel",
-    "messages_synced_5min": "Messages Synchronisés/5min",
-    "platform_errors_5min": "Erreurs de Plateforme/5min",
-    "last_updated": "Dernière mise à jour : {{time}} (Mise à jour toutes les 5 secondes)",
-    "from_last_month": "du mois dernier"
+    }
   },
   "footer": {
     "tagline": "Connectez et gérez facilement toutes vos intégrations business dans une plateforme unifiée.",
@@ -461,17 +427,6 @@
     "title": "404",
     "subtitle": "Oops ! Page non trouvée",
     "return_home": "Retour à l'Accueil"
-  },
-  "status": {
-    "status_title": "État du Système",
-    "status_subtitle": "État actuel de nos services et infrastructure",
-    "api_services": "Services API",
-    "api_services_desc": "Tous les endpoints API fonctionnent normalement",
-    "dashboard_service": "Tableau de Bord",
-    "dashboard_service_desc": "Le tableau de bord utilisateur fonctionne correctement",
-    "data_processing": "Traitement des Données",
-    "data_processing_desc": "Tous les services de traitement des données fonctionnent parfaitement",
-    "operational": "Opérationnel"
   },
   "home": {
     "features_badge": "Fonctionnalités Puissantes",
@@ -528,37 +483,64 @@
       "discord": "Discord"
     }
   },
-  "dashboard": {
-    "title": "Tableau de Bord SyncRivo",
-    "subtitle": "Connectez et synchronisez les messages entre Teams, Webex, Google Chat, Zoom et autres plateformes de messagerie",
-    "welcome": "Bienvenue sur votre Tableau de Bord",
-    "metrics": {
-      "messages_synced": "Messages Synchronisés",
-      "active_platforms": "Plateformes Actives",
-      "successful_syncs": "Synchronisations Réussies",
-      "connected_platforms": "Plateformes Connectées"
+  "value_prop": {
+    "title": "La couche de messagerie universelle",
+    "subtitle": "La communication fragmentée ralentit les équipes. SyncRivo unifie votre stack sans migration forcée."
+  },
+  "how_it_works": {
+    "title": "Workflow d'automatisation intelligent",
+    "step1_title": "Connectez vos outils",
+    "step2_title": "Définissez les règles",
+    "step3_title": "Surveillez et améliorez"
+  },
+  "final_cta": {
+    "title": "Prêt à unifier vos communications ?",
+    "book_demo": "Réserver une démo",
+    "talk_sales": "Contacter les ventes"
+  },
+  "demo": {
+    "ui": {
+      "live_production_sync": "Synchro en direct",
+      "enterprise_grade": "Qualité Entreprise",
+      "person_to_person_sync": "Synchro P2P",
+      "subtitle": "Regardez SyncRivo router les messages en toute sécurité.",
+      "active_now": "Actif",
+      "is_typing": "écrit",
+      "via": "via",
+      "encrypted_synced": "Chiffré & Synchronisé",
+      "input_placeholder": "Message à {{name}}...",
+      "encrypted_conversation": "Conversation Chiffrée",
+      "system_connect_message": "Connexion sécurisée établie."
     },
-    "recent_activity": "Activité Récente des Plateformes",
-    "no_activity": "Aucune activité récente pour le moment.",
-    "start_connecting": "Commencez par connecter des plateformes de messagerie !",
-    "sidebar": {
-      "overview": "Aperçu",
-      "connections": "Connexions",
-      "activity": "Activité",
-      "profile": "Profil",
-      "team": "Équipe",
-      "security": "Sécurité"
+    "scenarios": {
+      "1": {
+        "msg1": "Pouvons-nous finaliser le périmètre du sprint ?",
+        "msg2": "Oui ✅ Je partage le backlog mis à jour."
+      },
+      "2": {
+        "msg1": "Hey Daniel 👋 The product demo deck is ready.",
+        "msg2": "Perfect 👍 I'll review before the client call."
+      },
+      "3": {
+        "msg1": "Morning Sarah! 🚀 Deployment is live on prod.",
+        "msg2": "Awesome work 🎉 Monitoring dashboards look green."
+      },
+      "4": {
+        "msg1": "Please find the incident RCA attached.",
+        "msg2": "Got it 👍 Thanks for the quick turnaround."
+      },
+      "5": {
+        "msg1": "Infra cost optimization report is ready 💡",
+        "msg2": "Nice 👌 Let's review this in tomorrow's standup."
+      },
+      "6": {
+        "msg1": "Client approved the proposal 🎉",
+        "msg2": "Great news! Let's kick off onboarding 🚀"
+      }
     },
-    "connections": {
-      "title": "Plateformes de Messagerie",
-      "subtitle": "Connectez Teams, Webex, Google Chat, Zoom et autres plateformes de messagerie"
-    },
-    "activity": {
-      "title": "Activité des Plateformes",
-      "subtitle": "Surveillez l'activité de synchronisation des messages sur toutes les plateformes connectées"
-    },
-    "settings": {
-      "subtitle": "Gérez votre compte et vos préférences"
+    "roles": {
+      "product_owner": "Product Owner",
+      "devops_lead": "Lead DevOps"
     }
   }
 }
