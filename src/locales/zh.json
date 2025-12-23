@@ -68,7 +68,13 @@
     "enterprise_security": "企业级安全",
     "enterprise_security_desc": "符合SOC 2标准，具有企业级加密",
     "cross_platform": "跨平台",
-    "cross_platform_desc": "通过统一API连接任何消息平台"
+    "cross_platform_desc": "通过统一API连接任何消息平台",
+    "compliance_badges": {
+      "soc2": "SOC 2 Type II 认证",
+      "iso27001": "ISO 27001 认证",
+      "gdpr": "符合 GDPR",
+      "hipaa": "符合 HIPAA"
+    }
   },
   "support": {
     "title": "我们如何帮助您？",
@@ -169,7 +175,13 @@
     "customer_support_hub": "客户支持中心",
     "customer_support_hub_desc": "将客户支持渠道与内部通信工具集成。",
     "project_coordination": "项目协调",
-    "project_coordination_desc": "在所有团队通信渠道中同步项目更新和通知。"
+    "project_coordination_desc": "在所有团队通信渠道中同步项目更新和通知。",
+    "title": "Scalable Use Cases",
+    "subtitle": "Designed for modern enterprise.",
+    "incident_title": "Incident & Alerts",
+    "collab_title": "Cross-Company Collaboration",
+    "ops_title": "IT & Operations Automation",
+    "support_title": "Customer Support Escalations"
   },
   "pricing": {
     "title": "定价",
@@ -335,7 +347,12 @@
     "title": "安全",
     "subtitle": "了解我们对保护您的数据安全的承诺。",
     "coming_soon": "即将推出",
-    "coming_soon_desc": "我们的安全文档正在准备中。请稍后查看详细的安全信息。"
+    "coming_soon_desc": "我们的安全文档正在准备中。请稍后查看详细的安全信息。",
+    "teaser_title": "Enterprise-Grade Security",
+    "teaser_desc": "Strictest security standards.",
+    "link_security": "Security Overview",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Terms of Service"
   },
   "login": {
     "title": "登录",
@@ -525,5 +542,64 @@
     "cta_demo_trust": "无需信用卡 · 1:1指导会议 · 30-45分钟",
     "cta_prefer_email": "更喜欢先发邮件？",
     "cta_contact_sales": "联系销售"
+  },
+  "value_prop": {
+    "title": "企业的通用消息层",
+    "subtitle": "分散的沟通会拖慢全球团队的速度。SyncRivo 统一您的技术栈，无需强制迁移。"
+  },
+  "how_it_works": {
+    "title": "智能自动化工作流",
+    "step1_title": "连接工具",
+    "step2_title": "定义规则",
+    "step3_title": "监控与改进"
+  },
+  "final_cta": {
+    "title": "准备好统您的沟通栈了吗？",
+    "book_demo": "预约演示",
+    "talk_sales": "联系销售"
+  },
+  "demo": {
+    "ui": {
+      "live_production_sync": "实时同步",
+      "enterprise_grade": "企业级",
+      "person_to_person_sync": "P2P 同步",
+      "subtitle": "观看 SyncRivo 安全地路由消息。",
+      "active_now": "当前在线",
+      "is_typing": "正在输入",
+      "via": "通过",
+      "encrypted_synced": "已加密并同步",
+      "input_placeholder": "发消息给 {{name}}...",
+      "encrypted_conversation": "加密对话",
+      "system_connect_message": "安全连接已建立。"
+    },
+    "scenarios": {
+      "1": {
+        "msg1": "我们今天能确定 Sprint 范围吗？",
+        "msg2": "是的 ✅ 我稍后分享更新的 backlog。"
+      },
+      "2": {
+        "msg1": "Hey Daniel 👋 The product demo deck is ready.",
+        "msg2": "Perfect 👍 I'll review before the client call."
+      },
+      "3": {
+        "msg1": "Morning Sarah! 🚀 Deployment is live on prod.",
+        "msg2": "Awesome work 🎉 Monitoring dashboards look green."
+      },
+      "4": {
+        "msg1": "Please find the incident RCA attached.",
+        "msg2": "Got it 👍 Thanks for the quick turnaround."
+      },
+      "5": {
+        "msg1": "Infra cost optimization report is ready 💡",
+        "msg2": "Nice 👌 Let's review this in tomorrow's standup."
+      },
+      "6": {
+        "msg1": "Client approved the proposal 🎉",
+        "msg2": "Great news! Let's kick off onboarding 🚀"
+      }
+    },
+    "roles": {
+      "product_owner": "产品负责人"
+    }
   }
 }

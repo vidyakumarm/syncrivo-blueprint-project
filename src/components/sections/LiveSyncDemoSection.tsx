@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Lock, Shield, Check, FileText, Activity
@@ -62,71 +62,7 @@ interface Scenario {
     simultaneous?: boolean;
 }
 
-const SCENARIOS: Scenario[] = [
-    {
-        id: 1,
-        source: { platform: 'zoom', person: { name: 'Sergey Kizunov', role: 'Product Owner', avatar: sergeyPhoto } },
-        dest: { platform: 'teams', person: { name: 'Kumar Makala', role: 'DevOps Lead', avatar: kumarPhoto } },
-        conversation: {
-            msg1: { text: "Can we finalize the sprint scope today?" },
-            msg2: { text: "Yes ✅ I’ll share the updated backlog shortly." }
-        }
-    },
-    {
-        id: 2,
-        source: { platform: 'google-chat', person: { name: 'Priya Nair', role: 'Product Lead', avatar: priyaPhoto } },
-        dest: { platform: 'zoom', person: { name: 'Daniel Wong', role: 'Sales Director', avatar: leoPhoto } },
-        conversation: {
-            msg1: { text: "Hey Daniel 👋 The product demo deck is ready.", attachment: { name: "Product_Demo_v3.pdf", size: "4.2 MB", type: "application/pdf" } },
-            msg2: { text: "Perfect 👍 I’ll review before the client call." }
-        }
-    },
-    {
-        id: 3,
-        source: { platform: 'google-chat', person: { name: 'Kumar Makala', role: 'DevOps Lead', avatar: kumarPhoto } },
-        dest: { platform: 'slack', person: { name: 'Sarah Collins', role: 'CTO', avatar: alicePhoto } },
-        conversation: {
-            msg1: { text: "Morning Sarah! 🚀 Deployment is live on prod." },
-            msg2: { text: "Awesome work 🎉 Monitoring dashboards look green." }
-        }
-    },
-    {
-        id: 4,
-        source: { platform: 'google-chat', person: { name: 'Ravi Patel', role: 'SRE', avatar: bobPhoto } },
-        dest: { platform: 'webex', person: { name: 'Priya Nair', role: 'Product Lead', avatar: priyaPhoto } },
-        conversation: {
-            msg1: { text: "Please find the incident RCA attached.", attachment: { name: "RCA_Incident_0421.docx", size: "1.1 MB", type: "application/docx" } },
-            msg2: { text: "Got it 👍 Thanks for the quick turnaround." }
-        }
-    },
-    {
-        id: 5,
-        source: { platform: 'teams', person: { name: 'Sarah Collins', role: 'CTO', avatar: alicePhoto } },
-        dest: { platform: 'slack', person: { name: 'Ravi Patel', role: 'SRE', avatar: bobPhoto } },
-        conversation: {
-            msg1: { text: "Infra cost optimization report is ready 💡", attachment: { name: "Cloud_Cost_Analysis.xlsx", size: "8.5 MB", type: "application/xlsx" } },
-            msg2: { text: "Nice 👌 Let’s review this in tomorrow’s standup." }
-        },
-        simultaneous: true
-    },
-    {
-        id: 6,
-        source: { platform: 'slack', person: { name: 'Daniel Wong', role: 'Sales Director', avatar: leoPhoto } },
-        dest: { platform: 'webex', person: { name: 'Sergey Kizunov', role: 'Product Owner', avatar: sergeyPhoto } },
-        conversation: {
-            msg1: { text: "Client approved the proposal 🎉" },
-            msg2: { text: "Great news! Let’s kick off onboarding 🚀" }
-        }
-    }
-];
-
-const SECURITY_MESSAGES = [
-    "Secure direct message",
-    "End-to-end encrypted",
-    "Identity verified",
-    "Context sealed",
-    "Zero data persistence"
-];
+// SCENARIOS & SECURITY_MESSAGES moved inside component for i18n support
 
 // --- Helpers ---
 
@@ -165,37 +101,40 @@ const EngineSystemMessage = ({ text }: { text: string }) => (
     </motion.div>
 );
 
-const Attachment = ({ name, size, type }: { name: string, size: string, type: string }) => (
-    <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }} // Appears slightly after text
-        className="group relative mt-2 flex items-center gap-3 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/15 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 w-[260px] cursor-pointer overflow-hidden"
-    >
-        {/* Subtle shimmer effect on appearance */}
+const Attachment = ({ name, size, type }: { name: string, size: string, type: string }) => {
+    const { t } = useTranslation();
+    return (
         <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: "200%" }}
-            transition={{ duration: 1.5, delay: 0.6, ease: "easeInOut" }}
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12"
-        />
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }} // Appears slightly after text
+            className="group relative mt-2 flex items-center gap-3 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/15 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 w-[260px] cursor-pointer overflow-hidden"
+        >
+            {/* Subtle shimmer effect on appearance */}
+            <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: "200%" }}
+                transition={{ duration: 1.5, delay: 0.6, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12"
+            />
 
-        <div className="shrink-0 w-9 h-9 rounded bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
-            <FileText className="w-4 h-4 text-indigo-400" />
-        </div>
-        <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-                <p className="text-[13px] font-medium text-slate-200 truncate">{name}</p>
-                <Lock className="w-3 h-3 text-emerald-500/90 drop-shadow-[0_0_5px_rgba(16,185,129,0.4)]" />
+            <div className="shrink-0 w-9 h-9 rounded bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
+                <FileText className="w-4 h-4 text-indigo-400" />
             </div>
-            <p className="text-[11px] text-slate-500 font-medium">{size} • {type}</p>
-        </div>
-        <div className="absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900/95 backdrop-blur-md border border-slate-700 text-slate-200 text-[10px] font-medium rounded-md shadow-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none whitespace-nowrap z-20">
-            Encrypted & synced via SyncRivo
-            <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 border-r border-b border-slate-700 rotate-45"></div>
-        </div>
-    </motion.div>
-);
+            <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                    <p className="text-[13px] font-medium text-slate-200 truncate">{name}</p>
+                    <Lock className="w-3 h-3 text-emerald-500/90 drop-shadow-[0_0_5px_rgba(16,185,129,0.4)]" />
+                </div>
+                <p className="text-[11px] text-slate-500 font-medium">{size} • {type}</p>
+            </div>
+            <div className="absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-slate-900/95 backdrop-blur-md border border-slate-700 text-slate-200 text-[10px] font-medium rounded-md shadow-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none whitespace-nowrap z-20">
+                {t('demo.ui.encrypted_synced', 'Encrypted & synced via SyncRivo')}
+                <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 border-r border-b border-slate-700 rotate-45"></div>
+            </div>
+        </motion.div>
+    );
+};
 
 const PlatformConfig: Record<Platform, { name: string; icon: string; headerBg: string; headerBorder: string }> = {
     'google-chat': { name: 'Google Chat', icon: googleChatIcon, headerBg: 'bg-[#202124]', headerBorder: 'border-[#3c4043]' },
@@ -226,6 +165,7 @@ const ChatInterface = ({
 }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const config = PlatformConfig[platform];
+    const { t } = useTranslation();
 
     // Auto-scroll
     useEffect(() => {
@@ -270,7 +210,7 @@ const ChatInterface = ({
                     <div className="flex items-center gap-2 mt-0.5">
                         <span className="text-[11px] text-slate-400 font-medium">{personRole}</span>
                         <span className="text-[10px] text-emerald-500/90 font-medium flex items-center gap-1">
-                            ● Active Now
+                            ● {t('demo.ui.active_now', 'Active Now')}
                         </span>
                     </div>
                 </div>
@@ -291,9 +231,9 @@ const ChatInterface = ({
                             <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
                                 <Lock className="w-6 h-6 text-slate-500" />
                             </div>
-                            <h3 className="text-sm font-semibold text-slate-300 mb-1">Encrypted Conversation</h3>
+                            <h3 className="text-sm font-semibold text-slate-300 mb-1">{t('demo.ui.encrypted_conversation', 'Encrypted Conversation')}</h3>
                             <p className="text-xs text-slate-500 max-w-[220px] leading-relaxed">
-                                Messages between you and <span className="text-slate-400 font-medium">{personName}</span> are securely synced via SyncRivo.
+                                <span dangerouslySetInnerHTML={{ __html: t('demo.ui.encrypted_conversation_desc', { name: personName, interpolation: { escapeValue: false } }).replace('<1>', '<span class="text-slate-400 font-medium">').replace('</1>', '</span>') }} />
                             </p>
                         </motion.div>
                     )}
@@ -369,7 +309,7 @@ const ChatInterface = ({
                                     ))}
                                 </div>
                                 <span className="text-[10px] text-slate-500 mt-1 ml-1 font-medium animate-pulse">
-                                    {typingUser.split(' ')[0]} is typing{typingPlatform ? ` via ${PlatformConfig[typingPlatform].name}` : '...'}
+                                    {typingUser.split(' ')[0]} {t('demo.ui.is_typing', 'is typing')}{typingPlatform ? ` ${t('demo.ui.via', 'via')} ${PlatformConfig[typingPlatform].name}` : '...'}
                                 </span>
                             </div>
                         </motion.div>
@@ -380,7 +320,7 @@ const ChatInterface = ({
             {/* 5. Input Field */}
             <div className="p-4 bg-[#2f3136] border-t border-white/5 shrink-0 z-20">
                 <div className="h-11 rounded-lg border border-white/10 bg-[#202225] flex items-center px-4 text-sm text-slate-500 select-none shadow-inner cursor-not-allowed">
-                    Message {personName}...
+                    {t('demo.ui.input_placeholder', { name: personName, defaultValue: `Message ${personName}...` })}
                 </div>
             </div>
         </div>
@@ -505,18 +445,85 @@ export function LiveSyncDemoSection() {
     const [engineActive, setEngineActive] = useState(false);
     const [packetLeftToRight, setPacketLeftToRight] = useState(false);
     const [packetRightToLeft, setPacketRightToLeft] = useState(false);
+
+    const SCENARIOS = useMemo<Scenario[]>(() => [
+        {
+            id: 1,
+            source: { platform: 'zoom', person: { name: 'Sergey Kizunov', role: t('demo.roles.product_owner', 'Product Owner'), avatar: sergeyPhoto } },
+            dest: { platform: 'teams', person: { name: 'Kumar Makala', role: t('demo.roles.devops_lead', 'DevOps Lead'), avatar: kumarPhoto } },
+            conversation: {
+                msg1: { text: t('demo.scenarios.1.msg1', "Can we finalize the sprint scope today?") },
+                msg2: { text: t('demo.scenarios.1.msg2', "Yes ✅ I’ll share the updated backlog shortly.") }
+            }
+        },
+        {
+            id: 2,
+            source: { platform: 'google-chat', person: { name: 'Priya Nair', role: t('demo.roles.product_lead', 'Product Lead'), avatar: priyaPhoto } },
+            dest: { platform: 'zoom', person: { name: 'Daniel Wong', role: t('demo.roles.sales_director', 'Sales Director'), avatar: leoPhoto } },
+            conversation: {
+                msg1: { text: t('demo.scenarios.2.msg1', "Hey Daniel 👋 The product demo deck is ready."), attachment: { name: "Product_Demo_v3.pdf", size: "4.2 MB", type: "application/pdf" } },
+                msg2: { text: t('demo.scenarios.2.msg2', "Perfect 👍 I’ll review before the client call.") }
+            }
+        },
+        {
+            id: 3,
+            source: { platform: 'google-chat', person: { name: 'Kumar Makala', role: t('demo.roles.devops_lead', 'DevOps Lead'), avatar: kumarPhoto } },
+            dest: { platform: 'slack', person: { name: 'Sarah Collins', role: t('demo.roles.cto', 'CTO'), avatar: alicePhoto } },
+            conversation: {
+                msg1: { text: t('demo.scenarios.3.msg1', "Morning Sarah! 🚀 Deployment is live on prod.") },
+                msg2: { text: t('demo.scenarios.3.msg2', "Awesome work 🎉 Monitoring dashboards look green.") }
+            }
+        },
+        {
+            id: 4,
+            source: { platform: 'google-chat', person: { name: 'Ravi Patel', role: t('demo.roles.sre', 'SRE'), avatar: bobPhoto } },
+            dest: { platform: 'webex', person: { name: 'Priya Nair', role: t('demo.roles.product_lead', 'Product Lead'), avatar: priyaPhoto } },
+            conversation: {
+                msg1: { text: t('demo.scenarios.4.msg1', "Please find the incident RCA attached."), attachment: { name: "RCA_Incident_0421.docx", size: "1.1 MB", type: "application/docx" } },
+                msg2: { text: t('demo.scenarios.4.msg2', "Got it 👍 Thanks for the quick turnaround.") }
+            }
+        },
+        {
+            id: 5,
+            source: { platform: 'teams', person: { name: 'Sarah Collins', role: t('demo.roles.cto', 'CTO'), avatar: alicePhoto } },
+            dest: { platform: 'slack', person: { name: 'Ravi Patel', role: t('demo.roles.sre', 'SRE'), avatar: bobPhoto } },
+            conversation: {
+                msg1: { text: t('demo.scenarios.5.msg1', "Infra cost optimization report is ready 💡"), attachment: { name: "Cloud_Cost_Analysis.xlsx", size: "8.5 MB", type: "application/xlsx" } },
+                msg2: { text: t('demo.scenarios.5.msg2', "Nice 👌 Let’s review this in tomorrow’s standup.") }
+            },
+            simultaneous: true
+        },
+        {
+            id: 6,
+            source: { platform: 'slack', person: { name: 'Daniel Wong', role: t('demo.roles.sales_director', 'Sales Director'), avatar: leoPhoto } },
+            dest: { platform: 'webex', person: { name: 'Sergey Kizunov', role: t('demo.roles.product_owner', 'Product Owner'), avatar: sergeyPhoto } },
+            conversation: {
+                msg1: { text: t('demo.scenarios.6.msg1', "Client approved the proposal 🎉") },
+                msg2: { text: t('demo.scenarios.6.msg2', "Great news! Let’s kick off onboarding 🚀") }
+            }
+        }
+    ], [t]);
+
+    const SECURITY_MESSAGES = useMemo(() => [
+        t('demo.ui.security_messages.secure_dm', "Secure direct message"),
+        t('demo.ui.security_messages.e2e_encrypted', "End-to-end encrypted"),
+        t('demo.ui.security_messages.identity_verified', "Identity verified"),
+        t('demo.ui.security_messages.context_sealed', "Context sealed"),
+        t('demo.ui.security_messages.zero_persistence', "Zero data persistence")
+    ], [t]);
+
     const [securityText, setSecurityText] = useState(SECURITY_MESSAGES[0]);
 
     // Async control ref
     const mountedRef = useRef(true);
 
     useEffect(() => {
-        mountedRef.current = true;
+        let active = true;
 
         let localIndex = 0; // Local tracking for the loop
 
         const loop = async () => {
-            while (mountedRef.current) {
+            while (active) {
                 // Update State to show current scenario
                 setScenarioIndex(localIndex);
                 const currentScenario = SCENARIOS[localIndex];
@@ -536,21 +543,21 @@ export function LiveSyncDemoSection() {
 
                 // 1. Initial Pause (Enter/Fade In)
                 await wait(800);
-                if (!mountedRef.current) break;
+                if (!active) break;
 
                 // 2. System Connect Message
-                const sysMsg: Message = { id: 'sys-boot', type: 'engine', sender: 'System', text: 'Secure person-to-person sync established. Identity verified.', timestamp: 'Now' };
+                const sysMsg: Message = { id: 'sys-boot', type: 'engine', sender: 'System', text: t('demo.ui.system_connect_message', 'Secure person-to-person sync established. Identity verified.'), timestamp: 'Now' };
                 setMessagesLeft([sysMsg]);
                 setMessagesRight([sysMsg]);
 
                 await wait(1000);
-                if (!mountedRef.current) break;
+                if (!active) break;
 
                 if (currentScenario.simultaneous) {
                     // --- SIMULTANEOUS FLOW (Overlapping Activity) ---
 
-                    const tDuration1 = calculateTypingDuration(currentScenario.conversation.msg1.text);
-                    const tDuration2 = calculateTypingDuration(currentScenario.conversation.msg2.text);
+                    const tDuration1 = calculateTypingDuration(currentScenario.conversation.msg1.text as string);
+                    const tDuration2 = calculateTypingDuration(currentScenario.conversation.msg2.text as string);
 
                     // Random delay between 500ms and 1500ms for overlap start
                     const overlapDelay = randomDelay(500, 1500);
@@ -560,7 +567,7 @@ export function LiveSyncDemoSection() {
 
                     // 2. Wait for overlap delay
                     await wait(overlapDelay);
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 3. Right User starts typing (Both are now typing)
                     setTypingRight(currentScenario.dest.person.name);
@@ -568,7 +575,7 @@ export function LiveSyncDemoSection() {
                     // 4. Wait for remainder of Left User's typing
                     const remainingA = Math.max(0, tDuration1 - overlapDelay);
                     if (remainingA > 0) await wait(remainingA);
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 5. Left User Sends
                     setTypingLeft(undefined);
@@ -589,7 +596,7 @@ export function LiveSyncDemoSection() {
                     setPacketLeftToRight(true);
                     const syncTime = randomDelay(800, 1200);
                     await wait(syncTime);
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 7. Right User Receives (Sync) - BUT KEEPS TYPING
                     setEngineActive(false);
@@ -617,7 +624,7 @@ export function LiveSyncDemoSection() {
                     const remainingB = Math.max(0, rightFinishTime - timeElapsed);
 
                     if (remainingB > 0) await wait(remainingB);
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 9. Right User Sends
                     setTypingRight(undefined);
@@ -637,7 +644,7 @@ export function LiveSyncDemoSection() {
                     setEngineActive(true);
                     setPacketRightToLeft(true);
                     await wait(randomDelay(800, 1200));
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 11. Left User Receives
                     setEngineActive(false);
@@ -659,9 +666,9 @@ export function LiveSyncDemoSection() {
 
                     // 3. Left User Types
                     setTypingLeft(currentScenario.source.person.name);
-                    const typingDuration1 = calculateTypingDuration(currentScenario.conversation.msg1.text);
+                    const typingDuration1 = calculateTypingDuration(currentScenario.conversation.msg1.text as string);
                     await wait(typingDuration1);
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 4. Left User Stops Typing & Sends
                     setTypingLeft(undefined);
@@ -681,7 +688,7 @@ export function LiveSyncDemoSection() {
                     setEngineActive(true);
                     setPacketLeftToRight(true);
                     await wait(randomDelay(800, 1200)); // Network travel time
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 6. Right User Receives (Sync)
                     setEngineActive(false);
@@ -700,15 +707,15 @@ export function LiveSyncDemoSection() {
 
                     // 7. Reading Pause (Human Processing)
                     await wait(randomDelay(1500, 2500));
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // --- RIGHT USER REPLYING MSG 2 ---
 
                     // 8. Right User Types
                     setTypingRight(currentScenario.dest.person.name);
-                    const typingDuration2 = calculateTypingDuration(currentScenario.conversation.msg2.text);
+                    const typingDuration2 = calculateTypingDuration(currentScenario.conversation.msg2.text as string);
                     await wait(typingDuration2);
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 9. Right User Stops Typing & Sends
                     setTypingRight(undefined);
@@ -728,7 +735,7 @@ export function LiveSyncDemoSection() {
                     setEngineActive(true);
                     setPacketRightToLeft(true);
                     await wait(randomDelay(800, 1200));
-                    if (!mountedRef.current) break;
+                    if (!active) break;
 
                     // 11. Left User Receives
                     setEngineActive(false);
@@ -748,12 +755,12 @@ export function LiveSyncDemoSection() {
 
                 // 12. Final Linger before switch
                 await wait(2500);
-                if (!mountedRef.current) break;
+                if (!active) break;
 
                 // 13. Exit Scenario
                 setScenarioVisible(false);
                 await wait(500); // Wait for exit animation
-                if (!mountedRef.current) break;
+                if (!active) break;
 
                 // 14. Increment & Loop
                 localIndex = (localIndex + 1) % SCENARIOS.length;
@@ -765,9 +772,9 @@ export function LiveSyncDemoSection() {
         loop();
 
         return () => {
-            mountedRef.current = false;
+            active = false;
         };
-    }, []); // Run once on mount
+    }, [SCENARIOS, SECURITY_MESSAGES, t]); // Run when these change (e.g. language change)
 
     const currentScenario = SCENARIOS[scenarioIndex];
 
@@ -783,7 +790,7 @@ export function LiveSyncDemoSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6"
                     >
-                        <Activity className="w-3 h-3" /> Live Production Sync
+                        <Activity className="w-3 h-3" /> {t('demo.ui.live_production_sync', 'Live Production Sync')}
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
@@ -791,7 +798,7 @@ export function LiveSyncDemoSection() {
                         transition={{ delay: 0.1 }}
                         className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6"
                     >
-                        Enterprise-Grade <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">Person-to-Person Sync</span>
+                        {t('demo.ui.enterprise_grade', 'Enterprise-Grade')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">{t('demo.ui.person_to_person_sync', 'Person-to-Person Sync')}</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
@@ -799,8 +806,7 @@ export function LiveSyncDemoSection() {
                         transition={{ delay: 0.2 }}
                         className="max-w-2xl mx-auto text-lg text-slate-400 leading-relaxed"
                     >
-                        Real-time cross-platform sync powered by the <span className="text-white font-semibold">SyncRivo Secure Engine</span>.
-                        Experience secure individual messaging with encryption and zero persistence.
+                        {t('demo.ui.subtitle', 'Watch SyncRivo instantly route secure messages between different platforms while maintaining identity, context, and security protocols.')}
                     </motion.p>
                 </div>
 
