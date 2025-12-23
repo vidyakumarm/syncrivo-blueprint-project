@@ -94,31 +94,14 @@ export function Navigation() {
                 <LanguageSelector />
               </div>
 
-              {/* Mobile menu button */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-10 w-10 p-0 text-foreground z-50 hover:bg-accent"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle navigation menu"
-                aria-expanded={mobileMenuOpen}
-              >
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
+              {/* Mobile Menu (Sheet) */}
               <MobileNavMenu
                 navItems={navItems}
                 user={user}
                 onSignOut={handleSignOut}
-                onLinkClick={() => setMobileMenuOpen(false)}
               />
-            )}
-          </AnimatePresence>
+            </div>
+          </div>
         </div>
       </nav>
       {/* Layout Spacer to prevent content overlap with fixed header */}

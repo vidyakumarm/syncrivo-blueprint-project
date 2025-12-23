@@ -323,7 +323,7 @@ export default function Integrations() {
                                 if (fallback) fallback.style.display = 'flex';
                               }}
                             />
-                            <div className="w-8 h-8 rounded bg-muted flex items-center justify-center text-sm font-semibold text-muted-foreground hidden">
+                            <div className="w-8 h-8 rounded bg-muted items-center justify-center text-sm font-semibold text-muted-foreground hidden">
                               {integration.name.slice(0, 2).toUpperCase()}
                             </div>
                           </div>
@@ -388,7 +388,7 @@ export default function Integrations() {
                                 if (fallback) fallback.style.display = 'flex';
                               }}
                             />
-                            <div className="w-6 h-6 rounded bg-muted flex items-center justify-center text-xs font-semibold text-muted-foreground hidden">
+                            <div className="w-6 h-6 rounded bg-muted items-center justify-center text-xs font-semibold text-muted-foreground hidden">
                               {integration.name.slice(0, 2).toUpperCase()}
                             </div>
                           </div>
