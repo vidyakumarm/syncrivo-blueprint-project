@@ -1,0 +1,170 @@
+i18n String Extraction Report
+============================================================
+
+
+============================================================
+File: src/pages/ContactSales.tsx
+============================================================
+
+1. Line 38: "Custom Enterprise Pricing"
+   Type: jsx_content
+   Suggested key: custom_enterprise_pricing
+
+2. Line 46: "Dedicated Success Manager"
+   Type: jsx_content
+   Suggested key: dedicated_success_manager
+
+3. Line 54: "Priority Support Patterns"
+   Type: jsx_content
+   Suggested key: priority_support_patterns
+
+4. Line 62: "Schedule a Live Demo"
+   Type: jsx_content
+   Suggested key: schedule_a_live_demo
+
+5. Line 63: "See how SyncRivo can automate your cross-platform messaging workflows."
+   Type: jsx_content
+   Suggested key: see_how_syncrivo_can_automate_your_crossplatform_m
+
+6. Line 73: "Flexible Scheduling"
+   Type: jsx_content
+   Suggested key: flexible_scheduling
+
+7. Line 74: "Choose a time that works for your team's timezone."
+   Type: jsx_content
+   Suggested key: choose_a_time_that_works_for_your_teams_timezone
+
+8. Line 80: "Tailored Walkthrough"
+   Type: jsx_content
+   Suggested key: tailored_walkthrough
+
+9. Line 81: "We focus on your specific integration requirements."
+   Type: jsx_content
+   Suggested key: we_focus_on_your_specific_integration_requirements
+
+10. Line 87: "Security Deep Dive"
+   Type: jsx_content
+   Suggested key: security_deep_dive
+
+11. Line 88: "Learn about our enterprise-grade compliance & security."
+   Type: jsx_content
+   Suggested key: learn_about_our_enterprisegrade_compliance_securit
+
+
+============================================================
+File: src/pages/DPA.tsx
+============================================================
+
+1. Line 28: "Standard DPA Template"
+   Type: jsx_content
+   Suggested key: standard_dpa_template
+
+2. Line 33: "Download PDF"
+   Type: jsx_content
+   Suggested key: download_pdf
+
+3. Line 42: "This Data Processing Addendum ("DPA") forms part of the Master Services Agreement between SyncRivo and the Customer.
+                                It applies to the extent SyncRivo processes Personal Data on behalf of the Customer."
+   Type: jsx_content
+   Suggested key: this_data_processing_addendum_dpa_forms_part_of_th
+
+4. Line 50: "For the purposes of the GDPR and other applicable data protection laws, the Customer is the Controller and
+                                SyncRivo is the Processor of Personal Data."
+   Type: jsx_content
+   Suggested key: for_the_purposes_of_the_gdpr_and_other_applicable_
+
+5. Line 62: "Encryption of data in transit and at rest"
+   Type: jsx_content
+   Suggested key: encryption_of_data_in_transit_and_at_rest
+
+6. Line 63: "Regular vulnerability assessments and penetration testing"
+   Type: jsx_content
+   Suggested key: regular_vulnerability_assessments_and_penetration_
+
+7. Line 64: "Access controls and authentication mechanisms"
+   Type: jsx_content
+   Suggested key: access_controls_and_authentication_mechanisms
+
+8. Line 65: "Business continuity and disaster recovery plans"
+   Type: jsx_content
+   Suggested key: business_continuity_and_disaster_recovery_plans
+
+9. Line 71: "SyncRivo shall, to the extent legally permitted, promptly notify Customer if it receives a request from a Data
+                                Subject to exercise their rights (e.g., access, rectification, erasure)."
+   Type: jsx_content
+   Suggested key: syncrivo_shall_to_the_extent_legally_permitted_pro
+
+
+============================================================
+File: src/pages/Pricing.tsx
+============================================================
+
+1. Line 121: "Transparent Pricing"
+   Type: jsx_content
+   Suggested key: transparent_pricing
+
+2. Line 133: "Monthly"
+   Type: jsx_content
+   Suggested key: monthly
+
+3. Line 141: "Yearly"
+   Type: jsx_content
+   Suggested key: yearly
+
+4. Line 273: "No credit card required"
+   Type: jsx_content
+   Suggested key: no_credit_card_required
+
+5. Line 285: "Still have questions? Our team is here to help."
+   Type: jsx_content
+   Suggested key: still_have_questions_our_team_is_here_to_help
+
+6. Line 289: "Contact Sales"
+   Type: jsx_content
+   Suggested key: contact_sales
+
+7. Line 299: "Frequently Asked Questions"
+   Type: jsx_content
+   Suggested key: frequently_asked_questions
+
+8. Line 300: "Everything you need to know about our pricing"
+   Type: jsx_content
+   Suggested key: everything_you_need_to_know_about_our_pricing
+
+
+============================================================
+File: src/components/layout/Footer.tsx
+============================================================
+
+1. Line 52: "Regions"
+   Type: jsx_content
+   Suggested key: regions
+
+2. Line 55: "United Kingdom"
+   Type: jsx_content
+   Suggested key: united_kingdom
+
+3. Line 56: "Europe"
+   Type: jsx_content
+   Suggested key: europe
+
+4. Line 57: "Middle East"
+   Type: jsx_content
+   Suggested key: middle_east
+
+5. Line 58: "APAC"
+   Type: jsx_content
+   Suggested key: apac
+
+6. Line 118: "LinkedIn"
+   Type: prop_value
+   Suggested key: linkedin
+
+7. Line 127: "Twitter"
+   Type: prop_value
+   Suggested key: twitter
+
+8. Line 136: "GitHub"
+   Type: prop_value
+   Suggested key: github
+

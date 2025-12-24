@@ -33,8 +33,7 @@ export function HowItWorksSection() {
                         {t('how_it_works.title', 'Intelligent Automation Workflow')}
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Configure advanced message routing logic using our visual or reliable JSON configuration.
-                        Support for <span className="text-foreground font-medium">boolean logic</span>, time windows, and team-based escalation.
+                        {t('how_it_works.subtitle', 'Configure advanced message routing logic using our visual or reliable JSON configuration. Support for boolean logic, time windows, and team-based escalation.')}
                     </p>
                 </div>
 

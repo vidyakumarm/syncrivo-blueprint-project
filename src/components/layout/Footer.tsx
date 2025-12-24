@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { RotatingWorldIcon } from '@/components/ui/rotating-world-icon';
+import { AnimatedLogo } from '@/components/ui/AnimatedLogo';
 import { Linkedin, Twitter, Github } from 'lucide-react';
 import { EnterpriseDemoModal } from '@/components/sections/EnterpriseDemoModal';
 
@@ -20,16 +20,8 @@ export function Footer() {
 
           {/* Brand Section - Takes 2 columns on LG */}
           <div className="col-span-1 lg:col-span-2 space-y-6">
-            <Link to="/" className="flex items-center space-x-3 group w-fit">
-              <RotatingWorldIcon
-                size="lg"
-                speed="slow"
-                className="transition-transform duration-300 group-hover:scale-110 text-primary"
-                aria-hidden="true"
-              />
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-500 to-indigo-600">
-                SyncRivo<sup className="text-xs text-foreground">®</sup>
-              </span>
+            <Link to="/" className="flex items-center group w-fit">
+              <AnimatedLogo className="h-14 w-auto" />
             </Link>
             <p className="text-muted-foreground max-w-sm text-base leading-relaxed">
               {t('footer.tagline')}
@@ -57,13 +49,13 @@ export function Footer() {
 
           {/* Regions Column */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-foreground tracking-tight">Regions</h3>
+            <h3 className="font-semibold text-foreground tracking-tight">{t('footer.regions')}</h3>
             <ul className="space-y-3">
-              <li><Link to="/usa" className="text-sm text-muted-foreground hover:text-primary transition-colors">USA</Link></li>
-              <li><Link to="/uk" className="text-sm text-muted-foreground hover:text-primary transition-colors">United Kingdom</Link></li>
-              <li><Link to="/europe" className="text-sm text-muted-foreground hover:text-primary transition-colors">Europe</Link></li>
-              <li><Link to="/middle-east" className="text-sm text-muted-foreground hover:text-primary transition-colors">Middle East</Link></li>
-              <li><Link to="/apac" className="text-sm text-muted-foreground hover:text-primary transition-colors">APAC</Link></li>
+              <li><Link to="/usa" className="text-sm text-muted-foreground hover:text-primary transition-colors">{t('footer.usa', 'USA')}</Link></li>
+              <li><Link to="/uk" className="text-sm text-muted-foreground hover:text-primary transition-colors">{t('footer.united_kingdom')}</Link></li>
+              <li><Link to="/europe" className="text-sm text-muted-foreground hover:text-primary transition-colors">{t('footer.europe')}</Link></li>
+              <li><Link to="/middle-east" className="text-sm text-muted-foreground hover:text-primary transition-colors">{t('footer.middle_east')}</Link></li>
+              <li><Link to="/apac" className="text-sm text-muted-foreground hover:text-primary transition-colors">{t('footer.apac')}</Link></li>
             </ul>
           </div>
 

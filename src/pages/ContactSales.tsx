@@ -35,7 +35,7 @@ export default function ContactSales() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <span className="text-lg">Custom Enterprise Pricing</span>
+                                    <span className="text-lg">{t('contact_sales.custom_enterprise_pricing')}</span>
                                 </div>
                                 <div className="flex items-center space-x-3">
                                     <div className="p-2 bg-primary/10 rounded-full">
@@ -43,7 +43,7 @@ export default function ContactSales() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <span className="text-lg">Dedicated Success Manager</span>
+                                    <span className="text-lg">{t('contact_sales.dedicated_success_manager')}</span>
                                 </div>
                                 <div className="flex items-center space-x-3">
                                     <div className="p-2 bg-primary/10 rounded-full">
@@ -51,7 +51,7 @@ export default function ContactSales() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <span className="text-lg">Priority Support Patterns</span>
+                                    <span className="text-lg">{t('contact_sales.priority_support_patterns')}</span>
                                 </div>
                             </div>
                         </div>
@@ -59,9 +59,9 @@ export default function ContactSales() {
                         {/* Right Column: CTA Card */}
                         <Card className="border-border/50 shadow-lg backdrop-blur-sm bg-card/50">
                             <CardHeader className="pb-4">
-                                <CardTitle className="text-2xl">Schedule a Live Demo</CardTitle>
+                                <CardTitle className="text-2xl">{t('contact_sales.schedule_live_demo')}</CardTitle>
                                 <CardDescription className="text-base">
-                                    See how SyncRivo can automate your cross-platform messaging workflows.
+                                    {t('contact_sales.schedule_live_demo_desc')}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
@@ -70,22 +70,22 @@ export default function ContactSales() {
                                     <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
                                         <Calendar className="w-5 h-5 text-primary mt-0.5" />
                                         <div>
-                                            <p className="font-medium text-sm">Flexible Scheduling</p>
-                                            <p className="text-xs text-muted-foreground">Choose a time that works for your team's timezone.</p>
+                                            <p className="font-medium text-sm">{t('contact_sales.flexible_scheduling')}</p>
+                                            <p className="text-xs text-muted-foreground">{t('contact_sales.flexible_scheduling_desc')}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
                                         <UserCheck className="w-5 h-5 text-primary mt-0.5" />
                                         <div>
-                                            <p className="font-medium text-sm">Tailored Walkthrough</p>
-                                            <p className="text-xs text-muted-foreground">We focus on your specific integration requirements.</p>
+                                            <p className="font-medium text-sm">{t('contact_sales.tailored_walkthrough')}</p>
+                                            <p className="text-xs text-muted-foreground">{t('contact_sales.tailored_walkthrough_desc')}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
                                         <ShieldCheck className="w-5 h-5 text-primary mt-0.5" />
                                         <div>
-                                            <p className="font-medium text-sm">Security Deep Dive</p>
-                                            <p className="text-xs text-muted-foreground">Learn about our enterprise-grade compliance & security.</p>
+                                            <p className="font-medium text-sm">{t('contact_sales.security_deep_dive')}</p>
+                                            <p className="text-xs text-muted-foreground">{t('contact_sales.security_deep_dive_desc')}</p>
                                         </div>
                                     </div>
                                 </div>

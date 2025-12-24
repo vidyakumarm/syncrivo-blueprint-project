@@ -3,80 +3,155 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Shield, Lock, Eye, Database, Clock } from 'lucide-react';
+import { ArrowLeft, Shield, Lock, Eye, Database, Clock, AlertCircle, FileText, Users, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '@/components/layout/Footer';
 
 export default function Privacy() {
   const { t } = useTranslation();
-  const lastUpdated = "January 1, 2024";
+  const lastUpdated = "December 24, 2024";
 
   const sections = [
     {
-      id: "overview",
-      title: "1. Overview",
+      id: "what-we-do",
+      title: "1. What we do",
       icon: <Eye className="h-5 w-5" />,
-      content: `At SyncRivo, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our data integration platform. We are committed to protecting your personal information and your right to privacy.`
+      content: [
+        "SyncRivo provides integrations/bots that help teams route and sync messages and attachments between configured channels or spaces.",
+        "Our bots primarily:",
+        "• Receive messages and attachments from supported platforms (e.g., Slack, Google Chat), and",
+        "• Forward those messages and attachments to other configured channels/spaces, according to your settings.",
+        "We do not use your bot messages for advertising or profiling, and we do not store message content or attachments beyond what is necessary to deliver the Service."
+      ]
     },
     {
       id: "information-collection",
-      title: "2. Information We Collect",
+      title: "2. Information we collect",
       icon: <Database className="h-5 w-5" />,
-      content: `We collect information you provide directly to us, such as when you create an account, use our services, or contact us. This includes your name, email address, company information, and integration configurations. We also collect technical information like IP addresses, browser types, and usage patterns to improve our service.`
+      subsections: [
+        {
+          subtitle: "2.1 Information you provide to us",
+          points: [
+            "Account / contact information: If you contact us (e.g., by email or contact form), we may collect your name, email address, and any other information you choose to provide.",
+            "Configuration information: When you configure our bots, we may store settings such as: Workspace or tenant identifiers, IDs of channels/spaces to which messages should be forwarded, Integration preferences and routing rules."
+          ]
+        },
+        {
+          subtitle: "2.2 Information from integrated platforms (Slack, Google Chat, etc.)",
+          points: [
+            "Through platform APIs (such as Slack or Google APIs), we may receive: Workspace / organization IDs, Channel / space IDs, Bot or app IDs, Access tokens / refresh tokens required to operate the integration, Basic metadata associated with events (e.g., message timestamps, IDs, sender IDs).",
+            "Message content & attachments: To provide the Service, our systems may temporarily process message content and attachments in memory so that we can forward them to the configured destination channels/spaces. We do not store message content or attachments in our database for long-term use. We do not build user profiles based on message content."
+          ]
+        },
+        {
+          subtitle: "2.3 Automatically collected data",
+          points: [
+            "When you visit the Site or use our Services, we may automatically collect: Log information (such as IP address, browser type, operating system, date/time of access, pages viewed, and referrer URL), Basic usage information about how the integrations are used (e.g., number of messages processed, success/error rates).",
+            "This information is generally used for security, debugging, and improving our Services."
+          ]
+        }
+      ]
     },
     {
-      id: "data-usage", 
-      title: "3. How We Use Your Information",
+      id: "data-usage",
+      title: "3. How we use information",
       icon: <Lock className="h-5 w-5" />,
-      content: `We use your information to provide, maintain, and improve our services; process transactions; send you technical notices and support messages; respond to your comments and questions; and detect, investigate and prevent fraudulent transactions and other illegal activities.`
+      content: [
+        "We use the information we collect for the following purposes:",
+        "1. Providing and operating the Services – Routing and forwarding messages and attachments between configured channels/spaces; Authenticating with Slack, Google Chat, and other platforms using stored tokens",
+        "2. Security and reliability – Detecting, investigating, and preventing fraudulent or malicious activity; Monitoring uptime, performance, and error logs",
+        "3. Support and communication – Responding to your inquiries and support requests; Sending important service-related notifications (e.g., security, critical changes)",
+        "4. Improvement – Aggregated, anonymized analytics to understand how the Services are used, so we can improve them.",
+        "We do not sell your personal information."
+      ]
     },
     {
-      id: "data-sharing",
-      title: "4. Information Sharing and Disclosure",
-      icon: <Shield className="h-5 w-5" />,
-      content: `We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy. We may share your information with service providers who assist us in operating our platform, conducting business, or serving you, provided they agree to keep this information confidential.`
-    },
-    {
-      id: "integration-data",
-      title: "5. Third-Party Integration Data",
-      icon: <Database className="h-5 w-5" />,
-      content: `When you connect third-party services through our platform, we may access and process data from those services as necessary to provide our integration services. We act as a data processor for this information and handle it according to your instructions and applicable data protection laws.`
-    },
-    {
-      id: "data-security",
-      title: "6. Data Security",
-      icon: <Lock className="h-5 w-5" />,
-      content: `We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. This includes encryption, access controls, secure data centers, and regular security assessments.`
+      id: "legal-bases",
+      title: "4. Legal bases (for users in the EEA/UK)",
+      icon: <FileText className="h-5 w-5" />,
+      content: [
+        "If you are in the European Economic Area (EEA) or United Kingdom (UK), we process your personal data on the following legal bases:",
+        "• Performance of a contract – to provide and operate the Services you have installed or configured.",
+        "• Legitimate interests – to maintain and improve our Services, secure our systems, and prevent abuse.",
+        "• Consent – where required, such as for certain types of cookies or marketing communications."
+      ]
     },
     {
       id: "data-retention",
-      title: "7. Data Retention",
+      title: "5. Data retention",
       icon: <Clock className="h-5 w-5" />,
-      content: `We retain your personal information for as long as necessary to provide our services, comply with legal obligations, resolve disputes, and enforce our agreements. You can request deletion of your account and associated data at any time, subject to legal and operational requirements.`
+      content: [
+        "We retain information only as long as necessary for the purposes described in this Privacy Policy:",
+        "• Access tokens and configuration data are retained while the integration/bot is installed and active, and for a reasonable period afterward to handle reactivation, audit, and security purposes, unless you request deletion earlier.",
+        "• Logs and technical data are retained for a limited time (for example, days or months) and then deleted or anonymized, unless a longer retention is required for security, legal, or compliance reasons.",
+        "• Message content and attachments are processed transiently and not stored in our primary databases. Any short-lived logs that incidentally contain message snippets are rotated and deleted on a regular schedule.",
+        "You may request deletion of certain data at any time (see Section 8 below)."
+      ]
+    },
+    {
+      id: "data-sharing",
+      title: "6. How we share information",
+      icon: <Users className="h-5 w-5" />,
+      content: [
+        "We may share information in the following limited circumstances:",
+        "1. Service providers – With trusted third-party providers that help us operate the Services (e.g., cloud hosting, logging, monitoring). These providers are only permitted to use the data to provide services to us and must protect it appropriately.",
+        "2. Platform providers – Since our Services run within or alongside platforms like Slack and Google Chat, your use of our bots is also subject to those providers' terms and privacy policies. We comply with their platform policies when accessing and handling data.",
+        "3. Legal requirements and protection – We may disclose information if required by law or in good faith belief that such action is necessary to: Comply with legal obligations or respond to lawful requests; Protect our rights, property, or safety, or that of our users or the public.",
+        "4. Business transfers – In connection with a merger, acquisition, financing, or sale of assets, information may be transferred as part of that transaction, subject to appropriate confidentiality protections.",
+        "We do not sell your personal data."
+      ]
+    },
+    {
+      id: "security",
+      title: "7. Security",
+      icon: <Shield className="h-5 w-5" />,
+      content: [
+        "We use reasonable technical and organizational measures to protect information, including:",
+        "• Encryption in transit (e.g., HTTPS)",
+        "• Restricted access to databases and tokens",
+        "• Access controls and audit logs for sensitive operations",
+        "However, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security, but we aim to protect data in line with industry practices."
+      ]
     },
     {
       id: "your-rights",
-      title: "8. Your Privacy Rights",
+      title: "8. Your rights and choices",
+      icon: <AlertCircle className="h-5 w-5" />,
+      content: [
+        "Depending on your jurisdiction, you may have certain rights regarding your personal data, such as:",
+        "• Accessing the information we hold about you",
+        "• Requesting correction or deletion of your information",
+        "• Objecting to or restricting certain processing",
+        "• Porting your data, where applicable",
+        "Because much of the data we handle is workspace-level or pseudonymous (IDs, tokens) and not traditional \"profile\" data, we may need to coordinate with your workspace administrator to process some requests.",
+        "To exercise any rights or ask questions about your data, please contact us at privacy@syncrivo.ai."
+      ]
+    },
+    {
+      id: "third-party",
+      title: "9. Third-party services and links",
+      icon: <Globe className="h-5 w-5" />,
+      content: [
+        "Our Services interact with third-party platforms such as Slack and Google Chat. Your use of those platforms is governed by their own terms and privacy policies, not this Privacy Policy.",
+        "Our Site may also contain links to other websites. We are not responsible for the privacy practices of those sites."
+      ]
+    },
+    {
+      id: "children",
+      title: "10. Children's privacy",
       icon: <Shield className="h-5 w-5" />,
-      content: `Depending on your location, you may have certain rights regarding your personal information, including the right to access, update, or delete your information; the right to restrict or object to our processing; and the right to data portability. Contact us to exercise these rights.`
-    },
-    {
-      id: "cookies",
-      title: "9. Cookies and Tracking",
-      icon: <Eye className="h-5 w-5" />,
-      content: `We use cookies and similar tracking technologies to collect and use personal information about you. You can control cookies through your browser settings, but some features of our service may not function properly if you disable cookies.`
-    },
-    {
-      id: "international",
-      title: "10. International Data Transfers",
-      icon: <Database className="h-5 w-5" />,
-      content: `Your information may be transferred to and maintained on computers located outside of your jurisdiction where data protection laws may differ. We ensure appropriate safeguards are in place for such transfers in accordance with applicable law.`
+      content: [
+        "Our Services are not directed to children under the age of 16, and we do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us and we will take appropriate steps to delete it."
+      ]
     },
     {
       id: "changes",
-      title: "11. Changes to This Policy",
+      title: "11. Changes to this Privacy Policy",
       icon: <Clock className="h-5 w-5" />,
-      content: `We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page and updating the "Last updated" date. Your continued use of our service after such changes constitutes acceptance of the updated policy.`
+      content: [
+        "We may update this Privacy Policy from time to time. If we make material changes, we will update the \"Last updated\" date at the top of this page and, where appropriate, provide additional notice.",
+        "Your continued use of the Services after the revised Privacy Policy becomes effective indicates that you have read and understood the changes."
+      ]
     }
   ];
 
@@ -89,13 +164,13 @@ export default function Privacy() {
             <Button variant="ghost" asChild className="flex items-center">
               <Link to="/">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                {t('privacy.back_to_home')}
+                Back to Home
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <Badge variant="outline" className="text-xs">
                 <Clock className="h-3 w-3 mr-1" />
-                {t('privacy.updated')} {lastUpdated}
+                Last updated {lastUpdated}
               </Badge>
             </div>
           </div>
@@ -107,15 +182,11 @@ export default function Privacy() {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
             <Shield className="h-8 w-8 text-primary mr-3" />
-            <h1 className="text-4xl font-bold text-foreground">{t('privacy.title')}</h1>
+            <h1 className="text-4xl font-bold text-foreground">Privacy Policy – SyncRivo Bot</h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t('privacy.subtitle')}
+            Learn how we protect your privacy when you use our messaging integrations
           </p>
-          <div className="flex items-center justify-center mt-6 text-sm text-muted-foreground">
-            <Lock className="h-4 w-4 mr-2" />
-            {t('privacy.last_updated')}: {lastUpdated}
-          </div>
         </div>
 
         {/* Privacy Highlights */}
@@ -123,27 +194,27 @@ export default function Privacy() {
           <Card className="text-center">
             <CardContent className="pt-6">
               <Lock className="h-8 w-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">{t('privacy.secure_by_design')}</h3>
+              <h3 className="font-semibold text-foreground mb-2">Transient Processing</h3>
               <p className="text-sm text-muted-foreground">
-                {t('privacy.secure_by_design_desc')}
+                Messages processed in memory only, not stored long-term
               </p>
             </CardContent>
           </Card>
           <Card className="text-center">
             <CardContent className="pt-6">
               <Eye className="h-8 w-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">{t('privacy.transparent_data_use')}</h3>
+              <h3 className="font-semibold text-foreground mb-2">No Profiling</h3>
               <p className="text-sm text-muted-foreground">
-                {t('privacy.transparent_data_use_desc')}
+                We don't use your bot messages for advertising or user tracking
               </p>
             </CardContent>
           </Card>
           <Card className="text-center">
             <CardContent className="pt-6">
               <Shield className="h-8 w-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">{t('privacy.your_rights_protected')}</h3>
+              <h3 className="font-semibold text-foreground mb-2">Your Rights Protected</h3>
               <p className="text-sm text-muted-foreground">
-                {t('privacy.your_rights_protected_desc')}
+                Full control over your data with deletion rights
               </p>
             </CardContent>
           </Card>
@@ -152,7 +223,7 @@ export default function Privacy() {
         {/* Table of Contents */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-lg">{t('privacy.table_of_contents')}</CardTitle>
+            <CardTitle className="text-lg">Table of Contents</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-2">
@@ -181,9 +252,31 @@ export default function Privacy() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  {section.content}
-                </p>
+                {section.content && (
+                  <div className="space-y-4">
+                    {section.content.map((paragraph, idx) => (
+                      <p key={idx} className="text-muted-foreground leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                )}
+                {section.subsections && (
+                  <div className="space-y-6">
+                    {section.subsections.map((subsection, subIdx) => (
+                      <div key={subIdx}>
+                        <h4 className="font-semibold text-foreground mb-3">{subsection.subtitle}</h4>
+                        <div className="space-y-2 pl-4">
+                          {subsection.points.map((point, pointIdx) => (
+                            <p key={pointIdx} className="text-muted-foreground leading-relaxed text-sm">
+                              {point}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
               {index < sections.length - 1 && <Separator className="mt-6" />}
             </Card>
@@ -193,23 +286,22 @@ export default function Privacy() {
         {/* Contact Information */}
         <Card className="mt-12">
           <CardHeader>
-            <CardTitle>{t('privacy.questions_privacy')}</CardTitle>
+            <CardTitle>12. Contact us</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              {t('privacy.questions_privacy_desc')}
+              If you have questions about this Privacy Policy or our data practices, please contact us at:
             </p>
             <div className="space-y-2 text-sm">
-              <p><strong>Email:</strong> privacy@syncrivo.com</p>
-              <p><strong>Data Protection Officer:</strong> dpo@syncrivo.com</p>
-              <p><strong>Address:</strong> SyncRivo Privacy Team, 123 Integration Ave, Tech City, TC 12345</p>
+              <p><strong>Email:</strong> privacy@syncrivo.ai</p>
+              <p><strong>Subject:</strong> "Privacy – SyncRivo"</p>
             </div>
             <div className="flex items-center space-x-4 mt-6">
               <Button asChild>
-                <Link to="/support">{t('privacy.contact_support')}</Link>
+                <Link to="/support">Contact Support</Link>
               </Button>
               <Button variant="outline" asChild>
-                <Link to="/terms">{t('privacy.terms_of_service')}</Link>
+                <Link to="/terms">Terms of Service</Link>
               </Button>
             </div>
           </CardContent>

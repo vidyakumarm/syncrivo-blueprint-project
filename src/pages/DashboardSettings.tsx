@@ -11,7 +11,7 @@ import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
-import { 
+import {
   User,
   Mail,
   Bell,
@@ -28,7 +28,7 @@ export default function DashboardSettings() {
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "John",
-    lastName: "Doe", 
+    lastName: "Doe",
     email: "john.doe@company.com",
     company: "Acme Corp",
     bio: ""
@@ -53,8 +53,8 @@ export default function DashboardSettings() {
     const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
     if (!validTypes.includes(file.type)) {
       toast({
-        title: "Invalid file type",
-        description: "Please select a JPG or PNG image.",
+        title: t('dashboard.settings.toasts.invalid_file_type_title'),
+        description: t('dashboard.settings.toasts.invalid_file_type_desc'),
         variant: "destructive",
       });
       return;
@@ -64,8 +64,8 @@ export default function DashboardSettings() {
     const maxSize = 5 * 1024 * 1024; // 5MB in bytes
     if (file.size > maxSize) {
       toast({
-        title: "File too large",
-        description: "Please select an image smaller than 5MB.",
+        title: t('dashboard.settings.toasts.file_too_large_title'),
+        description: t('dashboard.settings.toasts.file_too_large_desc'),
         variant: "destructive",
       });
       return;
@@ -77,8 +77,8 @@ export default function DashboardSettings() {
       const result = e.target?.result as string;
       setAvatarSrc(result);
       toast({
-        title: "Photo updated",
-        description: "Your profile photo has been updated successfully.",
+        title: t('dashboard.settings.toasts.photo_updated_title'),
+        description: t('dashboard.settings.toasts.photo_updated_desc'),
       });
     };
     reader.readAsDataURL(file);
@@ -96,8 +96,8 @@ export default function DashboardSettings() {
     // Validation
     if (!passwordData.currentPassword || !passwordData.newPassword || !passwordData.confirmPassword) {
       toast({
-        title: "Missing fields",
-        description: "Please fill in all password fields.",
+        title: t('dashboard.settings.toasts.missing_fields_title'),
+        description: t('dashboard.settings.toasts.missing_fields_desc'),
         variant: "destructive",
       });
       return;
@@ -105,8 +105,8 @@ export default function DashboardSettings() {
 
     if (passwordData.newPassword !== passwordData.confirmPassword) {
       toast({
-        title: "Passwords don't match",
-        description: "New password and confirm password must match.",
+        title: t('dashboard.settings.toasts.passwords_no_match_title'),
+        description: t('dashboard.settings.toasts.passwords_no_match_desc'),
         variant: "destructive",
       });
       return;
@@ -114,8 +114,8 @@ export default function DashboardSettings() {
 
     if (passwordData.newPassword.length < 8) {
       toast({
-        title: "Password too short",
-        description: "Password must be at least 8 characters long.",
+        title: t('dashboard.settings.toasts.password_too_short_title'),
+        description: t('dashboard.settings.toasts.password_too_short_desc'),
         variant: "destructive",
       });
       return;
@@ -129,7 +129,7 @@ export default function DashboardSettings() {
     try {
       // Here you would typically make an API call to update the password
       console.log('Updating password...');
-      
+
       // Clear password fields on success
       setPasswordData({
         currentPassword: "",
@@ -138,13 +138,13 @@ export default function DashboardSettings() {
       });
 
       toast({
-        title: "Password updated",
-        description: "Your password has been updated successfully.",
+        title: t('dashboard.settings.toasts.password_updated_title'),
+        description: t('dashboard.settings.toasts.password_updated_desc'),
       });
     } catch (error) {
       toast({
-        title: "Error updating password",
-        description: "Something went wrong. Please try again.",
+        title: t('dashboard.settings.toasts.password_update_error_title'),
+        description: t('dashboard.settings.toasts.password_update_error_desc'),
         variant: "destructive",
       });
     } finally {
@@ -154,22 +154,22 @@ export default function DashboardSettings() {
 
   const handleSaveChanges = async () => {
     setIsSaving(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     try {
       // Here you would typically make an API call to save the data
       console.log('Saving form data:', formData);
-      
+
       toast({
-        title: "Changes saved",
-        description: "Your profile has been updated successfully.",
+        title: t('dashboard.settings.toasts.changes_saved_title'),
+        description: t('dashboard.settings.toasts.changes_saved_desc'),
       });
     } catch (error) {
       toast({
-        title: "Error saving changes",
-        description: "Something went wrong. Please try again.",
+        title: t('dashboard.settings.toasts.save_error_title'),
+        description: t('dashboard.settings.toasts.save_error_desc'),
         variant: "destructive",
       });
     } finally {
@@ -179,26 +179,26 @@ export default function DashboardSettings() {
 
   const handleDeleteAccount = async () => {
     setIsDeletingAccount(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     try {
       // Here you would typically make an API call to delete the account
       console.log('Deleting account...');
-      
+
       toast({
-        title: "Account deleted",
-        description: "Your account has been permanently deleted.",
+        title: t('dashboard.settings.toasts.account_deleted_title'),
+        description: t('dashboard.settings.toasts.account_deleted_desc'),
         variant: "destructive",
       });
-      
+
       // In a real app, you would redirect to home page or login page
       // window.location.href = '/';
     } catch (error) {
       toast({
-        title: "Error deleting account", 
-        description: "Something went wrong. Please try again.",
+        title: t('dashboard.settings.toasts.delete_error_title'),
+        description: t('dashboard.settings.toasts.delete_error_desc'),
         variant: "destructive",
       });
     } finally {
@@ -221,7 +221,7 @@ export default function DashboardSettings() {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <User className="h-5 w-5 mr-2" />
-                Profile Information
+                {t('dashboard.settings.profile.title')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -232,9 +232,9 @@ export default function DashboardSettings() {
                 </Avatar>
                 <div>
                   <Button variant="outline" size="sm" onClick={handlePhotoChange}>
-                    Change Photo
+                    {t('dashboard.settings.profile.change_photo')}
                   </Button>
-                  <p className="text-xs text-muted-foreground mt-1">JPG, PNG up to 5MB</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t('dashboard.settings.profile.photo_requirements')}</p>
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -247,17 +247,17 @@ export default function DashboardSettings() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input 
-                    id="firstName" 
+                  <Label htmlFor="firstName">{t('dashboard.settings.profile.first_name')}</Label>
+                  <Input
+                    id="firstName"
                     value={formData.firstName}
                     onChange={(e) => handleInputChange('firstName', e.target.value)}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input 
-                    id="lastName" 
+                  <Label htmlFor="lastName">{t('dashboard.settings.profile.last_name')}</Label>
+                  <Input
+                    id="lastName"
                     value={formData.lastName}
                     onChange={(e) => handleInputChange('lastName', e.target.value)}
                   />
@@ -265,40 +265,40 @@ export default function DashboardSettings() {
               </div>
 
               <div>
-                <Label htmlFor="email">Email</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
+                <Label htmlFor="email">{t('dashboard.settings.profile.email')}</Label>
+                <Input
+                  id="email"
+                  type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
                 />
               </div>
 
               <div>
-                <Label htmlFor="company">Company</Label>
-                <Input 
-                  id="company" 
+                <Label htmlFor="company">{t('dashboard.settings.profile.company')}</Label>
+                <Input
+                  id="company"
                   value={formData.company}
                   onChange={(e) => handleInputChange('company', e.target.value)}
                 />
               </div>
 
               <div>
-                <Label htmlFor="bio">Bio</Label>
-                <Textarea 
-                  id="bio" 
-                  placeholder="Tell us about yourself..." 
+                <Label htmlFor="bio">{t('dashboard.settings.profile.bio')}</Label>
+                <Textarea
+                  id="bio"
+                  placeholder={t('dashboard.settings.profile.bio_placeholder')}
                   value={formData.bio}
                   onChange={(e) => handleInputChange('bio', e.target.value)}
                 />
               </div>
 
-              <Button 
-                className="bg-gradient-primary" 
+              <Button
+                className="bg-gradient-primary"
                 onClick={handleSaveChanges}
                 disabled={isSaving}
               >
-                {isSaving ? 'Saving...' : 'Save Changes'}
+                {isSaving ? t('dashboard.settings.profile.saving') : t('dashboard.settings.profile.save_changes')}
               </Button>
             </CardContent>
           </Card>
@@ -308,39 +308,39 @@ export default function DashboardSettings() {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Bell className="h-5 w-5 mr-2" />
-                Notifications
+                {t('dashboard.settings.notifications.title')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">Email Notifications</p>
-                    <p className="text-sm text-muted-foreground">Receive email alerts</p>
+                    <p className="font-medium">{t('dashboard.settings.notifications.email_notifications')}</p>
+                    <p className="text-sm text-muted-foreground">{t('dashboard.settings.notifications.email_notifications_desc')}</p>
                   </div>
                   <Switch defaultChecked />
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">Sync Alerts</p>
-                    <p className="text-sm text-muted-foreground">Alerts for sync failures</p>
+                    <p className="font-medium">{t('dashboard.settings.notifications.sync_alerts')}</p>
+                    <p className="text-sm text-muted-foreground">{t('dashboard.settings.notifications.sync_alerts_desc')}</p>
                   </div>
                   <Switch defaultChecked />
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">Weekly Reports</p>
-                    <p className="text-sm text-muted-foreground">Weekly activity summary</p>
+                    <p className="font-medium">{t('dashboard.settings.notifications.weekly_reports')}</p>
+                    <p className="text-sm text-muted-foreground">{t('dashboard.settings.notifications.weekly_reports_desc')}</p>
                   </div>
                   <Switch />
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">Marketing</p>
-                    <p className="text-sm text-muted-foreground">Product updates and tips</p>
+                    <p className="font-medium">{t('dashboard.settings.notifications.marketing')}</p>
+                    <p className="text-sm text-muted-foreground">{t('dashboard.settings.notifications.marketing_desc')}</p>
                   </div>
                   <Switch />
                 </div>
@@ -354,63 +354,63 @@ export default function DashboardSettings() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <Shield className="h-5 w-5 mr-2" />
-              Security
+              {t('dashboard.settings.security.title')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid gap-6 md:grid-cols-2">
               <div>
-                <h4 className="font-medium mb-3">Password</h4>
+                <h4 className="font-medium mb-3">{t('dashboard.settings.security.password_section')}</h4>
                 <div className="space-y-3">
                   <div>
-                    <Label htmlFor="currentPassword">Current Password</Label>
-                    <Input 
-                      id="currentPassword" 
-                      type="password" 
+                    <Label htmlFor="currentPassword">{t('dashboard.settings.security.current_password')}</Label>
+                    <Input
+                      id="currentPassword"
+                      type="password"
                       value={passwordData.currentPassword}
                       onChange={(e) => handlePasswordChange('currentPassword', e.target.value)}
                     />
                   </div>
                   <div>
-                    <Label htmlFor="newPassword">New Password</Label>
-                    <Input 
-                      id="newPassword" 
-                      type="password" 
+                    <Label htmlFor="newPassword">{t('dashboard.settings.security.new_password')}</Label>
+                    <Input
+                      id="newPassword"
+                      type="password"
                       value={passwordData.newPassword}
                       onChange={(e) => handlePasswordChange('newPassword', e.target.value)}
                     />
                   </div>
                   <div>
-                    <Label htmlFor="confirmPassword">Confirm Password</Label>
-                    <Input 
-                      id="confirmPassword" 
-                      type="password" 
+                    <Label htmlFor="confirmPassword">{t('dashboard.settings.security.confirm_password')}</Label>
+                    <Input
+                      id="confirmPassword"
+                      type="password"
                       value={passwordData.confirmPassword}
                       onChange={(e) => handlePasswordChange('confirmPassword', e.target.value)}
                     />
                   </div>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={handleUpdatePassword}
                     disabled={isUpdatingPassword}
                   >
-                    {isUpdatingPassword ? 'Updating...' : 'Update Password'}
+                    {isUpdatingPassword ? t('dashboard.settings.security.updating') : t('dashboard.settings.security.update_password')}
                   </Button>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-medium mb-3">Two-Factor Authentication</h4>
+                <h4 className="font-medium mb-3">{t('dashboard.settings.security.two_factor')}</h4>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 border border-border rounded-lg">
                     <div>
-                      <p className="font-medium">Authenticator App</p>
-                      <p className="text-sm text-muted-foreground">Not configured</p>
+                      <p className="font-medium">{t('dashboard.settings.security.authenticator_app')}</p>
+                      <p className="text-sm text-muted-foreground">{t('dashboard.settings.security.not_configured')}</p>
                     </div>
                     <Button variant="outline" size="sm">
                       <Key className="h-4 w-4 mr-2" />
-                      Setup
+                      {t('dashboard.settings.security.setup')}
                     </Button>
                   </div>
                 </div>
@@ -424,35 +424,34 @@ export default function DashboardSettings() {
           <CardHeader>
             <CardTitle className="flex items-center text-destructive">
               <Trash2 className="h-5 w-5 mr-2" />
-              Danger Zone
+              {t('dashboard.settings.danger_zone.title')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-medium mb-2">Delete Account</h4>
+              <h4 className="font-medium mb-2">{t('dashboard.settings.danger_zone.delete_account')}</h4>
               <p className="text-sm text-muted-foreground mb-4">
-                Once you delete your account, there is no going back. Please be certain.
+                {t('dashboard.settings.danger_zone.delete_warning')}
               </p>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button variant="destructive">Delete Account</Button>
+                  <Button variant="destructive">{t('dashboard.settings.danger_zone.delete_account')}</Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogTitle>{t('dashboard.settings.danger_zone.delete_confirm_title')}</AlertDialogTitle>
                     <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete your account
-                      and remove all your data from our servers.
+                      {t('dashboard.settings.danger_zone.delete_confirm_desc')}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction 
+                    <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
+                    <AlertDialogAction
                       onClick={handleDeleteAccount}
                       disabled={isDeletingAccount}
                       className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                     >
-                      {isDeletingAccount ? 'Deleting...' : 'Delete Account'}
+                      {isDeletingAccount ? t('dashboard.settings.danger_zone.deleting') : t('dashboard.settings.danger_zone.delete_account')}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>

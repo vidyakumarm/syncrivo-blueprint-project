@@ -119,7 +119,7 @@ export default function Pricing() {
               <div className="text-center mb-12 sm:mb-16">
                 <Badge variant="secondary" className="mb-4 text-sm font-medium inline-flex items-center gap-1">
                   <Sparkles className="w-3 h-3" />
-                  Transparent Pricing
+                  {t('pricing.transparent_pricing')}
                 </Badge>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
                   {t('pricing.title')}
@@ -131,7 +131,7 @@ export default function Pricing() {
                 {/* Billing Toggle */}
                 <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
                   <span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-foreground' : 'text-muted-foreground'}`}>
-                    Monthly
+                    {t('pricing.monthly')}
                   </span>
                   <Switch
                     checked={isYearly}
@@ -139,7 +139,7 @@ export default function Pricing() {
                     className="data-[state=checked]:bg-primary"
                   />
                   <span className={`text-sm font-medium transition-colors ${isYearly ? 'text-foreground' : 'text-muted-foreground'}`}>
-                    Yearly
+                    {t('pricing.yearly ')}
                   </span>
                   <Badge variant="secondary" className="ml-2 bg-success/10 text-success border-success/20 text-xs">
                     Save 20%
@@ -178,8 +178,8 @@ export default function Pricing() {
                     <Card
                       key={index}
                       className={`relative overflow-hidden transition-all duration-300 group hover:shadow-lg ${plan.popular
-                          ? 'border-primary shadow-lg scale-105 lg:scale-105 ring-1 ring-primary/20'
-                          : 'hover:border-primary/30 hover:scale-105'
+                        ? 'border-primary shadow-lg scale-105 lg:scale-105 ring-1 ring-primary/20'
+                        : 'hover:border-primary/30 hover:scale-105'
                         }`}
                     >
                       {plan.popular && (
@@ -189,8 +189,8 @@ export default function Pricing() {
                       {plan.badge && (
                         <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
                           <Badge className={`text-xs font-medium ${plan.popular
-                              ? 'bg-primary text-white border-primary'
-                              : 'bg-secondary text-secondary-foreground border'
+                            ? 'bg-primary text-white border-primary'
+                            : 'bg-secondary text-secondary-foreground border'
                             }`}>
                             {plan.badge}
                           </Badge>
@@ -259,8 +259,8 @@ export default function Pricing() {
                           asChild
                           size="lg"
                           className={`w-full font-medium transition-all duration-200 ${plan.popular
-                              ? 'bg-gradient-primary hover:shadow-md'
-                              : ''
+                            ? 'bg-gradient-primary hover:shadow-md'
+                            : ''
                             }`}
                           variant={plan.ctaVariant}
                         >
@@ -271,7 +271,7 @@ export default function Pricing() {
 
                         {plan.name !== t('pricing.enterprise') && (
                           <p className="text-xs text-muted-foreground text-center mt-3">
-                            No credit card required
+                            {t('pricing.no_credit_card')}
                           </p>
                         )}
                       </CardContent>
@@ -283,10 +283,10 @@ export default function Pricing() {
               {/* Bottom CTA */}
               <div className="text-center mt-12 sm:mt-16">
                 <p className="text-muted-foreground mb-4">
-                  Still have questions? Our team is here to help.
+                  {t('pricing.questions_help')}
                 </p>
                 <Button variant="outline" asChild>
-                  <Link to="/support">Contact Sales</Link>
+                  <Link to="/support">{t('pricing.contact_sales')}</Link>
                 </Button>
               </div>
             </div>
@@ -296,8 +296,8 @@ export default function Pricing() {
           <section className="py-12 sm:py-20 bg-muted/30">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-8 sm:mb-12">
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
-                <p className="text-muted-foreground">Everything you need to know about our pricing</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">{t('pricing.faq_title')}</h2>
+                <p className="text-muted-foreground">{t('pricing.faq_subtitle')}</p>
               </div>
 
               <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">

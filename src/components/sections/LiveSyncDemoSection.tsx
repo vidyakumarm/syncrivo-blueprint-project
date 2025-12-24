@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Lock, Shield, Check, FileText, Activity
+    Lock, Shield, Check, FileText, Activity, Video, Phone, Paperclip, Smile, AtSign, Type
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -58,6 +58,14 @@ interface Scenario {
     conversation: {
         msg1: { text: string; attachment?: Message['attachment'] };
         msg2: { text: string; attachment?: Message['attachment'] };
+        msg3?: { text: string; attachment?: Message['attachment'] };
+        msg4?: { text: string; attachment?: Message['attachment'] };
+        msg5?: { text: string; attachment?: Message['attachment'] };
+        msg6?: { text: string; attachment?: Message['attachment'] };
+        msg7?: { text: string; attachment?: Message['attachment'] };
+        msg8?: { text: string; attachment?: Message['attachment'] };
+        msg9?: { text: string; attachment?: Message['attachment'] };
+        msg10?: { text: string; attachment?: Message['attachment'] };
     };
     simultaneous?: boolean;
 }
@@ -151,6 +159,8 @@ const ChatInterface = ({
     personRole,
     personAvatar,
     typingUser,
+    typingUserAvatar,
+    typingText,
     typingPlatform,
     securityText
 }: {
@@ -160,12 +170,37 @@ const ChatInterface = ({
     personRole: string,
     personAvatar?: string,
     typingUser?: string,
+    typingUserAvatar?: string,
+    typingText?: string,
     typingPlatform?: Platform,
     securityText: string
 }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const config = PlatformConfig[platform];
     const { t } = useTranslation();
+    const [revealedText, setRevealedText] = useState("");
+
+    // Progressive text reveal animation
+    useEffect(() => {
+        if (!typingText) {
+            setRevealedText("");
+            return;
+        }
+
+        let currentIndex = 0;
+        setRevealedText("");
+
+        const intervalId = setInterval(() => {
+            if (currentIndex < typingText.length) {
+                setRevealedText(typingText.slice(0, currentIndex + 1));
+                currentIndex++;
+            } else {
+                clearInterval(intervalId);
+            }
+        }, 60); // Type each character every 60ms
+
+        return () => clearInterval(intervalId);
+    }, [typingText]);
 
     // Auto-scroll
     useEffect(() => {
@@ -196,28 +231,40 @@ const ChatInterface = ({
             </div>
 
             {/* 2. Persistent Participant Header */}
-            <div className="h-[68px] px-5 flex items-center gap-4 bg-[#2f3136] border-b border-white/5 z-10 shrink-0">
-                <div className="relative">
-                    <img src={avatar} alt={personName} className="w-10 h-10 rounded-full object-cover border border-white/10 shadow-sm" />
-                    <motion.div
-                        animate={{ scale: [1, 1.15, 1], opacity: [0.8, 1, 0.8] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-[2.5px] border-[#2f3136]"
-                    />
-                </div>
-                <div>
-                    <div className="text-[14px] font-bold text-white leading-tight">{personName}</div>
-                    <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-[11px] text-slate-400 font-medium">{personRole}</span>
-                        <span className="text-[10px] text-emerald-500/90 font-medium flex items-center gap-1">
-                            ● {t('demo.ui.active_now', 'Active Now')}
-                        </span>
+            <div className="h-[68px] px-5 flex items-center justify-between bg-[#2f3136] border-b border-white/5 z-10 shrink-0">
+                <div className="flex items-center gap-4">
+                    <div className="relative">
+                        <img src={avatar} alt={personName} className="w-10 h-10 rounded-full object-cover border border-white/10 shadow-sm" />
+                        <motion.div
+                            animate={{ scale: [1, 1.15, 1], opacity: [0.8, 1, 0.8] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-[2.5px] border-[#2f3136]"
+                        />
                     </div>
+                    <div>
+                        <div className="text-[14px] font-bold text-white leading-tight">{personName}</div>
+                        <div className="flex items-center gap-2 mt-0.5">
+                            <span className="text-[11px] text-slate-400 font-medium">{personRole}</span>
+                            <span className="text-[10px] text-emerald-500/90 font-medium flex items-center gap-1">
+                                ● {t('demo.ui.active_now', 'Active Now')}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Call Control Icons */}
+                <div className="flex items-center gap-2">
+                    <button className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-all duration-200 group">
+                        <Phone className="w-4 h-4 text-slate-400 group-hover:text-emerald-400 transition-colors" />
+                    </button>
+                    <button className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-all duration-200 group">
+                        <Video className="w-4 h-4 text-slate-400 group-hover:text-indigo-400 transition-colors" />
+                    </button>
                 </div>
             </div>
 
-            {/* 3. Messages Area */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-6 bg-[#25272b] scroll-smooth relative">
+            {/* 3. Messages Area - Fixed Height with Auto-Scroll */}
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-6 bg-[#25272b] scroll-smooth relative h-[420px] max-h-[420px]">
 
                 {/* Secure Empty State */}
                 <AnimatePresence>
@@ -279,7 +326,7 @@ const ChatInterface = ({
                     ))}
                 </AnimatePresence>
 
-                {/* 4. Realistic Typing Indicator */}
+                {/* 4. Typing Indicator */}
                 <AnimatePresence>
                     {typingUser && (
                         <motion.div
@@ -288,8 +335,8 @@ const ChatInterface = ({
                             exit={{ opacity: 0, y: 5 }}
                             className="flex gap-3 pl-1 mb-2 mt-2"
                         >
-                            <img src={avatar} alt="Typing" className="w-8 h-8 rounded-full object-cover opacity-80" />
-                            <div className="flex flex-col justify-center">
+                            <img src={typingUserAvatar || avatar} alt="Typing" className="w-8 h-8 rounded-full object-cover opacity-80" />
+                            <div className="flex flex-col justify-center gap-1">
                                 <div className="flex items-center gap-1 h-[34px] px-3.5 rounded-2xl rounded-tl-sm bg-[#36393f] border border-white/5 w-fit">
                                     {[0, 0.2, 0.4].map((delay, i) => (
                                         <motion.div
@@ -308,7 +355,7 @@ const ChatInterface = ({
                                         />
                                     ))}
                                 </div>
-                                <span className="text-[10px] text-slate-500 mt-1 ml-1 font-medium animate-pulse">
+                                <span className="text-[10px] text-slate-500 ml-1 font-medium">
                                     {typingUser.split(' ')[0]} {t('demo.ui.is_typing', 'is typing')}{typingPlatform ? ` ${t('demo.ui.via', 'via')} ${PlatformConfig[typingPlatform].name}` : '...'}
                                 </span>
                             </div>
@@ -319,8 +366,46 @@ const ChatInterface = ({
 
             {/* 5. Input Field */}
             <div className="p-4 bg-[#2f3136] border-t border-white/5 shrink-0 z-20">
-                <div className="h-11 rounded-lg border border-white/10 bg-[#202225] flex items-center px-4 text-sm text-slate-500 select-none shadow-inner cursor-not-allowed">
-                    {t('demo.ui.input_placeholder', { name: personName, defaultValue: `Message ${personName}...` })}
+                <div className="relative">
+                    <div className="h-11 rounded-lg border border-white/10 bg-[#202225] flex items-center px-3 shadow-inner">
+                        {/* Left Icons */}
+                        <div className="flex items-center gap-1 mr-2">
+                            <button className="w-7 h-7 rounded hover:bg-white/10 flex items-center justify-center transition-colors group">
+                                <Paperclip className="w-4 h-4 text-slate-500 group-hover:text-slate-300 transition-colors" />
+                            </button>
+                        </div>
+
+                        {/* Input Text - Shows typing animation OR placeholder */}
+                        <div className="flex-1 text-sm select-none">
+                            {revealedText ? (
+                                <span className="text-white font-medium">
+                                    {revealedText}
+                                    <motion.span
+                                        animate={{ opacity: [0, 1, 0] }}
+                                        transition={{ duration: 0.8, repeat: Infinity }}
+                                        className="inline-block w-[3px] h-5 bg-white ml-1 align-middle"
+                                    />
+                                </span>
+                            ) : (
+                                <span className="text-slate-500 cursor-not-allowed">
+                                    {t('demo.ui.input_placeholder', { name: personName, defaultValue: `Message ${personName}...` })}
+                                </span>
+                            )}
+                        </div>
+
+                        {/* Right Icons */}
+                        <div className="flex items-center gap-1 ml-2">
+                            <button className="w-7 h-7 rounded hover:bg-white/10 flex items-center justify-center transition-colors group">
+                                <Type className="w-4 h-4 text-slate-500 group-hover:text-slate-300 transition-colors" />
+                            </button>
+                            <button className="w-7 h-7 rounded hover:bg-white/10 flex items-center justify-center transition-colors group">
+                                <Smile className="w-4 h-4 text-slate-500 group-hover:text-slate-300 transition-colors" />
+                            </button>
+                            <button className="w-7 h-7 rounded hover:bg-white/10 flex items-center justify-center transition-colors group">
+                                <AtSign className="w-4 h-4 text-slate-500 group-hover:text-slate-300 transition-colors" />
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -442,18 +527,27 @@ export function LiveSyncDemoSection() {
     const [messagesRight, setMessagesRight] = useState<Message[]>([]);
     const [typingLeft, setTypingLeft] = useState<string | undefined>();
     const [typingRight, setTypingRight] = useState<string | undefined>();
+    const [typingLeftText, setTypingLeftText] = useState<string | undefined>();
+    const [typingRightText, setTypingRightText] = useState<string | undefined>();
     const [engineActive, setEngineActive] = useState(false);
     const [packetLeftToRight, setPacketLeftToRight] = useState(false);
     const [packetRightToLeft, setPacketRightToLeft] = useState(false);
 
-    const SCENARIOS = useMemo<Scenario[]>(() => [
+        const SCENARIOS = useMemo<Scenario[]>(() => [
         {
             id: 1,
             source: { platform: 'zoom', person: { name: 'Sergey Kizunov', role: t('demo.roles.product_owner', 'Product Owner'), avatar: sergeyPhoto } },
             dest: { platform: 'teams', person: { name: 'Kumar Makala', role: t('demo.roles.devops_lead', 'DevOps Lead'), avatar: kumarPhoto } },
             conversation: {
-                msg1: { text: t('demo.scenarios.1.msg1', "Can we finalize the sprint scope today?") },
-                msg2: { text: t('demo.scenarios.1.msg2', "Yes ✅ I’ll share the updated backlog shortly.") }
+                msg1: { text: t('demo.scenarios.1.msg1', "Can we finalize the sprint scope today? Need to lock by 3pm for stakeholder review.") },
+                msg2: { text: t('demo.scenarios.1.msg2', "Yes, I've reviewed the backlog. Should we include the API migration task?") },
+                msg3: { text: t('demo.scenarios.1.msg3', "Good question. What's the complexity estimate?") },
+                msg4: { text: t('demo.scenarios.1.msg4', "About 5 story points. But dependency on auth service upgrade.") },
+                msg5: { text: t('demo.scenarios.1.msg5', "Hmm, too risky. Let's defer to Sprint 24. What else is critical?") },
+                msg6: { text: t('demo.scenarios.1.msg6', "Database schema changes and the new dashboard UI.") },
+                msg7: { text: t('demo.scenarios.1.msg7', "Perfect. Those are P0. Add them to committed scope.") },
+                msg8: { text: t('demo.scenarios.1.msg8', "Done! I'll update Jira and ping the team in 15 mins.") },
+                msg9: { text: t('demo.scenarios.1.msg9', "Excellent work Kumar! See you at standup.") }
             }
         },
         {
@@ -461,8 +555,15 @@ export function LiveSyncDemoSection() {
             source: { platform: 'google-chat', person: { name: 'Priya Nair', role: t('demo.roles.product_lead', 'Product Lead'), avatar: priyaPhoto } },
             dest: { platform: 'zoom', person: { name: 'Daniel Wong', role: t('demo.roles.sales_director', 'Sales Director'), avatar: leoPhoto } },
             conversation: {
-                msg1: { text: t('demo.scenarios.2.msg1', "Hey Daniel 👋 The product demo deck is ready."), attachment: { name: "Product_Demo_v3.pdf", size: "4.2 MB", type: "application/pdf" } },
-                msg2: { text: t('demo.scenarios.2.msg2', "Perfect 👍 I’ll review before the client call.") }
+                msg1: { text: t('demo.scenarios.2.msg1', "Hey Daniel! Product demo deck ready for Thursday's Acme Corp call."), attachment: { name: "Product_Demo_v3.pdf", size: "4.2 MB", type: "application/pdf" } },
+                msg2: { text: t('demo.scenarios.2.msg2', "Perfect! Which use cases did you highlight?") },
+                msg3: { text: t('demo.scenarios.2.msg3', "Frontline workforce sync, M&A integration, and regulatory compliance.") },
+                msg4: { text: t('demo.scenarios.2.msg4', "Excellent choices. Do we have the ROI calculator handy?") },
+                msg5: { text: t('demo.scenarios.2.msg5', "Yes! Attaching now. Shows 40% productivity gains and 6-month break-even."), attachment: { name: "ROI_Calculator_2024.xlsx", size: "2.1 MB", type: "application/xlsx" } },
+                msg6: { text: t('demo.scenarios.2.msg6', "Love it. Can you also send the security whitepaper? They're VERY compliance-focused.") },
+                msg7: { text: t('demo.scenarios.2.msg7', "Absolutely. Here you go - covers SOC2, ISO, and GDPR certifications."), attachment: { name: "Security_Whitepaper_v2.pdf", size: "1.8 MB", type: "application/pdf" } },
+                msg8: { text: t('demo.scenarios.2.msg8', "You're a star! This is going to close. High confidence.") },
+                msg9: { text: t('demo.scenarios.2.msg9', "Let's do this! Good luck on Thursday!") }
             }
         },
         {
@@ -470,8 +571,16 @@ export function LiveSyncDemoSection() {
             source: { platform: 'google-chat', person: { name: 'Kumar Makala', role: t('demo.roles.devops_lead', 'DevOps Lead'), avatar: kumarPhoto } },
             dest: { platform: 'slack', person: { name: 'Sarah Collins', role: t('demo.roles.cto', 'CTO'), avatar: alicePhoto } },
             conversation: {
-                msg1: { text: t('demo.scenarios.3.msg1', "Morning Sarah! 🚀 Deployment is live on prod.") },
-                msg2: { text: t('demo.scenarios.3.msg2', "Awesome work 🎉 Monitoring dashboards look green.") }
+                msg1: { text: t('demo.scenarios.3.msg1', "Morning Sarah! v2.4.0 production deployment completed at 6:47 AM EST.") },
+                msg2: { text: t('demo.scenarios.3.msg2', "Fantastic! Any issues during the rollout?") },
+                msg3: { text: t('demo.scenarios.3.msg3', "Zero. Canary deployment showed green for 30 mins before full rollout.") },
+                msg4: { text: t('demo.scenarios.3.msg4', "What about database migrations?") },
+                msg5: { text: t('demo.scenarios.3.msg5', "All schema changes applied successfully. Zero downtime achieved.") },
+                msg6: { text: t('demo.scenarios.3.msg6', "Monitoring dashboards?") },
+                msg7: { text: t('demo.scenarios.3.msg7', "All green. CPU at 34%, latency actually improved by 15ms average.") },
+                msg8: { text: t('demo.scenarios.3.msg8', "User-facing impact?") },
+                msg9: { text: t('demo.scenarios.3.msg9', "Response times dropped from 240ms to 210ms. Users should notice snappier UI.") },
+                msg10: { text: t('demo.scenarios.3.msg10', "Outstanding work! Send the postmortem report when you're ready.") }
             }
         },
         {
@@ -479,8 +588,16 @@ export function LiveSyncDemoSection() {
             source: { platform: 'google-chat', person: { name: 'Ravi Patel', role: t('demo.roles.sre', 'SRE'), avatar: bobPhoto } },
             dest: { platform: 'webex', person: { name: 'Priya Nair', role: t('demo.roles.product_lead', 'Product Lead'), avatar: priyaPhoto } },
             conversation: {
-                msg1: { text: t('demo.scenarios.4.msg1', "Please find the incident RCA attached."), attachment: { name: "RCA_Incident_0421.docx", size: "1.1 MB", type: "application/docx" } },
-                msg2: { text: t('demo.scenarios.4.msg2', "Got it 👍 Thanks for the quick turnaround.") }
+                msg1: { text: t('demo.scenarios.4.msg1', "Incident #0421 resolved at 11:34 AM. Full RCA attached."), attachment: { name: "RCA_Incident_0421.docx", size: "1.1 MB", type: "application/docx" } },
+                msg2: { text: t('demo.scenarios.4.msg2', "Thanks Ravi! What was the root cause?") },
+                msg3: { text: t('demo.scenarios.4.msg3', "Database connection pool exhaustion during traffic spike. Pool size was 50, spike needed 120.") },
+                msg4: { text: t('demo.scenarios.4.msg4', "Customer impact?") },
+                msg5: { text: t('demo.scenarios.4.msg5', "15 minutes of elevated latency (2-5 seconds). No data loss or corruption.") },
+                msg6: { text: t('demo.scenarios.4.msg6', "Which customers were affected?") },
+                msg7: { text: t('demo.scenarios.4.msg7', "Primarily APAC region during business hours. About 340 active users impacted.") },
+                msg8: { text: t('demo.scenarios.4.msg8', "What's the mitigation plan?") },
+                msg9: { text: t('demo.scenarios.4.msg9', "Increased pool to 200, added auto-scaling rules. Mitigation doc attached."), attachment: { name: "Mitigation_Plan.pdf", size: "850 KB", type: "application/pdf" } },
+                msg10: { text: t('demo.scenarios.4.msg10', "Perfect. Let's review in tomorrow's incident postmortem. Great response time!") }
             }
         },
         {
@@ -488,8 +605,15 @@ export function LiveSyncDemoSection() {
             source: { platform: 'teams', person: { name: 'Sarah Collins', role: t('demo.roles.cto', 'CTO'), avatar: alicePhoto } },
             dest: { platform: 'slack', person: { name: 'Ravi Patel', role: t('demo.roles.sre', 'SRE'), avatar: bobPhoto } },
             conversation: {
-                msg1: { text: t('demo.scenarios.5.msg1', "Infra cost optimization report is ready 💡"), attachment: { name: "Cloud_Cost_Analysis.xlsx", size: "8.5 MB", type: "application/xlsx" } },
-                msg2: { text: t('demo.scenarios.5.msg2', "Nice 👌 Let’s review this in tomorrow’s standup.") }
+                msg1: { text: t('demo.scenarios.5.msg1', "Q4 cloud cost analysis complete. Found $840K annual savings opportunity!"), attachment: { name: "Cloud_Cost_Analysis.xlsx", size: "8.5 MB", type: "application/xlsx" } },
+                msg2: { text: t('demo.scenarios.5.msg2', "Wow! What's driving the savings?") },
+                msg3: { text: t('demo.scenarios.5.msg3', "3 main areas: unused dev environments ($320K), oversized RDS instances ($280K), unattached EBS volumes ($240K).") },
+                msg4: { text: t('demo.scenarios.5.msg4', "Can we action these without impacting prod?") },
+                msg5: { text: t('demo.scenarios.5.msg5', "Yes. Dev cleanup is zero-risk. RDS right-sizing needs 2-week migration window.") },
+                msg6: { text: t('demo.scenarios.5.msg6', "Timeline?") },
+                msg7: { text: t('demo.scenarios.5.msg7', "I can start dev environment cleanup next week. RDS in Q1 2025.") },
+                msg8: { text: t('demo.scenarios.5.msg8', "Let me draft the implementation roadmap. ETA Friday morning."), attachment: { name: "Cost_Optimization_Roadmap.pptx", size: "3.2 MB", type: "application/pptx" } },
+                msg9: { text: t('demo.scenarios.5.msg9', "Perfect! Let's present this at Monday's engineering leadership sync.") }
             },
             simultaneous: true
         },
@@ -498,8 +622,16 @@ export function LiveSyncDemoSection() {
             source: { platform: 'slack', person: { name: 'Daniel Wong', role: t('demo.roles.sales_director', 'Sales Director'), avatar: leoPhoto } },
             dest: { platform: 'webex', person: { name: 'Sergey Kizunov', role: t('demo.roles.product_owner', 'Product Owner'), avatar: sergeyPhoto } },
             conversation: {
-                msg1: { text: t('demo.scenarios.6.msg1', "Client approved the proposal 🎉") },
-                msg2: { text: t('demo.scenarios.6.msg2', "Great news! Let’s kick off onboarding 🚀") }
+                msg1: { text: t('demo.scenarios.6.msg1', "HUGE NEWS! Acme Corp signed the enterprise contract!") },
+                msg2: { text: t('demo.scenarios.6.msg2', "That's fantastic! What's the contract value?") },
+                msg3: { text: t('demo.scenarios.6.msg3', "$2.4M ARR with 20% year-over-year growth commitment for 3 years.") },
+                msg4: { text: t('demo.scenarios.6.msg4', "Incredible! When do they want to onboard?") },
+                msg5: { text: t('demo.scenarios.6.msg5', "January 15th hard start. 500 users, need SSO and custom integrations.") },
+                msg6: { text: t('demo.scenarios.6.msg6', "What integrations specifically?") },
+                msg7: { text: t('demo.scenarios.6.msg7', "Salesforce, Workday, and their legacy HR system. Plus SAML 2.0 authentication.") },
+                msg8: { text: t('demo.scenarios.6.msg8', "That's doable. I'll prioritize the SSO work starting Monday.") },
+                msg9: { text: t('demo.scenarios.6.msg9', "They're also interested in our analytics module for Q2.") },
+                msg10: { text: t('demo.scenarios.6.msg10', "Perfect upsell opportunity! I'll get engineering ramped up this week. Amazing close Daniel!") }
             }
         }
     ], [t]);
@@ -513,6 +645,22 @@ export function LiveSyncDemoSection() {
     ], [t]);
 
     const [securityText, setSecurityText] = useState(SECURITY_MESSAGES[0]);
+
+    // Helper: Extract all messages from a scenario's conversation into an array
+    const extractMessages = (conversation: Scenario['conversation']) => {
+        const messages: Array<{ text: string; attachment?: Message['attachment'] }> = [];
+        if (conversation.msg1) messages.push(conversation.msg1);
+        if (conversation.msg2) messages.push(conversation.msg2);
+        if (conversation.msg3) messages.push(conversation.msg3);
+        if (conversation.msg4) messages.push(conversation.msg4);
+        if (conversation.msg5) messages.push(conversation.msg5);
+        if (conversation.msg6) messages.push(conversation.msg6);
+        if (conversation.msg7) messages.push(conversation.msg7);
+        if (conversation.msg8) messages.push(conversation.msg8);
+        if (conversation.msg9) messages.push(conversation.msg9);
+        if (conversation.msg10) messages.push(conversation.msg10);
+        return messages;
+    };
 
     // Async control ref
     const mountedRef = useRef(true);
@@ -533,6 +681,8 @@ export function LiveSyncDemoSection() {
                 setMessagesRight([]);
                 setTypingLeft(undefined);
                 setTypingRight(undefined);
+                setTypingLeftText(undefined);
+                setTypingRightText(undefined);
                 setEngineActive(false);
                 setPacketLeftToRight(false);
                 setPacketRightToLeft(false);
@@ -554,204 +704,307 @@ export function LiveSyncDemoSection() {
                 if (!active) break;
 
                 if (currentScenario.simultaneous) {
-                    // --- SIMULTANEOUS FLOW (Overlapping Activity) ---
+                    // --- SIMULTANEOUS FLOW ---
+                    const messages = extractMessages(currentScenario.conversation);
+                    const msg1 = messages[0];
+                    const msg2 = messages[1];
+                    
+                    if (!msg1 || !msg2) {
+                        console.warn('Simultaneous mode requires at least 2 messages');
+                        continue;
+                    }
 
-                    const tDuration1 = calculateTypingDuration(currentScenario.conversation.msg1.text as string);
-                    const tDuration2 = calculateTypingDuration(currentScenario.conversation.msg2.text as string);
-
-                    // Random delay between 500ms and 1500ms for overlap start
+                    const tDuration1 = calculateTypingDuration(msg1.text);
+                    const tDuration2 = calculateTypingDuration(msg2.text);
                     const overlapDelay = randomDelay(500, 1500);
 
                     // 1. Left User starts typing
                     setTypingLeft(currentScenario.source.person.name);
-
-                    // 2. Wait for overlap delay
+                    setTypingLeftText(msg1.text);
                     await wait(overlapDelay);
                     if (!active) break;
 
-                    // 3. Right User starts typing (Both are now typing)
+                    // 2. Right User starts typing (Both typing)
                     setTypingRight(currentScenario.dest.person.name);
+                    setTypingRightText(msg2.text);
 
-                    // 4. Wait for remainder of Left User's typing
+                    // 3. Wait for Left to finish
                     const remainingA = Math.max(0, tDuration1 - overlapDelay);
                     if (remainingA > 0) await wait(remainingA);
                     if (!active) break;
 
-                    // 5. Left User Sends
+                    // 4. Left sends
                     setTypingLeft(undefined);
+                    setTypingLeftText(undefined);
                     setMessagesLeft(prev => [...prev, {
-                        id: `msg-1-${localIndex}`,
+                        id: `msg-0-${localIndex}`,
                         type: 'user',
                         sender: currentScenario.source.person.name,
                         role: currentScenario.source.person.role,
                         avatarUrl: currentScenario.source.person.avatar,
-                        text: currentScenario.conversation.msg1.text,
+                        text: msg1.text,
                         timestamp: 'Now',
-                        attachment: currentScenario.conversation.msg1.attachment,
+                        attachment: msg1.attachment,
                         personName: currentScenario.source.person.name
                     }]);
 
-                    // 6. Sync/Network Delay
+                    // 5. Sync
                     setEngineActive(true);
                     setPacketLeftToRight(true);
                     const syncTime = randomDelay(800, 1200);
                     await wait(syncTime);
                     if (!active) break;
 
-                    // 7. Right User Receives (Sync) - BUT KEEPS TYPING
+                    // 6. Right receives
                     setEngineActive(false);
                     setPacketLeftToRight(false);
                     setMessagesRight(prev => [...prev, {
-                        id: `msg-1-sync-${localIndex}`,
+                        id: `msg-0-sync-${localIndex}`,
                         type: 'user',
                         sender: currentScenario.source.person.name,
                         role: currentScenario.source.person.role,
                         avatarUrl: currentScenario.source.person.avatar,
-                        text: currentScenario.conversation.msg1.text,
+                        text: msg1.text,
                         timestamp: 'Now',
-                        attachment: currentScenario.conversation.msg1.attachment,
+                        attachment: msg1.attachment,
                         personName: currentScenario.source.person.name
                     }]);
 
-                    // 8. Wait for remainder of Right User's typing
-                    // Right started typing at t = overlapDelay
-                    // Current time is t = tDuration1 + syncTime
-                    // Right needs to finish at t = overlapDelay + tDuration2
-                    // Remaining wait = (overlapDelay + tDuration2) - (tDuration1 + syncTime)
-
+                    // 7. Wait for Right to finish typing
                     const timeElapsed = tDuration1 + syncTime;
                     const rightFinishTime = overlapDelay + tDuration2;
                     const remainingB = Math.max(0, rightFinishTime - timeElapsed);
-
                     if (remainingB > 0) await wait(remainingB);
                     if (!active) break;
 
-                    // 9. Right User Sends
+                    // 8. Right sends
                     setTypingRight(undefined);
+                    setTypingRightText(undefined);
                     setMessagesRight(prev => [...prev, {
-                        id: `msg-2-${localIndex}`,
-                        type: 'user',
-                        sender: currentScenario.dest.person.name,
-                        role: currentScenario.dest.person.role,
-                        avatarUrl: currentScenario.dest.person.avatar,
-                        text: currentScenario.conversation.msg2.text,
-                        timestamp: 'Now',
-                        attachment: currentScenario.conversation.msg2.attachment,
-                        personName: currentScenario.dest.person.name
-                    }]);
-
-                    // 10. Sync Back (Network Delay)
-                    setEngineActive(true);
-                    setPacketRightToLeft(true);
-                    await wait(randomDelay(800, 1200));
-                    if (!active) break;
-
-                    // 11. Left User Receives
-                    setEngineActive(false);
-                    setPacketRightToLeft(false);
-                    setMessagesLeft(prev => [...prev, {
-                        id: `msg-2-sync-${localIndex}`,
-                        type: 'user',
-                        sender: currentScenario.dest.person.name,
-                        role: currentScenario.dest.person.role,
-                        avatarUrl: currentScenario.dest.person.avatar,
-                        text: currentScenario.conversation.msg2.text,
-                        timestamp: 'Now',
-                        attachment: currentScenario.conversation.msg2.attachment,
-                        personName: currentScenario.dest.person.name
-                    }]);
-
-                } else {
-                    // --- STANDARD SEQUENTIAL FLOW ---
-
-                    // 3. Left User Types
-                    setTypingLeft(currentScenario.source.person.name);
-                    const typingDuration1 = calculateTypingDuration(currentScenario.conversation.msg1.text as string);
-                    await wait(typingDuration1);
-                    if (!active) break;
-
-                    // 4. Left User Stops Typing & Sends
-                    setTypingLeft(undefined);
-                    setMessagesLeft(prev => [...prev, {
                         id: `msg-1-${localIndex}`,
                         type: 'user',
-                        sender: currentScenario.source.person.name,
-                        role: currentScenario.source.person.role,
-                        avatarUrl: currentScenario.source.person.avatar,
-                        text: currentScenario.conversation.msg1.text,
-                        timestamp: 'Now',
-                        attachment: currentScenario.conversation.msg1.attachment,
-                        personName: currentScenario.source.person.name
-                    }]);
-
-                    // 5. Sync/Network Delay
-                    setEngineActive(true);
-                    setPacketLeftToRight(true);
-                    await wait(randomDelay(800, 1200)); // Network travel time
-                    if (!active) break;
-
-                    // 6. Right User Receives (Sync)
-                    setEngineActive(false);
-                    setPacketLeftToRight(false);
-                    setMessagesRight(prev => [...prev, {
-                        id: `msg-1-sync-${localIndex}`,
-                        type: 'user',
-                        sender: currentScenario.source.person.name,
-                        role: currentScenario.source.person.role,
-                        avatarUrl: currentScenario.source.person.avatar,
-                        text: currentScenario.conversation.msg1.text,
-                        timestamp: 'Now',
-                        attachment: currentScenario.conversation.msg1.attachment,
-                        personName: currentScenario.source.person.name
-                    }]);
-
-                    // 7. Reading Pause (Human Processing)
-                    await wait(randomDelay(1500, 2500));
-                    if (!active) break;
-
-                    // --- RIGHT USER REPLYING MSG 2 ---
-
-                    // 8. Right User Types
-                    setTypingRight(currentScenario.dest.person.name);
-                    const typingDuration2 = calculateTypingDuration(currentScenario.conversation.msg2.text as string);
-                    await wait(typingDuration2);
-                    if (!active) break;
-
-                    // 9. Right User Stops Typing & Sends
-                    setTypingRight(undefined);
-                    setMessagesRight(prev => [...prev, {
-                        id: `msg-2-${localIndex}`,
-                        type: 'user',
                         sender: currentScenario.dest.person.name,
                         role: currentScenario.dest.person.role,
                         avatarUrl: currentScenario.dest.person.avatar,
-                        text: currentScenario.conversation.msg2.text,
+                        text: msg2.text,
                         timestamp: 'Now',
-                        attachment: currentScenario.conversation.msg2.attachment,
+                        attachment: msg2.attachment,
                         personName: currentScenario.dest.person.name
                     }]);
 
-                    // 10. Sync Back (Network Delay)
+                    // 9. Sync back
                     setEngineActive(true);
                     setPacketRightToLeft(true);
                     await wait(randomDelay(800, 1200));
                     if (!active) break;
 
-                    // 11. Left User Receives
+                    // 10. Left receives
                     setEngineActive(false);
                     setPacketRightToLeft(false);
                     setMessagesLeft(prev => [...prev, {
-                        id: `msg-2-sync-${localIndex}`,
+                        id: `msg-1-sync-${localIndex}`,
                         type: 'user',
                         sender: currentScenario.dest.person.name,
                         role: currentScenario.dest.person.role,
                         avatarUrl: currentScenario.dest.person.avatar,
-                        text: currentScenario.conversation.msg2.text,
+                        text: msg2.text,
                         timestamp: 'Now',
-                        attachment: currentScenario.conversation.msg2.attachment,
+                        attachment: msg2.attachment,
                         personName: currentScenario.dest.person.name
                     }]);
+
+                    // Handle remaining messages (msg3-msg10) in sequential mode
+                    for (let i = 2; i < messages.length; i++) {
+                        const msg = messages[i];
+                        const isLeftSender = i % 2 === 0;
+                        
+                        await wait(randomDelay(1000, 1800));
+                        if (!active) break;
+
+                        const sender = isLeftSender ? currentScenario.source : currentScenario.dest;
+
+                        // Typing
+                        if (isLeftSender) {
+                            setTypingLeft(sender.person.name);
+                            setTypingLeftText(msg.text);
+                        } else {
+                            setTypingRight(sender.person.name);
+                            setTypingRightText(msg.text);
+                        }
+
+                        const typingDuration = calculateTypingDuration(msg.text);
+                        await wait(typingDuration);
+                        if (!active) break;
+
+                        // Send
+                        if (isLeftSender) {
+                            setTypingLeft(undefined);
+                            setTypingLeftText(undefined);
+                            setMessagesLeft(prev => [...prev, {
+                                id: `msg-${i}-${localIndex}`,
+                                type: 'user',
+                                sender: sender.person.name,
+                                role: sender.person.role,
+                                avatarUrl: sender.person.avatar,
+                                text: msg.text,
+                                timestamp: 'Now',
+                                attachment: msg.attachment,
+                                personName: sender.person.name
+                            }]);
+
+                            setEngineActive(true);
+                            setPacketLeftToRight(true);
+                            await wait(randomDelay(800, 1200));
+                            if (!active) break;
+
+                            setEngineActive(false);
+                            setPacketLeftToRight(false);
+                            setMessagesRight(prev => [...prev, {
+                                id: `msg-${i}-sync-${localIndex}`,
+                                type: 'user',
+                                sender: sender.person.name,
+                                role: sender.person.role,
+                                avatarUrl: sender.person.avatar,
+                                text: msg.text,
+                                timestamp: 'Now',
+                                attachment: msg.attachment,
+                                personName: sender.person.name
+                            }]);
+                        } else {
+                            setTypingRight(undefined);
+                            setTypingRightText(undefined);
+                            setMessagesRight(prev => [...prev, {
+                                id: `msg-${i}-${localIndex}`,
+                                type: 'user',
+                                sender: sender.person.name,
+                                role: sender.person.role,
+                                avatarUrl: sender.person.avatar,
+                                text: msg.text,
+                                timestamp: 'Now',
+                                attachment: msg.attachment,
+                                personName: sender.person.name
+                            }]);
+
+                            setEngineActive(true);
+                            setPacketRightToLeft(true);
+                            await wait(randomDelay(800, 1200));
+                            if (!active) break;
+
+                            setEngineActive(false);
+                            setPacketRightToLeft(false);
+                            setMessagesLeft(prev => [...prev, {
+                                id: `msg-${i}-sync-${localIndex}`,
+                                type: 'user',
+                                sender: sender.person.name,
+                                role: sender.person.role,
+                                avatarUrl: sender.person.avatar,
+                                text: msg.text,
+                                timestamp: 'Now',
+                                attachment: msg.attachment,
+                                personName: sender.person.name
+                            }]);
+                        }
+                    }
+
+                } else {
+                    // --- STANDARD SEQUENTIAL FLOW (for ALL messages) ---
+                    const messages = extractMessages(currentScenario.conversation);
+
+                    for (let i = 0; i < messages.length; i++) {
+                        const msg = messages[i];
+                        const isLeftSender = i % 2 === 0;
+                        
+                        if (i > 0) {
+                            await wait(randomDelay(1200, 2000));
+                            if (!active) break;
+                        }
+
+                        const sender = isLeftSender ? currentScenario.source : currentScenario.dest;
+
+                        // Typing
+                        if (isLeftSender) {
+                            setTypingLeft(sender.person.name);
+                            setTypingLeftText(msg.text);
+                        } else {
+                            setTypingRight(sender.person.name);
+                            setTypingRightText(msg.text);
+                        }
+
+                        const typingDuration = calculateTypingDuration(msg.text);
+                        await wait(typingDuration);
+                        if (!active) break;
+
+                        // Send
+                        if (isLeftSender) {
+                            setTypingLeft(undefined);
+                            setTypingLeftText(undefined);
+                            setMessagesLeft(prev => [...prev, {
+                                id: `msg-${i}-${localIndex}`,
+                                type: 'user',
+                                sender: sender.person.name,
+                                role: sender.person.role,
+                                avatarUrl: sender.person.avatar,
+                                text: msg.text,
+                                timestamp: 'Now',
+                                attachment: msg.attachment,
+                                personName: sender.person.name
+                            }]);
+
+                            setEngineActive(true);
+                            setPacketLeftToRight(true);
+                            await wait(randomDelay(800, 1200));
+                            if (!active) break;
+
+                            setEngineActive(false);
+                            setPacketLeftToRight(false);
+                            setMessagesRight(prev => [...prev, {
+                                id: `msg-${i}-sync-${localIndex}`,
+                                type: 'user',
+                                sender: sender.person.name,
+                                role: sender.person.role,
+                                avatarUrl: sender.person.avatar,
+                                text: msg.text,
+                                timestamp: 'Now',
+                                attachment: msg.attachment,
+                                personName: sender.person.name
+                            }]);
+                        } else {
+                            setTypingRight(undefined);
+                            setTypingRightText(undefined);
+                            setMessagesRight(prev => [...prev, {
+                                id: `msg-${i}-${localIndex}`,
+                                type: 'user',
+                                sender: sender.person.name,
+                                role: sender.person.role,
+                                avatarUrl: sender.person.avatar,
+                                text: msg.text,
+                                timestamp: 'Now',
+                                attachment: msg.attachment,
+                                personName: sender.person.name
+                            }]);
+
+                            setEngineActive(true);
+                            setPacketRightToLeft(true);
+                            await wait(randomDelay(800, 1200));
+                            if (!active) break;
+
+                            setEngineActive(false);
+                            setPacketRightToLeft(false);
+                            setMessagesLeft(prev => [...prev, {
+                                id: `msg-${i}-sync-${localIndex}`,
+                                type: 'user',
+                                sender: sender.person.name,
+                                role: sender.person.role,
+                                avatarUrl: sender.person.avatar,
+                                text: msg.text,
+                                timestamp: 'Now',
+                                attachment: msg.attachment,
+                                personName: sender.person.name
+                            }]);
+                        }
+                    }
                 }
+
 
                 // 12. Final Linger before switch
                 await wait(2500);
@@ -830,7 +1083,9 @@ export function LiveSyncDemoSection() {
                                         personRole={currentScenario.source.person.role}
                                         personAvatar={currentScenario.source.person.avatar}
                                         messages={messagesLeft}
-                                        typingUser={typingRight} // Corrected: Left sees Right typing
+                                        typingUser={typingRight} // Left sees Right typing (indicator)
+                                        typingUserAvatar={currentScenario.dest.person.avatar} // Right's avatar
+                                        typingText={typingLeftText} // Left's own typing (in their input)
                                         typingPlatform={currentScenario.dest.platform}
                                         securityText={securityText}
                                     />
@@ -870,7 +1125,9 @@ export function LiveSyncDemoSection() {
                                         personRole={currentScenario.dest.person.role}
                                         personAvatar={currentScenario.dest.person.avatar}
                                         messages={messagesRight}
-                                        typingUser={typingLeft} // Corrected: Right sees Left typing
+                                        typingUser={typingLeft} // Right sees Left typing (indicator)
+                                        typingUserAvatar={currentScenario.source.person.avatar} // Left's avatar
+                                        typingText={typingRightText} // Right's own typing (in their input)
                                         typingPlatform={currentScenario.source.platform}
                                         securityText={securityText}
                                     />

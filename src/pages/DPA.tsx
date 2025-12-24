@@ -25,13 +25,13 @@ export default function DPA() {
                                     <FileText className="h-8 w-8 text-primary" />
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold">Standard DPA Template</h3>
-                                    <p className="text-sm text-muted-foreground">Latest version: Feb 2025</p>
+                                    <h3 className="text-lg font-semibold">{t('dpa.standard_template')}</h3>
+                                    <p className="text-sm text-muted-foreground">{t('dpa.latest_version')}</p>
                                 </div>
                             </div>
                             <Button className="w-full sm:w-auto gap-2">
                                 <Download className="h-4 w-4" />
-                                Download PDF
+                                {t('dpa.download_pdf')}
                             </Button>
                         </div>
                     </div>
@@ -40,16 +40,14 @@ export default function DPA() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">1. Scope and Applicability</h2>
                             <p>
-                                This Data Processing Addendum ("DPA") forms part of the Master Services Agreement between SyncRivo and the Customer.
-                                It applies to the extent SyncRivo processes Personal Data on behalf of the Customer.
+                                {t('dpa.intro_text')}
                             </p>
                         </section>
 
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">2. Data Processing Roles</h2>
                             <p>
-                                For the purposes of the GDPR and other applicable data protection laws, the Customer is the Controller and
-                                SyncRivo is the Processor of Personal Data.
+                                {t('dpa.gdpr_roles')}
                             </p>
                         </section>
 
@@ -59,18 +57,17 @@ export default function DPA() {
                                 SyncRivo implements appropriate technical and organizational measures to protect Personal Data, including:
                             </p>
                             <ul className="list-disc pl-6 space-y-2 mt-4">
-                                <li>Encryption of data in transit and at rest</li>
-                                <li>Regular vulnerability assessments and penetration testing</li>
-                                <li>Access controls and authentication mechanisms</li>
-                                <li>Business continuity and disaster recovery plans</li>
+                                <li>{t('dpa.encryption_measure')}</li>
+                                <li>{t('dpa.vulnerability_assessment')}</li>
+                                <li>{t('dpa.access_controls')}</li>
+                                <li>{t('dpa.disaster_recovery')}</li>
                             </ul>
                         </section>
 
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">4. Data Subject Rights</h2>
                             <p>
-                                SyncRivo shall, to the extent legally permitted, promptly notify Customer if it receives a request from a Data
-                                Subject to exercise their rights (e.g., access, rectification, erasure).
+                                {t('dpa.data_subject_requests')}
                             </p>
                         </section>
                     </div>

@@ -37,14 +37,23 @@ const platforms: Platform[] = [
 ];
 
 export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
-    const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null);
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const containerRef = useRef<HTMLDivElement>(null);
+    const prefersReducedMotion = useReducedMotion();
+    const [hoveredId, setHoveredId] = useState<string | null>(null);
     const [isHubHovered, setIsHubHovered] = useState(false);
+
+    // Track which icons are currently zoomed from packet arrival
+    const [zoomedIcons, setZoomedIcons] = useState<Set<string>>(new Set());
+    const zoomQueueRef = useRef<string[]>([]);
+    const isZoomingRef = useRef(false);
+
     const [mounted, setMounted] = useState(false);
     const [hubRadius, setHubRadius] = useState(240);
     const [bgRipples, setBgRipples] = useState<{ x: number; y: number; id: number }[]>([]);
 
     // Physics & Motion
-    const containerRef = useRef<HTMLDivElement>(null);
+    // containerRef is already declared above
     const time = useTime();
 
     // Mouse position (Start far away so no initial ripple)
@@ -66,6 +75,41 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    // Handle icon zoom queue - only one icon can zoom at a time
+    useEffect(() => {
+        if (zoomQueueRef.current.length > 0 && !isZoomingRef.current) {
+            const nextIconId = zoomQueueRef.current.shift();
+            if (nextIconId) {
+                isZoomingRef.current = true;
+                setZoomedIcons(prev => new Set(prev).add(nextIconId));
+
+                // Remove from zoomed set after animation completes (1000ms)
+                setTimeout(() => {
+                    setZoomedIcons(prev => {
+                        const newSet = new Set(prev);
+                        newSet.delete(nextIconId);
+                        return newSet;
+                    });
+                    isZoomingRef.current = false;
+                }, 1000);
+            }
+        }
+    }, [zoomedIcons]);
+
+    // Trigger icon zoom when packet arrives (synced with packet animation)
+    useEffect(() => {
+        if (!isVisible) return;
+
+        const interval = setInterval(() => {
+            // Sync with packet animation timing
+            const randomIcon = platforms[Math.floor(Math.random() * platforms.length)];
+            zoomQueueRef.current.push(randomIcon.id);
+            setZoomedIcons(prev => new Set(prev)); // Trigger effect
+        }, 3000 + Math.random() * 1000); // Sync with packet animation + stagger
+
+        return () => clearInterval(interval);
+    }, [isVisible]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = containerRef.current?.getBoundingClientRect();
@@ -133,7 +177,7 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
                             radius={hubRadius}
                             mouseX={smoothMouseX}
                             mouseY={smoothMouseY}
-                            hoveredId={hoveredPlatform}
+                            hoveredId={hoveredId}
                         />
                     ))}
                 </svg>
@@ -171,9 +215,10 @@ export function HeroLoopAnimation({ isVisible }: { isVisible: boolean }) {
                         mouseX={smoothMouseX}
                         mouseY={smoothMouseY}
                         isVisible={isVisible}
-                        hoveredId={hoveredPlatform}
-                        setHoveredId={setHoveredPlatform}
+                        hoveredId={hoveredId}
+                        setHoveredId={setHoveredId}
                         isHubHovered={isHubHovered}
+                        isZoomed={zoomedIcons.has(platform.id)}
                     />
                 ))}
 
@@ -283,7 +328,7 @@ const OrbitalLine = ({ platform, time, radius, mouseX, mouseY, hoveredId }: any)
     );
 };
 
-const OrbitalIcon = ({ platform, index, time, radius, mouseX, mouseY, isVisible, hoveredId, setHoveredId, isHubHovered }: any) => {
+const OrbitalIcon = ({ platform, index, time, radius, mouseX, mouseY, isVisible, hoveredId, setHoveredId, isHubHovered, isZoomed }: any) => {
     const pos = useOrbitPosition(platform.angle, radius, time, mouseX, mouseY);
     const x = useTransform(pos, (p) => p.x);
     const y = useTransform(pos, (p) => p.y);
@@ -342,10 +387,34 @@ const OrbitalIcon = ({ platform, index, time, radius, mouseX, mouseY, isVisible,
                         <div className="absolute inset-0 rounded-xl bg-primary/20 animate-water-distortion z-0" />
                     )}
 
-                    <img
+                    {/* Icon with zoom animation on packet arrival */}
+                    <motion.img
                         src={platform.icon}
                         alt={platform.name}
-                        className={`${platform.id === 'googlechat' ? "w-7 h-7 sm:w-8 sm:h-8" : "w-5 h-5 sm:w-6 sm:h-6"} object-contain transition-all duration-300 relative z-20 ${isHovered ? "opacity-100 scale-110" : "opacity-70"}`}
+                        className={`${platform.id === 'googlechat' ? "w-7 h-7 sm:w-8 sm:h-8" : "w-5 h-5 sm:w-6 sm:h-6"} object-contain relative z-20`}
+                        animate={isZoomed ? {
+                            scale: [1, 1.1, 1.1, 1],
+                            opacity: [0.9, 1, 1, 0.9],
+                            filter: [
+                                "drop-shadow(0 0 0px rgba(90, 110, 255, 0))",
+                                "drop-shadow(0 0 12px rgba(90, 110, 255, 0.15))",
+                                "drop-shadow(0 0 12px rgba(90, 110, 255, 0.15))",
+                                "drop-shadow(0 0 0px rgba(90, 110, 255, 0))"
+                            ]
+                        } : isHovered ? {
+                            opacity: 1,
+                            scale: 1.1
+                        } : {
+                            opacity: 0.7,
+                            scale: 1
+                        }}
+                        transition={isZoomed ? {
+                            duration: 1,
+                            times: [0, 0.3, 0.7, 1],
+                            ease: [0.4, 0, 0.2, 1] // cubic-bezier(0.4, 0, 0.2, 1)
+                        } : {
+                            duration: 0.3
+                        }}
                     />
 
 
