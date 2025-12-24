@@ -74,7 +74,7 @@ export function HeroSection() {
                   {t('hero.description', 'SyncRivo connects Slack, Microsoft Teams, and Google Workspace to route messages, alerts, and updates automatically—so teams respond faster without manual copy-paste.')}
                 </p>
                 <p className="text-base text-muted-foreground/80 max-w-xl leading-relaxed hidden sm:block">
-                  Designed for scalable enterprise environments, providing <Link to="/security" className="text-primary hover:underline underline-offset-4">audit-ready security</Link> and robust <Link to="/features" className="text-primary hover:underline underline-offset-4">automation workflows</Link> for cross-functional teams.
+                  {t('hero.enterprise_description', 'Designed for scalable enterprise environments, providing')} <Link to="/security" className="text-primary hover:underline underline-offset-4">{t('hero.audit_ready_security', 'audit-ready security')}</Link> {t('hero.and', 'and')} {t('hero.robust', 'robust')} <Link to="/features" className="text-primary hover:underline underline-offset-4">{t('hero.automation_workflows', 'automation workflows')}</Link> {t('hero.for_teams', 'for cross-functional teams')}.
                 </p>
               </div>
             </div>

@@ -19,43 +19,43 @@ export function ValuePropSection() {
 
                 <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
                     <p>
-                        In today's distributed enterprise environment, teams often work in silos defined by their choice of communication tools.
-                        Engineering uses <strong>Slack</strong> for rapid alerting, Sales relies on <strong>Microsoft Teams</strong> for corporate alignment,
-                        and external partners communicate via <strong>Google Chat</strong>. This fragmentation creates data islands, missed notifications,
-                        and security vulnerabilities during manual copy-pasting.
+                        {t('value_prop.para1', 'In today\'s distributed enterprise environment, teams often work in silos defined by their choice of communication tools. Engineering uses Slack for rapid alerting, Sales relies on Microsoft Teams for corporate alignment, and external partners communicate via Google Chat. This fragmentation creates data islands, missed notifications, and security vulnerabilities during manual copy-pasting.')}
                     </p>
 
                     <p>
-                        SyncRivo acts as the <strong className="text-foreground">secure message routing middleware</strong> that sits between these platforms.
-                        By automating cross-platform collaboration, we ensure that a critical incident flagged in Slack instantly alerts the relevant stakeholders in Teams,
-                        preserving context, attachments, and thread history.
+                        {t('value_prop.para2', 'SyncRivo acts as the secure message routing middleware that sits between these platforms. By automating cross-platform collaboration, we ensure that a critical incident flagged in Slack instantly alerts the relevant stakeholders in Teams, preserving context, attachments, and thread history.')}
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 pt-8">
                         <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-100 dark:border-slate-800">
                             <h3 className="text-xl font-semibold text-foreground mb-3 flex items-center gap-2">
                                 <ShieldCheck className="w-5 h-5 text-primary" />
-                                Secure & Compliant
+                                {t('value_prop.secure_title', 'Secure & Compliant')}
                             </h3>
                             <p className="text-base">
-                                Enterprise-grade encryption (TLS 1.3) and SOC 2 Type II compliance ensure that your sensitive data remains protected during transit.
+                                {t('value_prop.secure_desc', 'Enterprise-grade encryption (TLS 1.3) and SOC 2 Type II compliance ensure that your sensitive data remains protected during transit.')}
                             </p>
                         </div>
                         <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-100 dark:border-slate-800">
                             <h3 className="text-xl font-semibold text-foreground mb-3 flex items-center gap-2">
                                 <Globe className="w-5 h-5 text-primary" />
-                                Global Reliability
+                                {t('value_prop.global_title', 'Global Reliability')}
                             </h3>
                             <p className="text-base">
-                                Built on a distributed edge network with 99.99% SLA, ensuring low-latency message delivery for <Link to="/solutions/global-subsidiaries" className="text-primary hover:underline">global teams</Link> across regions.
+                                {t('value_prop.global_desc', 'Built on a distributed edge network with 99.99% SLA, ensuring low-latency message delivery for global teams across regions.')}
                             </p>
                         </div>
                     </div>
 
                     <div className="pt-8 text-center">
-                        <p className="text-sm font-medium mb-4 uppercase tracking-wide text-muted-foreground">Why Global Leaders Choose SyncRivo</p>
+                        <p className="text-sm font-medium mb-4 uppercase tracking-wide text-muted-foreground">{t('value_prop.why_choose', 'Why Global Leaders Choose SyncRivo')}</p>
                         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-                            {['No Data Retention', 'Granular Access Control', 'Bi-directional Sync', 'Native Experience'].map((feature, i) => (
+                            {[
+                                t('value_prop.feature1', 'No Data Retention'),
+                                t('value_prop.feature2', 'Granular Access Control'),
+                                t('value_prop.feature3', 'Bi-directional Sync'),
+                                t('value_prop.feature4', 'Native Experience')
+                            ].map((feature, i) => (
                                 <div key={i} className="flex items-center gap-2 text-foreground font-medium">
                                     <Check className="w-4 h-4 text-emerald-500" />
                                     {feature}

@@ -3,7 +3,6 @@
     "features": "功能",
     "integrations": "集成",
     "pricing": "定价",
-    "blog": "博客",
     "documentation": "文档",
     "support": "支持",
     "about": "关于",
@@ -31,8 +30,6 @@
   },
   "nav": {
     "home": "首页",
-    "solutions": "解决方案",
-    "all_solutions": "查看所有解决方案",
     "resources": "资源",
     "company": "公司",
     "blog": "博客",
@@ -77,18 +74,7 @@
       "iso27001": "ISO 27001 认证",
       "gdpr": "符合 GDPR",
       "hipaa": "符合 HIPAA"
-    },
-    "cta_integrations": "查看集成",
-    "proof_security": "企业级安全",
-    "proof_latency": "低延迟路由",
-    "proof_audit": "审计友好的工作流程",
-    "proof_platforms": "Slack • Teams • Workspace",
-    "enterprise_description": "专为可扩展的企业环境而设计，提供",
-    "audit_ready_security": "审计就绪的安全性",
-    "and": "和",
-    "robust": "强大的",
-    "automation_workflows": "自动化工作流程",
-    "for_teams": "适用于跨职能团队"
+    }
   },
   "support": {
     "title": "我们如何帮助您？",
@@ -190,20 +176,12 @@
     "customer_support_hub_desc": "将客户支持渠道与内部通信工具集成。",
     "project_coordination": "项目协调",
     "project_coordination_desc": "在所有团队通信渠道中同步项目更新和通知。",
-    "title": "可扩展的使用场景",
-    "subtitle": "专为现代企业复杂性而设计。统一运营、支持和外部合作，而无需更改您的技术堆栈。",
-    "incident_title": "事件与警报",
-    "collab_title": "跨公司协作",
-    "ops_title": "IT 与运营自动化",
-    "support_title": "客户支持升级",
-    "incident_b1": "自动将P1/P2警报路由到正确的渠道",
-    "incident_b2": "通过让响应者留在主要工具中来降低MTTA",
-    "collab_b1": "当合作伙伴使用不同平台时搭建沟通桥梁",
-    "collab_b2": "保持上下文而不转发混乱",
-    "ops_b1": "自动化审批通知、故障、变更",
-    "ops_b2": "保持各工具间更新一致",
-    "support_b1": "立即将关键消息上升到正确的团队",
-    "support_b2": "减少遗漏的交接"
+    "title": "Scalable Use Cases",
+    "subtitle": "Designed for modern enterprise.",
+    "incident_title": "Incident & Alerts",
+    "collab_title": "Cross-Company Collaboration",
+    "ops_title": "IT & Operations Automation",
+    "support_title": "Customer Support Escalations"
   },
   "pricing": {
     "title": "定价",
@@ -370,11 +348,11 @@
     "subtitle": "了解我们对保护您的数据安全的承诺。",
     "coming_soon": "即将推出",
     "coming_soon_desc": "我们的安全文档正在准备中。请稍后查看详细的安全信息。",
-    "teaser_title": "企业级安全与治理",
-    "teaser_desc": "我们遵守最严格的企业安全标准，确保您的数据始终受到保护。",
-    "link_security": "安全概述",
-    "link_privacy": "隐私政策",
-    "link_terms": "服务条款"
+    "teaser_title": "Enterprise-Grade Security",
+    "teaser_desc": "Strictest security standards.",
+    "link_security": "Security Overview",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Terms of Service"
   },
   "login": {
     "title": "登录",
@@ -476,78 +454,7 @@
       "coming_soon": "安全设置即将推出"
     },
     "settings": {
-      "subtitle": "管理您的账户和偏好设置",
-      "profile": {
-        "title": "个人资料信息",
-        "change_photo": "更换照片",
-        "photo_requirements": "JPG, PNG 最大5MB",
-        "first_name": "名字",
-        "last_name": "姓氏",
-        "email": "邮箱",
-        "company": "公司",
-        "bio": "个人简介",
-        "bio_placeholder": "介绍一下您自己...",
-        "save_changes": "保存更改",
-        "saving": "保存中..."
-      },
-      "notifications": {
-        "title": "通知设置",
-        "email_notifications": "邮件通知",
-        "email_notifications_desc": "接收电子邮件提醒",
-        "sync_alerts": "同步警报",
-        "sync_alerts_desc": "同步失败提醒",
-        "weekly_reports": "每周报告",
-        "weekly_reports_desc": "每周活动摘要",
-        "marketing": "营销信息",
-        "marketing_desc": "产品更新和提示"
-      },
-      "security": {
-        "title": "安全设置",
-        "password_section": "密码",
-        "current_password": "当前密码",
-        "new_password": "新密码",
-        "confirm_password": "确认密码",
-        "update_password": "更新密码",
-        "updating": "更新中...",
-        "two_factor": "双因素认证",
-        "authenticator_app": "身份验证应用",
-        "not_configured": "未配置",
-        "setup": "设置"
-      },
-      "danger_zone": {
-        "title": "危险区域",
-        "delete_account": "删除账户",
-        "delete_warning": "账户一旦删除将无法恢复，请谨慎操作。",
-        "delete_confirm_title": "您确定要这么做吗？",
-        "delete_confirm_desc": "此操作无法撤销。这将永久删除您的账户并从我们的服务器中删除所有数据。",
-        "deleting": "删除中..."
-      },
-      "toasts": {
-        "invalid_file_type_title": "文件类型无效",
-        "invalid_file_type_desc": "请选择JPG或PNG图片。",
-        "file_too_large_title": "文件过大",
-        "file_too_large_desc": "请选择小于5MB的图片。",
-        "photo_updated_title": "照片已更新",
-        "photo_updated_desc": "您的个人资料照片已成功更新。",
-        "missing_fields_title": "缺少字段",
-        "missing_fields_desc": "请填写所有密码字段。",
-        "passwords_no_match_title": "密码不匹配",
-        "passwords_no_match_desc": "新密码和确认密码必须匹配。",
-        "password_too_short_title": "密码太短",
-        "password_too_short_desc": "密码必须至少8个字符。",
-        "password_updated_title": "密码已更新",
-        "password_updated_desc": "您的密码已成功更新。",
-        "password_update_error_title": "更新密码出错",
-        "password_update_error_desc": "出现了一些问题，请重试。",
-        "changes_saved_title": "更改已保存",
-        "changes_saved_desc": "您的个人资料已成功更新。",
-        "save_error_title": "保存更改出错",
-        "save_error_desc": "出现了一些问题，请重试。",
-        "account_deleted_title": "账户已删除",
-        "account_deleted_desc": "您的账户已被永久删除。",
-        "delete_error_title": "删除账户出错",
-        "delete_error_desc": "出现了一些问题，请重试。"
-      }
+      "subtitle": "管理您的账户和偏好设置"
     },
     "realtime_chart_title": "实时消息同步活动",
     "messages_synced_5min": "5分钟内同步消息",
@@ -561,42 +468,14 @@
     "return_home": "返回首页"
   },
   "footer": {
-    "tagline": "SyncRivo 是您的安全中心，用于在 Teams、Slack 等平台之间同步、路由和自动化对话。",
-    "book_demo": "预约企业现场演示",
+    "tagline": "在统一平台中无缝连接和管理所有业务集成。",
     "product": "产品",
-    "solutions": "解决方案",
     "company": "公司",
-    "resources": "资源与法律",
-    "home": "首页",
-    "features": "功能",
-    "pricing": "定价",
-    "frontline": "一线员工",
-    "mergers": "并购",
-    "coexistence": "长期共存",
-    "vendor_lockin": "避免供应商锁定",
-    "about": "关于",
-    "contact_sales": "联系销售",
-    "careers": "职业机会",
-    "partners": "合作伙伴",
-    "documentation": "文档",
-    "status": "API 状态 / 系统状态",
-    "security": "安全",
+    "legal": "法律",
     "privacy_policy": "隐私政策",
     "terms_of_service": "服务条款",
-    "cookie_policy": "Cookie 政策",
-    "data_protection": "数据保护",
-    "dpa": "数据处理协议",
-    "sub_processors": "子处理器",
-    "all_rights_reserved": "版权所有。",
-    "regions": "区域",
-    "usa": "美国",
-    "united_kingdom": "英国",
-    "europe": "欧洲",
-    "middle_east": "中东",
-    "apac": "亚太地区",
-    "linkedin": "领英",
-    "twitter": "推特",
-    "github": "GitHub"
+    "help_center": "帮助中心",
+    "all_rights_reserved": "版权所有。"
   },
   "home": {
     "features_badge": "强大功能",
@@ -666,31 +545,16 @@
   },
   "value_prop": {
     "title": "企业的通用消息层",
-    "subtitle": "分散的沟通会拖慢全球团队的速度。SyncRivo 统一您的技术栈，无需强制迁移。",
-    "para1": "在当今的分布式企业环境中，团队往往因其选择的通信工具而在孤岛中工作。工程团队使用Slack进行快速警报，销售团队依靠Microsoft Teams进行企业协调，而外部合作伙伴通过Google Chat进行沟通。这种碎片化会创建数据孤岛、遗漏通知，并在手动复制粘贴过程中产生安全漏洞。",
-    "para2": "SyncRivo作为安全的消息路由中间件，位于这些平台之间。通过自动化跨平台协作，我们确保在Slack中标记的关键事件立即警告Teams中的相关利益相关者，保留上下文、附件和线程历史记录。",
-    "secure_title": "安全与合规",
-    "secure_desc": "企业级加密（TLS 1.3）和SOC 2 Type II合规性确保您的敏感数据在传输过程中始终受到保护。",
-    "global_title": "全球可靠性",
-    "global_desc": "基于分布式边缘网络构建，具有99.99%的SLA，确保为全球各地区的团队提供低延迟消息传递。",
-    "why_choose": "为什么全球领导者选择SyncRivo",
-    "feature1": "无数据保留",
-    "feature2": "粒度访问控制",
-    "feature3": "双向同步",
-    "feature4": "原生体验"
+    "subtitle": "分散的沟通会拖慢全球团队的速度。SyncRivo 统一您的技术栈，无需强制迁移。"
   },
   "how_it_works": {
     "title": "智能自动化工作流",
-    "subtitle": "使用我们的可视化或可靠的JSON配置来配置高级消息路由逻辑。支持布尔逻辑、时间窗口和基于团队的升级。",
     "step1_title": "连接工具",
-    "step1_desc": "Slack、Teams、Google Workspace、Zoom、Webex",
-    "step2_title": "定义路由规则",
-    "step2_desc": "渠道映射、关键字、优先级、团队、时间窗口",
-    "step3_title": "监控和改进",
-    "step3_desc": "可见性、日志、重试和工作流结果"
+    "step2_title": "定义规则",
+    "step3_title": "监控与改进"
   },
   "final_cta": {
-    "title": "准备好统一您的沟通栈了吗？",
+    "title": "准备好统您的沟通栈了吗？",
     "book_demo": "预约演示",
     "talk_sales": "联系销售"
   },
@@ -714,46 +578,28 @@
         "msg2": "是的 ✅ 我稍后分享更新的 backlog。"
       },
       "2": {
-        "msg1": "嗨 Daniel 👋 产品演示文稿已准备好。",
-        "msg2": "太好了 👍 我会在客户电话会议前审阅。"
+        "msg1": "Hey Daniel 👋 The product demo deck is ready.",
+        "msg2": "Perfect 👍 I'll review before the client call."
       },
       "3": {
-        "msg1": "早上好 Sarah！🚀 部署已在生产环境上线。",
-        "msg2": "干得好 🎉 监控面板显示正常。"
+        "msg1": "Morning Sarah! 🚀 Deployment is live on prod.",
+        "msg2": "Awesome work 🎉 Monitoring dashboards look green."
       },
       "4": {
-        "msg1": "请查收附件中的事故根因分析报告。",
-        "msg2": "收到 👍 感谢快速响应。"
+        "msg1": "Please find the incident RCA attached.",
+        "msg2": "Got it 👍 Thanks for the quick turnaround."
       },
       "5": {
-        "msg1": "基础设施成本优化报告已准备好 💡",
-        "msg2": "很好 👌 我们明天站会上讨论。"
+        "msg1": "Infra cost optimization report is ready 💡",
+        "msg2": "Nice 👌 Let's review this in tomorrow's standup."
       },
       "6": {
-        "msg1": "客户批准了提案 🎉",
-        "msg2": "好消息！开始启动入职流程 🚀"
+        "msg1": "Client approved the proposal 🎉",
+        "msg2": "Great news! Let's kick off onboarding 🚀"
       }
     },
     "roles": {
-      "product_owner": "产品负责人",
-      "devops_lead": "DevOps 负责人",
-      "product_lead": "产品主管",
-      "sales_director": "销售总监",
-      "cto": "首席技术官",
-      "sre": "站点可靠性工程师"
+      "product_owner": "产品负责人"
     }
-  },
-  "contact_sales": {
-    "custom_enterprise_pricing": "企业定制定价",
-    "dedicated_success_manager": "专属成功经理",
-    "priority_support_patterns": "优先支持模式",
-    "schedule_live_demo": "预约现场演示",
-    "schedule_live_demo_desc": "了解SyncRivo如何自动化您的跨平台消息工作流程。",
-    "flexible_scheduling": "灵活安排",
-    "flexible_scheduling_desc": "选择适合您团队时区的时间。",
-    "tailored_walkthrough": "定制演练",
-    "tailored_walkthrough_desc": "我们专注于您的特定集成需求。",
-    "security_deep_dive": "安全深入解析",
-    "security_deep_dive_desc": "了解我们企业级合规性和安全性。"
   }
 }

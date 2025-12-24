@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
+import { useTranslation } from 'react-i18next';
 
 interface UserAccountMenuProps {
   user: SupabaseUser;
@@ -16,12 +17,13 @@ interface UserAccountMenuProps {
 }
 
 export function UserAccountMenu({ user, onSignOut }: UserAccountMenuProps) {
+  const { t } = useTranslation();
   const displayName = user?.user_metadata?.display_name || user?.email;
 
   return (
     <>
       <Button variant="ghost" asChild>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard">{t('common.dashboard')}</Link>
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

@@ -3,6 +3,7 @@
     "features": "Funktionen",
     "integrations": "Integrationen",
     "pricing": "Preise",
+    "blog": "Blog",
     "documentation": "Dokumentation",
     "support": "Support",
     "about": "Über uns",
@@ -30,6 +31,8 @@
   },
   "nav": {
     "home": "Startseite",
+    "solutions": "Lösungen",
+    "all_solutions": "Alle Lösungen anzeigen",
     "resources": "Ressourcen",
     "company": "Unternehmen",
     "blog": "Blog",
@@ -409,11 +412,11 @@
     "responsible_disclosure_desc": "Wir haben ein verantwortungsvolles Offenlegungsprogramm für Sicherheitsforscher.",
     "compliance": "Compliance",
     "compliance_desc": "Wir halten uns an Branchenstandards und Vorschriften zum Schutz Ihrer Daten.",
-    "teaser_title": "Enterprise-Grade Security",
-    "teaser_desc": "Strictest security standards.",
-    "link_security": "Security Overview",
-    "link_privacy": "Privacy Policy",
-    "link_terms": "Terms of Service"
+    "teaser_title": "Sicherheit auf Unternehmensniveau & Governance",
+    "teaser_desc": "Wir halten uns an die strengsten Unternehmenssicherheitsstandards und stellen sicher, dass Ihre Daten jederzeit geschützt sind.",
+    "link_security": "Sicherheitsübersicht",
+    "link_privacy": "Datenschutzrichtlinie",
+    "link_terms": "Nutzungsbedingungen"
   },
   "login": {
     "title": "Anmelden",
@@ -584,14 +587,42 @@
     }
   },
   "footer": {
-    "tagline": "Verbinden und verwalten Sie nahtlos alle Ihre Business-Messaging-Integrationen in einer einheitlichen Plattform.",
+    "tagline": "SyncRivo ist Ihr sicherer Hub zum Synchronisieren, Routing und Automatisieren von Konversationen zwischen Teams, Slack und mehr.",
+    "book_demo": "Live Enterprise-Demo buchen",
     "product": "Produkt",
+    "solutions": "Lösungen",
     "company": "Unternehmen",
-    "legal": "Rechtliches",
+    "resources": "Ressourcen & Rechtliches",
+    "home": "Startseite",
+    "features": "Funktionen",
+    "pricing": "Preise",
+    "frontline": "Frontline-Mitarbeiter",
+    "mergers": "Fusionen & Übernahmen",
+    "coexistence": "Langfristige Koexistenz",
+    "vendor_lockin": "Vendor Lock-in vermeiden",
+    "about": "Über uns",
+    "contact_sales": "Vertrieb kontaktieren",
+    "careers": "Karriere",
+    "partners": "Partner",
+    "documentation": "Dokumentation",
+    "status": "API-Status / Systemstatus",
+    "security": "Sicherheit",
     "privacy_policy": "Datenschutzrichtlinie",
     "terms_of_service": "Nutzungsbedingungen",
-    "help_center": "Hilfe-Center",
-    "all_rights_reserved": "Alle Rechte vorbehalten."
+    "cookie_policy": "Cookie-Richtlinie",
+    "data_protection": "Datenschutz",
+    "dpa": "Datenverarbeitungsvertrag",
+    "sub_processors": "Unterauftragsverarbeiter",
+    "all_rights_reserved": "Alle Rechte vorbehalten.",
+    "regions": "Regionen",
+    "usa": "USA",
+    "united_kingdom": "Vereinigtes Königreich",
+    "europe": "Europa",
+    "middle_east": "Naher Osten",
+    "apac": "APAC",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "github": "GitHub"
   },
   "buttons": {
     "start_free_trial": "Kostenlose Testversion Starten",
@@ -628,30 +659,33 @@
         "msg2": "Ja ✅ Ich teile gleich das Update."
       },
       "2": {
-        "msg1": "Hey Daniel 👋 The product demo deck is ready.",
-        "msg2": "Perfect 👍 I'll review before the client call."
+        "msg1": "Hey Daniel 👋 Die Produktpräsentation ist fertig.",
+        "msg2": "Perfekt 👍 Ich schaue sie vor dem Kundentermin an."
       },
       "3": {
-        "msg1": "Morning Sarah! 🚀 Deployment is live on prod.",
-        "msg2": "Awesome work 🎉 Monitoring dashboards look green."
+        "msg1": "Guten Morgen Sarah! 🚀 Deployment ist live auf Prod.",
+        "msg2": "Großartige Arbeit 🎉 Monitoring-Dashboards sehen gut aus."
       },
       "4": {
-        "msg1": "Please find the incident RCA attached.",
-        "msg2": "Got it 👍 Thanks for the quick turnaround."
+        "msg1": "Die Incident-RCA ist im Anhang.",
+        "msg2": "Erhalten 👍 Danke für die schnelle Bearbeitung."
       },
       "5": {
-        "msg1": "Infra cost optimization report is ready 💡",
-        "msg2": "Nice 👌 Let's review this in tomorrow's standup."
+        "msg1": "Infrastruktur-Kostenoptimierungsbericht ist fertig 💡",
+        "msg2": "Gut 👌 Besprechen wir morgen im Standup."
       },
       "6": {
-        "msg1": "Client approved the proposal 🎉",
-        "msg2": "Great news! Let's kick off onboarding 🚀"
+        "msg1": "Kunde hat den Vorschlag genehmigt 🎉",
+        "msg2": "Tolle Neuigkeiten! Starten wir das Onboarding 🚀"
       }
     },
     "roles": {
       "product_owner": "Product Owner",
       "devops_lead": "DevOps Lead",
-      "cto": "CTO"
+      "product_lead": "Product Lead",
+      "sales_director": "Sales Director",
+      "cto": "CTO",
+      "sre": "SRE"
     }
   }
 }
