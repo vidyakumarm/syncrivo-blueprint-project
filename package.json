@@ -49,6 +49,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "express": "^5.2.1",
+    "flubber": "^0.4.2",
     "framer-motion": "^12.23.25",
     "i18next": "^25.3.1",
     "i18next-browser-languagedetector": "^8.2.0",

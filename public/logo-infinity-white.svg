@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="110" height="60" viewBox="0 0 110 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="whiteGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Core Infinity Shape - White -->
+  <path 
+    d="M30,30 C30,20 35,16 42,20 C46,23 50,26 55,30 C60,34 64,37 68,40 C72,43 77,44 80,40 C83,36 83,30 80,26 C77,22 72,21 68,24 C64,27 60,30 55,34 C50,38 46,41 42,44 C35,48 30,44 30,34 C30,32 30,31 30,30 Z"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#whiteGlow)"
+  />
+</svg>
