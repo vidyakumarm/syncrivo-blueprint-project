@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { LanguageSelector } from '@/components/ui/language-selector';
@@ -14,8 +15,25 @@ import { AnimatePresence } from 'framer-motion';
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [ctaHovered, setCtaHovered] = useState(false);
+  const [navHovered, setNavHovered] = useState(false);
   const { user, signOut } = useAuth();
   const { t } = useTranslation();
+  const location = useLocation();
+
+  // Track scroll progress for logo morphing
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   console.log('🧭 [Navigation] Component rendered', {
     timestamp: new Date().toISOString(),
@@ -69,10 +87,18 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-[var(--header-height)]">
             {/* Logo */}
-            <NavigationHeader />
+            <NavigationHeader
+              scrollProgress={scrollProgress}
+              isNavHovered={navHovered}
+              isCtaHovered={ctaHovered}
+            />
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div
+              className="hidden lg:flex items-center space-x-8"
+              onMouseEnter={() => setNavHovered(true)}
+              onMouseLeave={() => setNavHovered(false)}
+            >
               <DesktopNavMenu navItems={navItems} />
 
               {/* Language Selector, Theme Toggle & Auth Buttons */}
@@ -83,7 +109,9 @@ export function Navigation() {
                 {user ? (
                   <UserAccountMenu user={user} onSignOut={handleSignOut} />
                 ) : (
-                  <AuthenticationButtons />
+                  <AuthenticationButtons
+                    onCtaHover={setCtaHovered}
+                  />
                 )}
               </div>
             </div>
